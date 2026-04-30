@@ -6,8 +6,8 @@ export const metadata: Metadata = {
   description: "Interactive B738 Normal Procedure Checklist with voice assistant for flight simulation",
   manifest: "/manifest.json",
   icons: {
-    icon: "/icons/icon-192x192.png",
-    apple: "/icons/icon-512x512.png",
+    icon: "/icons/favicon.svg",
+    apple: "/icons/favicon.svg",
   },
 };
 
