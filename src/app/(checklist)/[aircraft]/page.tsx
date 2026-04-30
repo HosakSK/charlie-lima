@@ -106,7 +106,7 @@ export default function AircraftChecklistPage() {
                      <div key={idx} className={`w-2 h-2 rounded-full ${idx === currentPageIndex ? 'bg-blue-500' : 'bg-slate-300 dark:bg-slate-700'}`} />
                   ))}
                </div>
-               <span className="text-[10px] text-slate-400 font-mono">v3.0.2</span>
+               <span className="text-[10px] text-slate-400 font-mono">v3.0.3</span>
             </div>
             <button 
                className="px-6 py-3 rounded-xl font-semibold bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 transition-colors"

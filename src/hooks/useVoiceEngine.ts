@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { useChecklistStore } from './useChecklistStore';
-import { useSettingsStore } from './useSettingsStore';
+import { useChecklistStore } from './store/useChecklistStore';
+import { useSettingsStore } from './store/useSettingsStore';
 
 export function useVoiceEngine() {
   const [isListening, setIsListening] = useState(false);

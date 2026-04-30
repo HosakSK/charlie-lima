@@ -44,7 +44,7 @@ export default function LandingPage() {
         </div>
       </div>
       <div className="absolute bottom-8 text-xs text-slate-500 tracking-wider">
-        VERSION 3.0.2 • NOT FOR REAL WORLD AVIATION
+        VERSION 3.0.3 • NOT FOR REAL WORLD AVIATION
       </div>
     </div>
   );
