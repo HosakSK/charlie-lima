@@ -184,7 +184,7 @@ function getOriginalHTML(aircraft: string): string {
     </div>
   </div>
   <div class="global-footer">
-    <span class="version-info">v3.0.5</span>
+    <span class="version-info">v3.0.6</span>
     <span class="sim-warning">For flight simulation use only.<br>Not for real-world flight.</span>
   </div>`;
 }
