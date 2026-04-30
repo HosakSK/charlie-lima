@@ -376,13 +376,13 @@ export function useVoiceEngine(callbacks: VoiceCallbacks) {
     readCLOnlyChecklistPhaseActiveRef.current = false;
 
     if (!recognitionRef.current) {
-      const SpeechRecognition = (window as unknown as Record<string, unknown>).SpeechRecognition || (window as unknown as Record<string, unknown>).webkitSpeechRecognition;
-      const recognition = new (SpeechRecognition as new () => SpeechRecognition)();
-      (recognition as unknown as Record<string, unknown>).lang = 'en-US';
-      (recognition as unknown as Record<string, unknown>).continuous = true;
-      (recognition as unknown as Record<string, unknown>).interimResults = true;
+      const SpeechRecognitionCtor = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      const recognition: any = new SpeechRecognitionCtor();
+      recognition.lang = 'en-US';
+      recognition.continuous = true;
+      recognition.interimResults = true;
 
-      (recognition as unknown as Record<string, unknown>).onstart = () => {
+      recognition.onstart = () => {
         isListeningRef.current = true;
         processedMatchesCountRef.current = 0;
         processedStopCountRef.current = 0;
@@ -392,7 +392,7 @@ export function useVoiceEngine(callbacks: VoiceCallbacks) {
         callbacks.onEqualizerState('active');
       };
 
-      (recognition as unknown as Record<string, unknown>).onend = () => {
+      recognition.onend = () => {
         if (!isListeningRef.current) {
           callbacks.onListeningChange(false);
           callbacks.onEqualizerState('idle');
@@ -404,13 +404,13 @@ export function useVoiceEngine(callbacks: VoiceCallbacks) {
         }
       };
 
-      (recognition as unknown as Record<string, unknown>).onerror = (event: { error: string }) => {
+      recognition.onerror = (event: any) => {
         if (event.error === 'aborted' || event.error === 'no-speech') return;
         if (event.error === 'not-allowed') isListeningRef.current = false;
         callbacks.onEqualizerState('error');
       };
 
-      (recognition as unknown as Record<string, unknown>).onresult = (event: { results: SpeechRecognitionResultList }) => {
+      recognition.onresult = (event: any) => {
         let fullTranscript = '';
         for (let i = 0; i < event.results.length; i++) {
           fullTranscript += event.results[i][0].transcript + ' ';
@@ -515,7 +515,7 @@ export function useVoiceEngine(callbacks: VoiceCallbacks) {
     }
 
     try {
-      (recognitionRef.current as unknown as { start(): void }).start();
+      recognitionRef.current.start();
     } catch (e) {
       alert("Mic error: " + (e as Error).message);
     }
