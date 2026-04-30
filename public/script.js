@@ -1,0 +1,2309 @@
+// ============================================================
+// STATE
+// ============================================================
+let checklistData = [];
+let currentPageIndex = 0;
+
+// DOM – checklist
+const pageTitleElem = document.getElementById('page-title');
+const containerElem = document.getElementById('checklist-container');
+const btnPrev = document.getElementById('btn-prev');
+const btnNext = document.getElementById('btn-next');
+const currentPageElem = document.getElementById('current-page');
+const totalPagesElem = document.getElementById('total-pages');
+const progressFill = document.getElementById('progress');
+const globalProgressFill = document.getElementById('global-progress-fill');
+
+// DOM – Top global bar & settings
+const globalTitleElem = document.getElementById('global-title');
+const globalFlightInfoElem = document.getElementById('global-flight-info');
+const topHamburgerBtn = document.getElementById('top-settings-btn');
+const topSettingsDropdown = document.getElementById('top-settings');
+
+const themeToggleBtn = document.getElementById('top-theme-toggle');
+const fontToggleBtn = document.getElementById('top-font-toggle');
+const maleVoiceToggleBtn = document.getElementById('top-male-voice-toggle');
+const muteToggleBtn = document.getElementById('top-mute-toggle');
+const checklistOnlyContainer = document.getElementById('top-checklist-toggle-container');
+const checklistOnlyToggle = document.getElementById('top-checklist-only-toggle');
+const briefingToggleBtn = document.getElementById('top-briefing-toggle');
+const resetSettingsBtn = document.getElementById('reset-settings-btn');
+const briefingInfoOverlay = document.getElementById('briefing-info-overlay');
+const briefingInfoClose = document.getElementById('briefing-info-close');
+const briefingInfoDontShow = document.getElementById('briefing-info-dont-show');
+
+// DOM – overlay & voice
+const fabBtn = document.getElementById('fab-btn');
+const overlay = document.getElementById('overlay');
+const overlayClose = document.getElementById('overlay-close');
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const quickNavDropdown = document.getElementById('quick-nav-dropdown');
+const briefClear = document.getElementById('brief-clear');
+const micBtn = document.getElementById('mic-btn');
+const voiceBar = document.getElementById('voice-bar');
+const voiceEqualizer = document.getElementById('voice-equalizer');
+const voiceStopBtn = document.getElementById('voice-stop-btn');
+const resetPhaseBtn = document.getElementById('reset-phase-btn');
+const turnaroundPhaseBtn = document.getElementById('turnaround-phase-btn');
+
+// DOM – Audio & Help
+const helpToggleBtn = document.getElementById('help-footer-btn');
+const helpOverlay = document.getElementById('help-overlay');
+const helpCloseBtn = document.getElementById('help-close');
+const helpContentContainer = document.getElementById('help-content-container');
+const helpLangSelect = document.getElementById('help-lang-select');
+const audioClick = document.getElementById('audio-click');
+
+// DOM - Action Timer
+const actionTimerOverlay = document.getElementById('action-timer-overlay');
+const actionTimerCircle = document.getElementById('action-timer-circle');
+const actionTimerTime = document.getElementById('action-timer-time');
+const actionTimerLabel = document.getElementById('action-timer-label');
+
+// AUDIO VOLUMES
+if (audioClick) { audioClick.volume = 0.1; console.log("AudioClick initialized at 10%"); }
+
+let isMuted = localStorage.getItem('b738_muted') === 'true';
+
+const BRIEF_FIELDS = [
+    'b-callsign', 'b-origin', 'b-dest',
+    'b-dep-atis', 'b-dep-qnh', 'b-dep-rwy', 'b-dep-rwy-hdg', 'b-sid', 'b-init-alt', 'b-dep-tl', 'b-squawk',
+    'b-dep-dewpt', 'b-dep-temp', 'b-dep-wind', 'b-dep-flaps', 'b-dep-assumed',
+    'b-total-fuel', 'b-trip-fuel', 'b-reserve-fuel',
+    'b-v1', 'b-vr', 'b-v2', 'b-trim', 'b-taxi-out',
+    'b-arr-atis', 'b-arr-qnh', 'b-arr-rwy', 'b-landing-type', 'b-arr-ta', 'b-star',
+    'b-arr-dewpt', 'b-arr-temp', 'b-arr-wind',
+    'b-ils-freq', 'b-course', 'b-minima', 'b-ga-alt', 'b-vref', 'b-arr-flaps', 'b-autobrake',
+    'b-taxi-in', 'b-gate', 'b-notes'
+];
+const BRIEF_STORAGE_KEY = 'b738_briefing_v2';
+
+// ============================================================
+// AUDIO & MUTE
+// ============================================================
+// ============================================================
+// AUDIO & MUTE
+// ============================================================
+// AUDIO & MUTE
+// ============================================================
+function updateMuteState() {
+    if (muteToggleBtn) muteToggleBtn.checked = isMuted;
+    if (audioClick) audioClick.muted = isMuted;
+
+    // Completely mute speech synthesis if activated
+    if (isMuted) {
+        window.speechSynthesis.cancel();
+    }
+}
+updateMuteState();
+
+if (muteToggleBtn) {
+    muteToggleBtn.addEventListener('change', (e) => {
+        isMuted = e.target.checked;
+        localStorage.setItem('b738_muted', isMuted);
+        updateMuteState();
+    });
+}
+
+// ============================================================
+// NIGHT MODE & FONT
+// ============================================================
+function applyTheme(dark) {
+    if (dark) document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
+
+    // Update browser theme color meta
+    const themeColor = dark ? '#242627' : '#F5F7F7';
+    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+        // If we have multiple (light/dark media), we can just update all of them or set the content
+        document.querySelectorAll('meta[name="theme-color"]').forEach(meta => {
+            meta.setAttribute('content', themeColor);
+        });
+    }
+}
+
+const isDarkInit = localStorage.getItem('b738_theme') === 'dark';
+applyTheme(isDarkInit);
+
+if (themeToggleBtn) {
+    themeToggleBtn.checked = isDarkInit;
+    themeToggleBtn.addEventListener('change', (e) => {
+        const dark = e.target.checked;
+        applyTheme(dark);
+        localStorage.setItem('b738_theme', dark ? 'dark' : 'light');
+    });
+}
+
+let isMono = localStorage.getItem('b738_mono') === 'true';
+
+function applyFontState() {
+    if (isMono) {
+        document.body.style.fontFamily = "'IBM Plex Mono', monospace";
+    } else {
+        document.body.style.fontFamily = "'Inter', -apple-system, sans-serif";
+    }
+}
+applyFontState();
+
+if (fontToggleBtn) {
+    fontToggleBtn.checked = isMono;
+    fontToggleBtn.addEventListener('change', (e) => {
+        isMono = e.target.checked;
+        localStorage.setItem('b738_mono', isMono);
+        applyFontState();
+    });
+}
+
+let isTimerDisabled = localStorage.getItem('b738_disable_timer') === 'true';
+const disableTimerToggleBtn = document.getElementById('top-disable-timer-toggle');
+
+if (disableTimerToggleBtn) {
+    disableTimerToggleBtn.checked = isTimerDisabled;
+    disableTimerToggleBtn.addEventListener('change', (e) => {
+        isTimerDisabled = e.target.checked;
+        localStorage.setItem('b738_disable_timer', isTimerDisabled);
+    });
+}
+
+let isReadCLOnly = localStorage.getItem('b738_read_cl_only') === 'true';
+const readCLOnlyToggleBtn = document.getElementById('top-read-cl-only-toggle');
+
+if (readCLOnlyToggleBtn) {
+    readCLOnlyToggleBtn.checked = isReadCLOnly;
+    readCLOnlyToggleBtn.addEventListener('change', (e) => {
+        isReadCLOnly = e.target.checked;
+        localStorage.setItem('b738_read_cl_only', isReadCLOnly);
+    });
+}
+
+let isHideTests = localStorage.getItem('b738_hide_tests') === 'true';
+const hideTestsToggleBtn = document.getElementById('top-hide-tests-toggle');
+if (hideTestsToggleBtn) {
+    hideTestsToggleBtn.checked = isHideTests;
+    hideTestsToggleBtn.addEventListener('change', (e) => {
+        isHideTests = e.target.checked;
+        localStorage.setItem('b738_hide_tests', isHideTests);
+        renderPage(false);
+    });
+}
+
+let isSimplify = localStorage.getItem('b738_simplify') === 'true';
+const simplifyToggleBtn = document.getElementById('top-simplify-toggle');
+if (simplifyToggleBtn) {
+    simplifyToggleBtn.checked = isSimplify;
+    simplifyToggleBtn.addEventListener('change', (e) => {
+        isSimplify = e.target.checked;
+        localStorage.setItem('b738_simplify', isSimplify);
+        renderPage(false);
+    });
+}
+
+let isMaleVoice = localStorage.getItem('b738_male_voice') === 'true';
+
+if (maleVoiceToggleBtn) {
+    maleVoiceToggleBtn.checked = isMaleVoice;
+    maleVoiceToggleBtn.addEventListener('change', (e) => {
+        isMaleVoice = e.target.checked;
+        localStorage.setItem('b738_male_voice', isMaleVoice);
+        window.dispatchEvent(new Event('b738_voice_changed'));
+    });
+}
+
+let isChecklistOnly = false;
+let isBriefingEnabled = localStorage.getItem('b738_briefing_enabled') === 'true';
+if (briefingToggleBtn) {
+    briefingToggleBtn.checked = isBriefingEnabled;
+    briefingToggleBtn.addEventListener('change', (e) => {
+        isBriefingEnabled = e.target.checked;
+        localStorage.setItem('b738_briefing_enabled', isBriefingEnabled.toString());
+        if (isBriefingEnabled) {
+            const popupSeen = localStorage.getItem('b738_briefing_popup_seen') === 'true';
+            if (!popupSeen && briefingInfoOverlay) {
+                briefingInfoOverlay.classList.remove('hidden');
+            }
+        }
+        renderPage(false);
+    });
+}
+
+if (briefingInfoClose) {
+    briefingInfoClose.onclick = () => {
+        if (briefingInfoDontShow && briefingInfoDontShow.checked) {
+            localStorage.setItem('b738_briefing_popup_seen', 'true');
+        }
+        briefingInfoOverlay.classList.add('hidden');
+    };
+}
+
+if (resetSettingsBtn) {
+    resetSettingsBtn.onclick = () => {
+        if (confirm("Reset completely to defaults? This will erase all your settings including the help guide preferences.")) {
+            localStorage.removeItem('b738_theme');
+            localStorage.removeItem('b738_mono');
+            localStorage.removeItem('b738_disable_timer');
+            localStorage.removeItem('b738_male_voice');
+            localStorage.removeItem('b738_muted');
+            localStorage.removeItem('b738_briefing_enabled');
+            localStorage.removeItem('b738_briefing_popup_seen');
+            localStorage.removeItem('b738_dataset');
+            localStorage.removeItem('b738_read_cl_only');
+            location.reload();
+        }
+    };
+}
+const dTrigger = document.getElementById('dataset-dropdown-trigger');
+const dOptions = document.getElementById('dataset-dropdown-options');
+const dInput = document.getElementById('b-dataset-type');
+const dTriggerText = document.getElementById('dataset-trigger-text');
+
+if (dTrigger && dOptions && dInput) {
+    const safeDataSets = typeof availableDataSets !== 'undefined' ? availableDataSets : [
+        { title: "Europe style list", file: "data/europe_style.js" }
+    ];
+
+    // Generate options dynamically
+    dOptions.innerHTML = '';
+    safeDataSets.forEach(dataset => {
+        const opt = document.createElement('div');
+        opt.className = 'dataset-option-unique';
+        opt.setAttribute('data-val', dataset.file);
+        opt.textContent = dataset.title;
+        opt.style.padding = '10px';
+        opt.style.borderBottom = '1px solid rgba(128,128,128,0.1)';
+        opt.style.cursor = 'pointer';
+        opt.style.transition = 'background 0.15s, color 0.15s';
+
+        opt.onmouseenter = () => { opt.style.backgroundColor = 'var(--color-primary-accent)'; opt.style.color = '#fff'; };
+        opt.onmouseleave = () => { opt.style.backgroundColor = 'transparent'; opt.style.color = 'inherit'; };
+
+        opt.onclick = (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            const val = dataset.file;
+            dInput.value = val;
+            dTrigger.value = dataset.title;
+            dOptions.classList.remove('show');
+            dOptions.style.visibility = 'hidden';
+            dOptions.style.opacity = '0';
+            dOptions.style.pointerEvents = 'none';
+            localStorage.setItem('b738_dataset', val);
+            setTimeout(() => {
+                location.reload();
+            }, 100);
+        };
+
+        dOptions.appendChild(opt);
+    });
+
+    dTrigger.onclick = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        const isOpen = dOptions.style.visibility === 'visible';
+        if (isOpen) {
+            dOptions.classList.remove('show');
+            dOptions.style.visibility = 'hidden';
+            dOptions.style.opacity = '0';
+            dOptions.style.pointerEvents = 'none';
+        } else {
+            dOptions.classList.add('show');
+            dOptions.style.display = 'flex';
+            dOptions.style.visibility = 'visible';
+            dOptions.style.opacity = '1';
+            dOptions.style.pointerEvents = 'auto';
+            dOptions.style.zIndex = '999999';
+        }
+    };
+
+    document.addEventListener('click', (e) => {
+        if (!dOptions.contains(e.target) && e.target !== dTrigger && !dTrigger.contains(e.target)) {
+            dOptions.classList.remove('show');
+            dOptions.style.visibility = 'hidden';
+            dOptions.style.opacity = '0';
+            dOptions.style.pointerEvents = 'none';
+        }
+    });
+
+    // Set initial from localStorage
+    const savedDataset = localStorage.getItem('b738_dataset') || safeDataSets[0].file;
+    const selectedOpt = document.querySelector(`.dataset-option-unique[data-val="${savedDataset}"]`);
+    if (selectedOpt) {
+        dTrigger.value = selectedOpt.textContent;
+        dInput.value = savedDataset;
+    } else {
+        dTrigger.value = safeDataSets[0].title;
+        dInput.value = safeDataSets[0].file;
+    }
+}
+
+function hasFlow() {
+    return checklistData.some(page => page.items.some(i => i.type === 'flow'));
+}
+
+const AIRLINE_CALLSIGNS = {
+    'RYR': 'Ryanair', 'DLH': 'Lufthansa', 'AFR': 'Air France', 'BAW': 'Speedbird', 'BA': 'Speedbird',
+    'EZY': 'EasyJet', 'WZZ': 'Wizz Air', 'KLM': 'K L M', 'TVQ': 'Smartwings', 'AUA': 'Austrian',
+    'SWR': 'Swiss', 'EXS': 'Channex', 'FIN': 'Finnair', 'IBE': 'Iberia', 'EIN': 'Shamrock',
+    'SAS': 'Scandinavian', 'TAP': 'Air Portugal', 'PGT': 'Sunturk', 'BTI': 'Air Baltic',
+    'LOT': 'LOT', 'CSA': 'CSA', 'VLG': 'Vueling', 'THY': 'Turkish Airlines', 'BEE': 'Jersey',
+    'SXS': 'SunExpress', 'NAX': 'Norwegian', 'AEA': 'Europa', 'AZA': 'Alitalia', 'CTN': 'Croatia',
+    'ROT': 'Tarom', 'AEE': 'Aegean', 'AAL': 'American', 'DAL': 'Delta', 'UAL': 'United',
+    'SWA': 'Southwest', 'JBU': 'JetBlue', 'NKS': 'Spirit', 'ASA': 'Alaska', 'ACA': 'Air Canada',
+    'WJA': 'WestJet', 'UAE': 'Emirates', 'QTR': 'Qatari', 'ETD': 'Etihad', 'SIA': 'Singapore',
+    'CPA': 'Cathay', 'JAL': 'Japan Air', 'ANA': 'All Nippon', 'QFA': 'Qantas', 'ANZ': 'New Zealand',
+    'THAI': 'Thai'
+};
+
+function formatRunway(val) {
+    if (!val) return val;
+    return val.toUpperCase()
+        .replace(/L$/g, ' Left')
+        .replace(/R$/g, ' Right')
+        .replace(/C$/g, ' Center');
+}
+
+function formatCallsign(val) {
+    if (!val) return val;
+    let match = val.trim().match(/^([a-zA-Z]+)(.*)$/);
+    if (match) {
+        let prefix = match[1].toUpperCase();
+        if (AIRLINE_CALLSIGNS[prefix]) {
+            let suffix = match[2].trim();
+            return AIRLINE_CALLSIGNS[prefix] + (suffix ? ' ' + suffix : '');
+        }
+    }
+    return val;
+}
+
+function isItemChecked(itemName) {
+    if (!itemName) return false;
+    const searchName = itemName.trim().toLowerCase();
+    for (const page of checklistData) {
+        const found = page.items.find(i => i.name.trim().toLowerCase().includes(searchName));
+        if (found) return found.checked;
+    }
+    return false;
+}
+
+function getBriefingValidSentences(item, forSpeech = false) {
+    let validSentences = [];
+    let hasSentenceWithVar = false;
+    for (let sentence of item.text) {
+        // Handle conditional IF tags: [IF some item name] text [/IF]
+        const ifMatch = sentence.match(/\[IF\s+(.*?)\](.*?)\[\/IF\]/i);
+        if (ifMatch) {
+            const conditionItemName = ifMatch[1];
+            const innerText = ifMatch[2];
+            if (isItemChecked(conditionItemName)) {
+                sentence = innerText; // Use the inner text if checked
+            } else {
+                continue; // Skip this sentence if not checked
+            }
+        }
+
+        let hasVar = false;
+        let allVarsFilled = true;
+        let parsedSentence = sentence;
+
+        BRIEF_FIELDS.forEach(id => {
+            const varName = id.replace(/^b-/, '').replace(/-/g, '_');
+            const placeholder = `%${varName}%`;
+
+            if (sentence.toLowerCase().includes(placeholder.toLowerCase())) {
+                hasVar = true;
+                const el = document.getElementById(id);
+                let val = el ? el.value.trim() : '';
+
+                if (id === 'b-landing-type') {
+                    if (val === '3' || val === '') val = forSpeech ? 'ILS Cat 3' : 'ILS Cat. 3';
+                    else if (val === '2') val = forSpeech ? 'ILS Cat 2' : 'ILS Cat. 2';
+                    else if (val === '1') val = 'RNAV';
+                }
+
+                if (id === 'b-callsign' && forSpeech) {
+                    val = formatCallsign(val);
+                }
+
+                if ((id === 'b-dep-rwy' || id === 'b-arr-rwy') && forSpeech) {
+                    val = formatRunway(val);
+                }
+
+                if (!val) {
+                    allVarsFilled = false;
+                } else {
+                    parsedSentence = parsedSentence.replace(new RegExp(placeholder, 'gi'), val);
+                }
+            }
+        });
+
+        if (hasVar) {
+            if (allVarsFilled) {
+                validSentences.push(parsedSentence);
+                hasSentenceWithVar = true;
+            }
+        } else {
+            validSentences.push(parsedSentence);
+        }
+    }
+    return hasSentenceWithVar ? validSentences : [];
+}
+
+function isItemVisible(item) {
+    if (item.type === 'briefing') {
+        if (!isBriefingEnabled) return false;
+        return getBriefingValidSentences(item).length > 0;
+    }
+    if (isChecklistOnly && item.type === 'flow') return false;
+    if (item.landingtype) {
+        const el = document.getElementById('b-landing-type');
+        const lType = (el && el.value) ? el.value : "3"; // Default = ILS Cat.III
+        const allowedTypes = item.landingtype.split('+').map(t => t.trim());
+        if (!allowedTypes.includes(lType)) return false;
+    }
+    if (isHideTests) {
+        if (item.subtype === 'test' || (Array.isArray(item.subtype) && item.subtype.includes('test'))) return false;
+        const testActions = ['test', 'verify'];
+        const actionLower = (item.action || '').toLowerCase();
+        if (testActions.some(t => actionLower === t || actionLower.startsWith(t + ' '))) return false;
+    }
+    if (isSimplify && (item.subtype === 'simplify' || (Array.isArray(item.subtype) && item.subtype.includes('simplify')))) return false;
+    return true;
+}
+if (checklistOnlyToggle) {
+    checklistOnlyToggle.onchange = (e) => {
+        isChecklistOnly = e.target.checked;
+
+        // Check if we need to skip pages when toggled
+        if (isChecklistOnly) {
+            // Find next valid page or stay
+            const currentHasChecklist = checklistData[currentPageIndex].items.some(i => i.type !== 'flow');
+            if (!currentHasChecklist) {
+                // Find next page with checklist items
+                for (let i = currentPageIndex + 1; i < checklistData.length; i++) {
+                    if (checklistData[i].items.some(it => it.type !== 'flow')) {
+                        currentPageIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
+
+        buildQuickNav();
+        renderPage(false);
+    };
+}
+
+// ============================================================
+// TURNAROUND & RESET
+// ============================================================
+function hasTurnaroundItems() {
+    return checklistData.some(page => page.items.some(i => i.ifturnaround === 'skip'));
+}
+
+function loadAsTurnaround() {
+    if (!confirm("Start new Turnaround flight? Current progress will be lost.")) return;
+    checklistData.forEach(page => page.items.forEach(i => i.checked = false));
+    checklistData.forEach(page => page.items.forEach(i => {
+        if (i.ifturnaround === 'skip') i.checked = true;
+    }));
+    currentPageIndex = 0;
+    renderPage(true);
+    quickNavDropdown.classList.add('hidden');
+    hamburgerBtn.classList.remove('open');
+}
+
+if (resetPhaseBtn) {
+    resetPhaseBtn.onclick = () => {
+        if (confirm("Reset current checklist page?")) {
+            checklistData[currentPageIndex].items.forEach(i => i.checked = false);
+            hasStartedReading = false;
+            isTimerActivePause = false;
+            window.speechSynthesis.cancel();
+            renderPage(false);
+        }
+    };
+}
+
+if (turnaroundPhaseBtn) {
+    turnaroundPhaseBtn.onclick = loadAsTurnaround;
+}
+
+// (Flight timer removed)
+
+// ============================================================
+// FAB + OVERLAY + HELPERS
+// ============================================================
+if (topHamburgerBtn) {
+    topHamburgerBtn.onclick = (e) => {
+        e.stopPropagation();
+        topSettingsDropdown.classList.toggle('show');
+    };
+}
+// ============================================================
+// NOTEPAD ACCORDION
+// ============================================================
+const labelDep = document.getElementById('label-dep');
+const contentDep = document.getElementById('content-dep');
+const labelArr = document.getElementById('label-arr');
+const contentArr = document.getElementById('content-arr');
+
+function initNotepadAccordions() {
+    if (!labelDep || !labelArr) return;
+    if (window.innerWidth <= 700) {
+        contentArr.classList.add('collapsed');
+        labelArr.classList.add('collapsed');
+        contentDep.classList.remove('collapsed');
+        labelDep.classList.remove('collapsed');
+    } else {
+        contentArr.classList.remove('collapsed');
+        labelArr.classList.remove('collapsed');
+        contentDep.classList.remove('collapsed');
+        labelDep.classList.remove('collapsed');
+    }
+}
+initNotepadAccordions();
+
+if (labelDep && labelArr) {
+    labelDep.onclick = () => {
+        const isCollapsed = contentDep.classList.contains('collapsed');
+        if (isCollapsed) {
+            contentDep.classList.remove('collapsed');
+            labelDep.classList.remove('collapsed');
+            if (window.innerWidth <= 700) {
+                contentArr.classList.add('collapsed');
+                labelArr.classList.add('collapsed');
+            }
+        } else {
+            contentDep.classList.add('collapsed');
+            labelDep.classList.add('collapsed');
+        }
+    };
+
+    labelArr.onclick = () => {
+        const isCollapsed = contentArr.classList.contains('collapsed');
+        if (isCollapsed) {
+            contentArr.classList.remove('collapsed');
+            labelArr.classList.remove('collapsed');
+            if (window.innerWidth <= 700) {
+                contentDep.classList.add('collapsed');
+                labelDep.classList.add('collapsed');
+            }
+        } else {
+            contentArr.classList.add('collapsed');
+            labelArr.classList.add('collapsed');
+        }
+    };
+}
+
+fabBtn.onclick = () => {
+    const wasHidden = overlay.classList.contains('hidden');
+    overlay.classList.toggle('hidden');
+    if (wasHidden && overlayPanel) {
+        // Reset to CSS centered defaults
+        overlayPanel.style.left = '50%';
+        overlayPanel.style.top = '50%';
+        overlayPanel.style.right = 'auto';
+        overlayPanel.style.bottom = 'auto';
+        overlayPanel.style.transform = 'translate(-50%, -50%)';
+        // On large desktop (FABs at right side), position panel so it doesn't overlap
+        if (window.innerWidth > 1450) {
+            const fabGroup = document.querySelector('.fab-group');
+            if (fabGroup) {
+                const fabLeft = fabGroup.getBoundingClientRect().left;
+                const panelWidth = overlayPanel.offsetWidth;
+                const desiredRight = fabLeft - 20; // 20px gap
+                const desiredLeft = desiredRight - panelWidth;
+                if (desiredLeft > 10) {
+                    overlayPanel.style.left = desiredLeft + 'px';
+                    overlayPanel.style.transform = 'translate(0, -50%)';
+                }
+            }
+        } else if (window.innerWidth > 700) {
+            // On tablet, place completely to the right
+            overlayPanel.style.left = 'auto';
+            overlayPanel.style.right = '20px';
+            overlayPanel.style.transform = 'translate(0, -50%)';
+        }
+    }
+};
+overlayClose.onclick = () => overlay.classList.add('hidden');
+
+// Help functions
+function renderHelp(lang) {
+    if (!helpContentContainer || typeof window.HELP_TRANSLATIONS === 'undefined') return;
+    const data = window.HELP_TRANSLATIONS[lang] || window.HELP_TRANSLATIONS['en'];
+
+    helpContentContainer.innerHTML = `
+        <div class="help-section">
+            <h3>${data.voice.title}</h3>
+            <p>${data.voice.p1}</p>
+            <ul>${data.voice.commands.map(c => `<li>${c}</li>`).join('')}</ul>
+        </div>
+        <div class="help-section">
+            <h3>${data.modes.title}</h3>
+            <p>${data.modes.p1}</p>
+            <ul>${data.modes.ul.map(u => `<li>${u}</li>`).join('')}</ul>
+        </div>
+        <div class="help-section">
+            <h3>${data.turnaround.title}</h3>
+            <p>${data.turnaround.p1}</p>
+            <ul>${data.turnaround.ul.map(u => `<li>${u}</li>`).join('')}</ul>
+        </div>
+        <div class="help-section">
+            <h3>${data.timers.title}</h3>
+            <p>${data.timers.p1}</p>
+            <ul>${data.timers.ul.map(u => `<li>${u}</li>`).join('')}</ul>
+        </div>
+        <div class="help-section">
+            <h3>${data.theme.title}</h3>
+            <ul>${data.theme.ul.map(u => `<li>${u}</li>`).join('')}</ul>
+        </div>
+        <div class="help-section">
+            <h3>${data.briefing.title}</h3>
+            <p>${data.briefing.p1}</p>
+            <ul>${data.briefing.ul.map(u => `<li>${u}</li>`).join('')}</ul>
+            <p>${data.briefing.p2}</p>
+        </div>
+        <div class="help-section help-footer">
+            <p>${data.footer}</p>
+        </div>
+    `;
+}
+
+if (helpToggleBtn) helpToggleBtn.onclick = () => {
+    helpOverlay.classList.remove('hidden');
+    if (helpLangSelect) {
+        const savedLang = localStorage.getItem('b738_help_lang') || 'en';
+        helpLangSelect.value = savedLang;
+        renderHelp(savedLang);
+    }
+};
+if (helpCloseBtn) helpCloseBtn.onclick = () => helpOverlay.classList.add('hidden');
+if (helpLangSelect) {
+    helpLangSelect.addEventListener('change', (e) => {
+        localStorage.setItem('b738_help_lang', e.target.value);
+        renderHelp(e.target.value);
+    });
+}
+
+function autoScrollToItem(index) {
+    const targetEl = document.querySelector(`.checklist-item[data-index="${index}"]`);
+    if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+// Global Right Click -> Uncheck next item
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    currentPlayingBriefingIndex = -1;
+    window.speechSynthesis.cancel(); // Stop anything currently playing immediately
+
+    const items = checklistData[currentPageIndex].items;
+    const nextItemIdx = items.findIndex(i => !i.checked && isItemVisible(i));
+    const nextItem = nextItemIdx !== -1 ? items[nextItemIdx] : null;
+
+    if (isListening) {
+        if (!hasStartedReading) {
+            // Read CL Only fix: If waiting on flow/briefing items or at the end of the page, right click just navigates or clicks
+            if (isReadCLOnly && (!nextItem || nextItem.type === 'flow' || nextItem.type === 'briefing')) {
+                if (nextItemIdx !== -1) {
+                    toggleCheck(nextItemIdx);
+                    autoScrollToItem(nextItemIdx);
+                } else {
+                    btnNext.click();
+                }
+                return;
+            }
+            if (isReadCLOnly) readCLOnlyChecklistPhaseActive = true;
+            prepareChecklistReading();
+        } else {
+            simulateCheckAction();
+        }
+    } else {
+        if (nextItemIdx !== -1) {
+            toggleCheck(nextItemIdx);
+            autoScrollToItem(nextItemIdx);
+        } else {
+            btnNext.click();
+        }
+    }
+});
+
+// Click on Checklist Title to start reading if in voice mode
+pageTitleElem.onclick = () => {
+    if (isListening && !hasStartedReading) {
+        if (isReadCLOnly) readCLOnlyChecklistPhaseActive = true;
+        prepareChecklistReading();
+    }
+};
+
+// Draggable overlay physics
+const overlayPanel = document.querySelector('.overlay-panel');
+const overlayHandle = document.getElementById('overlay-drag-handle');
+let isDragging = false, hasMoved = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+
+if (overlayPanel && overlayHandle) {
+    overlayHandle.addEventListener('mousedown', dragStart);
+    document.addEventListener('mouseup', dragEnd);
+    document.addEventListener('mousemove', drag);
+
+    // Touch
+    overlayHandle.addEventListener('touchstart', dragStart, { passive: true });
+    document.addEventListener('touchend', dragEnd);
+    document.addEventListener('touchmove', drag, { passive: false });
+
+    function dragStart(e) {
+        if (e.target.closest('.overlay-close')) return;
+        const rect = overlayPanel.getBoundingClientRect();
+
+        if (e.type === 'touchstart') {
+            initialX = e.touches[0].clientX - rect.left;
+            initialY = e.touches[0].clientY - rect.top;
+        } else {
+            initialX = e.clientX - rect.left;
+            initialY = e.clientY - rect.top;
+        }
+
+        isDragging = true;
+        hasMoved = false;
+    }
+
+    function dragEnd(e) {
+        isDragging = false;
+    }
+
+    function drag(e) {
+        if (isDragging) {
+            e.preventDefault();
+
+            // Convert to absolute positioning only on first actual movement
+            if (!hasMoved) {
+                hasMoved = true;
+                const rect = overlayPanel.getBoundingClientRect();
+                overlayPanel.style.transform = 'none';
+                overlayPanel.style.bottom = 'auto';
+                overlayPanel.style.right = 'auto';
+                overlayPanel.style.left = rect.left + 'px';
+                overlayPanel.style.top = rect.top + 'px';
+            }
+
+            let clientX, clientY;
+            if (e.type === 'touchmove') {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            overlayPanel.style.left = (clientX - initialX) + 'px';
+            overlayPanel.style.top = (clientY - initialY) + 'px';
+        }
+    }
+}
+
+// Draggable Action Timer
+let timerIsDragging = false, timerStartX, timerStartY;
+if (actionTimerOverlay) {
+    actionTimerOverlay.addEventListener('mousedown', timerDragStart);
+    document.addEventListener('mouseup', timerDragEnd);
+    document.addEventListener('mousemove', timerDrag);
+
+    actionTimerOverlay.addEventListener('touchstart', timerDragStart, { passive: true });
+    document.addEventListener('touchend', timerDragEnd);
+    document.addEventListener('touchmove', timerDrag, { passive: false });
+
+    function timerDragStart(e) {
+        if (e.target.closest('.action-timer-close')) return;
+        let left = parseFloat(window.getComputedStyle(actionTimerOverlay).left);
+        let top = parseFloat(window.getComputedStyle(actionTimerOverlay).top);
+        if (e.type === 'touchstart') {
+            timerStartX = e.touches[0].clientX - left;
+            timerStartY = e.touches[0].clientY - top;
+        } else {
+            timerStartX = e.clientX - left;
+            timerStartY = e.clientY - top;
+        }
+        timerIsDragging = true;
+        actionTimerOverlay.style.cursor = 'grabbing';
+    }
+
+    function timerDragEnd() { timerIsDragging = false; if (actionTimerOverlay) actionTimerOverlay.style.cursor = 'grab'; }
+
+    function keepTimerInBounds() {
+        if (!actionTimerOverlay || actionTimerOverlay.classList.contains('hidden') || !actionTimerOverlay.style.left) return;
+        const rect = actionTimerOverlay.getBoundingClientRect();
+        let newLeft = parseFloat(actionTimerOverlay.style.left);
+        let newTop = parseFloat(actionTimerOverlay.style.top);
+        let changed = false;
+
+        if (rect.right > window.innerWidth) { newLeft += (window.innerWidth - rect.right); changed = true; }
+        if (rect.bottom > window.innerHeight) { newTop += (window.innerHeight - rect.bottom); changed = true; }
+        if (rect.left < 0) { newLeft -= rect.left; changed = true; }
+        if (rect.top < 0) { newTop -= rect.top; changed = true; }
+
+        if (changed) {
+            actionTimerOverlay.style.left = newLeft + 'px';
+            actionTimerOverlay.style.top = newTop + 'px';
+        }
+    }
+    window.addEventListener('resize', keepTimerInBounds);
+
+    function timerDrag(e) {
+        if (timerIsDragging) {
+            e.preventDefault();
+            let clientX, clientY;
+            if (e.type === 'touchmove') {
+                clientX = e.touches[0].clientX;
+                clientY = e.touches[0].clientY;
+            } else {
+                clientX = e.clientX;
+                clientY = e.clientY;
+            }
+            actionTimerOverlay.style.left = (clientX - timerStartX) + 'px';
+            actionTimerOverlay.style.top = (clientY - timerStartY) + 'px';
+            keepTimerInBounds();
+        }
+    }
+}
+
+function positionQuickNavDropdown() {
+    const rect = hamburgerBtn.getBoundingClientRect();
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    quickNavDropdown.style.top = (rect.bottom + scrollTop + 12) + 'px';
+    quickNavDropdown.style.right = (document.documentElement.clientWidth - rect.right) + 'px';
+    quickNavDropdown.style.left = 'auto';
+}
+
+hamburgerBtn.onclick = (e) => {
+    e.stopPropagation();
+    const isHidden = quickNavDropdown.classList.contains('hidden');
+    if (isHidden) positionQuickNavDropdown();
+    quickNavDropdown.classList.toggle('hidden');
+    hamburgerBtn.classList.toggle('open', isHidden);
+};
+
+window.addEventListener('resize', () => {
+    if (!quickNavDropdown.classList.contains('hidden')) {
+        positionQuickNavDropdown();
+    }
+});
+document.addEventListener('click', (e) => {
+    if (!hamburgerBtn.contains(e.target) && !quickNavDropdown.contains(e.target)) {
+        quickNavDropdown.classList.add('hidden');
+        hamburgerBtn.classList.remove('open');
+    }
+    if (topHamburgerBtn && topSettingsDropdown && !topHamburgerBtn.contains(e.target) && !topSettingsDropdown.contains(e.target)) {
+        topSettingsDropdown.classList.remove('show');
+    }
+});
+
+function buildQuickNav() {
+    quickNavDropdown.innerHTML = '';
+
+
+
+    checklistData.forEach((page, idx) => {
+        // Skip pages with only flow if filter is on
+        const pageVisibleItems = page.items.filter(i => isItemVisible(i));
+        if (pageVisibleItems.length === 0) return;
+
+        const btn = document.createElement('button');
+        btn.className = 'qnav-btn';
+        btn.textContent = page.title;
+        btn.onclick = () => {
+            currentPageIndex = idx;
+            renderPage(true);
+            quickNavDropdown.classList.add('hidden');
+            hamburgerBtn.classList.remove('open');
+        };
+        if (idx === currentPageIndex) {
+            btn.classList.add('active');
+        }
+        quickNavDropdown.appendChild(btn);
+    });
+
+    // Option to load turnaround logic is removed from quick menu and handled via top button
+}
+
+function updateGlobalFlightInfo() {
+    if (!globalFlightInfoElem) return;
+    const cs = document.getElementById('b-callsign').value.trim();
+    const orig = document.getElementById('b-origin').value.trim();
+    const dest = document.getElementById('b-dest').value.trim();
+    let text = [];
+    if (cs) text.push(cs);
+    if (orig && dest) text.push(`${orig} > ${dest}`);
+    else if (orig) text.push(orig);
+    else if (dest) text.push(dest);
+
+    if (text.length > 0) {
+        globalFlightInfoElem.textContent = text.join(' | ');
+        globalFlightInfoElem.style.display = 'inline';
+    } else {
+        globalFlightInfoElem.style.display = 'none';
+        globalFlightInfoElem.textContent = '';
+    }
+}
+
+function loadBriefing() {
+    try {
+        const data = JSON.parse(localStorage.getItem(BRIEF_STORAGE_KEY) || '{}');
+        BRIEF_FIELDS.forEach(id => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            // For landing type: only restore known valid values
+            if (id === 'b-landing-type') {
+                if (['1', '2', '3'].includes(data[id])) el.value = data[id];
+                else el.value = '';
+            } else if (data[id]) {
+                el.value = data[id];
+            }
+        });
+    } catch (e) { }
+    updateGlobalFlightInfo();
+    // Sync custom dropdown UI after values are restored
+    const lInputEl = document.getElementById('b-landing-type');
+    if (lInputEl) setTimeout(() => lInputEl.dispatchEvent(new Event('input')), 50);
+}
+
+function saveBriefing() {
+    const data = {};
+    BRIEF_FIELDS.forEach(id => { const el = document.getElementById(id); if (el) data[id] = el.value; });
+    localStorage.setItem(BRIEF_STORAGE_KEY, JSON.stringify(data));
+    updateGlobalFlightInfo();
+    updateChecklistVariablesUI();
+
+    // Automatically redraw the page to reflect potential briefing visibility changes
+    renderPage(false);
+}
+
+briefClear.onclick = () => {
+    if (confirm('Clear briefing?')) {
+        BRIEF_FIELDS.forEach(id => document.getElementById(id).value = '');
+        localStorage.removeItem(BRIEF_STORAGE_KEY);
+        updateGlobalFlightInfo();
+        updateChecklistVariablesUI();
+        const lInput = document.getElementById('b-landing-type');
+        if (lInput) lInput.dispatchEvent(new Event('input'));
+    }
+};
+BRIEF_FIELDS.forEach(id => document.getElementById(id)?.addEventListener('input', saveBriefing));
+// Custom Premium Dropdown Logic for APPR. TYPE
+const lTrigger = document.getElementById('landing-dropdown-trigger');
+const lOptions = document.getElementById('landing-dropdown-options');
+const lInput = document.getElementById('b-landing-type');
+
+if (lTrigger && lOptions && lInput) {
+    lTrigger.onclick = (e) => {
+        e.stopPropagation();
+        lOptions.classList.toggle('show');
+    };
+
+    document.addEventListener('click', (e) => {
+        if (!lOptions.contains(e.target) && e.target !== lTrigger) {
+            lOptions.classList.remove('show');
+        }
+    });
+
+    document.querySelectorAll('.custom-option').forEach(opt => {
+        opt.onclick = () => {
+            lInput.value = opt.getAttribute('data-val');
+            lTrigger.value = opt.textContent;
+            lTrigger.classList.remove('unfilled');
+            lOptions.classList.remove('show');
+            saveBriefing();
+            renderPage(false);
+        };
+    });
+
+    // Observer to reset trigger UI when briefing is cleared or updated from elsewhere
+    const syncDropdownUI = () => {
+        if (!lInput.value) {
+            lTrigger.value = 'ILS Cat.III';
+            lTrigger.classList.add('unfilled');
+        } else {
+            const selectedOpt = document.querySelector(`.custom-option[data-val="${lInput.value}"]`);
+            if (selectedOpt) {
+                lTrigger.value = selectedOpt.textContent;
+                lTrigger.classList.remove('unfilled');
+            }
+        }
+    };
+
+    // We bind a custom event listener that updates UI when hidden input value changes externally
+    lInput.addEventListener('input', syncDropdownUI);
+    // Initial sync
+    setTimeout(syncDropdownUI, 200);
+}
+
+function parseVariables(text, forSpeech = false) {
+    if (!text) return text;
+    let result = text;
+    BRIEF_FIELDS.forEach(id => {
+        const varName = id.replace(/^b-/, '').replace(/-/g, '_');
+        const placeholder = `%${varName}%`;
+
+        if (result.includes(placeholder)) {
+            const el = document.getElementById(id);
+            let val = el ? el.value.trim() : '';
+
+            if (id === 'b-landing-type') {
+                if (val === '3' || val === '') val = forSpeech ? 'ILS Cat 3' : 'ILS Cat. 3';
+                else if (val === '2') val = forSpeech ? 'ILS Cat 2' : 'ILS Cat. 2';
+                else if (val === '1') val = 'RNAV';
+            }
+
+            if (id === 'b-callsign' && forSpeech) {
+                val = formatCallsign(val);
+            }
+
+            if ((id === 'b-dep-rwy' || id === 'b-arr-rwy') && forSpeech) {
+                val = formatRunway(val);
+            }
+
+            if (val) {
+                result = result.replace(new RegExp(placeholder, 'g'), val);
+            } else {
+                result = result.replace(new RegExp('\\s*' + placeholder, 'g'), '');
+            }
+        }
+    });
+    return result;
+}
+
+function getParsedAction(item, forSpeech = false) {
+    const action = parseVariables(item.action || "", forSpeech).trim();
+    if (!action && item.type !== 'briefing') return 'Check';
+    return action;
+}
+
+// Global state for briefing UI syncing
+let currentPlayingBriefingIndex = -1;
+
+function updateChecklistVariablesUI() {
+    if (!containerElem) return;
+    const page = checklistData[currentPageIndex];
+    if (!page) return;
+
+    const itemsDom = containerElem.querySelectorAll('.checklist-item');
+    itemsDom.forEach(div => {
+        const itemIdx = div.getAttribute('data-index');
+        if (itemIdx === null) return;
+        const item = page.items[itemIdx];
+        if (!item) return;
+
+        if (item.type === 'briefing') {
+            const validSentences = getBriefingValidSentences(item);
+            const briefingText = validSentences.join(' ');
+            const nameSpan = div.querySelector('.item-name');
+            if (nameSpan && nameSpan.textContent !== briefingText) {
+                nameSpan.textContent = briefingText;
+            }
+            return;
+        }
+
+        const displayName = parseVariables(item.name);
+        const displayAction = getParsedAction(item, false);
+
+        const nameSpan = div.querySelector('.item-name');
+        const actionSpan = div.querySelector('.item-action');
+
+        if (nameSpan && nameSpan.textContent !== displayName) {
+            nameSpan.textContent = displayName;
+        }
+        if (actionSpan && actionSpan.textContent !== displayAction) {
+            actionSpan.textContent = displayAction;
+        }
+    });
+}
+
+// ============================================================
+// CHECKLIST ENGINE
+// ============================================================
+function init() {
+    checklistData = initialChecklistData;
+    checklistData.forEach(p => p.items.forEach(i => { if (i.checked === undefined) i.checked = false; }));
+
+    if (hasFlow()) {
+        checklistOnlyContainer.style.display = 'flex';
+    } else {
+        checklistOnlyContainer.style.display = 'none';
+        isChecklistOnly = false;
+    }
+
+    // Dynamically show/hide Hide Tests toggle based on whether this dataset has test items
+    const hideTestsContainer = document.getElementById('top-hide-tests-container');
+    if (hideTestsContainer) {
+        const hasTests = checklistData.some(p => p.items.some(i => i.subtype === 'test'));
+        hideTestsContainer.style.display = hasTests ? 'flex' : 'none';
+    }
+
+    // Dynamically show/hide Simplify toggle based on whether this dataset has simplify items
+    const simplifyContainer = document.getElementById('top-simplify-container');
+    if (simplifyContainer) {
+        const hasSimplify = checklistData.some(p => p.items.some(i => i.subtype === 'simplify'));
+        simplifyContainer.style.display = hasSimplify ? 'flex' : 'none';
+    }
+
+    buildQuickNav(); loadBriefing(); renderPage(true);
+}
+
+function renderPage(isNewPage = false) {
+    const page = checklistData[currentPageIndex];
+    let isShutdownChecklist = page.title.toUpperCase().includes('SHUTDOWN');
+    let displayTitle = page.title;
+    pageTitleElem.textContent = displayTitle;
+    if (globalTitleElem) {
+        globalTitleElem.textContent = `B738 Normal Procedure Checklist | ${displayTitle}`;
+    }
+    containerElem.innerHTML = '';
+
+    // Draw continuous unbroken line setup
+    let gapIndexes = [];
+
+    // Find first unfinished item for bolding
+    const firstUnfinishedIdx = page.items.findIndex(item =>
+        !item.checked && isItemVisible(item)
+    );
+
+    // Visibility logic for Turnaround button (controlled by turnaround: "yes" flag)
+    if (turnaroundPhaseBtn) {
+        if (page.turnaround === "yes" && hasTurnaroundItems()) {
+            turnaroundPhaseBtn.classList.remove('hidden');
+        } else {
+            turnaroundPhaseBtn.classList.add('hidden');
+        }
+    }
+
+    let currentType = null;
+
+    page.items.forEach((item, index) => {
+        if (!isItemVisible(item)) return;
+
+        if (item.type && !isChecklistOnly && item.type !== currentType) {
+            currentType = item.type;
+            const subtitle = document.createElement('div');
+            subtitle.className = 'checklist-subtitle';
+            subtitle.textContent = (item.type === 'flow') ? 'Flow' : (item.type === 'briefing' ? 'Briefing' : 'Checklist items');
+            containerElem.appendChild(subtitle);
+        }
+
+        const div = document.createElement('div');
+        const isActive = (index === firstUnfinishedIdx);
+        div.className = `checklist-item ${item.checked ? 'checked' : ''} ${isActive ? 'active' : ''}`;
+        if (item.type === 'briefing') div.classList.add('briefing-item');
+        div.setAttribute('data-index', index);
+
+        // Disable click styling for visual-only items
+        div.onclick = () => toggleCheck(index);
+
+        if (item.type === 'briefing') {
+            const validSentences = getBriefingValidSentences(item);
+            const briefingText = validSentences.join(' ');
+
+            const svgPlay = `<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" style="margin-left: 2px;"><path d="M8 5v14l11-7z"/></svg>`;
+            const svgStop = `<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M6 6h12v12H6z"/></svg>`;
+            const isPlaying = (currentPlayingBriefingIndex === index);
+
+            // To maintain compatibility with manual checklist checking UI, we force the wrapper class
+            const isCheckedVisual = item.checked || isPlaying;
+            div.className = `checklist-item ${isCheckedVisual ? 'checked' : ''} ${isActive ? 'active' : ''} briefing-item`;
+
+            const iconLabel = isPlaying ? svgStop : svgPlay;
+
+            div.innerHTML = `<div class="item-text" style="display:block;"><span class="item-name" style="white-space: normal; line-height: 1.5; padding-right: 0;">${briefingText}</span></div><div class="custom-checkbox">${iconLabel}</div>`;
+        } else {
+            const displayName = parseVariables(item.name);
+            const displayAction = getParsedAction(item, false);
+
+            div.innerHTML = `<div class="item-text"><span class="item-name">${displayName}</span><span class="dots"></span><span class="item-action">${displayAction}</span></div><div class="custom-checkbox"></div>`;
+        }
+        containerElem.appendChild(div);
+    });
+
+    if (isNewPage) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Trigger animation only on new page
+        containerElem.classList.remove('animate');
+        void containerElem.offsetWidth;
+        containerElem.classList.add('animate');
+        buildQuickNav();
+    }
+    updateControls();
+}
+
+function toggleCheck(itemIndex, silent = false) {
+    const item = checklistData[currentPageIndex].items[itemIndex];
+    const isUnchecking = item.checked;
+    item.checked = !item.checked;
+
+    if (item.type === 'briefing') {
+        if (isUnchecking || currentPlayingBriefingIndex === itemIndex) {
+            currentPlayingBriefingIndex = -1;
+            window.speechSynthesis.cancel();
+        }
+    }
+
+    if (item.checked && !isMuted) {
+        try { if (window.navigator.vibrate) window.navigator.vibrate(25); } catch (e) { }
+        if (audioClick) { audioClick.currentTime = 0; audioClick.play().catch(() => { }); }
+    }
+    renderPage(false);
+
+    // Handle manual checking (silent=false)
+    if (!silent && item.checked) {
+        if (item.type === 'briefing') {
+            if (isListening && hasStartedReading && typeof speakCurrentItem === 'function') {
+                // Voice sequence handles reading and going forward automatically:
+                speakCurrentItem();
+            } else if (!isMuted) {
+                // If not in standard continuous voice-mode flow, read it independently:
+                currentPlayingBriefingIndex = itemIndex;
+                renderPage(false);
+                const text = getBriefingValidSentences(item, true).join(' ');
+                const utterance = new SpeechSynthesisUtterance(spellAbbreviations(text));
+                utterance.lang = 'en-US';
+                utterance.rate = (isMaleVoice ? 1.28 : 1.09);
+                utterance.voice = getSelectedVoice();
+                utterance.onend = () => { currentPlayingBriefingIndex = -1; renderPage(false); };
+                window.speechSynthesis.speak(utterance);
+            }
+        } else if (item.timer && !isTimerDisabled) {
+            if (isListening && hasStartedReading && typeof processTimerItem === 'function') {
+                processTimerItem(item);
+            } else {
+                const isContinuous = item.timerContinuous === "yes";
+                startActionTimer(parseVariables(item.timerLabel || item.name), parseInt(item.timer), null, isContinuous, item.timerWarning);
+            }
+        } else if (isListening && hasStartedReading && typeof speakCurrentItem === 'function') {
+            speakCurrentItem();
+        }
+    }
+}
+
+function updateControls() {
+    let targetPageIndex = currentPageIndex;
+
+    // Find next valid page considering the filter
+    let nextValidPageIndex = -1;
+    for (let i = currentPageIndex + 1; i < checklistData.length; i++) {
+        const hasVisible = checklistData[i].items.some(it => isItemVisible(it));
+        if (hasVisible) {
+            nextValidPageIndex = i;
+            break;
+        }
+    }
+
+    let prevValidPageIndex = -1;
+    for (let i = currentPageIndex - 1; i >= 0; i--) {
+        const hasVisible = checklistData[i].items.some(it => isItemVisible(it));
+        if (hasVisible) {
+            prevValidPageIndex = i;
+            break;
+        }
+    }
+
+    const page = checklistData[currentPageIndex];
+    const visibleItems = page.items.filter(i => isItemVisible(i));
+    const allChecked = visibleItems.every(i => i.checked);
+
+    document.querySelector('.controls').style.display = 'flex';
+
+    const isMobile = window.innerWidth <= 700;
+
+    if (prevValidPageIndex >= 0) {
+        btnPrev.innerHTML = isMobile ? '« Prev' : `« ${checklistData[prevValidPageIndex].title}`;
+        btnPrev.style.visibility = 'visible';
+    } else {
+        btnPrev.style.visibility = 'hidden';
+    }
+    btnPrev.disabled = (prevValidPageIndex < 0);
+
+    if (nextValidPageIndex < 0) {
+        btnNext.textContent = 'Finish';
+    } else {
+        let label = checklistData[nextValidPageIndex].title;
+        // Dynamically change next label to hide flow pages 
+        if (isChecklistOnly && checklistData[nextValidPageIndex].items.some(i => i.type === 'flow') && !checklistData[nextValidPageIndex].items.every(i => i.type === 'flow')) {
+            label = checklistData[nextValidPageIndex].title;
+        }
+        btnNext.innerHTML = isMobile ? 'Next »' : `${label} »`;
+    }
+
+    // Toggle disabled class & tooltip for next button
+    if (visibleItems.length > 0 && !allChecked) {
+        btnNext.disabled = true;
+        btnNext.classList.add('next-tooltip-active');
+    } else {
+        btnNext.disabled = false;
+        btnNext.classList.remove('next-tooltip-active');
+    }
+
+    // Display next button logic: hide entirely on final page
+    if (nextValidPageIndex < 0) {
+        btnNext.style.display = 'none';
+        btnNext.style.visibility = 'hidden';
+    } else {
+        btnNext.style.display = 'block';
+        btnNext.style.visibility = 'visible';
+    }
+
+    const checkedLength = visibleItems.filter(i => i.checked).length;
+    progressFill.style.width = visibleItems.length > 0 ? `${(checkedLength / visibleItems.length) * 100}%` : '100%';
+
+    // Update global progress bar (overall progress across all pages)
+    if (globalProgressFill) {
+        let totalItemsGlobal = 0;
+        let totalCheckedGlobal = 0;
+        checklistData.forEach(p => {
+            const vis = p.items.filter(i => isItemVisible(i));
+            totalItemsGlobal += vis.length;
+            totalCheckedGlobal += vis.filter(i => i.checked).length;
+        });
+        globalProgressFill.style.width = totalItemsGlobal > 0 ? `${(totalCheckedGlobal / totalItemsGlobal) * 100}%` : '0%';
+    }
+}
+
+btnPrev.onclick = () => {
+    let prevValidPageIndex = -1;
+    for (let i = currentPageIndex - 1; i >= 0; i--) {
+        if (checklistData[i].items.some(it => isItemVisible(it))) {
+            prevValidPageIndex = i;
+            break;
+        }
+    }
+    if (prevValidPageIndex >= 0) {
+        currentPageIndex = prevValidPageIndex;
+        hasStartedReading = false;
+        readCLOnlyChecklistPhaseActive = false;
+        isTimerActivePause = false;
+        renderPage(true);
+    }
+};
+
+btnNext.onclick = () => {
+    let nextValidPageIndex = -1;
+    for (let i = currentPageIndex + 1; i < checklistData.length; i++) {
+        if (checklistData[i].items.some(it => isItemVisible(it))) {
+            nextValidPageIndex = i;
+            break;
+        }
+    }
+    if (nextValidPageIndex >= 0) {
+        currentPageIndex = nextValidPageIndex;
+        hasStartedReading = false;
+        readCLOnlyChecklistPhaseActive = false;
+        isTimerActivePause = false;
+        renderPage(true);
+    }
+};
+
+// ============================================================
+// VOICE RECOGNITION & SYNTHESIS
+// ============================================================
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let isListening = false;
+let wakeLock = null;
+
+async function requestWakeLock() {
+    if ('wakeLock' in navigator) {
+        try {
+            wakeLock = await navigator.wakeLock.request('screen');
+        } catch (err) { }
+    }
+}
+function releaseWakeLock() {
+    if (wakeLock) {
+        wakeLock.release().then(() => { wakeLock = null; });
+    }
+}
+// ============================================================
+// UI TIMER ACTION OVERLAY LOGIC
+// ============================================================
+let actionTimerInterval = null;
+let actionTimerOnComplete = null;
+let activeTimerWarning = null;
+
+function startActionTimer(label, durationSecs, onComplete, isContinuous = false, warningTarget = null) {
+    if (actionTimerInterval) clearInterval(actionTimerInterval);
+    actionTimerOnComplete = onComplete;
+    activeTimerWarning = warningTarget;
+
+    actionTimerLabel.textContent = label;
+    actionTimerOverlay.classList.remove('hidden');
+
+    let remaining = durationSecs;
+    const totalTime = durationSecs;
+
+    // reset circle
+    actionTimerCircle.style.transition = 'none';
+    actionTimerCircle.style.strokeDashoffset = '0';
+    actionTimerTime.style.fontSize = ''; // reset font size
+
+    function updateDisplay(secs) {
+        if (secs <= 0 && isContinuous) {
+            actionTimerTime.innerHTML = `<span style="font-size: 1.1rem; letter-spacing: 0;">TIMER END</span>`;
+        } else {
+            const m = Math.floor(Math.max(0, secs) / 60).toString().padStart(2, '0');
+            const s = (Math.max(0, secs) % 60).toString().padStart(2, '0');
+            actionTimerTime.textContent = `${m}:${s}`;
+        }
+
+        // 452 is the circumference of r=72 circle (2 * PI * 72)
+        // Smer hodinových ručičiek: offset ide od 452 (prázdne) k 0 (plné)
+        const progress = Math.max(0, secs) / totalTime;
+        const offset = 452 * progress;
+        actionTimerCircle.style.strokeDashoffset = offset;
+    }
+
+    updateDisplay(remaining);
+
+    // Re-enable transition for smooth circle
+    setTimeout(() => { actionTimerCircle.style.transition = 'stroke-dashoffset 1s linear'; }, 50);
+
+    actionTimerInterval = setInterval(() => {
+        remaining--;
+        if (remaining <= 0) {
+            clearInterval(actionTimerInterval);
+            actionTimerInterval = null;
+            activeTimerWarning = null;
+            updateDisplay(0);
+
+            if (isContinuous) {
+                // Keep overlay visible, wait for user to close it.
+                if (actionTimerOnComplete) { actionTimerOnComplete(); actionTimerOnComplete = null; }
+            } else {
+                setTimeout(() => {
+                    actionTimerOverlay.classList.add('hidden');
+                    if (actionTimerOnComplete) { actionTimerOnComplete(); actionTimerOnComplete = null; }
+                }, 800);
+            }
+        } else {
+            updateDisplay(remaining);
+        }
+    }, 1000);
+}
+
+// X tlačidlo na zatvorenie timera (funguje rovnako, ako keby odpocet dobehol)
+const actionTimerCloseBtn = document.getElementById('action-timer-close');
+if (actionTimerCloseBtn) {
+    actionTimerCloseBtn.onclick = () => {
+        if (actionTimerInterval) clearInterval(actionTimerInterval);
+        actionTimerInterval = null;
+        activeTimerWarning = null;
+        actionTimerOverlay.classList.add('hidden');
+        if (actionTimerOnComplete) { actionTimerOnComplete(); actionTimerOnComplete = null; }
+    };
+}
+
+// ============================================================
+// SPEECH RECOGNITION
+// ============================================================
+let hasStartedReading = false;
+let readCLOnlyChecklistPhaseActive = false;
+let isTimerActivePause = false;
+
+if (SpeechRecognition) {
+    const recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+
+    let isSpeaking = false;
+    let cachedVoiceType = null;
+    let cachedVoice = null;
+    let lastCheckedTime = 0;
+    let processedMatchesCount = 0;
+
+    let processedStopCount = 0;
+    let processedRepeatCount = 0;
+    let lastTranscriptLength = 0;
+
+    window.addEventListener('b738_voice_changed', () => {
+        cachedVoice = null;
+    });
+
+    function getSelectedVoice() {
+        const currentType = isMaleVoice ? "male" : "female";
+        if (cachedVoice && cachedVoiceType === currentType) return cachedVoice;
+
+        const voices = window.speechSynthesis.getVoices();
+        const engVoices = voices.filter(v => v.lang.toLowerCase().startsWith('en'));
+        const searchList = engVoices.length > 0 ? engVoices : voices;
+
+        const preferredFemale = ['samantha', 'google us english', 'zira', 'female', 'sfg', 'fis'];
+        const preferredMale = ['google uk english male', 'david', 'mark', 'alex', 'male', 'rjs', 'iom', 'tpd'];
+
+        const preferred = isMaleVoice ? preferredMale : preferredFemale;
+
+        for (const name of preferred) {
+            const voice = searchList.find(v =>
+                v.name.toLowerCase().includes(name) ||
+                (v.voiceURI && v.voiceURI.toLowerCase().includes(name))
+            );
+            if (voice) {
+                cachedVoice = voice;
+                cachedVoiceType = currentType;
+                return voice;
+            }
+        }
+
+        // Fallback for male on Android: usually the second voice is male if first is female
+        if (isMaleVoice && searchList.length > 1) {
+            cachedVoice = searchList[1];
+        } else {
+            cachedVoice = searchList.length > 0 ? searchList[0] : null;
+        }
+
+        cachedVoiceType = currentType;
+        return cachedVoice;
+    }
+
+    const NATO_ALPHABET = {
+        'A': 'Alpha', 'B': 'Bravo', 'C': 'Charlie', 'D': 'Delta', 'E': 'Echo',
+        'F': 'Foxtrot', 'G': 'Golf', 'H': 'Hotel', 'I': 'India', 'J': 'Juliett',
+        'K': 'Kilo', 'L': 'Lima', 'M': 'Mike', 'N': 'November', 'O': 'Oscar',
+        'P': 'Papa', 'Q': 'Quebec', 'R': 'Romeo', 'S': 'Sierra', 'T': 'Tango',
+        'U': 'Uniform', 'V': 'Victor', 'W': 'Whiskey', 'X': 'X-ray', 'Y': 'Yankee', 'Z': 'Zulu',
+        '9': 'Niner'
+    };
+
+    const CLASSIC_SPELL_EXCEPTIONS = new Set([
+        'V', 'V1', 'VR', 'V2', 'N1', 'N2', 'QNH', 'QHN',
+        'APU', 'APY', 'IRS', 'FMC', 'MCP', 'ILS', 'RTO',
+        'SID', 'VOR', 'LOC', 'RWY', 'FL', 'NM', 'MA',
+        'TA', 'RA', 'GND', 'STD', 'WX', 'REQ', 'TR',
+        'HDG', 'ALT', 'AC', 'DC', 'ELT', 'GPS', 'GLS', 'EEC',
+        'ATC', 'IDG', 'FPV', 'MTR', 'PFD', 'ND', 'RMI', 'GPU',
+        'GAU', 'CDU', 'FMA', 'OFP', 'ADI', 'SOP', 'AAE', 'VPT',
+        'GPWS', 'HZ', 'LE', 'PSEU', 'PSI', 'ADF', 'ISFD', 'IAS', 'SPD', 'AGL', 'PTH'
+    ]);
+
+    const DONT_SPELL = new Set([
+        'START', 'STOP', 'GO', 'AND', 'OR', 'ON', 'OFF', 'UP', 'DOWN',
+        'CHECK', 'SET', 'ARM', 'AUTO', 'TAXI', 'SPEED', 'GEAR', 'FLAPS',
+        'TRIM', 'LEFT', 'RIGHT', 'ATIS', 'VREF', 'I', 'TO', 'VIA',
+        'BEFORE', 'AFTER', 'NORMAL', 'CHECKLIST', 'FLOW', 'ROUTING',
+        'FLIGHT', 'DECK', 'DOOR', 'PASSENGER', 'SIGNS', 'MCP', 'MACH',
+        'DESCEND', 'APPROACH', 'LANDING', 'SHUTDOWN', 'SECURE', 'CLEAN',
+        'TAKE-OFF', 'TAKE', 'PREFLIGHT', 'NAV', 'YAW', 'ENGINE', 'PUSHBACK',
+        'LINE', 'CRUISE', 'DESCENT', 'CAB', 'UTIL', 'BUS', 'BARO', 'EFIS',
+        'TOGA', 'PACK', 'PACKS', 'LNAV', 'VNAV', 'SIDE'
+    ]);
+
+    function spellAbbreviations(text, skipSpelling = false) {
+        // Special phrase handling
+        text = text.replace(/COMMAND A/gi, 'command ey')
+            .replace(/COMMAND B/gi, 'command bee')
+            .replace(/\bL\s+SIDE\b/gi, 'left side')
+            .replace(/\bR\s+SIDE\b/gi, 'right side')
+            .replace(/\bL\s*&\s*R\b/gi, 'left and right')
+            .replace(/\bG\/S\b/gi, 'glide slope')
+            .replace(/\bP-inhibit\b/gi, 'p inhibit')
+            .replace(/(\d+(?:\.\d+)?)\s*l\b/gi, '$1 liters')
+            .replace(/([-+]?\d+)\s*(?:°|degrees)?\s*c\b/gi, '$1 celsius')
+            .replace(/°\s*C\b/gi, 'celsius')
+            .replace(/\bIGN R\b/gi, 'ignition right')
+            .replace(/\bWXR\b/gi, 'weather')
+            .replace(/\bINIT ALT\b/gi, 'initial altitude')
+            .replace(/100\s*%/g, 'one hundred percent')
+            .replace(/\bGRD\b/gi, 'ground')
+            .replace(/CDU DEP\/ARR, LEGS, DES pages/gi, 'CDU departure approach, legs and des pages')
+            .replace(/\bDEP\/ARR\b/gi, 'departure approach')
+            .replace(/\bP6\b/gi, 'p 6')
+            .replace(/\bP18\b/gi, 'p 18');
+
+        // Explicitly read decimal dots in numbers (e.g., trim 5.5 -> 5 dot 5)
+        text = text.replace(/(\d+)\.(\d+)/g, '$1 dot $2');
+
+        if (skipSpelling) {
+            // Still process numbers but skip NATO/Classic spell logic
+            let result = text.replace(/\b(\d{2,})\b/g, (match) => match.split('').join(' '));
+            return result.replace(/0/g, 'zero');
+        }
+
+        // 1. NATO Hlaskovanie a vynimky
+        let result = text.replace(/\b([a-zA-Z0-9]+)\b/g, (match) => {
+            const upper = match.toUpperCase();
+
+            if (CLASSIC_SPELL_EXCEPTIONS.has(upper)) {
+                return upper.split('').join(' ');
+            }
+
+            if (/^[A-Z0-9]+$/.test(match) && /[A-Z]/.test(match)) {
+                if (DONT_SPELL.has(match)) return match;
+
+                return match.split('').map(char => {
+                    if (/[A-Z]/.test(char)) return NATO_ALPHABET[char];
+                    return char;
+                }).join(' ');
+            }
+
+            return match;
+        });
+
+        // 2. Čísla s 2+ ciframi: čítaj po jednom (100 → "1 0 0")
+        result = result.replace(/\b(\d{2,})\b/g, (match) => match.split('').join(' '));
+
+        return result.replace(/0/g, 'zero').replace(/9/g, 'niner');
+    }
+
+    function prepareChecklistReading() {
+        hasStartedReading = true;
+        if (!isMuted) window.speechSynthesis.cancel();
+        const page = checklistData[currentPageIndex];
+        const pageTitle = page.title;
+
+        // In Read CL Only mode, determine what type of content we're on
+        if (isReadCLOnly) {
+            const visibleItems = page.items.filter(i => isItemVisible(i));
+            const hasChecklistItems = visibleItems.some(i => i.type === 'checklist item');
+            const hasBriefing = visibleItems.some(i => i.type === 'briefing');
+            const hasOnlyFlow = visibleItems.every(i => i.type === 'flow');
+
+            if (hasOnlyFlow) {
+                // Pure flow page in Read CL Only – ignore the 'checklist' voice command
+                // Just pause the engine and return
+                hasStartedReading = false;
+                isSpeaking = false;
+                if (isListening) {
+                    try { recognition.start(); } catch (e) { }
+                }
+                return;
+            }
+        }
+
+        // Chapter titles should NEVER be spelled out as NATO/abbreviations
+        const firstVisibleItem = page.items.find(i => isItemVisible(i));
+        let titleSuffix = " Checklist.";
+        if (firstVisibleItem && firstVisibleItem.type !== 'checklist item' && !isReadCLOnly) {
+            titleSuffix = ".";
+        }
+
+        const utterance = new SpeechSynthesisUtterance(spellAbbreviations(pageTitle, true) + titleSuffix);
+        utterance.lang = 'en-US';
+        utterance.rate = (isMaleVoice ? 1.28 : 1.09);
+        utterance.voice = getSelectedVoice();
+
+        isSpeaking = true;
+        try { recognition.abort(); } catch (e) { }
+
+        utterance.onstart = () => { isSpeaking = true; };
+        utterance.onend = () => { speakCurrentItem(); };
+        if (!isMuted) window.speechSynthesis.speak(utterance);
+        else {
+            setTimeout(() => { isSpeaking = false; speakCurrentItem(); }, 100);
+        }
+    }
+
+    function simulateCheckAction() {
+        if (!isListening || !hasStartedReading) return;
+        const items = checklistData[currentPageIndex].items;
+        const nextItemIdx = items.findIndex(i => !i.checked && isItemVisible(i));
+
+        if (nextItemIdx !== -1) {
+            // Use silent=true because simulateCheckAction handles its own reading/timer after 1120ms
+            toggleCheck(nextItemIdx, true);
+            voiceEqualizer.classList.add('success');
+            micBtn.classList.add('success');
+            setTimeout(() => {
+                if (isListening) {
+                    voiceEqualizer.classList.remove('success');
+                    micBtn.classList.remove('success');
+                }
+            }, 1500);
+
+            const activatedItem = items[nextItemIdx];
+            if (activatedItem && activatedItem.timer && !isTimerDisabled) processTimerItem(activatedItem);
+            else setTimeout(() => { speakCurrentItem(); }, 1120);
+        } else {
+            btnNext.click();
+        }
+    }
+
+    function processTimerItem(activatedItem) {
+        const timerSecs = parseInt(activatedItem.timer);
+        const isContinuous = activatedItem.timerContinuous === "yes";
+
+        if (!isContinuous) {
+            isTimerActivePause = true;
+        }
+
+        isSpeaking = true;
+        try { recognition.abort(); } catch (e) { }
+
+        const announcement = activatedItem.timerAnnouncement;
+
+        const onCompleteCallback = () => {
+            if (!isContinuous) {
+                const doneUtterance = new SpeechSynthesisUtterance('Timer complete. We may continue.');
+                doneUtterance.lang = 'en-US'; doneUtterance.rate = (isMaleVoice ? 1.28 : 1.09); doneUtterance.voice = getSelectedVoice();
+                doneUtterance.onend = () => { 
+                    isTimerActivePause = false;
+                    setTimeout(() => { speakCurrentItem(); }, 560); 
+                };
+                if (!isMuted) window.speechSynthesis.speak(doneUtterance);
+                else {
+                    isTimerActivePause = false;
+                    setTimeout(() => { speakCurrentItem(); }, 200);
+                }
+            } else {
+                if (isTimerActivePause) {
+                    isTimerActivePause = false;
+                    speakCurrentItem();
+                }
+            }
+        };
+
+        if (announcement) {
+            setTimeout(() => {
+                startActionTimer(parseVariables(activatedItem.timerLabel || activatedItem.name), timerSecs, onCompleteCallback, isContinuous, activatedItem.timerWarning);
+
+                if (!isMuted) {
+                    const announcementUtterance = new SpeechSynthesisUtterance(spellAbbreviations(parseVariables(announcement, true)));
+                    announcementUtterance.lang = 'en-US'; announcementUtterance.rate = (isMaleVoice ? 1.28 : 1.09); announcementUtterance.voice = getSelectedVoice();
+
+                    if (isContinuous) {
+                        announcementUtterance.onend = () => { setTimeout(() => { speakCurrentItem(); }, 560); };
+                    }
+                    window.speechSynthesis.speak(announcementUtterance);
+                } else {
+                    if (isContinuous) setTimeout(() => { speakCurrentItem(); }, 560);
+                }
+            }, 840);
+        } else {
+            setTimeout(() => {
+                startActionTimer(parseVariables(activatedItem.timerLabel || activatedItem.name), timerSecs, onCompleteCallback, isContinuous, activatedItem.timerWarning);
+
+                if (isContinuous) {
+                    setTimeout(() => { speakCurrentItem(); }, 840);
+                }
+            }, 840);
+        }
+    }
+
+    function speakCurrentItem() {
+        if (!isListening || !hasStartedReading) return;
+        const items = checklistData[currentPageIndex].items;
+        const nextItem = items.find(i => !i.checked && isItemVisible(i));
+
+        window.speechSynthesis.cancel();
+
+        if (nextItem) {
+            // AUTOMATICKÉ SKROLOVANIE
+            const nextItemIdx = items.indexOf(nextItem);
+            autoScrollToItem(nextItemIdx);
+
+            // === READ CL ONLY: Flow/Briefing items - no voice, no mic reaction ===
+            if (isReadCLOnly && (nextItem.type === 'flow' || nextItem.type === 'briefing')) {
+                // If we just finished a checklist phrase, announce "completed" before pausing!
+                if (readCLOnlyChecklistPhaseActive) {
+                    readCLOnlyChecklistPhaseActive = false; // Reset so it only fires once
+
+                    const page = checklistData[currentPageIndex];
+                    const completeText = spellAbbreviations(page.title, true) + " Checklist completed.";
+                    const utterance = new SpeechSynthesisUtterance(completeText);
+                    utterance.lang = 'en-US';
+                    utterance.rate = (isMaleVoice ? 1.28 : 1.09);
+                    utterance.voice = getSelectedVoice();
+                    isSpeaking = true;
+                    try { recognition.abort(); } catch (e) { }
+
+                    utterance.onstart = () => { isSpeaking = true; };
+                    utterance.onend = () => {
+                        isSpeaking = false;
+                        hasStartedReading = false;
+                        if (isListening) {
+                            try { recognition.start(); } catch (e) { }
+                        }
+                    };
+                    if (!isMuted) window.speechSynthesis.speak(utterance);
+                    else { utterance.onend(); }
+                    return;
+                }
+
+                // Do not auto-check. Just pause the voice engine and let the user manually click through.
+                hasStartedReading = false;
+                isSpeaking = false;
+                if (isListening) {
+                    try { recognition.start(); } catch (e) { }
+                }
+                return;
+            }
+
+            // === READ CL ONLY: When reaching a checklist item, pause and wait for "checklist" command ===
+            if (isReadCLOnly && nextItem.type === 'checklist item' && !readCLOnlyChecklistPhaseActive) {
+                // We've arrived at the checklist section – stop and wait for "checklist" voice command
+                hasStartedReading = false;
+                isSpeaking = false;
+                if (isListening) {
+                    try { recognition.start(); } catch (e) { }
+                }
+                return;
+            }
+
+
+            // === MID-PAGE TRANSITION LOGIC ===
+            let transitionText = "";
+            let nextItemIdxBackup = items.indexOf(nextItem);
+            
+            if (!isReadCLOnly) {
+                let lastCheckedItem = null;
+                for (let i = nextItemIdxBackup - 1; i >= 0; i--) {
+                     if (items[i] && isItemVisible(items[i]) && items[i].checked) {
+                         lastCheckedItem = items[i];
+                         break;
+                     }
+                }
+                
+                if (lastCheckedItem) {
+                    if (lastCheckedItem.type !== 'checklist item' && nextItem.type === 'checklist item') {
+                        transitionText = `${checklistData[currentPageIndex].title} Checklist. `;
+                    } else if (lastCheckedItem.type === 'checklist item' && nextItem.type !== 'checklist item') {
+                        transitionText = `${checklistData[currentPageIndex].title} Checklist complete. `;
+                    }
+                }
+            }
+
+            let textToRead = '';
+            if (nextItem.type === 'briefing') {
+                currentPlayingBriefingIndex = nextItemIdxBackup;
+                renderPage(false);
+                textToRead = getBriefingValidSentences(nextItem, true).join(' ');
+            } else {
+                textToRead = `${nextItem.name}. ${getParsedAction(nextItem, true)}`;
+            }
+            
+            textToRead = transitionText + textToRead;
+
+            if (activeTimerWarning && actionTimerInterval) {
+                const searchTarget = parseVariables(activeTimerWarning).toLowerCase();
+                const matchedName = parseVariables(nextItem.name).toLowerCase();
+                if (matchedName.includes(searchTarget)) {
+                    const waitUtterance = new SpeechSynthesisUtterance("Wait for timer.");
+                    waitUtterance.lang = 'en-US';
+                    waitUtterance.rate = (isMaleVoice ? 1.28 : 1.09);
+                    waitUtterance.voice = getSelectedVoice();
+                    isSpeaking = true;
+                    isTimerActivePause = true;
+                    try { recognition.abort(); } catch (e) { }
+
+                    waitUtterance.onstart = () => { isSpeaking = true; };
+                    waitUtterance.onend = () => {
+                        // Pause sequence here until the continuous timer finishes.
+                    };
+                    if (!isMuted) window.speechSynthesis.speak(waitUtterance);
+                    else waitUtterance.onend();
+                    return;
+                }
+            }
+
+            const utterance = new SpeechSynthesisUtterance(spellAbbreviations(parseVariables(textToRead, true)));
+            utterance.lang = 'en-US';
+            utterance.rate = (isMaleVoice ? 1.28 : 1.09);
+            utterance.voice = getSelectedVoice();
+            isSpeaking = true; // Ochrana proti echa: nastavíme okamžite ešte pred prvou slabikou
+            try { recognition.abort(); } catch (e) { } // Úplné fyzické odpojenie mikrofónu, kým čítame!
+
+            window.currentSpeechSession = (window.currentSpeechSession || 0) + 1;
+            const thisSession = window.currentSpeechSession;
+
+            utterance.onstart = () => { isSpeaking = true; };
+            utterance.onend = () => {
+                if (window.currentSpeechSession !== thisSession) return;
+                
+                if (currentPlayingBriefingIndex === nextItemIdx) {
+                    currentPlayingBriefingIndex = -1;
+                    renderPage(false);
+                    if (isListening && hasStartedReading) {
+                        setTimeout(() => { 
+                            if (window.currentSpeechSession === thisSession) {
+                                simulateCheckAction(); 
+                            }
+                        }, 500);
+                        return;
+                    }
+                }
+                // Znovu oživíme mikrofón
+                setTimeout(() => {
+                    if (window.currentSpeechSession !== thisSession) return;
+                    if (isTimerActivePause) return;
+                    isSpeaking = false;
+                    if (isListening) {
+                        try { recognition.start(); } catch (e) { }
+                    }
+                }, 175);
+            };
+            if (!isMuted) window.speechSynthesis.speak(utterance);
+            else {
+                setTimeout(() => {
+                    if (window.currentSpeechSession !== thisSession) return;
+                    isSpeaking = false;
+                    if (isListening) {
+                        try { recognition.start(); } catch (e) { }
+                    }
+                }, 175);
+            }
+        } else {
+            // === ALL items checked – page complete ===
+            const page = checklistData[currentPageIndex];
+            const pageTitle = page.title;
+            
+            window.currentSpeechSession = (window.currentSpeechSession || 0) + 1;
+            const thisSession = window.currentSpeechSession;
+            const isLastPage = (currentPageIndex === checklistData.length - 1);
+
+            // Determine if this page had any checklist items (not just flow)
+            const visibleItems = page.items.filter(i => isItemVisible(i));
+            const hadChecklistItems = visibleItems.some(i => i.type === 'checklist item');
+            const hadBriefing = visibleItems.some(i => i.type === 'briefing');
+            const lastItem = visibleItems.length > 0 ? visibleItems[visibleItems.length - 1] : null;
+
+            if (isReadCLOnly && !hadChecklistItems && !hadBriefing) {
+                let nextValidPageIndex = -1;
+                for (let i = currentPageIndex + 1; i < checklistData.length; i++) {
+                    if (checklistData[i].items.some(it => isItemVisible(it))) {
+                        nextValidPageIndex = i;
+                        break;
+                    }
+                }
+                if (nextValidPageIndex >= 0) {
+                    setTimeout(() => { if (isListening) { hasStartedReading = false; readCLOnlyChecklistPhaseActive = false; btnNext.click(); } }, 300);
+                }
+                return;
+            }
+
+            let completeText;
+            if (isReadCLOnly) {
+                completeText = spellAbbreviations(pageTitle, true) + " Checklist completed.";
+            } else {
+                if (lastItem && lastItem.type === 'checklist item') {
+                    completeText = spellAbbreviations(pageTitle, true) + " Checklist completed.";
+                } else if (lastItem && lastItem.type === 'flow') {
+                    completeText = spellAbbreviations(pageTitle, true) + " flow complete.";
+                } else if (hadChecklistItems) {
+                    completeText = spellAbbreviations(pageTitle, true) + " Checklist completed.";
+                } else {
+                    completeText = spellAbbreviations(pageTitle, true) + " flow complete.";
+                }
+            }
+            
+            if (isLastPage) {
+                completeText += ' And we can go home.';
+            }
+            const utterance = new SpeechSynthesisUtterance(completeText);
+            utterance.lang = 'en-US';
+            utterance.rate = (isMaleVoice ? 1.28 : 1.09);
+            utterance.voice = getSelectedVoice();
+
+            isSpeaking = true;
+            try { recognition.abort(); } catch (e) { }
+
+            utterance.onstart = () => { isSpeaking = true; };
+            utterance.onend = () => {
+                if (window.currentSpeechSession !== thisSession) return;
+                
+                setTimeout(() => {
+                    if (window.currentSpeechSession !== thisSession) return;
+                    if (isTimerActivePause) return;
+                    isSpeaking = false;
+                    if (isListening) {
+                        try { recognition.start(); } catch (e) { }
+                    }
+                }, 175);
+
+                // AUTO-NEXT
+                let nextValidPageIndex = -1;
+                for (let i = currentPageIndex + 1; i < checklistData.length; i++) {
+                    if (checklistData[i].items.some(it => isItemVisible(it))) {
+                        nextValidPageIndex = i;
+                        break;
+                    }
+                }
+
+                if (nextValidPageIndex >= 0) {
+                    if (isReadCLOnly) {
+                        // In Read CL Only: auto-proceed, set hasStartedReading=false so next page
+                        // will wait for "checklist" command again (if it has CL items), or auto-proceed (if only flow/briefing)
+                        setTimeout(() => {
+                            if (isListening) {
+                                hasStartedReading = false;
+                                readCLOnlyChecklistPhaseActive = false;
+                                btnNext.click();
+                                // After navigating, check if the new page needs auto-start
+                                setTimeout(() => {
+                                    if (isListening) readCLOnlyAutoStart();
+                                }, 500);
+                            }
+                        }, 560);
+                    } else {
+                        setTimeout(() => { if (isListening) { hasStartedReading = false; btnNext.click(); } }, 560);
+                    }
+                }
+            };
+            if (!isMuted) window.speechSynthesis.speak(utterance);
+            else {
+                utterance.onend();
+            }
+        }
+    }
+
+    // Read CL Only: auto-start reading logic (forces pause so we wait for prompt)
+    function readCLOnlyAutoStart() {
+        if (!isListening || !isReadCLOnly || hasStartedReading) return;
+        hasStartedReading = false;
+    }
+
+    // Zaistenie, že hlasy sú načítané
+    window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
+
+    recognition.onstart = () => {
+        isListening = true;
+        // ODSTRANENÉ `hasStartedReading = false;` -> Kvôli tomuto predtým systém zabudol, že je v checkliste po každom reštarte mikrofónu!
+        processedMatchesCount = 0;
+
+        processedStopCount = 0;
+        processedRepeatCount = 0;
+        lastTranscriptLength = 0;
+        voiceBar.classList.remove('hidden');
+        document.body.classList.add('voice-active');
+        voiceStopBtn.classList.remove('inactive');
+        voiceStopBtn.innerHTML = '&#9632; Stop';
+        voiceEqualizer.classList.remove('error');
+        micBtn.classList.add('active');
+    };
+
+    recognition.onend = () => {
+        if (!isListening) {
+            voiceBar.classList.add('hidden');
+            document.body.classList.remove('voice-active');
+            voiceStopBtn.classList.add('inactive');
+            voiceStopBtn.innerHTML = '&#9658; Start';
+            micBtn.classList.remove('active');
+            window.speechSynthesis.cancel();
+        } else if (!isSpeaking) {
+            // Rýchly reštart za chodu, IBA ak PC práve nečíta
+            setTimeout(() => {
+                if (isListening && !isSpeaking) {
+                    try { recognition.start(); } catch (e) { }
+                }
+            }, 100);
+        }
+    };
+
+    recognition.onerror = (event) => {
+        // ZABRÁNENIE PREBLIKÁVANIU CHÝB V UI
+        // Vyvoláme si tento error sami vždy, keď použijeme 'recognition.stop()' pre prečistenie zajakávania
+        if (event.error === 'aborted' || event.error === 'no-speech') {
+            return;
+        }
+
+        // Ak užívateľ zakáže HTTPS povolenie na mikrofón
+        if (event.error === 'not-allowed') {
+            isListening = false;
+        }
+
+        voiceEqualizer.classList.add('error');
+        console.error("Speech Recognition Error:", event.error);
+    };
+
+    recognition.onresult = (event) => {
+        let fullTranscript = '';
+        for (let i = 0; i < event.results.length; ++i) {
+            fullTranscript += event.results[i][0].transcript + ' ';
+        }
+
+        let transcript = fullTranscript.toLowerCase().trim();
+        if (!transcript) return;
+
+        // OCHRANA: Chrome niekedy zošalie a celú pamäť zresetuje. Vtedy prepíšeme počítadlá na nulu.
+        if (transcript.length < lastTranscriptLength - 20) {
+            processedMatchesCount = 0;
+
+            processedStopCount = 0;
+            processedRepeatCount = 0;
+        }
+        lastTranscriptLength = transcript.length;
+
+        // Tichá vizuálna odozva – zrušenie prípadného erroru pri zachytení aktivity
+        voiceEqualizer.classList.remove('error');
+
+        // ZoznamRegex - slovo Check a Set, a brutálne defektné omyly + komplet všetky ACTION slová z checklistov!
+        // UPOZORNENIE: Krátke slová (on, off, up, atď.) sú obalené v \b (word boundary), aby nám to nenašlo "on" uprostred slova "position" a nezarátalo dvakrát.
+        const actionWordPattern = /(check|set|call|reset|start|steady|announcement|revoke|continuous|retract|auto|open|down|green|\bon\b|\boff\b|\bup\b|\barm\b|completed)/gi;
+
+        const stopWordPattern = /(stop|cancel)/gi;
+        const repeatWordPattern = /(repeat|again)/gi;
+
+        // 1. TRIGGER: Checklist start
+        if (!hasStartedReading && (transcript.includes('checklist') || transcript.includes('craigslist'))) {
+
+            if (isReadCLOnly) {
+                // Ignore the microphone if user says 'checklist' but we are on flow/briefing items
+                const currentItems = checklistData[currentPageIndex].items;
+                const nextVisible = currentItems.find(i => !i.checked && isItemVisible(i));
+                if (nextVisible && (nextVisible.type === 'flow' || nextVisible.type === 'briefing')) {
+                    return;
+                }
+                readCLOnlyChecklistPhaseActive = true;
+            }
+
+            hasStartedReading = true;
+
+            // Pred spustením si spočítame aktuálne omyly a "checky" v texte, aby sme ich hned po aktivácii ignorovali
+            const initialMatches = transcript.match(actionWordPattern);
+            if (initialMatches) processedMatchesCount = initialMatches.length;
+
+
+
+            const initialRepeat = transcript.match(repeatWordPattern);
+            if (initialRepeat) processedRepeatCount = initialRepeat.length;
+
+            prepareChecklistReading();
+
+            return;
+        }
+
+        // Read CL Only: ignore all voice commands when on flow items
+        if (isReadCLOnly && hasStartedReading) {
+            const currentItems = checklistData[currentPageIndex].items;
+            const currentNextItem = currentItems.find(i => !i.checked && isItemVisible(i));
+            if (currentNextItem && currentNextItem.type === 'flow') {
+                return; // Ignore mic input for flow items
+            }
+        }
+
+        if (!hasStartedReading) return;
+
+        // 2. STOP COMMAND NAV
+        const stopMatches = transcript.match(stopWordPattern);
+        const currentStopCount = stopMatches ? stopMatches.length : 0;
+        if (currentStopCount > processedStopCount) {
+            processedStopCount = currentStopCount;
+            isListening = false;
+            recognition.stop();
+            return;
+        }
+
+
+
+        // 3.5 REPEAT COMMAND NAV
+        const repeatMatches = transcript.match(repeatWordPattern);
+        const currentRepeatCount = repeatMatches ? repeatMatches.length : 0;
+        if (currentRepeatCount > processedRepeatCount) {
+            processedRepeatCount = currentRepeatCount;
+            speakCurrentItem();
+            return;
+        }
+
+        // 4. CHECK A SET ODFJAKNUTIE: Count strategy
+        const matches = transcript.match(actionWordPattern);
+        const currentMatchesCount = matches ? matches.length : 0;
+
+        // Ak zachytime viac povelov nez mame pamatanych odklikanych ukonov:
+        if (currentMatchesCount > processedMatchesCount) {
+
+            // ECHO BUG OCHRANA: Ak PC práve číta, alebo do 800ms len dočítalo, 
+            // mikrofón to síce počul a zobral za regulárne slovo, no my ho tu pohltíme (zahodíme).
+            if (isSpeaking) {
+                processedMatchesCount = currentMatchesCount;
+            } else {
+                // DEBOUNCE OCHRANA proti dlhým vetám: Ak mikrofón chrlí slová ako "Standby power... Auto",
+                // a obe slová sú aktivačné, Chrome ich pošle rýchlo za sebou s roztiahnutým interim resultom.
+                // Ak sme pred menej ako 800ms už urobili úkon, tieto dodatočné slová z tej istej vety len zhltneme bez akcie.
+                const now = Date.now();
+                if (now - lastCheckedTime < 800) {
+                    processedMatchesCount = currentMatchesCount;
+                    return;
+                }
+                lastCheckedTime = now;
+
+                // SKOK počítadla – zahodí prídavné heslá, vykoná vždy len 1 úkon.
+                processedMatchesCount = currentMatchesCount;
+
+                const items = checklistData[currentPageIndex].items;
+                const nextItemIdx = items.findIndex(i => !i.checked && isItemVisible(i));
+
+                let newlyChecked = false;
+                let activatedItem = null;
+
+                if (nextItemIdx !== -1) {
+                    activatedItem = items[nextItemIdx];
+                    // Užívateľské vylepšenie: posun samotného odškrtnutia, aby to nepôsobilo zbrklo roboticky.
+                    setTimeout(() => { toggleCheck(nextItemIdx, true); }, 700);
+                    newlyChecked = true;
+                }
+
+                if (newlyChecked) {
+                    voiceEqualizer.classList.add('success');
+                    micBtn.classList.add('success');
+                    setTimeout(() => {
+                        if (isListening) {
+                            voiceEqualizer.classList.remove('success');
+                            micBtn.classList.remove('success');
+                        }
+                    }, 1500);
+
+                    if (activatedItem && activatedItem.timer && !isTimerDisabled) {
+                        processTimerItem(activatedItem);
+                    } else {
+                        // NORMÁLNY PRIEBEH – pauza, kým sa znova nadýchne a začne čítať
+                        setTimeout(() => { speakCurrentItem(); }, 1120);
+                    }
+
+                    // BRILANTNÝ ŤAH: Vypneme mikrofón. Zmaže sa tak pamäťová knižnica Chrome,
+                    // ktorá inak zvykne filtrovať rovnaké slová ako "zajakávanie" (stutter filter).
+                    try { recognition.stop(); } catch (e) { }
+                }
+            }
+        }
+    };
+
+    micBtn.onclick = () => {
+        if (isListening) {
+            isListening = false;
+            voiceBar.classList.add('hidden');
+            document.body.classList.remove('voice-active');
+            recognition.stop();
+            readCLOnlyChecklistPhaseActive = false;
+            releaseWakeLock();
+        } else {
+            hasStartedReading = false;
+            readCLOnlyChecklistPhaseActive = false;
+            requestWakeLock();
+            try { recognition.start(); } catch (e) { recognition.stop(); alert("Mic error: " + e.message); }
+            // Read CL Only: auto-start if current page has briefing
+            if (isReadCLOnly) {
+                setTimeout(() => { readCLOnlyAutoStart(); }, 600);
+            }
+        }
+    };
+
+    voiceStopBtn.onclick = () => {
+        if (isListening) {
+            isListening = false;
+            hasStartedReading = false;
+            readCLOnlyChecklistPhaseActive = false;
+            isTimerActivePause = false;
+            voiceBar.classList.add('hidden');
+            document.body.classList.remove('voice-active');
+            window.speechSynthesis.cancel();
+            try { recognition.abort(); } catch (e) { }
+            voiceStopBtn.classList.add('inactive');
+            voiceStopBtn.innerHTML = '&#9658; Start';
+            micBtn.classList.remove('active');
+        } else {
+            micBtn.click(); // Start it
+        }
+    };
+
+
+
+} else {
+    micBtn.style.display = 'none';
+}
+
+init();
+
+window.addEventListener('resize', () => updateControls());
