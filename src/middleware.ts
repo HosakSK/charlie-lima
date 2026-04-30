@@ -12,7 +12,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.rewrite(url);
   }
 
-  if (currentHost === 'charlie-lima.eu' || currentHost === 'www.charlie-lima.eu' || currentHost === 'localhost') {
+  if (currentHost === 'charlie-lima.eu' || currentHost === 'www.charlie-lima.eu' || currentHost === 'localhost' || currentHost.includes('vercel.app')) {
     return NextResponse.rewrite(url); // Root landing page
   }
 
