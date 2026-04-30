@@ -18,15 +18,16 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 4px;
-    background: var(--color-bar1);
+    height: 3px;
+    background: rgba(var(--color-accent-rgb), 0.15);
     z-index: 9999;
 }
 .global-progress-fill {
     height: 100%;
     width: 0%;
-    background: var(--color-accent);
-    transition: width 0.4s ease;
+    background: linear-gradient(90deg, var(--color-accent), rgba(var(--color-accent-rgb), 0.6));
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 12px rgba(var(--color-accent-rgb), 0.5);
 }
 
 [data-theme="dark"] {
@@ -68,16 +69,19 @@ body::before {
 
 .app-container {
     width: 95%; max-width: 1200px;
-    background-color: rgba(var(--color-background-rgb), 0.92);
-    backdrop-filter: blur(30px) saturate(1.2); 
-    -webkit-backdrop-filter: blur(30px) saturate(1.2);
-    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255,255,255,0.08); 
-    border-radius: 24px; 
+    background-color: rgba(var(--color-background-rgb), 0.95);
+    backdrop-filter: blur(40px) saturate(1.3); 
+    -webkit-backdrop-filter: blur(40px) saturate(1.3);
+    box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(var(--color-accent-rgb), 0.06),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+    border-radius: 20px; 
     margin: 80px 0 20px 0;
     display: flex; flex-direction: column;
-    padding: 30px 30px 30px 30px;
-    border: 1px solid rgba(255,255,255,0.12);
-    transition: box-shadow 0.3s ease;
+    padding: 30px;
+    border: 1px solid rgba(var(--color-accent-rgb), 0.08);
+    overflow: hidden;
 }
 
 /* FAB tlačidlá sú od 1450px centrované na spodku, nepotrebujeme padding-right */
@@ -286,40 +290,47 @@ input:checked + .slider:before { transform: translateX(20px); }
 .quick-nav-dropdown.hidden { display: none; }
 
 #page-title {
-    flex: 1; margin: 0; background-color: var(--color-accent); color: #ffffff;
-    font-size: 1.15rem; font-weight: 700; text-transform: uppercase;
-    padding: 10px 15px; letter-spacing: 1px; border-radius: 4px;
+    flex: 1; margin: 0; 
+    background: linear-gradient(135deg, var(--color-accent), rgba(var(--color-accent-rgb), 0.8));
+    color: #ffffff;
+    font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
+    padding: 10px 18px; letter-spacing: 1.5px; border-radius: 10px;
     height: 44px; display: flex; align-items: center;
+    box-shadow: 0 4px 15px rgba(var(--color-accent-rgb), 0.25);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    min-width: 0;
 }
 @media (max-width: 700px) {
-    #page-title { font-size: 0.95rem; }
+    #page-title { font-size: 0.85rem; letter-spacing: 1px; border-radius: 8px; }
 }
 
-main { flex: 1; padding-bottom: 20px; }
+main { flex: 1; padding-bottom: 20px; overflow: hidden; }
 
 .checklist { 
     margin-left: 5px; 
     padding-left: 15px; 
     position: relative;
+    overflow: hidden;
 }
-/* This pseudo-element creates the broken teal line */
+/* This pseudo-element creates the accent line */
 .checklist::before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 3px;
+    width: 2px;
     background: linear-gradient(to bottom, 
         transparent 0%, 
         transparent var(--mask-start, 0), 
-        var(--color-line) var(--mask-start, 0), 
-        var(--color-line) 100%);
+        rgba(var(--color-accent-rgb), 0.3) var(--mask-start, 0), 
+        rgba(var(--color-accent-rgb), 0.3) 100%);
+    border-radius: 2px;
 }
-.checklist.animate { animation: slideIn 0.8s ease-out; }
+.checklist.animate { animation: slideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
 
 @keyframes slideIn {
-    from { opacity: 0; transform: translateX(30px); }
+    from { opacity: 0; transform: translateX(20px); }
     to { opacity: 1; transform: translateX(0); }
 }
 
@@ -327,13 +338,14 @@ main { flex: 1; padding-bottom: 20px; }
     display: flex; 
     align-items: center; 
     justify-content: space-between;
-    padding: 8px 15px;
-    margin: 2px -10px;
+    padding: 10px 14px;
+    margin: 3px -8px;
     cursor: pointer; 
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); 
     user-select: none;
     border-radius: 10px;
     position: relative;
+    overflow: hidden;
 }
 .checklist-subtitle {
     font-size: 1.0rem; text-transform: uppercase; font-weight: 800; color: var(--color-accent);
@@ -351,11 +363,13 @@ main { flex: 1; padding-bottom: 20px; }
      background-color: var(--color-background);
 }
 
-/* Moderný hover efekt */
+/* Modern hover — subtle glow */
 .checklist-item:hover {
-    background: rgba(var(--color-accent-rgb), 0.06);
-    transform: translateX(4px);
-    box-shadow: inset 3px 0 0 var(--color-accent);
+    background: rgba(var(--color-accent-rgb), 0.05);
+    box-shadow: inset 3px 0 0 rgba(var(--color-accent-rgb), 0.6);
+}
+.checklist-item:active {
+    transform: scale(0.995);
 }
 
 .item-text {
@@ -363,40 +377,43 @@ main { flex: 1; padding-bottom: 20px; }
     display: flex; 
     justify-content: space-between; 
     align-items: baseline;
-    padding-right: 25px; 
-    width: 100%; 
+    padding-right: 15px; 
+    min-width: 0;
     overflow: hidden;
-    transition: all 0.2s;
 }
 
 .item-name {
-    flex-shrink: 1; font-size: 1.1rem; font-weight: 400;
+    flex-shrink: 1; font-size: 1.05rem; font-weight: 400;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 5px; 
     color: var(--color-text);
+    min-width: 0;
 }
 @media (max-width: 700px) {
-    .item-name { font-size: 0.9rem; }
+    .item-name { font-size: 0.85rem; }
 }
 
 .checklist-item.active {
     opacity: 1 !important;
+    background: rgba(var(--color-accent-rgb), 0.04);
 }
 .checklist-item.active .item-name {
-    font-weight: 700;
+    font-weight: 600;
+    color: var(--color-accent);
 }
 .checklist-item.active .item-action {
     font-weight: 700;
 }
 
 .dots {
-    flex: 1; border-bottom: 2px dotted rgba(var(--color-accent-rgb), 0.15); 
-    margin: 0 12px 4px 12px; position: relative;
+    flex: 1; border-bottom: 1.5px dotted rgba(var(--color-accent-rgb), 0.12); 
+    margin: 0 10px 4px 10px; position: relative;
+    min-width: 20px;
 }
 
 .item-action {
-    font-size: 1.1rem; font-weight: 400; color: var(--color-accent); 
-    text-align: right; white-space: nowrap; margin-left: 10px; flex-shrink: 0; 
-    text-shadow: 0 0 1px rgba(0, 189, 177, 0.1);
+    font-size: 1.05rem; font-weight: 500; color: var(--color-accent); 
+    text-align: right; white-space: nowrap; margin-left: 8px; flex-shrink: 0; 
+    letter-spacing: 0.3px;
 }
 @media (max-width: 700px) {
     .item-action { font-size: 0.9rem; }
@@ -411,8 +428,9 @@ main { flex: 1; padding-bottom: 20px; }
 .turnaround-btn:hover { background: var(--color-accent); color: white; }
 
 .custom-checkbox {
-    width: 24px; height: 24px; border: 2px solid var(--color-line); border-radius: 4px;
-    display: flex; justify-content: center; align-items: center; flex-shrink: 0; transition: all 0.2s ease;
+    width: 22px; height: 22px; border: 2px solid rgba(var(--color-accent-rgb), 0.3); border-radius: 6px;
+    display: flex; justify-content: center; align-items: center; flex-shrink: 0; 
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ========== BRIEFING ITEM STYLES ========== */
@@ -459,24 +477,40 @@ main { flex: 1; padding-bottom: 20px; }
     font-weight: 300;
 }
 
-.checklist-item.checked .custom-checkbox { background-color: var(--color-accent); border-color: var(--color-accent); transform: scale(0.95); }
-.checklist-item.checked .custom-checkbox::after { content: "✓"; color: #fff; font-size: 16px; font-weight: bold; }
+.checklist-item.checked .custom-checkbox { 
+    background: linear-gradient(135deg, var(--color-accent), rgba(var(--color-accent-rgb), 0.7)); 
+    border-color: transparent; 
+    transform: scale(0.9); 
+    box-shadow: 0 2px 8px rgba(var(--color-accent-rgb), 0.3);
+}
+.checklist-item.checked .custom-checkbox::after { content: "✓"; color: #fff; font-size: 14px; font-weight: bold; }
 
 footer { padding: 20px 0 0 0; }
-.progress-bar { width: 100%; height: 6px; background-color: var(--color-bar1); border-radius: 3px; margin-bottom: 25px; overflow: hidden; }
-.progress-fill { height: 100%; background-color: var(--color-bar2); width: 0%; transition: width 0.3s ease; }
+.progress-bar { width: 100%; height: 4px; background-color: rgba(var(--color-accent-rgb), 0.1); border-radius: 4px; margin-bottom: 25px; overflow: hidden; }
+.progress-fill { 
+    height: 100%; 
+    background: linear-gradient(90deg, var(--color-accent), rgba(var(--color-accent-rgb), 0.6)); 
+    width: 0%; 
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.4);
+}
 .controls { display: flex; justify-content: space-between; align-items: center; }
 
 button {
     font-family: inherit;
-    background-color: var(--color-accent); color: #ffffff; border: none;
-    padding: 12px 24px; font-size: 1rem; font-weight: 600; border-radius: 8px; cursor: pointer;
+    background: linear-gradient(135deg, var(--color-accent), rgba(var(--color-accent-rgb), 0.85));
+    color: #ffffff; border: none;
+    padding: 12px 24px; font-size: 0.95rem; font-weight: 600; border-radius: 10px; cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.5px;
 }
 button:hover:not(:disabled) {
-    filter: brightness(1.08);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(var(--color-accent-rgb), 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(var(--color-accent-rgb), 0.35);
+}
+button:active:not(:disabled) {
+    transform: translateY(0);
 }
 
 #btn-prev, #btn-next {
