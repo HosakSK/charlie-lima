@@ -21,11 +21,10 @@ interface VoiceCallbacks {
   startTimer: (label: string, seconds: number, onComplete: () => void, continuous: boolean, warning?: string) => void;
 }
 
-// SpeechRecognition type for browsers
-type SpeechRecognitionType = typeof window extends { SpeechRecognition: infer T } ? T : unknown;
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export function useVoiceEngine(callbacks: VoiceCallbacks) {
-  const recognitionRef = useRef<InstanceType<SpeechRecognitionType> | null>(null);
+  const recognitionRef = useRef<any>(null);
   const isListeningRef = useRef(false);
   const isSpeakingRef = useRef(false);
   const hasStartedReadingRef = useRef(false);
@@ -512,7 +511,7 @@ export function useVoiceEngine(callbacks: VoiceCallbacks) {
         }
       };
 
-      recognitionRef.current = recognition as unknown as InstanceType<SpeechRecognitionType>;
+      recognitionRef.current = recognition;
     }
 
     try {
