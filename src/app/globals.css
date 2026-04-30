@@ -60,7 +60,7 @@ body::-webkit-scrollbar { display: none; }
 
 body::before {
     content: ""; position: fixed; top: -10%; left: -10%; right: -10%; bottom: -10%;
-    background: url('icons/lines_05-2.svg') no-repeat center center;
+    background: url('/icons/lines_05-2.svg') no-repeat center center;
     background-size: cover; z-index: -1;
 }
 [data-theme="dark"] body::before { filter: invert(1) brightness(0.25) opacity(0.7); }
@@ -700,11 +700,11 @@ button {
     flex-shrink: 0;
 }
 
-.fab-mic::after { background-image: url('icons/mic.svg'); }
-.fab-briefing::after { background-image: url('icons/briefing.svg'); }
+.fab-mic::after { background-image: url('/icons/mic.svg'); }
+.fab-briefing::after { background-image: url('/icons/briefing.svg'); }
 
-.fab-timer::after { background-image: url('icons/timer.svg'); }
-.fab-timer-reset::after { background-image: url('icons/reset.svg'); }
+.fab-timer::after { background-image: url('/icons/timer.svg'); }
+.fab-timer-reset::after { background-image: url('/icons/reset.svg'); }
 
 /* STOPKY LAYOUT - Fixované v stĺpci, rozširujú sa doľava */
 .timer-container { 

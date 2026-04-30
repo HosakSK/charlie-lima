@@ -147,7 +147,7 @@ export default function AircraftChecklistPage() {
       </div>
 
       <div className="global-footer">
-          <div className="version-info">v3.0.4 - Next.js Rewrite</div>
+          <div className="version-info">v3.0.5 - Next.js Rewrite</div>
           <div className="sim-warning">NOT FOR REAL WORLD AVIATION. FOR FLIGHT SIMULATION USE ONLY.</div>
           <button className="help-link">View Documentation</button>
       </div>
