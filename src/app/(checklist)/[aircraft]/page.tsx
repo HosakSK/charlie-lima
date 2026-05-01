@@ -124,6 +124,8 @@ function getOriginalHTML(aircraft: string): string {
     <div class="toggle-group" style="margin-top:10px;width:100%;justify-content:center;border-top:1px dashed rgba(128,128,128,0.2);padding-top:20px;flex-direction:column;">
       <button id="help-footer-btn" class="help-link" style="width:100%;text-align:center;text-transform:uppercase;">Help Guide</button>
       <button id="reset-settings-btn" class="help-link" style="width:100%;text-align:center;text-transform:uppercase;">Reset Settings</button>
+      <button id="diag-voices-btn" class="help-link" style="width:100%;text-align:center;text-transform:uppercase;color:orange;">🔊 List Voices (Debug)</button>
+      <div id="diag-voices-output" style="display:none;margin-top:8px;font-size:0.7rem;opacity:0.8;word-break:break-all;white-space:pre-wrap;max-height:200px;overflow-y:auto;background:rgba(0,0,0,0.1);padding:8px;border-radius:8px;"></div>
     </div>
   </div>
   <div id="quick-nav-dropdown" class="quick-nav-dropdown hidden"></div>
@@ -216,7 +218,7 @@ function getOriginalHTML(aircraft: string): string {
     </div>
   </div>
   <div class="global-footer">
-    <span class="version-info">v3.0.27</span>
+    <span class="version-info">v3.0.28</span>
     <span class="sim-warning">For flight simulation use only.<br>Not for real-world flight.</span>
   </div>`;
 }
