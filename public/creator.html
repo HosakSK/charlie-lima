@@ -219,6 +219,66 @@
         </div>
     </div>
 
+    <script>
+        const varsObj = {
+            '%callsign%': 'Flight Callsign (e.g. RYR123)',
+            '%origin%': 'Origin ICAO (e.g. LZIB)',
+            '%dest%': 'Destination ICAO',
+            '%dep_atis%': 'Departure ATIS letter',
+            '%dep_qnh%': 'Departure QNH',
+            '%dep_rwy%': 'Departure Runway',
+            '%dep_rwy_hdg%': 'Departure Runway Heading',
+            '%sid%': 'Departure SID',
+            '%init_alt%': 'Initial Altitude',
+            '%dep_tl%': 'Transition Level',
+            '%squawk%': 'ATC Squawk',
+            '%dep_dewpt%': 'Dew point (Dep)',
+            '%dep_temp%': 'Temperature (Dep)',
+            '%dep_wind%': 'Wind (Dep)',
+            '%total_fuel%': 'Total Fuel',
+            '%trip_fuel%': 'Trip Fuel',
+            '%reserve_fuel%': 'Reserve Fuel',
+            '%v1%': 'V1 Speed',
+            '%vr%': 'VR Speed',
+            '%v2%': 'V2 Speed',
+            '%trim%': 'Stabilizer Trim',
+            '%dep_flaps%': 'Takeoff Flaps',
+            '%dep_assumed%': 'Assumed Temperature',
+            '%taxi_out%': 'Taxi Out Route',
+            '%arr_atis%': 'Arrival ATIS',
+            '%arr_qnh%': 'Arrival QNH',
+            '%arr_rwy%': 'Arrival Runway',
+            '%landing_type%': 'ILS Cat 3 / ILS Cat 2 / RNAV etc.',
+            '%arr_ta%': 'Arrival Trans Alt',
+            '%star%': 'STAR Route',
+            '%arr_dewpt%': 'Dew point (Arr)',
+            '%arr_temp%': 'Temperature (Arr)',
+            '%arr_wind%': 'Wind (Arr)',
+            '%ils_freq%': 'ILS Frequency',
+            '%course%': 'ILS Course',
+            '%minima%': 'Approach Minima (DA)',
+            '%ga_alt%': 'Missed Approach Altitude',
+            '%vref%': 'Landing Vref',
+            '%arr_flaps%': 'Landing Flaps',
+            '%autobrake%': 'Autobrake setting',
+            '%taxi_in%': 'Taxi In Route',
+            '%gate%': 'Arrival Gate',
+            '%notes%': 'Custom Notes'
+        };
+
+        const varsContainer = document.getElementById('vars-container');
+        if (varsContainer) {
+            Object.keys(varsObj).forEach(v => {
+                const span = document.createElement('span');
+                span.className = 'var-badge';
+                span.setAttribute('draggable', 'true');
+                span.title = varsObj[v];
+                span.textContent = v;
+                span.ondragstart = (e) => e.dataTransfer.setData('text/plain', v);
+                varsContainer.appendChild(span);
+            });
+        }
+
         let data = [];
         let currentChecklistName = "";
         let currentFileUrl = "";
