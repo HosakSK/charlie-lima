@@ -238,7 +238,7 @@ header {
     box-shadow: 0 4px 15px rgba(var(--color-accent-rgb), 0.25);
 }
 .hamburger-btn:hover {
-    transform: translateY(-2px);
+    filter: brightness(1.1);
     box-shadow: 0 8px 25px rgba(var(--color-accent-rgb), 0.4);
 }
 .hamburger-btn span {
@@ -264,7 +264,7 @@ header {
 .header-btn img { display: none; }
 .header-btn span { display: inline; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
 .header-btn:hover { 
-    transform: translateY(-2px);
+    filter: brightness(1.1);
     box-shadow: 0 8px 25px rgba(var(--color-accent-rgb), 0.4);
 }
 
