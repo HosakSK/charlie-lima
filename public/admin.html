@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Prevent Caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title>Dataset Admin</title>
+    <!-- Použite farby a fonty z hlavnej aplikácie -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { 
+            background-color: var(--color-body-bg); 
+            align-items: stretch; 
+            justify-content: flex-start; 
+            padding: 20px; 
+            overflow-y: auto; 
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+        body::before { display: none; }
+        
+        .admin-layout { 
+            display: flex; gap: 20px; max-width: 1700px; margin: 0 auto; width: 100%; align-items: flex-start;
+        }
+        @media(max-width: 1000px) {
+            .admin-layout { flex-direction: column-reverse; }
+        }
+        
+        .left-col { flex: 3; display: flex; flex-direction: column; gap: 20px; }
+        .right-col { 
+            flex: 1; min-width: 300px; position: sticky; top: 20px; 
+            display: flex; flex-direction: column; gap: 20px; 
+            max-height: calc(100vh - 40px); overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .right-col::-webkit-scrollbar { display: none; }
+
+        .admin-card { 
+            background: var(--color-background); 
+            border: 1px solid rgba(128,128,128,0.2); 
+            border-radius: 12px; padding: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            backdrop-filter: blur(20px);
+        }
+        
+        .admin-header { margin-top: 0; color: var(--color-accent); font-size: 1.5rem; text-transform: uppercase; font-weight: 800; border-bottom: 2px solid rgba(128,128,128,0.1); padding-bottom: 10px; margin-bottom: 15px;}
+        
+        select.dataset-select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(128,128,128,0.3); font-size: 14px; background: var(--color-body-bg); color: var(--color-text); font-weight: bold; cursor: pointer; outline: none; }
+        
+        .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid rgba(var(--color-accent-rgb), 0.2); padding-bottom: 10px; margin-bottom: 15px; }
+        .section-header input { font-size: 1.2rem; font-weight: bold; color: var(--color-accent); border: 1px solid rgba(128,128,128,0.3); padding: 4px 8px; border-radius: 6px; flex: 1; margin-right: 15px; background: transparent; }
+        .section-header h2 { font-size: 1.2rem; color: var(--color-accent); flex: 1; margin: 0; font-weight: 800; letter-spacing: 1px;}
+        
+        .add-btns { display: flex; gap: 8px; }
+        .add-btn { background: var(--color-accent); color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 800; text-transform: uppercase; transition: opacity 0.2s;}
+        .add-btn:hover { opacity: 0.8; }
+        
+        .item { display: flex; flex-direction: column; padding: 12px; border-bottom: 1px solid rgba(128,128,128,0.1); border-top: 0px solid transparent; transition: background 0.2s, border-top-width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; border-radius: 8px; }
+        .item.drag-over { border-top-width: 60px; background: rgba(128,128,128,0.05); }
+        .item.drag-over::before { content: '⏬ Drop row here ⏬'; position: absolute; top: -45px; left: 50%; transform: translateX(-50%); color: var(--color-accent); font-weight: bold; background: var(--color-background); padding: 4px 12px; border-radius: 4px; border: 2px dashed var(--color-accent); pointer-events: none;}
+        .item:hover { background: rgba(128,128,128,0.03); }
+        .item:last-child { border-bottom: none; }
+        body.is-dragging .item .action-btn,
+        body.is-dragging .item .checkbox-group,
+        body.is-dragging .item input,
+        body.is-dragging .item select,
+        body.is-dragging .item textarea { pointer-events: none !important; }
+
+        .item-main-row { display: flex; align-items: center; gap: 10px; }
+        .item-drag-handle { font-size: 20px; cursor: grab; color: #aaa; user-select: none; padding-right: 5px;}
+        .item-drag-handle:active { cursor: grabbing; }
+
+        .section-drag-over { border-top-width: 60px; border-top-color: transparent; border-top-style: solid; background: rgba(128,128,128,0.05); position: relative; transition: border-top-width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);}
+        .section-drag-over::before { content: '⏬ Drop section here ⏬'; position: absolute; top: -45px; left: 50%; transform: translateX(-50%); color: var(--color-accent); font-weight: bold; background: var(--color-background); padding: 4px 12px; border-radius: 4px; border: 2px dashed var(--color-accent); pointer-events: none;}
+        .section-drag-handle { font-size: 20px; cursor: grab; color: #aaa; user-select: none; padding-right: 10px; margin-left: 0px;}
+        .section-drag-handle:active { cursor: grabbing; }
+        .collapse-btn { font-size: 13px; margin-right: 10px; background: none; border: none; cursor: pointer; color: var(--color-text); transition: all 0.2s; padding: 0 5px; opacity: 0.3;}
+        .collapse-btn:hover { color: var(--color-accent); opacity: 0.8;}
+
+        .static-text { flex: 2; font-size: 14px; word-break: break-word; color: var(--color-text); line-height: 1.4; padding-right: 15px; min-width: 0; }
+        .name-text { font-weight: 600; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+        .truncated-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; flex-shrink: 1; min-width: 0; }
+        
+        .text-input, .action-input, .type-select { flex: 1.5; padding: 8px; border: 1px solid rgba(128,128,128,0.3); border-radius: 6px; font-family: inherit; font-size: 14px; background: var(--color-body-bg); color: var(--color-text); }
+        
+        .type-select { flex: 0.8; }
+        
+        .checklist-marker { color: #e74c3c; font-weight: 800; font-size: 10px; padding: 3px 6px; border: 1px solid #e74c3c; border-radius: 4px; background: rgba(231,76,60,0.1); white-space: nowrap; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block; vertical-align: middle; flex-shrink: 0; margin-bottom: 2px;}
+        
+        .checkbox-group { display: flex; gap: 15px; justify-content: flex-end; align-items: center; margin-left: auto; }
+        label { display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: bold; user-select: none; font-size: 14px; color: var(--color-text); }
+        label input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; margin: 0; }
+        
+        .label-test { color: #e74c3c; }
+        .label-simplify { color: #f39c12; }
+        .label-timer { color: #8e44ad; }
+
+        .action-btn { background: none; border: none; cursor: pointer; font-size: 18px; padding: 6px; border-radius: 6px; transition: background 0.2s;}
+        .action-btn:hover { background: rgba(128,128,128,0.1); }
+        .action-btn.edit-btn { color: #3498db; }
+        .action-btn.edit-btn:hover { background: rgba(52, 152, 219, 0.1); }
+        .action-btn.delete-btn { color: #e74c3c; font-size: 18px; }
+        .action-btn.delete-btn:hover { background: rgba(231,76,60,0.1); }
+        .action-btn.save-btn { color: #27ae60; font-size: 18px; }
+        .action-btn.save-btn:hover { background: rgba(39,174,96,0.1); }
+        
+        .briefing-row { margin-top: 10px; padding-left: 35px; }
+        .briefing-static-text { margin: 0; background: rgba(128,128,128,0.05); padding: 10px; border-left: 3px solid var(--color-accent); border-radius: 6px; font-size: 13px; white-space: pre-wrap; font-family: 'IBM Plex Mono', monospace; color: var(--color-text); }
+        .briefing-textarea { width: 100%; height: 100px; padding: 10px; border: 1px solid rgba(128,128,128,0.3); border-radius: 6px; background: var(--color-body-bg); color: var(--color-text); font-family: 'IBM Plex Mono', monospace; font-size: 13px; resize: vertical; line-height: 1.5; }
+
+        .variables-box h3 { margin-top: 0; color: var(--color-accent); margin-bottom: 15px; font-size: 1.1rem; text-transform: uppercase; font-weight: 800;}
+        .var-badge { display: inline-block; background: rgba(var(--color-accent-rgb), 0.1); color: var(--color-accent); border: 1px solid var(--color-accent); padding: 5px 8px; margin: 4px; border-radius: 6px; font-family: monospace; font-size: 12px; cursor: grab; user-select: none; font-weight: bold;}
+        .var-badge:active { cursor: grabbing; }
+
+        .button-bar { position: sticky; bottom: 0; background: var(--color-body-bg); padding: 15px; display: flex; flex-direction: column; justify-content: center; gap: 15px; border-radius: 12px; border-top: 1px solid rgba(128,128,128,0.2); z-index: 1000; box-shadow: 0 -10px 20px rgba(0,0,0,0.05); margin-top: 20px;}
+        button.generate-btn { flex: 1; padding: 12px 24px; font-size: 14px; font-weight: 800; cursor: pointer; color: white; border: none; border-radius: 6px; transition: all 0.2s; text-transform: uppercase; letter-spacing: 1px;}
+        button.generate-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        
+        .btn-green { background: #27ae60; }
+        .btn-blue { background: var(--color-accent); }
+
+        #output { width: 100%; height: 300px; margin-top: 20px; font-family: monospace; font-size: 13px; display: none; background: #1e1e1e; color: #d4d4d4; padding: 10px; border-radius: 8px;}
+        
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 9999; backdrop-filter: blur(5px);}
+        .modal-overlay.hidden { display: none; }
+        .modal-content { background: var(--color-background); padding: 25px; border-radius: 12px; width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid rgba(128,128,128,0.2);}
+        .modal-content h3 { color: var(--color-accent); margin-top: 0; margin-bottom: 20px;}
+        .modal-field { margin-bottom: 15px; }
+        .modal-field label { display: block; margin-bottom: 5px; font-size: 12px; font-weight: bold; opacity: 0.8; color: var(--color-text);}
+        .modal-field input[type="text"], .modal-field input[type="number"] { width: 100%; padding: 8px; border-radius: 6px; border: 1px solid rgba(128,128,128,0.3); background: var(--color-body-bg); color: var(--color-text); box-sizing: border-box; }
+        .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px; }
+        .modal-btn { padding: 8px 15px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; color: white;}
+        .modal-btn-cancel { background: rgba(128,128,128,0.5); }
+        .modal-btn-cancel:hover { background: rgba(128,128,128,0.8); }
+        .modal-btn-save { background: var(--color-accent); }
+        .modal-btn-save:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-layout">
+        <!-- VĽAVO (Obsah dát) -->
+        <div class="left-col">
+            <div id="container">
+                <!-- Renderované dáta -->
+            </div>
+        </div>
+
+        <!-- VPRAVO (Nastavenia a premenné) -->
+        <div class="right-col">
+            <button class="add-btn" style="width: 100%; margin-bottom: 20px; font-size: 15px; padding: 12px; border: 2px dashed var(--color-accent); color: var(--color-text); font-weight: bold; background: var(--color-background);" onclick="addNewSection()">➕ Add New Section</button>
+            
+            <div class="admin-card">
+                <h2 class="admin-header">Dataset</h2>
+                <select id="dataset-select" class="dataset-select" onchange="switchDataset(this.value)"></select>
+                
+                <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px;">
+                    <button class="add-btn" style="width: 100%; background: var(--color-background); color: var(--color-text); border: 1px dashed var(--color-accent);" onclick="document.getElementById('upload-js').click()">📁 Upload Custom .js</button>
+                    <button class="add-btn" style="width: 100%; background: var(--color-background); color: var(--color-text); border: 1px dashed var(--color-accent);" onclick="createNewChecklist()">✨ Create New Blank List</button>
+                    <input type="file" id="upload-js" accept=".js" style="display: none;" onchange="handleFileUpload(event)">
+                    <div style="display: flex; gap: 8px; margin-top: 5px;">
+                        <button class="add-btn" style="flex: 1; border: 1px solid #27ae60; color: #27ae60; background: rgba(39, 174, 96, 0.1);" onclick="forceSaveDraft()">💾 Save Draft</button>
+                        <button class="add-btn" style="flex: 1; border: 1px solid #e74c3c; color: #e74c3c; background: rgba(231, 76, 60, 0.1);" onclick="clearDraft()">🗑️ Clear Draft</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-card variables-box">
+                <h3>Variables</h3>
+                <p style="font-size: 12px; opacity: 0.7; margin-top: -10px; margin-bottom: 10px;">Drag & Drop to textarea. Hover for info.</p>
+                <div id="vars-container"></div>
+            </div>
+
+            <div class="button-bar">
+                <button class="generate-btn btn-green" onclick="generateData(false)">📋 Copy to Clipboard</button>
+                <button class="generate-btn btn-blue" onclick="generateData(true)">💾 Download .js</button>
+            </div>
+            
+            <textarea id="output" readonly></textarea>
+        </div>
+    </div>
+
+    <div id="timer-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Timer Settings</h3>
+            <input type="hidden" id="tm-sIdx">
+            <input type="hidden" id="tm-iIdx">
+            <div class="modal-field">
+                <label>Timer Duration (seconds)</label>
+                <input type="number" id="tm-timer" placeholder="e.g. 120">
+            </div>
+            <div class="modal-field">
+                <label>Timer Label</label>
+                <input type="text" id="tm-label" placeholder="e.g. ENG. COOL.">
+            </div>
+            <div class="modal-field">
+                <label>Voice Announcement</label>
+                <input type="text" id="tm-announcement" placeholder="e.g. Timer set, waiting...">
+            </div>
+            <div class="modal-field" style="display:flex; align-items:center; gap:10px;">
+                <input type="checkbox" id="tm-continuous" style="width:auto; cursor: pointer;">
+                <label style="margin:0; cursor:pointer;" for="tm-continuous">Continuous Timer (runs in background)</label>
+            </div>
+            <div class="modal-field">
+                <label>Timer Warning Item</label>
+                <input type="text" id="tm-warning" placeholder="e.g. Engine start lever">
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-cancel" onclick="closeTimerModal()">Cancel</button>
+                <button class="modal-btn modal-btn-save" onclick="saveTimerModal()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- index pre selector -->
+    <script src="data/data_index.js"></script>
+    <script>
+        const varsObj = {
+            '%callsign%': 'Flight Callsign (e.g. RYR123)',
+            '%origin%': 'Origin ICAO (e.g. LZIB)',
+            '%dest%': 'Destination ICAO',
+            '%dep_atis%': 'Departure ATIS letter',
+            '%dep_qnh%': 'Departure QNH',
+            '%dep_rwy%': 'Departure Runway',
+            '%dep_rwy_hdg%': 'Departure Runway Heading',
+            '%sid%': 'Departure SID',
+            '%init_alt%': 'Initial Altitude',
+            '%dep_tl%': 'Transition Level',
+            '%squawk%': 'ATC Squawk',
+            '%dep_dewpt%': 'Dew point (Dep)',
+            '%dep_temp%': 'Temperature (Dep)',
+            '%dep_wind%': 'Wind (Dep)',
+            '%total_fuel%': 'Total Fuel',
+            '%trip_fuel%': 'Trip Fuel',
+            '%reserve_fuel%': 'Reserve Fuel',
+            '%v1%': 'V1 Speed',
+            '%vr%': 'VR Speed',
+            '%v2%': 'V2 Speed',
+            '%trim%': 'Stabilizer Trim',
+            '%dep_flaps%': 'Takeoff Flaps',
+            '%dep_assumed%': 'Assumed Temperature',
+            '%taxi_out%': 'Taxi Out Route',
+            '%arr_atis%': 'Arrival ATIS',
+            '%arr_qnh%': 'Arrival QNH',
+            '%arr_rwy%': 'Arrival Runway',
+            '%landing_type%': 'ILS Cat 3 / ILS Cat 2 / RNAV etc.',
+            '%arr_ta%': 'Arrival Trans Alt',
+            '%star%': 'STAR Route',
+            '%arr_dewpt%': 'Dew point (Arr)',
+            '%arr_temp%': 'Temperature (Arr)',
+            '%arr_wind%': 'Wind (Arr)',
+            '%ils_freq%': 'ILS Frequency',
+            '%course%': 'ILS Course',
+            '%minima%': 'Approach Minima (DA)',
+            '%ga_alt%': 'Missed Approach Altitude',
+            '%vref%': 'Landing Vref',
+            '%arr_flaps%': 'Landing Flaps',
+            '%autobrake%': 'Autobrake setting',
+            '%taxi_in%': 'Taxi In Route',
+            '%gate%': 'Arrival Gate',
+            '%notes%': 'Custom Notes'
+        };
+
+        const varsContainer = document.getElementById('vars-container');
+        Object.keys(varsObj).forEach(v => {
+            const span = document.createElement('span');
+            span.className = 'var-badge';
+            span.setAttribute('draggable', 'true');
+            span.title = varsObj[v];
+            span.textContent = v;
+            span.ondragstart = (e) => e.dataTransfer.setData('text/plain', v);
+            varsContainer.appendChild(span);
+        });
+
+        let data = [];
+        let currentChecklistName = "";
+        let currentFileUrl = "";
+        let draggedItem = null;
+
+        const selectEl = document.getElementById('dataset-select');
+        const urlParams = new URLSearchParams(window.location.search);
+        let selectedDatasetFile = urlParams.get('dataset');
+
+        function saveToLocal() {
+            if (!currentFileUrl) currentFileUrl = selectedDatasetFile || "custom";
+            localStorage.setItem('admin_draft_data_' + currentFileUrl, JSON.stringify(data));
+            localStorage.setItem('admin_draft_name_' + currentFileUrl, currentChecklistName);
+        }
+
+        if (typeof availableDataSets !== 'undefined') {
+            availableDataSets.forEach(ds => {
+                const opt = document.createElement('option');
+                opt.value = ds.file;
+                opt.textContent = ds.title;
+                selectEl.appendChild(opt);
+            });
+            
+            if (!selectedDatasetFile) {
+                const matchedOpt = Array.from(selectEl.options).find(o => o.value.includes('europe'));
+                selectedDatasetFile = matchedOpt ? matchedOpt.value : availableDataSets[0].file;
+            }
+        }
+
+        function switchDataset(url) {
+            if (url === "UPLOADED") return;
+            window.location.href = window.location.pathname + '?dataset=' + encodeURIComponent(url);
+        }
+
+        window.createNewChecklist = function() {
+            let name = prompt("Enter the name for your new checklist:", "My Custom Checklist");
+            if (name) {
+                const customId = "custom_" + Date.now() + ".js";
+                window.location.href = window.location.pathname + '?dataset=' + encodeURIComponent(customId) + '&customName=' + encodeURIComponent(name);
+            }
+        };
+
+        window.handleFileUpload = function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const text = evt.target.result;
+                try {
+                    const blob = new Blob([text], { type: 'application/javascript' });
+                    const url = URL.createObjectURL(blob);
+                    
+                    const script = document.createElement('script');
+                    script.src = url;
+                    script.onload = () => {
+                        data = JSON.parse(JSON.stringify(initialChecklistData));
+                        currentChecklistName = checklistName;
+                        currentFileUrl = file.name;
+                        saveToLocal();
+                        URL.revokeObjectURL(url);
+                        
+                        const opt = document.createElement('option');
+                        opt.value = "UPLOADED";
+                        opt.textContent = "📁 Uploaded File (" + file.name + ")";
+                        selectEl.insertBefore(opt, selectEl.firstChild);
+                        selectEl.value = "UPLOADED";
+                        
+                        render();
+                    };
+                    document.head.appendChild(script);
+                } catch (err) {
+                    alert("Failed to parse file.");
+                }
+            };
+            reader.readAsText(file);
+        };
+
+        const customNameParam = urlParams.get('customName');
+        let savedDraft = null;
+        if (selectedDatasetFile) {
+            const rawDraft = localStorage.getItem('admin_draft_data_' + selectedDatasetFile);
+            if (rawDraft && rawDraft.length > 2) savedDraft = rawDraft;
+        }
+
+        const container = document.getElementById('container');
+        if (container) {
+            container.innerHTML = '<div id="debug-log" style="color:red;font-weight:bold;font-family:monospace;padding:20px;"></div>';
+        }
+        function debugLog(msg) {
+            const dl = document.getElementById('debug-log');
+            if(dl) dl.innerHTML += msg + '<br>';
+        }
+
+        debugLog('Script top-level execution started.');
+        debugLog('selectedDatasetFile: ' + selectedDatasetFile);
+        debugLog('savedDraft length: ' + (savedDraft ? savedDraft.length : 'null'));
+
+        if (savedDraft) {
+            debugLog('Branch: savedDraft exists');
+            // Load draft for the currently selected URL explicitly
+            try {
+                data = JSON.parse(savedDraft);
+                if (!Array.isArray(data)) data = [];
+                debugLog('Parsed draft successfully, data length: ' + data.length);
+            } catch (e) {
+                data = [];
+                debugLog('Draft parse error: ' + e.message);
+            }
+            currentChecklistName = localStorage.getItem('admin_draft_name_' + selectedDatasetFile) || "Draft Checklist";
+            currentFileUrl = selectedDatasetFile;
+            
+            // If it matches a dropdown item, select it, otherwise add a custom option
+            let optExists = Array.from(selectEl.options).some(o => o.value === selectedDatasetFile);
+            if (!optExists) {
+                const o = document.createElement('option');
+                o.value = selectedDatasetFile;
+                o.textContent = currentChecklistName + " (Custom)";
+                selectEl.insertBefore(o, selectEl.firstChild);
+            }
+            selectEl.value = selectedDatasetFile;
+            debugLog('Calling render from savedDraft branch...');
+            render();
+            
+        } else if (selectedDatasetFile && selectedDatasetFile.startsWith('custom_')) {
+            debugLog('Branch: custom_ empty list');
+            data = [];
+            currentChecklistName = customNameParam || "New Custom Checklist";
+            currentFileUrl = selectedDatasetFile;
+            
+            const o = document.createElement('option');
+            o.value = selectedDatasetFile;
+            o.textContent = currentChecklistName + " (Custom)";
+            selectEl.insertBefore(o, selectEl.firstChild);
+            selectEl.value = selectedDatasetFile;
+            
+            saveToLocal();
+            debugLog('Calling render from custom list branch...');
+            render();
+            
+        } else if (selectedDatasetFile) {
+            debugLog('Branch: Loading script dynamically: ' + selectedDatasetFile);
+            selectEl.value = selectedDatasetFile;
+            const script = document.createElement('script');
+            script.src = selectedDatasetFile;
+            script.onload = () => {
+                debugLog('script.onload FIRED!');
+                try {
+                    data = JSON.parse(JSON.stringify(initialChecklistData));
+                    if (!Array.isArray(data)) data = [];
+                } catch (e) {
+                    debugLog('Error accessing initialChecklistData: ' + e.message);
+                    data = [];
+                }
+                currentChecklistName = typeof checklistName !== 'undefined' ? checklistName : "Draft Checklist";
+                currentFileUrl = selectedDatasetFile;
+                saveToLocal(); // Auto-start draft for this freshly loaded dataset
+                debugLog('Calling render from onload...');
+                render();
+            };
+            script.onerror = () => {
+                debugLog('script.onerror FIRED!');
+                container.innerHTML = '<h2 style="color:var(--color-text);">Select a dataset to begin editing.</h2>';
+            };
+            document.head.appendChild(script);
+            debugLog('Script appended to head.');
+        } else {
+            debugLog('Branch: No dataset selected.');
+            container.innerHTML = '<h2 style="color:var(--color-text);">Select a dataset to begin editing.</h2>';
+        }
+
+        window.forceSaveDraft = function() {
+            saveToLocal();
+            alert("✅ Draft successfully saved for this dataset!");
+        };
+
+        window.clearDraft = function() {
+            if (confirm("Are you sure you want to permanently delete your unsaved changes and reset to the default state for this dataset? This cannot be undone.")) {
+                if (currentFileUrl) {
+                    localStorage.removeItem('admin_draft_data_' + currentFileUrl);
+                    localStorage.removeItem('admin_draft_name_' + currentFileUrl);
+                }
+                
+                // If this was a custom blank list, redirect to main to get rid of it
+                if (currentFileUrl && currentFileUrl.startsWith('custom_')) {
+                    window.location.href = window.location.pathname;
+                } else {
+                    window.location.reload();
+                }
+            }
+        };
+
+        function render() {
+            try {
+                if (!Array.isArray(data)) data = [];
+                saveToLocal();
+                container.innerHTML = '';
+                
+                if (data.length === 0) {
+                    container.innerHTML = '<h3 style="color:var(--color-text); opacity:0.5; margin-left: 15px;">(List is completely empty. Start by adding a section.)</h3>';
+                }
+
+                data.forEach((section, sIndex) => {
+                const secDiv = document.createElement('div');
+                secDiv.className = 'admin-card';
+                secDiv.style.marginBottom = '20px';
+                secDiv.style.transition = 'border-top-width 0.2s cubic-bezier(0.25, 0.8, 0.25, 1)';
+                secDiv.setAttribute('data-sidx', sIndex);
+                
+                secDiv.ondragover = (e) => handleSectionDragOver(e, secDiv);
+                secDiv.ondragleave = (e) => handleSectionDragLeave(e, secDiv);
+                secDiv.ondrop = (e) => handleSectionDrop(e, sIndex, secDiv);
+                
+                const hdr = document.createElement('div');
+                hdr.className = 'section-header';
+                hdr.setAttribute('data-sidx', sIndex);
+                
+                if (section._editingTitle) {
+                    hdr.innerHTML = `
+                        <input type="text" value="${escapeHtml(section.title)}" onchange="updateSectionTitle(${sIndex}, this.value)">
+                        <button class="action-btn save-btn" title="Save Title" onclick="toggleSectionEdit(${sIndex})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
+                    `;
+                } else {
+                    const isCollapsed = section._collapsed;
+                    let actionsHtml = '';
+                    if (!section._collapsed) {
+                        actionsHtml = `
+                            <div class="add-btns">
+                                <button class="add-btn" onclick="addNewItem(${sIndex}, 'flow')">+ Flow</button>
+                                <button class="add-btn" onclick="addNewItem(${sIndex}, 'checklist item')">+ Checklist</button>
+                                <button class="add-btn" onclick="addNewItem(${sIndex}, 'briefing')">+ Briefing</button>
+                            </div>
+                        `;
+                    }
+
+                    hdr.innerHTML = `
+                        <div style="display: flex; align-items: center; flex: 1;">
+                            <div class="section-drag-handle" draggable="true" ondragstart="handleSectionDragStart(event, ${sIndex}, this.closest('.admin-card'))" ondragend="handleSectionDragEnd(event)">⣿</div>
+                            <button class="collapse-btn" title="Toggle Collapse" onclick="toggleCollapseSection(${sIndex})">${isCollapsed ? '▶' : '▼'}</button>
+                            <h2 style="cursor:pointer; margin:0;" onclick="toggleCollapseSection(${sIndex})">${escapeHtml(section.title)}</h2>
+                        </div>
+                        
+                        <div style="display: flex; gap: 5px; margin: 0 15px;">
+                            <button class="action-btn" title="Toggle Turnaround availability" onclick="updateSectionTurnaround(${sIndex}, ${section.turnaround !== "yes"})" style="color: ${section.turnaround === "yes" ? '#d35400' : '#aaa'}; ${section.turnaround === "yes" ? 'background: rgba(211, 84, 0, 0.1);' : ''}">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                                    <path d="M3 3v5h5"></path>
+                                    <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path>
+                                    <path d="M21 21v-5h-5"></path>
+                                </svg>
+                            </button>
+                            <button class="action-btn edit-btn" title="Edit Title" onclick="toggleSectionEdit(${sIndex})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></button>
+                            <button class="action-btn delete-btn" title="Delete Section" onclick="deleteSection(${sIndex})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg></button>
+                        </div>
+
+                        ${actionsHtml}
+                    `;
+                }
+                
+                secDiv.appendChild(hdr);
+                
+                const itemsContainer = document.createElement('div');
+                if (section._collapsed) {
+                    itemsContainer.style.display = 'none';
+                }
+                
+                section.items.forEach((item, iIndex) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'item';
+                    itemDiv.setAttribute('data-sidx', sIndex);
+                    itemDiv.setAttribute('data-iidx', iIndex);
+                    
+                    // Item drag events are handled via delegated listeners on container
+
+                    let isTest = false;
+                    let isSimplify = false;
+                    if (item.subtype) {
+                        const st = typeof item.subtype === 'string' ? [item.subtype] : item.subtype;
+                        if (st.includes('test')) isTest = true;
+                        if (st.includes('simplify')) isSimplify = true;
+                    }
+
+                    const isChecklist = item.type !== 'flow' && item.type !== 'briefing';
+                    const markerHtml = isChecklist ? '<span class="checklist-marker">Checklist</span>' : '';
+
+                    let html = '';
+
+                    const hasTimer = ('timer' in item && item.timer > 0);
+                    const commonCheckboxes = `
+                        <div class="checkbox-group">
+                            <div style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px;">
+                                ${hasTimer ? `<button class="action-btn" title="Edit Timer settings" onclick="openTimerModal(${sIndex}, ${iIndex})"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8e44ad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></button>` : ''}
+                            </div>
+                            <label class="label-timer"><input type="checkbox" onchange="toggleTimerStatus(${sIndex}, ${iIndex}, this)" ${hasTimer ? 'checked' : ''}> ⏱ Timer</label>
+                            <label class="label-test"><input type="checkbox" onchange="updateSubtype(${sIndex}, ${iIndex}, this)" value="test" ${isTest ? 'checked' : ''}> Test</label>
+                            <label class="label-simplify"><input type="checkbox" onchange="updateSubtype(${sIndex}, ${iIndex}, this)" value="simplify" ${isSimplify ? 'checked' : ''}> Simplify</label>
+                            <label class="label-turnaround" style="color:#d35400; font-weight:bold;"><input type="checkbox" onchange="updateTurnaround(${sIndex}, ${iIndex}, this.checked)" ${item.ifturnaround === 'skip' ? 'checked' : ''}> Skip on turn</label>
+                        </div>
+                    `;
+
+                    if (item._editing) {
+                        html += `
+                            <div class="item-main-row">
+                                <div class="item-drag-handle" draggable="true" ondragstart="handleItemDragStart(event, ${sIndex}, ${iIndex}, this.closest('.item'))" ondragend="handleItemDragEnd(event)">⣿</div>
+                                
+                                <select class="type-select" onchange="updateType(${sIndex}, ${iIndex}, this.value)">
+                                    <option value="flow" ${item.type==='flow'?'selected':''}>Flow</option>
+                                    <option value="checklist item" ${isChecklist?'selected':''}>Checklist Item</option>
+                                    <option value="briefing" ${item.type==='briefing'?'selected':''}>Briefing</option>
+                                </select>
+
+                                <input class="text-input" type="text" value="${escapeHtml(item.name || '')}" onchange="updateProp(${sIndex}, ${iIndex}, 'name', this.value)" placeholder="Item Name / Title">
+                                ${markerHtml}
+                        `;
+                        
+                        // Akcia
+                        if (item.type !== 'briefing') {
+                            html += `<input class="action-input" type="text" value="${escapeHtml(item.action || '')}" onchange="updateProp(${sIndex}, ${iIndex}, 'action', this.value)" placeholder="Action">`;
+                        }
+                        
+                        html += `
+                                ${commonCheckboxes}
+                                
+                                <button class="action-btn save-btn" title="Save" onclick="toggleEdit(${sIndex}, ${iIndex})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
+                                <button class="action-btn delete-btn" title="Delete" onclick="deleteItem(${sIndex}, ${iIndex})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg></button>
+                            </div>
+                        `;
+
+                        let has1 = true, has2 = true, has3 = true;
+                        if (item.landingtype) {
+                            has1 = item.landingtype.includes('1');
+                            has2 = item.landingtype.includes('2');
+                            has3 = item.landingtype.includes('3');
+                        }
+                        
+                        html += `
+                            <div class="landing-type-row" style="margin-top: 10px; margin-left: 35px; display: flex; gap: 15px; font-size: 13px; color: var(--color-text); opacity: 0.8; align-items: center;">
+                                <span style="font-weight: bold; color: var(--color-accent);">Landing Types:</span>
+                                <label style="cursor:pointer;"><input type="checkbox" onchange="updateLandingType(${sIndex}, ${iIndex}, '1', this.checked)" ${has1 ? 'checked' : ''}> [1] RNAV/Visual/Etc.</label>
+                                <label style="cursor:pointer;"><input type="checkbox" onchange="updateLandingType(${sIndex}, ${iIndex}, '2', this.checked)" ${has2 ? 'checked' : ''}> [2] ILS CAT I</label>
+                                <label style="cursor:pointer;"><input type="checkbox" onchange="updateLandingType(${sIndex}, ${iIndex}, '3', this.checked)" ${has3 ? 'checked' : ''}> [3] ILS CAT II/III</label>
+                            </div>
+                        `;
+                        
+                        if (item.type === 'briefing') {
+                            const textContent = Array.isArray(item.text) ? escapeHtml(item.text.join('\n')) : '';
+                            html += `
+                                <div class="briefing-row" style="position:relative;">
+                                    <div style="position:absolute; top:12px; right:12px; cursor:help; font-size: 14px; z-index: 10; opacity: 0.8;" title="The entire row will only be displayed if all variables within it are filled out in the notepad. If no variables are filled out, the entire row will not be displayed.">❓</div>
+                                    <textarea class="briefing-textarea" onchange="updateBriefing(${sIndex}, ${iIndex}, this.value)" placeholder="Enter briefing lines here... Drag & drop variables here...">${textContent}</textarea>
+                                </div>
+                            `;
+                        }
+                    } else {
+                        html += `
+                            <div class="item-main-row">
+                                <div class="item-drag-handle" draggable="true" ondragstart="handleItemDragStart(event, ${sIndex}, ${iIndex}, this.closest('.item'))" ondragend="handleItemDragEnd(event)">⣿</div>
+                                
+                                <div class="static-text name-text">
+                                    <span class="truncated-name" title="${escapeHtml(item.name || '(No name)')}">${escapeHtml(item.name || '(No name)')}</span>
+                                    ${markerHtml}
+                                </div>
+                                <div class="static-text action-text">${escapeHtml(item.action || '')}</div>
+                                
+                                ${commonCheckboxes}
+                                
+                                <button class="action-btn edit-btn" title="Edit" onclick="toggleEdit(${sIndex}, ${iIndex})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></button>
+                                <button class="action-btn delete-btn" title="Delete" onclick="deleteItem(${sIndex}, ${iIndex})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg></button>
+                            </div>
+                        `;
+                        
+                        if (item.type === 'briefing') {
+                            const textContent = Array.isArray(item.text) ? escapeHtml(item.text.join('\n')) : '';
+                            if (textContent) {
+                                html += `
+                                    <div class="briefing-row" style="position:relative;">
+                                        <div style="position:absolute; top:12px; right:12px; cursor:help; font-size: 14px; z-index: 10; opacity: 0.8;" title="The entire row will only be displayed if all variables within it are filled out in the notepad. If no variables are filled out, the entire row will not be displayed.">❓</div>
+                                        <div class="briefing-static-text">${textContent}</div>
+                                    </div>
+                                `;
+                            }
+                        }
+                    }
+
+                    itemDiv.innerHTML = html;
+                    itemsContainer.appendChild(itemDiv);
+                });
+                secDiv.appendChild(itemsContainer);
+                container.appendChild(secDiv);
+            });
+            } catch (err) {
+                container.innerHTML = '<h2 style="color:#e74c3c; line-height: 1.5; padding: 20px;">SYSTEM RENDER ERROR:<br><br>' + escapeHtml(err.message) + '<br><br><span style="font-size:12px;opacity:0.7;">' + escapeHtml(err.stack || '') + '</span></h2>';
+            }
+        }
+
+        // DRAG AND DROP ITEM LOGIC (delegated on container)
+        window.handleItemDragEnd = function(e) {
+            document.body.classList.remove('is-dragging');
+            document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+        };
+
+        window.handleItemDragStart = function(e, sIndex, iIndex, itemEl) {
+            draggedItem = { sIndex, iIndex };
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', sIndex + ',' + iIndex);
+            if (itemEl) e.dataTransfer.setDragImage(itemEl, 15, 15);
+            document.body.classList.add('is-dragging');
+            e.stopPropagation();
+        };
+
+        container.addEventListener('dragover', function(e) {
+            if (draggedItem === null) return;
+            const itemEl = e.target.closest('.item');
+            if (!itemEl) return;
+            e.preventDefault();
+            e.stopPropagation();
+            // Remove drag-over from other items
+            document.querySelectorAll('.item.drag-over').forEach(el => { if (el !== itemEl) el.classList.remove('drag-over'); });
+            itemEl.classList.add('drag-over');
+        });
+
+        container.addEventListener('dragleave', function(e) {
+            const itemEl = e.target.closest('.item');
+            if (itemEl && !itemEl.contains(e.relatedTarget)) {
+                itemEl.classList.remove('drag-over');
+            }
+        });
+
+        container.addEventListener('drop', function(e) {
+            if (draggedItem === null) return;
+            const itemEl = e.target.closest('.item');
+            if (!itemEl) return;
+            e.preventDefault();
+            e.stopPropagation();
+            itemEl.classList.remove('drag-over');
+
+            const targetSIndex = parseInt(itemEl.getAttribute('data-sidx'));
+            const targetIIndex = parseInt(itemEl.getAttribute('data-iidx'));
+            if (isNaN(targetSIndex) || isNaN(targetIIndex)) return;
+
+            const itemToMove = data[draggedItem.sIndex].items.splice(draggedItem.iIndex, 1)[0];
+            data[targetSIndex].items.splice(targetIIndex, 0, itemToMove);
+            
+            draggedItem = null;
+            render();
+        });
+
+        // DRAG AND DROP SECTION LOGIC
+        let draggedSection = null;
+        
+        window.handleSectionDragStart = function(e, sIndex, secEl) {
+            draggedSection = sIndex;
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('application/x-section-drag', 'true');
+            if (secEl) {
+                e.dataTransfer.setDragImage(secEl, 15, 15);
+            }
+            document.body.classList.add('is-dragging');
+            e.stopPropagation();
+        };
+
+        window.handleSectionDragEnd = function(e) {
+            document.body.classList.remove('is-dragging');
+            document.querySelectorAll('.section-drag-over').forEach(el => el.classList.remove('section-drag-over'));
+            draggedSection = null;
+        };
+
+        window.handleSectionDragOver = function(e, targetEl) {
+            if (e.dataTransfer.types.includes('application/x-section-drag')) {
+                e.preventDefault();
+                targetEl.classList.add('section-drag-over');
+            }
+        };
+
+        window.handleSectionDragLeave = function(e, targetEl) {
+            targetEl.classList.remove('section-drag-over');
+        };
+
+        window.handleSectionDrop = function(e, targetSIndex, targetEl) {
+            targetEl.classList.remove('section-drag-over');
+            if (e.dataTransfer.types.includes('application/x-section-drag')) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (draggedSection === null) return;
+                
+                if (draggedSection !== targetSIndex) {
+                    const secToMove = data.splice(draggedSection, 1)[0];
+                    data.splice(targetSIndex, 0, secToMove);
+                    render();
+                }
+                draggedSection = null;
+            }
+        };
+
+        // TIMER POPUP LOGIC
+        window.openTimerModal = function(sIndex, iIndex) {
+            const item = data[sIndex].items[iIndex];
+            document.getElementById('tm-sIdx').value = sIndex;
+            document.getElementById('tm-iIdx').value = iIndex;
+            document.getElementById('tm-timer').value = item.timer || '';
+            document.getElementById('tm-label').value = item.timerLabel || '';
+            document.getElementById('tm-announcement').value = item.timerAnnouncement || '';
+            document.getElementById('tm-continuous').checked = item.timerContinuous === 'yes';
+            document.getElementById('tm-warning').value = item.timerWarning || '';
+            document.getElementById('timer-modal').classList.remove('hidden');
+        };
+
+        window.closeTimerModal = function() {
+            document.getElementById('timer-modal').classList.add('hidden');
+            render(); // render for checkbox visual update
+        };
+
+        window.saveTimerModal = function() {
+            const sIndex = parseInt(document.getElementById('tm-sIdx').value);
+            const iIndex = parseInt(document.getElementById('tm-iIdx').value);
+            const item = data[sIndex].items[iIndex];
+            const tVal = document.getElementById('tm-timer').value;
+            
+            if (!tVal || parseFloat(tVal) <= 0) {
+                delete item.timer; delete item.timerLabel; delete item.timerAnnouncement; delete item.timerContinuous; delete item.timerWarning;
+            } else {
+                item.timer = parseInt(tVal);
+                
+                const label = document.getElementById('tm-label').value;
+                if(label) item.timerLabel = label; else delete item.timerLabel;
+                
+                const ann = document.getElementById('tm-announcement').value;
+                if(ann) item.timerAnnouncement = ann; else delete item.timerAnnouncement;
+                
+                if(document.getElementById('tm-continuous').checked) item.timerContinuous = 'yes';
+                else delete item.timerContinuous;
+                
+                const warn = document.getElementById('tm-warning').value;
+                if(warn) item.timerWarning = warn; else delete item.timerWarning;
+            }
+            
+            document.getElementById('timer-modal').classList.add('hidden');
+            render();
+        };
+
+        window.toggleTimerStatus = function(sIndex, iIndex, checkboxEl) {
+            if (checkboxEl.checked) {
+                openTimerModal(sIndex, iIndex);
+            } else {
+                const item = data[sIndex].items[iIndex];
+                delete item.timer; delete item.timerLabel; delete item.timerAnnouncement; delete item.timerContinuous; delete item.timerWarning;
+                render();
+            }
+        };
+
+        // ITEM CRUD
+        window.closeAllEdits = function(exemptSIdx, exemptIIdx) {
+            let changed = false;
+            if (!Array.isArray(data)) return false;
+            data.forEach((sect, sIdx) => {
+                if (!sect) return;
+                if (sect._editingTitle && sIdx !== exemptSIdx) {
+                    sect._editingTitle = false;
+                    changed = true;
+                }
+                if (Array.isArray(sect.items)) {
+                    sect.items.forEach((item, iIdx) => {
+                        if (item && item._editing && (sIdx !== exemptSIdx || iIdx !== exemptIIdx)) {
+                            item._editing = false;
+                            changed = true;
+                        }
+                    });
+                }
+            });
+            return changed;
+        };
+
+        document.addEventListener('mousedown', (e) => {
+            if (document.body.classList.contains('is-dragging') || e.target.closest('.modal-overlay')) return;
+            // Ignore buttons, badges, selectors, checkboxes
+            if (e.target.closest('button') || e.target.closest('.var-badge') || e.target.closest('.checkbox-group') || e.target.closest('select.dataset-select')) return; 
+            
+            let clickedItemEl = e.target.closest('.item');
+            let clickedSIdx = -1, clickedIIdx = -1;
+
+            if (clickedItemEl) {
+                clickedSIdx = parseInt(clickedItemEl.getAttribute('data-sidx'));
+                clickedIIdx = parseInt(clickedItemEl.getAttribute('data-iidx'));
+            } else {
+                let clickedHeaderEl = e.target.closest('.section-header');
+                if (clickedHeaderEl) {
+                    clickedSIdx = parseInt(clickedHeaderEl.getAttribute('data-sidx'));
+                }
+            }
+            
+            if (closeAllEdits(clickedSIdx, clickedIIdx)) {
+                render();
+            }
+        });
+
+        window.toggleEdit = function(sIndex, iIndex) {
+            closeAllEdits(sIndex, iIndex);
+            data[sIndex].items[iIndex]._editing = !data[sIndex].items[iIndex]._editing;
+            render();
+        };
+
+        window.toggleSectionEdit = function(sIndex) {
+            closeAllEdits(sIndex, -1);
+            data[sIndex]._editingTitle = !data[sIndex]._editingTitle;
+            render();
+        };
+        
+        window.updateSectionTitle = function(sIndex, value) {
+            data[sIndex].title = value;
+        };
+
+        window.updateSectionTurnaround = function(sIndex, isChecked) {
+            if (isChecked) {
+                data[sIndex].turnaround = "yes";
+            } else {
+                delete data[sIndex].turnaround;
+            }
+            render();
+        };
+        
+        window.toggleCollapseSection = function(sIndex) {
+            data[sIndex]._collapsed = !data[sIndex]._collapsed;
+            render();
+        };
+
+        window.addNewSection = function() {
+            try {
+                if (!Array.isArray(data)) data = [];
+                closeAllEdits(-1, -1);
+                data.push({ title: "New Section", items: [], _editingTitle: true, _collapsed: false });
+                currentChecklistName = currentChecklistName || "New Checklist";
+                render();
+            } catch(err) {
+                alert("Error in addNewSection: " + err.message);
+            }
+        };
+
+        window.deleteSection = function(sIndex) {
+            if (confirm('Delete this entire section and all its items?')) {
+                data.splice(sIndex, 1);
+                render();
+            }
+        };
+
+        window.addNewItem = function(sIndex, type) {
+            closeAllEdits(-1, -1);
+            let newItem = { name: "New " + type, action: "", type: type, _editing: true };
+            if (type === 'briefing') {
+                newItem.text = ["Sample briefing sentence..."];
+            }
+            data[sIndex].items.push(newItem);
+            render();
+        };
+
+        window.deleteItem = function(sIndex, iIndex) {
+            if (confirm('Delete this item completely?')) {
+                data[sIndex].items.splice(iIndex, 1);
+                render();
+            }
+        };
+
+        window.updateType = function(sIndex, iIndex, val) {
+            const item = data[sIndex].items[iIndex];
+            item.type = val;
+            if (val === 'briefing' && !item.text) item.text = [];
+            else if (val !== 'briefing') delete item.text;
+            render(); // update view immediately
+        };
+
+        window.updateProp = function(sIndex, iIndex, prop, value) {
+            data[sIndex].items[iIndex][prop] = value;
+        };
+
+        window.updateBriefing = function(sIndex, iIndex, value) {
+            data[sIndex].items[iIndex].text = value.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+        };
+
+        window.updateSubtype = function(sIndex, iIndex, checkboxEl) {
+            const item = data[sIndex].items[iIndex];
+            const itemDiv = checkboxEl.closest('.item-main-row');
+            const checkTest = itemDiv.querySelector('input[value="test"]').checked;
+            const checkSimplify = itemDiv.querySelector('input[value="simplify"]').checked;
+            
+            let subtypes = [];
+            if (item.subtype) {
+                let existing = typeof item.subtype === 'string' ? [item.subtype] : [...item.subtype];
+                subtypes = existing.filter(s => s !== 'test' && s !== 'simplify');
+            }
+            if (checkTest) subtypes.push('test');
+            if (checkSimplify) subtypes.push('simplify');
+            
+            if (subtypes.length === 0) delete item.subtype;
+            else if (subtypes.length === 1) item.subtype = subtypes[0];
+            else item.subtype = subtypes;
+        };
+
+        window.updateLandingType = function(sIndex, iIndex, val, isChecked) {
+            const item = data[sIndex].items[iIndex];
+            let current = item.landingtype || "1+2+3";
+            let arr = current.split('+');
+            if (isChecked) {
+                if (!arr.includes(val)) arr.push(val);
+            } else {
+                arr = arr.filter(v => v !== val);
+            }
+            arr.sort();
+            
+            // If all selected or none selected, remove the property completely (defaults to all)
+            if (arr.length === 3 || arr.length === 0) {
+                delete item.landingtype;
+            } else {
+                item.landingtype = arr.join('+');
+            }
+        };
+
+        window.updateTurnaround = function(sIndex, iIndex, isChecked) {
+            const item = data[sIndex].items[iIndex];
+            if (isChecked) {
+                item.ifturnaround = "skip";
+            } else {
+                delete item.ifturnaround;
+            }
+        };
+
+        function escapeHtml(str) {
+            return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        // EXPORT
+        window.generateData = function(isDownload) {
+            // Clean up flags before generating
+            const cleanData = JSON.parse(JSON.stringify(data));
+            cleanData.forEach(s => {
+                delete s._editingTitle;
+                s.items.forEach(i => delete i._editing);
+            });
+
+            let jsContent = `const checklistName = "${currentChecklistName}";\nconst initialChecklistData = [\n`;
+            
+            cleanData.forEach((section, sIdx) => {
+                let turnPart = section.turnaround === "yes" ? `\n    "turnaround": "yes",` : "";
+                jsContent += `  {\n    "title": ${JSON.stringify(section.title)},${turnPart}\n    "items": [\n`;
+                
+                section.items.forEach((item, iIdx) => {
+                    let itemStr = "";
+                    if (item.type === 'briefing') {
+                        let st = JSON.stringify(item, null, 2);
+                        st = st.split('\n').map((line, idx) => idx === 0 ? line : '      ' + line).join('\n');
+                        itemStr = `      ${st}`;
+                    } else {
+                        let props = Object.keys(item).map(k => {
+                            return `"${k}": ${JSON.stringify(item[k])}`;
+                        }).join(", ");
+                        itemStr = `      { ${props} }`;
+                    }
+                    jsContent += `${itemStr}${iIdx < section.items.length - 1 ? ',' : ''}\n`;
+                });
+                
+                jsContent += `    ]\n  }${sIdx < cleanData.length - 1 ? ',' : ''}\n`;
+            });
+            jsContent += `];\n`;
+
+            if (isDownload) {
+                const filename = currentFileUrl ? currentFileUrl.split('/').pop() : 'export_data.js';
+                const blob = new Blob([jsContent], { type: 'application/javascript' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+            } else {
+                const output = document.getElementById('output');
+                output.value = jsContent;
+                output.style.display = 'block';
+                output.select();
+                try {
+                    document.execCommand('copy');
+                    alert('Data copied to clipboard!');
+                } catch(e) {
+                    alert('Copy failed, please select and copy the text manually.');
+                }
+                output.scrollIntoView({ behavior: 'smooth' });
+            }
+        };
+
+    </script>
+</body>
+</html>
