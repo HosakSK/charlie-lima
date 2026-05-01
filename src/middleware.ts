@@ -12,8 +12,7 @@ export function middleware(req: NextRequest) {
   const url = req.nextUrl;
 
   // Zisti domenu s ktorej prisla poziadavka (napr. a320.charlie-lima.eu)
-  let hostname = req.headers.get('host') || '';
-  hostname = hostname.split(':')[0]; // odstran port ak sme na localhoste
+  let hostname = req.nextUrl.hostname || '';
 
   // Tu si nastav tvoju hlavnu domenu (ak testujes lokalne, mozes to preskocit alebo nechat)
   const mainDomain = 'charlie-lima.eu';
