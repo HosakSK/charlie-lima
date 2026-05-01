@@ -1,7 +1,7 @@
 {
   "name": "B738 Normal Checklist",
   "short_name": "B738 Checklist",
-  "start_url": "./index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#242627",
   "theme_color": "#242627",
