@@ -1,26 +1,23 @@
 {
   "name": "B738 Normal Checklist",
-  "short_name": "B738 Checklist",
+  "short_name": "B738 CL",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#242627",
-  "theme_color": "#242627",
+  "background_color": "#00bdb1",
+  "theme_color": "#00bdb1",
   "icons": [
     {
       "src": "icons/favicon.svg",
       "type": "image/svg+xml",
-      "sizes": "512x512"
+      "sizes": "any",
+      "purpose": "any"
     },
     {
-      "src": "icons/favicon.svg",
-      "type": "image/svg+xml",
-      "sizes": "192x192"
-    },
-    {
-      "src": "icons/favicon.svg",
+      "src": "icons/icon-maskable.svg",
       "type": "image/svg+xml",
       "sizes": "any",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     }
   ]
 }

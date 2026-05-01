@@ -1541,50 +1541,63 @@ if (SpeechRecognition) {
         cachedVoice = null;
     });
 
+    // Warm up voices list as early as possible (Android needs this)
+    if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = () => { cachedVoice = null; };
+    }
+    window.speechSynthesis.getVoices(); // trigger load
+
     function getSelectedVoice() {
         const currentType = isMaleVoice ? "male" : "female";
         if (cachedVoice && cachedVoiceType === currentType) return cachedVoice;
 
         const voices = window.speechSynthesis.getVoices();
-        // Normalize lang: Android uses en_GB, browsers use en-GB — unify to en-xx format
-        const normLang = v => v.lang.toLowerCase().replace('_', '-');
+        if (!voices || voices.length === 0) return null;
+
+        // Normalize lang: Android uses en_GB with underscore, browsers use en-GB with hyphen
+        const normLang = v => v.lang.toLowerCase().replace(/_/g, '-');
         const engVoices = voices.filter(v => normLang(v).startsWith('en'));
         const searchList = engVoices.length > 0 ? engVoices : voices;
 
-        const preferredFemale = ['samantha', 'google us english', 'zira', 'female', 'sfg', 'fis'];
+        // Keywords known to appear in male/female voice names across platforms
+        const preferredFemale = ['samantha', 'google us english', 'zira', 'karen', 'moira', 'tessa', 'female', 'sfg', 'fis'];
         const preferredMale = [
-            'google uk english male', 'en-gb-x-gbd', 'en-gb-x-gbm', 'en-gb-x',
-            'david', 'mark', 'alex', 'male', 'rjs', 'iom', 'tpd'
+            'google uk english male', 'daniel', 'en-gb-x-gbd', 'en-gb-x-gbm', 'en-gb-x',
+            'david', 'mark', 'alex', 'male', 'rjs', 'iom', 'tpd', 'lee'
         ];
 
         const preferred = isMaleVoice ? preferredMale : preferredFemale;
 
+        // Pass 1: match by name or voiceURI keywords (works on English-language devices)
         for (const name of preferred) {
             const voice = searchList.find(v =>
                 v.name.toLowerCase().includes(name) ||
-                normLang(v).includes(name) ||
                 (v.voiceURI && v.voiceURI.toLowerCase().includes(name))
             );
-            if (voice) {
-                cachedVoice = voice;
-                cachedVoiceType = currentType;
-                return voice;
-            }
+            if (voice) { cachedVoice = voice; cachedVoiceType = currentType; return voice; }
         }
 
-        // Android fallback: en-GB (or en_GB) = male, en-US (or en_US) = female
+        // Pass 2: match by normalized lang code (works regardless of device UI language)
+        // en-gb → typically male on Google TTS; en-us → typically female
         if (isMaleVoice) {
             const gbVoice = searchList.find(v => normLang(v).startsWith('en-gb'));
             if (gbVoice) { cachedVoice = gbVoice; cachedVoiceType = currentType; return gbVoice; }
-            // Very last resort: second English voice (Android usually puts female first)
-            if (searchList.length > 1) { cachedVoice = searchList[1]; cachedVoiceType = currentType; return searchList[1]; }
+            // en-au also tends to be male on some devices
+            const auVoice = searchList.find(v => normLang(v).startsWith('en-au'));
+            if (auVoice) { cachedVoice = auVoice; cachedVoiceType = currentType; return auVoice; }
         } else {
-            // For female, prefer en-US
             const usVoice = searchList.find(v => normLang(v).startsWith('en-us'));
             if (usVoice) { cachedVoice = usVoice; cachedVoiceType = currentType; return usVoice; }
         }
 
-        cachedVoice = searchList.length > 0 ? searchList[0] : null;
+        // Pass 3: pick by position — Android typically lists female (en-US) first, male (en-GB) later
+        if (isMaleVoice && searchList.length > 1) {
+            // Pick the last English voice (usually furthest from the default en-US female)
+            const last = searchList[searchList.length - 1];
+            cachedVoice = last; cachedVoiceType = currentType; return last;
+        }
+
+        cachedVoice = searchList[0] || null;
         cachedVoiceType = currentType;
         return cachedVoice;
     }
