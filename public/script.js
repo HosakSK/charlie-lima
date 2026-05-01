@@ -1533,13 +1533,18 @@ if (SpeechRecognition) {
         const searchList = engVoices.length > 0 ? engVoices : voices;
 
         const preferredFemale = ['samantha', 'google us english', 'zira', 'female', 'sfg', 'fis'];
-        const preferredMale = ['google uk english male', 'david', 'mark', 'alex', 'male', 'rjs', 'iom', 'tpd'];
+        // Extended male list: includes Android-specific voice names/URIs (en-gb-x-gbd etc.)
+        const preferredMale = [
+            'google uk english male', 'en-gb-x-gbd', 'en-gb-x-gbm', 'en-gb-x',
+            'david', 'mark', 'alex', 'male', 'rjs', 'iom', 'tpd'
+        ];
 
         const preferred = isMaleVoice ? preferredMale : preferredFemale;
 
         for (const name of preferred) {
             const voice = searchList.find(v =>
                 v.name.toLowerCase().includes(name) ||
+                v.lang.toLowerCase().includes(name) ||
                 (v.voiceURI && v.voiceURI.toLowerCase().includes(name))
             );
             if (voice) {
@@ -1549,13 +1554,15 @@ if (SpeechRecognition) {
             }
         }
 
-        // Fallback for male on Android: usually the second voice is male if first is female
-        if (isMaleVoice && searchList.length > 1) {
-            cachedVoice = searchList[1];
-        } else {
-            cachedVoice = searchList.length > 0 ? searchList[0] : null;
+        // Android fallback: en-GB tends to be male, en-US tends to be female
+        if (isMaleVoice) {
+            const gbVoice = searchList.find(v => v.lang.toLowerCase().startsWith('en-gb'));
+            if (gbVoice) { cachedVoice = gbVoice; cachedVoiceType = currentType; return gbVoice; }
+            // Last resort: second voice (Android usually puts female first)
+            if (searchList.length > 1) { cachedVoice = searchList[1]; cachedVoiceType = currentType; return searchList[1]; }
         }
 
+        cachedVoice = searchList.length > 0 ? searchList[0] : null;
         cachedVoiceType = currentType;
         return cachedVoice;
     }
