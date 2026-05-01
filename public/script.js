@@ -1546,11 +1546,12 @@ if (SpeechRecognition) {
         if (cachedVoice && cachedVoiceType === currentType) return cachedVoice;
 
         const voices = window.speechSynthesis.getVoices();
-        const engVoices = voices.filter(v => v.lang.toLowerCase().startsWith('en'));
+        // Normalize lang: Android uses en_GB, browsers use en-GB — unify to en-xx format
+        const normLang = v => v.lang.toLowerCase().replace('_', '-');
+        const engVoices = voices.filter(v => normLang(v).startsWith('en'));
         const searchList = engVoices.length > 0 ? engVoices : voices;
 
         const preferredFemale = ['samantha', 'google us english', 'zira', 'female', 'sfg', 'fis'];
-        // Extended male list: includes Android-specific voice names/URIs (en-gb-x-gbd etc.)
         const preferredMale = [
             'google uk english male', 'en-gb-x-gbd', 'en-gb-x-gbm', 'en-gb-x',
             'david', 'mark', 'alex', 'male', 'rjs', 'iom', 'tpd'
@@ -1561,7 +1562,7 @@ if (SpeechRecognition) {
         for (const name of preferred) {
             const voice = searchList.find(v =>
                 v.name.toLowerCase().includes(name) ||
-                v.lang.toLowerCase().includes(name) ||
+                normLang(v).includes(name) ||
                 (v.voiceURI && v.voiceURI.toLowerCase().includes(name))
             );
             if (voice) {
@@ -1571,12 +1572,16 @@ if (SpeechRecognition) {
             }
         }
 
-        // Android fallback: en-GB tends to be male, en-US tends to be female
+        // Android fallback: en-GB (or en_GB) = male, en-US (or en_US) = female
         if (isMaleVoice) {
-            const gbVoice = searchList.find(v => v.lang.toLowerCase().startsWith('en-gb'));
+            const gbVoice = searchList.find(v => normLang(v).startsWith('en-gb'));
             if (gbVoice) { cachedVoice = gbVoice; cachedVoiceType = currentType; return gbVoice; }
-            // Last resort: second voice (Android usually puts female first)
+            // Very last resort: second English voice (Android usually puts female first)
             if (searchList.length > 1) { cachedVoice = searchList[1]; cachedVoiceType = currentType; return searchList[1]; }
+        } else {
+            // For female, prefer en-US
+            const usVoice = searchList.find(v => normLang(v).startsWith('en-us'));
+            if (usVoice) { cachedVoice = usVoice; cachedVoiceType = currentType; return usVoice; }
         }
 
         cachedVoice = searchList.length > 0 ? searchList[0] : null;
