@@ -127,7 +127,7 @@ body::before {
         margin: 0;
         border-radius: 0;
         border: none;
-        padding: 75px 15px 0 15px;
+        padding: 75px 15px 80px 15px; /* Added 80px bottom padding */
         min-height: auto;
         box-shadow: none;
         font-size: 0.75rem;
@@ -414,7 +414,7 @@ main { flex: 1; padding-bottom: 20px; overflow: hidden; }
 /* Modern hover — subtle lift and glow */
 .checklist-item:hover {
     background: rgba(var(--color-accent-rgb), 0.08);
-    transform: translateY(-2px) scale(1.01);
+    transform: translateY(-2px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.05), inset 4px 0 0 var(--color-accent);
     border-color: rgba(var(--color-accent-rgb), 0.15);
 }
@@ -559,7 +559,12 @@ footer { padding: 20px 0 0 0; }
     border-radius: 4px;
     box-shadow: 0 0 8px rgba(var(--color-accent-rgb), 0.4);
 }
-.controls { display: flex; justify-content: space-between; align-items: center; }
+.controls { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding-bottom: 20px; 
+}
 
 button {
     font-family: inherit;
