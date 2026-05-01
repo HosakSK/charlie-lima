@@ -10,9 +10,19 @@ interface Dataset {
 
 type ApiData = Record<string, Dataset[]>;
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+declare global {
+  interface Window {
+    availableDataSets: Dataset[];
+    initialChecklistData: any[];
+    checklistName: string;
+  }
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
 export default function AircraftChecklistPage() {
-  const params = useParams<{ aircraft: string }>();
-  const aircraft = params.aircraft || 'b738';
+  const params = useParams();
+  const aircraft = (params.aircraft as string) || 'b738';
   const containerRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
   const scriptsRef = useRef<HTMLScriptElement[]>([]);
@@ -47,14 +57,14 @@ export default function AircraftChecklistPage() {
               const apiData: ApiData = await res.json();
               
               if (apiData[aircraft] && apiData[aircraft].length > 0) {
-                 (window as any).availableDataSets = apiData[aircraft]; // Inject for script.js
+                 window.availableDataSets = apiData[aircraft];
                  const europeOpt = apiData[aircraft].find(d => d.file.includes('europe'));
                  savedDs = europeOpt ? europeOpt.file : apiData[aircraft][0].file;
               } else {
-                 (window as any).availableDataSets = [];
+                 window.availableDataSets = [];
                  savedDs = `data/${aircraft}/europe_style.js`; // fallback
               }
-            } catch(e) {
+            } catch {
               savedDs = `data/${aircraft}/europe_style.js`; // api failed fallback
             }
           } else {
@@ -63,20 +73,20 @@ export default function AircraftChecklistPage() {
               const res = await fetch('/api/datasets');
               const apiData: ApiData = await res.json();
               if (apiData[aircraft]) {
-                (window as any).availableDataSets = apiData[aircraft];
+                window.availableDataSets = apiData[aircraft];
               }
-            } catch(e) {}
+            } catch { /* ignore */ }
           }
 
           localStorage.setItem(`${aircraft}_dataset`, savedDs as string);
 
           try {
             await loadScript('/' + savedDs);
-          } catch(err) {
+          } catch {
             console.error('Failed to load dataset script:', savedDs);
             // Make an empty dataset so script.js doesn't crash completely
-            (window as any).initialChecklistData = [];
-            (window as any).checklistName = "Missing Dataset";
+            window.initialChecklistData = [];
+            window.checklistName = "Missing Dataset";
           }
 
           await loadScript('/lang.js');

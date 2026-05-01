@@ -9,8 +9,6 @@ export const config = {
 }
 
 export function middleware(req: NextRequest) {
-  const url = req.nextUrl;
-
   // Zisti domenu s ktorej prisla poziadavka (napr. a320.charlie-lima.eu)
   let hostname = req.headers.get('host') || '';
   hostname = hostname.split(':')[0]; // fallback na povodne pre istotu
@@ -30,7 +28,7 @@ export function middleware(req: NextRequest) {
       
       // Prepise "a320.charlie-lima.eu/" na interny Next.js route "/a320"
       // Takze to pobezi cez src/app/(checklist)/[aircraft]/page.tsx
-      return NextResponse.rewrite(new URL(`/${subdomain}${url.pathname}`, req.url));
+      return NextResponse.rewrite(new URL(`/${subdomain}${req.nextUrl.pathname}`, req.url));
     }
   }
 

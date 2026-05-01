@@ -3,7 +3,12 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-type ApiData = Record<string, any[]>;
+interface Dataset {
+  title: string;
+  file: string;
+}
+
+type ApiData = Record<string, Dataset[]>;
 
 export default function LandingPage() {
   const [aircrafts, setAircrafts] = useState<string[]>([]);
@@ -91,7 +96,6 @@ export default function LandingPage() {
                 }}
                 onMouseOver={(e) => {
                   e.currentTarget.style.borderColor = "var(--color-accent)";
-                  // Fallback transparent color if rgba(var(--color-accent-rgb)) isn't perfect in inline styles
                   e.currentTarget.style.boxShadow = "0 5px 15px rgba(0,0,0,0.05)";
                   e.currentTarget.style.transform = "translateY(-2px)";
                 }}
