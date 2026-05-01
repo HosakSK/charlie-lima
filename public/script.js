@@ -210,22 +210,7 @@ if (maleVoiceToggleBtn) {
     });
 }
 
-// DIAGNOSTIC: list all available TTS voices on device
-const diagBtn = document.getElementById('diag-voices-btn');
-const diagOut = document.getElementById('diag-voices-output');
-if (diagBtn && diagOut) {
-    diagBtn.addEventListener('click', () => {
-        const voices = window.speechSynthesis.getVoices();
-        if (voices.length === 0) {
-            diagOut.textContent = 'No voices loaded yet. Try again in 1s.';
-        } else {
-            diagOut.textContent = voices.map((v, i) =>
-                `${i}: ${v.name} | ${v.lang} | ${v.voiceURI}`
-            ).join('\n');
-        }
-        diagOut.style.display = 'block';
-    });
-}
+
 
 let isChecklistOnly = false;
 let isBriefingEnabled = localStorage.getItem('b738_briefing_enabled') === 'true';
