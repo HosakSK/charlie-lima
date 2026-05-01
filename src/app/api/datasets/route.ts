@@ -2,9 +2,14 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+interface Dataset {
+  title: string;
+  file: string;
+}
+
 export async function GET() {
   const dataDir = path.join(process.cwd(), 'public', 'data');
-  const result: Record<string, { title: string, file: string }[]> = {};
+  const result: Record<string, Dataset[]> = {};
 
   try {
     const aircraftDirs = fs.readdirSync(dataDir, { withFileTypes: true })
@@ -32,7 +37,7 @@ export async function GET() {
     }
     
     return NextResponse.json(result);
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error reading datasets:', error);
     return NextResponse.json({ error: "Failed to read datasets" }, { status: 500 });
   }

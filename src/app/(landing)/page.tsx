@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
+type ApiData = Record<string, any[]>;
+
 export default function LandingPage() {
   const [aircrafts, setAircrafts] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -10,7 +12,7 @@ export default function LandingPage() {
   useEffect(() => {
     fetch('/api/datasets')
       .then(res => res.json())
-      .then(data => {
+      .then((data: ApiData) => {
         setAircrafts(Object.keys(data));
         setLoading(false);
       })

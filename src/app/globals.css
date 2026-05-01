@@ -46,7 +46,7 @@
 html { height: 100%; }
 
 body {
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: var(--font-inter), sans-serif;
     color: var(--color-text);
     background-color: var(--color-body-bg); 
     display: flex;

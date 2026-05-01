@@ -3,9 +3,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'next/navigation';
 
+interface Dataset {
+  title: string;
+  file: string;
+}
+
+type ApiData = Record<string, Dataset[]>;
+
 export default function AircraftChecklistPage() {
-  const params = useParams();
-  const aircraft = (params.aircraft as string) || 'b738';
+  const params = useParams<{ aircraft: string }>();
+  const aircraft = params.aircraft || 'b738';
   const containerRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
   const scriptsRef = useRef<HTMLScriptElement[]>([]);
@@ -37,11 +44,11 @@ export default function AircraftChecklistPage() {
           if (!savedDs || savedDs === 'data/europe_style.js' || savedDs === 'data/us_style.js') {
             try {
               const res = await fetch('/api/datasets');
-              const apiData = await res.json();
+              const apiData: ApiData = await res.json();
               
               if (apiData[aircraft] && apiData[aircraft].length > 0) {
                  (window as any).availableDataSets = apiData[aircraft]; // Inject for script.js
-                 const europeOpt = apiData[aircraft].find((d: any) => d.file.includes('europe'));
+                 const europeOpt = apiData[aircraft].find(d => d.file.includes('europe'));
                  savedDs = europeOpt ? europeOpt.file : apiData[aircraft][0].file;
               } else {
                  (window as any).availableDataSets = [];
@@ -54,7 +61,7 @@ export default function AircraftChecklistPage() {
             // Even if savedDs exists, we need to populate availableDataSets for script.js
             try {
               const res = await fetch('/api/datasets');
-              const apiData = await res.json();
+              const apiData: ApiData = await res.json();
               if (apiData[aircraft]) {
                 (window as any).availableDataSets = apiData[aircraft];
               }
@@ -216,7 +223,7 @@ function getOriginalHTML(aircraft: string): string {
     </div>
   </div>
   <div class="global-footer">
-    <span class="version-info">v3.0.31</span>
+    <span class="version-info">v3.0.32</span>
     <span class="sim-warning">For flight simulation use only.<br>Not for real-world flight.</span>
   </div>`;
 }
