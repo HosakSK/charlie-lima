@@ -9,7 +9,7 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
 
-    <title>Dataset Admin</title>
+    <title>Dataset Creator</title>
     <!-- Použite farby a fonty z hlavnej aplikácie -->
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -156,7 +156,9 @@
             <button class="add-btn" style="width: 100%; margin-bottom: 20px; font-size: 15px; padding: 12px; border: 2px dashed var(--color-accent); color: var(--color-text); font-weight: bold; background: var(--color-background);" onclick="addNewSection()">➕ Add New Section</button>
             
             <div class="admin-card">
-                <h2 class="admin-header">Dataset</h2>
+                <h2 class="admin-header">Aircraft</h2>
+                <select id="aircraft-select" class="dataset-select" onchange="switchAircraft(this.value)"></select>
+                <h2 class="admin-header" style="margin-top: 15px;">Dataset</h2>
                 <select id="dataset-select" class="dataset-select" onchange="switchDataset(this.value)"></select>
                 
                 <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 8px;">
@@ -217,74 +219,16 @@
         </div>
     </div>
 
-    <!-- index pre selector -->
-    <script src="data/data_index.js"></script>
-    <script>
-        const varsObj = {
-            '%callsign%': 'Flight Callsign (e.g. RYR123)',
-            '%origin%': 'Origin ICAO (e.g. LZIB)',
-            '%dest%': 'Destination ICAO',
-            '%dep_atis%': 'Departure ATIS letter',
-            '%dep_qnh%': 'Departure QNH',
-            '%dep_rwy%': 'Departure Runway',
-            '%dep_rwy_hdg%': 'Departure Runway Heading',
-            '%sid%': 'Departure SID',
-            '%init_alt%': 'Initial Altitude',
-            '%dep_tl%': 'Transition Level',
-            '%squawk%': 'ATC Squawk',
-            '%dep_dewpt%': 'Dew point (Dep)',
-            '%dep_temp%': 'Temperature (Dep)',
-            '%dep_wind%': 'Wind (Dep)',
-            '%total_fuel%': 'Total Fuel',
-            '%trip_fuel%': 'Trip Fuel',
-            '%reserve_fuel%': 'Reserve Fuel',
-            '%v1%': 'V1 Speed',
-            '%vr%': 'VR Speed',
-            '%v2%': 'V2 Speed',
-            '%trim%': 'Stabilizer Trim',
-            '%dep_flaps%': 'Takeoff Flaps',
-            '%dep_assumed%': 'Assumed Temperature',
-            '%taxi_out%': 'Taxi Out Route',
-            '%arr_atis%': 'Arrival ATIS',
-            '%arr_qnh%': 'Arrival QNH',
-            '%arr_rwy%': 'Arrival Runway',
-            '%landing_type%': 'ILS Cat 3 / ILS Cat 2 / RNAV etc.',
-            '%arr_ta%': 'Arrival Trans Alt',
-            '%star%': 'STAR Route',
-            '%arr_dewpt%': 'Dew point (Arr)',
-            '%arr_temp%': 'Temperature (Arr)',
-            '%arr_wind%': 'Wind (Arr)',
-            '%ils_freq%': 'ILS Frequency',
-            '%course%': 'ILS Course',
-            '%minima%': 'Approach Minima (DA)',
-            '%ga_alt%': 'Missed Approach Altitude',
-            '%vref%': 'Landing Vref',
-            '%arr_flaps%': 'Landing Flaps',
-            '%autobrake%': 'Autobrake setting',
-            '%taxi_in%': 'Taxi In Route',
-            '%gate%': 'Arrival Gate',
-            '%notes%': 'Custom Notes'
-        };
-
-        const varsContainer = document.getElementById('vars-container');
-        Object.keys(varsObj).forEach(v => {
-            const span = document.createElement('span');
-            span.className = 'var-badge';
-            span.setAttribute('draggable', 'true');
-            span.title = varsObj[v];
-            span.textContent = v;
-            span.ondragstart = (e) => e.dataTransfer.setData('text/plain', v);
-            varsContainer.appendChild(span);
-        });
-
         let data = [];
         let currentChecklistName = "";
         let currentFileUrl = "";
         let draggedItem = null;
 
+        const acSelect = document.getElementById('aircraft-select');
         const selectEl = document.getElementById('dataset-select');
         const urlParams = new URLSearchParams(window.location.search);
         let selectedDatasetFile = urlParams.get('dataset');
+        let selectedAircraft = urlParams.get('aircraft');
 
         function saveToLocal() {
             if (!currentFileUrl) currentFileUrl = selectedDatasetFile || "custom";
@@ -292,30 +236,84 @@
             localStorage.setItem('admin_draft_name_' + currentFileUrl, currentChecklistName);
         }
 
-        if (typeof availableDataSets !== 'undefined') {
-            availableDataSets.forEach(ds => {
-                const opt = document.createElement('option');
-                opt.value = ds.file;
-                opt.textContent = ds.title;
-                selectEl.appendChild(opt);
-            });
-            
-            if (!selectedDatasetFile) {
-                const matchedOpt = Array.from(selectEl.options).find(o => o.value.includes('europe'));
-                selectedDatasetFile = matchedOpt ? matchedOpt.value : availableDataSets[0].file;
+        let apiData = {};
+
+        async function initCreator() {
+            try {
+                const res = await fetch('/api/datasets');
+                apiData = await res.json();
+                
+                const aircrafts = Object.keys(apiData);
+                if (aircrafts.length === 0) {
+                    console.error("No aircraft found in API");
+                    return;
+                }
+
+                aircrafts.forEach(ac => {
+                    const opt = document.createElement('option');
+                    opt.value = ac;
+                    opt.textContent = ac.toUpperCase();
+                    acSelect.appendChild(opt);
+                });
+
+                if (!selectedAircraft || !apiData[selectedAircraft]) {
+                    selectedAircraft = aircrafts[0];
+                }
+                acSelect.value = selectedAircraft;
+
+                window.updateDatasetDropdown = function(ac) {
+                    selectEl.innerHTML = '';
+                    if (apiData[ac]) {
+                        apiData[ac].forEach(ds => {
+                            const opt = document.createElement('option');
+                            opt.value = ds.file;
+                            opt.textContent = ds.title;
+                            selectEl.appendChild(opt);
+                        });
+                    }
+                };
+
+                updateDatasetDropdown(selectedAircraft);
+
+                if (!selectedDatasetFile && apiData[selectedAircraft] && apiData[selectedAircraft].length > 0) {
+                    const matchedOpt = apiData[selectedAircraft].find(o => o.file.includes('europe'));
+                    selectedDatasetFile = matchedOpt ? matchedOpt.file : apiData[selectedAircraft][0].file;
+                }
+
+                if (selectedDatasetFile) {
+                    let optExists = Array.from(selectEl.options).some(o => o.value === selectedDatasetFile);
+                    if (!optExists && !selectedDatasetFile.startsWith('custom_')) {
+                        const o = document.createElement('option');
+                        o.value = selectedDatasetFile;
+                        o.textContent = selectedDatasetFile + " (Custom)";
+                        selectEl.insertBefore(o, selectEl.firstChild);
+                    }
+                    selectEl.value = selectedDatasetFile;
+                }
+
+                continueAppLogic();
+            } catch (err) {
+                console.error("Failed to load dynamic datasets", err);
+                const container = document.getElementById('container');
+                if (container) container.innerHTML = '<h2 style="color:#e74c3c;">Failed to fetch API. Are you running Next.js?</h2>';
             }
         }
 
-        function switchDataset(url) {
+        window.switchAircraft = function(ac) {
+            const firstDs = apiData[ac] && apiData[ac].length > 0 ? apiData[ac][0].file : '';
+            window.location.href = window.location.pathname + '?aircraft=' + encodeURIComponent(ac) + '&dataset=' + encodeURIComponent(firstDs);
+        };
+
+        window.switchDataset = function(url) {
             if (url === "UPLOADED") return;
-            window.location.href = window.location.pathname + '?dataset=' + encodeURIComponent(url);
-        }
+            window.location.href = window.location.pathname + '?aircraft=' + encodeURIComponent(acSelect.value) + '&dataset=' + encodeURIComponent(url);
+        };
 
         window.createNewChecklist = function() {
             let name = prompt("Enter the name for your new checklist:", "My Custom Checklist");
             if (name) {
                 const customId = "custom_" + Date.now() + ".js";
-                window.location.href = window.location.pathname + '?dataset=' + encodeURIComponent(customId) + '&customName=' + encodeURIComponent(name);
+                window.location.href = window.location.pathname + '?aircraft=' + encodeURIComponent(acSelect.value) + '&dataset=' + encodeURIComponent(customId) + '&customName=' + encodeURIComponent(name);
             }
         };
 
@@ -354,97 +352,97 @@
             reader.readAsText(file);
         };
 
-        const customNameParam = urlParams.get('customName');
-        let savedDraft = null;
-        if (selectedDatasetFile) {
-            const rawDraft = localStorage.getItem('admin_draft_data_' + selectedDatasetFile);
-            if (rawDraft && rawDraft.length > 2) savedDraft = rawDraft;
-        }
-
-        const container = document.getElementById('container');
-        if (container) {
-            container.innerHTML = '<div id="debug-log" style="color:red;font-weight:bold;font-family:monospace;padding:20px;"></div>';
-        }
-        function debugLog(msg) {
-            const dl = document.getElementById('debug-log');
-            if(dl) dl.innerHTML += msg + '<br>';
-        }
-
-        debugLog('Script top-level execution started.');
-        debugLog('selectedDatasetFile: ' + selectedDatasetFile);
-        debugLog('savedDraft length: ' + (savedDraft ? savedDraft.length : 'null'));
-
-        if (savedDraft) {
-            debugLog('Branch: savedDraft exists');
-            // Load draft for the currently selected URL explicitly
-            try {
-                data = JSON.parse(savedDraft);
-                if (!Array.isArray(data)) data = [];
-                debugLog('Parsed draft successfully, data length: ' + data.length);
-            } catch (e) {
-                data = [];
-                debugLog('Draft parse error: ' + e.message);
+        function continueAppLogic() {
+            const customNameParam = urlParams.get('customName');
+            let savedDraft = null;
+            if (selectedDatasetFile) {
+                const rawDraft = localStorage.getItem('admin_draft_data_' + selectedDatasetFile);
+                if (rawDraft && rawDraft.length > 2) savedDraft = rawDraft;
             }
-            currentChecklistName = localStorage.getItem('admin_draft_name_' + selectedDatasetFile) || "Draft Checklist";
-            currentFileUrl = selectedDatasetFile;
-            
-            // If it matches a dropdown item, select it, otherwise add a custom option
-            let optExists = Array.from(selectEl.options).some(o => o.value === selectedDatasetFile);
-            if (!optExists) {
+
+            const container = document.getElementById('container');
+            if (container) {
+                container.innerHTML = '<div id="debug-log" style="color:red;font-weight:bold;font-family:monospace;padding:20px;"></div>';
+            }
+            function debugLog(msg) {
+                const dl = document.getElementById('debug-log');
+                if(dl) dl.innerHTML += msg + '<br>';
+            }
+
+            debugLog('Script top-level execution started.');
+            debugLog('selectedDatasetFile: ' + selectedDatasetFile);
+            debugLog('savedDraft length: ' + (savedDraft ? savedDraft.length : 'null'));
+
+            if (savedDraft) {
+                debugLog('Branch: savedDraft exists');
+                try {
+                    data = JSON.parse(savedDraft);
+                    if (!Array.isArray(data)) data = [];
+                    debugLog('Parsed draft successfully, data length: ' + data.length);
+                } catch (e) {
+                    data = [];
+                    debugLog('Draft parse error: ' + e.message);
+                }
+                currentChecklistName = localStorage.getItem('admin_draft_name_' + selectedDatasetFile) || "Draft Checklist";
+                currentFileUrl = selectedDatasetFile;
+                
+                let optExists = Array.from(selectEl.options).some(o => o.value === selectedDatasetFile);
+                if (!optExists) {
+                    const o = document.createElement('option');
+                    o.value = selectedDatasetFile;
+                    o.textContent = currentChecklistName + " (Custom)";
+                    selectEl.insertBefore(o, selectEl.firstChild);
+                }
+                selectEl.value = selectedDatasetFile;
+                debugLog('Calling render from savedDraft branch...');
+                render();
+                
+            } else if (selectedDatasetFile && selectedDatasetFile.startsWith('custom_')) {
+                debugLog('Branch: custom_ empty list');
+                data = [];
+                currentChecklistName = customNameParam || "New Custom Checklist";
+                currentFileUrl = selectedDatasetFile;
+                
                 const o = document.createElement('option');
                 o.value = selectedDatasetFile;
                 o.textContent = currentChecklistName + " (Custom)";
                 selectEl.insertBefore(o, selectEl.firstChild);
-            }
-            selectEl.value = selectedDatasetFile;
-            debugLog('Calling render from savedDraft branch...');
-            render();
-            
-        } else if (selectedDatasetFile && selectedDatasetFile.startsWith('custom_')) {
-            debugLog('Branch: custom_ empty list');
-            data = [];
-            currentChecklistName = customNameParam || "New Custom Checklist";
-            currentFileUrl = selectedDatasetFile;
-            
-            const o = document.createElement('option');
-            o.value = selectedDatasetFile;
-            o.textContent = currentChecklistName + " (Custom)";
-            selectEl.insertBefore(o, selectEl.firstChild);
-            selectEl.value = selectedDatasetFile;
-            
-            saveToLocal();
-            debugLog('Calling render from custom list branch...');
-            render();
-            
-        } else if (selectedDatasetFile) {
-            debugLog('Branch: Loading script dynamically: ' + selectedDatasetFile);
-            selectEl.value = selectedDatasetFile;
-            const script = document.createElement('script');
-            script.src = selectedDatasetFile;
-            script.onload = () => {
-                debugLog('script.onload FIRED!');
-                try {
-                    data = JSON.parse(JSON.stringify(initialChecklistData));
-                    if (!Array.isArray(data)) data = [];
-                } catch (e) {
-                    debugLog('Error accessing initialChecklistData: ' + e.message);
-                    data = [];
-                }
-                currentChecklistName = typeof checklistName !== 'undefined' ? checklistName : "Draft Checklist";
-                currentFileUrl = selectedDatasetFile;
-                saveToLocal(); // Auto-start draft for this freshly loaded dataset
-                debugLog('Calling render from onload...');
+                selectEl.value = selectedDatasetFile;
+                
+                saveToLocal();
+                debugLog('Calling render from custom list branch...');
                 render();
-            };
-            script.onerror = () => {
-                debugLog('script.onerror FIRED!');
+                
+            } else if (selectedDatasetFile) {
+                debugLog('Branch: Loading script dynamically: ' + selectedDatasetFile);
+                selectEl.value = selectedDatasetFile;
+                const script = document.createElement('script');
+                script.src = selectedDatasetFile;
+                script.onload = () => {
+                    debugLog('script.onload FIRED!');
+                    try {
+                        data = JSON.parse(JSON.stringify(initialChecklistData));
+                        if (!Array.isArray(data)) data = [];
+                    } catch (e) {
+                        debugLog('Error accessing initialChecklistData: ' + e.message);
+                        data = [];
+                    }
+                    currentChecklistName = typeof checklistName !== 'undefined' ? checklistName : "Draft Checklist";
+                    currentFileUrl = selectedDatasetFile;
+                    saveToLocal(); // Auto-start draft for this freshly loaded dataset
+                    debugLog('Calling render from onload...');
+                    render();
+                };
+                script.onerror = () => {
+                    debugLog('script.onerror FIRED!');
+                    container.innerHTML = '<h2 style="color:var(--color-text);">Select a dataset to begin editing.</h2>';
+                };
+                document.head.appendChild(script);
+                debugLog('Script appended to head.');
+            } else {
+                debugLog('Branch: No dataset selected.');
                 container.innerHTML = '<h2 style="color:var(--color-text);">Select a dataset to begin editing.</h2>';
-            };
-            document.head.appendChild(script);
-            debugLog('Script appended to head.');
-        } else {
-            debugLog('Branch: No dataset selected.');
-            container.innerHTML = '<h2 style="color:var(--color-text);">Select a dataset to begin editing.</h2>';
+            }
         }
 
         window.forceSaveDraft = function() {
@@ -1062,7 +1060,9 @@
                 output.scrollIntoView({ behavior: 'smooth' });
             }
         };
-
+        
+        // Spustit auto load lietadiel a datasetov z Next.js API
+        initCreator();
     </script>
 </body>
 </html>

@@ -31,8 +31,12 @@ export default function AircraftChecklistPage() {
 
       (async () => {
         try {
-          await loadScript('/data/data_index.js');
-          const savedDs = localStorage.getItem('b738_dataset') || 'data/europe_style.js';
+          // Backward compatibility for existing local storage
+          let savedDs = localStorage.getItem(`${aircraft}_dataset`);
+          if (!savedDs) savedDs = `data/${aircraft}/europe_style.js`;
+          if (savedDs === 'data/europe_style.js') savedDs = `data/${aircraft}/europe_style.js`;
+          if (savedDs === 'data/us_style.js') savedDs = `data/${aircraft}/us_style.js`;
+
           await loadScript('/' + savedDs);
           await loadScript('/lang.js');
           await loadScript('/script.js');
@@ -40,7 +44,7 @@ export default function AircraftChecklistPage() {
         } catch (e) {
           console.error('Script load error:', e);
           try {
-            await loadScript('/data/europe_style.js');
+            await loadScript(`/data/${aircraft}/europe_style.js`);
             await loadScript('/lang.js');
             await loadScript('/script.js');
             setLoaded(true);
@@ -184,7 +188,7 @@ function getOriginalHTML(aircraft: string): string {
     </div>
   </div>
   <div class="global-footer">
-    <span class="version-info">v3.0.13</span>
+    <span class="version-info">v3.0.14</span>
     <span class="sim-warning">For flight simulation use only.<br>Not for real-world flight.</span>
   </div>`;
 }
