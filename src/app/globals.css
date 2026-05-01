@@ -226,7 +226,8 @@ header {
 }
 
 .hamburger-btn {
-    background: linear-gradient(135deg, var(--color-accent), rgba(var(--color-accent-rgb), 0.7));
+    background: linear-gradient(90deg, var(--color-accent), rgba(var(--color-accent-rgb), 0.5));
+    background-attachment: fixed;
     border: none; border-radius: 12px;
     cursor: pointer;
     width: 48px; height: 48px;
@@ -251,7 +252,8 @@ header {
 
 
 .header-btn {
-    background: linear-gradient(135deg, var(--color-accent), rgba(var(--color-accent-rgb), 0.7));
+    background: linear-gradient(90deg, var(--color-accent), rgba(var(--color-accent-rgb), 0.5));
+    background-attachment: fixed;
     color: #fff; border: none; border-radius: 12px;
     font-size: 0.85rem; cursor: pointer; width: 130px; height: 48px;
     display: flex; align-items: center; justify-content: center;
@@ -337,7 +339,8 @@ input:checked + .slider:before { transform: translateX(20px); }
 
 #page-title {
     flex: 1; margin: 0; 
-    background: linear-gradient(135deg, var(--color-accent), rgba(var(--color-accent-rgb), 0.6));
+    background: linear-gradient(90deg, var(--color-accent), rgba(var(--color-accent-rgb), 0.5));
+    background-attachment: fixed;
     color: #ffffff;
     font-size: 1.2rem; font-weight: 800; text-transform: uppercase;
     padding: 12px 20px; letter-spacing: 2px; border-radius: 12px;
