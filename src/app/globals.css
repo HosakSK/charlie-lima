@@ -1517,11 +1517,30 @@ button:active:not(:disabled) {
     text-transform: uppercase;
     color: var(--color-text) !important;
     background-color: transparent !important;
+    border: none !important;
+    border-bottom: 1.5px solid var(--color-line) !important;
+    border-radius: 0 !important;
 }
 
 [data-theme="dark"] .simbrief-id-input {
-    color: var(--color-text) !important;
-    background-color: #242627 !important; /* Perfect match for notepad in dark mode */
+    background-color: #242627 !important;
+    color: #dbe1e2 !important;
+}
+
+/* Fix for Chrome/Edge autofill white background */
+.simbrief-id-input:-webkit-autofill,
+.simbrief-id-input:-webkit-autofill:hover, 
+.simbrief-id-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--color-text) !important;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+[data-theme="dark"] .simbrief-id-input:-webkit-autofill,
+[data-theme="dark"] .simbrief-id-input:-webkit-autofill:hover, 
+[data-theme="dark"] .simbrief-id-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #dbe1e2 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #242627 inset !important;
 }
 
 .brief-divider {
