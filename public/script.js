@@ -1076,9 +1076,9 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-callsign': data.atc?.callsign,
                     'b-origin': data.origin?.icao_code,
                     'b-dest': data.destination?.icao_code,
-                    'b-total-fuel': data.fuel?.plan_ramp,
-                    'b-trip-fuel': data.fuel?.trip_burn,
-                    'b-reserve-fuel': data.fuel?.reserve_fuel,
+                    'b-total-fuel': data.fuel?.plan_takeoff, // T/OFF FUEL as requested
+                    'b-trip-fuel': data.fuel?.plan_enroute,
+                    'b-reserve-fuel': data.fuel?.plan_reserve,
                     'b-v1': data.vspeeds?.v1,
                     'b-vr': data.vspeeds?.vr,
                     'b-v2': data.vspeeds?.v2,
@@ -1097,6 +1097,7 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-arr-rwy': data.destination?.plan_rwy,
                     'b-sid': data.origin?.sid,
                     'b-star': data.destination?.star,
+                    'b-init-alt': data.general?.initial_altitude,
                     'b-taxi-out': data.origin?.taxi_out_route,
                     'b-taxi-in': data.destination?.taxi_in_route
                 };

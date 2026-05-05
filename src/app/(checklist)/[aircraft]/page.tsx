@@ -161,23 +161,17 @@ function getOriginalHTML(aircraft: string): string {
       <button id="overlay-close" class="overlay-close">&#10005;</button>
       <section class="overlay-section">
         <div class="overlay-panel-header" id="overlay-drag-handle"><h3 class="overlay-section-title">Flight Briefing</h3></div>
-        <div class="brief-row simbrief-row">
-          <div class="brief-field" style="flex-direction: row; align-items: center; gap: 12px; width: 100%;">
-            <label style="white-space: nowrap; margin-bottom: 0; font-size: 0.85rem;">SimBrief ID</label>
-            <input type="text" id="b-simbrief-id" class="brief-input simbrief-id-input" placeholder="103798" maxlength="10">
-            <button id="b-simbrief-fetch" class="simbrief-fetch-btn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-              <span>Sync</span>
+        
+        <div class="brief-row brief-flight-row" style="margin-bottom: 12px; justify-content: flex-start;">
+          <div class="brief-flight" style="gap: 6px; justify-content: flex-start; width: auto;">
+            <input type="text" id="b-simbrief-id" class="brief-input simbrief-id-input" placeholder="ID" maxlength="10">
+            <button id="b-simbrief-fetch" class="simbrief-fetch-btn" title="Sync SimBrief">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             </button>
-          </div>
-        </div>
-
-        <div class="brief-row brief-flight-row">
-          <div class="brief-flight">
+            <div class="brief-divider"></div>
             <input type="text" id="b-callsign" class="brief-input brief-short callsign-input" placeholder="RYR123" maxlength="8">
-            <span class="brief-arrow">|</span>
             <input type="text" id="b-origin" class="brief-input brief-short" placeholder="ICAO" maxlength="4">
-            <span class="brief-arrow">&#10145;</span>
+            <span class="brief-arrow" style="margin: 0 2px;">&#10145;</span>
             <input type="text" id="b-dest" class="brief-input brief-short" placeholder="ICAO" maxlength="4">
           </div>
         </div>
@@ -244,7 +238,7 @@ function getOriginalHTML(aircraft: string): string {
     </div>
   </div>
   <div class="global-footer">
-    <span class="version-info">v3.2.0</span>
+    <span class="version-info">v3.2.1</span>
     <span class="sim-warning">For flight simulation use only.<br>Not for real-world flight.</span>
   </div>`;
 }
