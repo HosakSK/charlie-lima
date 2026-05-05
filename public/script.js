@@ -1108,6 +1108,8 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     const landing = d.tlr?.landing?.runway?.find(r => r.identifier === arrRwy) || d.tlr?.landing?.runway?.[0] || {};
                     const landingPerf = d.tlr?.landing?.distance_dry || {};
 
+                    const isWet = (d.tlr?.takeoff?.conditions?.surface_condition === 'wet');
+                    
                     const perfFields = {
                         'b-v1': fmt(d.vspeeds?.v1 || takeoff.speeds_v1),
                         'b-vr': fmt(d.vspeeds?.vr || takeoff.speeds_vr),
@@ -1135,8 +1137,8 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-origin': data.origin?.icao_code,
                     'b-dest': data.destination?.icao_code,
                     'b-total-fuel': fmt(data.fuel?.plan_takeoff),
-                    'b-trip-fuel': fmt(data.fuel?.enroute_burn),
-                    'b-reserve-fuel': fmt(data.fuel?.reserve),
+                    'b-trip-fuel': fmt(parseInt(data.fuel?.enroute_burn || 0) + parseInt(data.fuel?.taxi || 0)),
+                    'b-reserve-fuel': fmt(parseInt(data.fuel?.reserve || 0) + parseInt(data.fuel?.alternate_burn || 0)),
                     'b-trim': data.takeoff?.trim,
                     'b-squawk': data.atc?.squawk,
                     'b-dep-qnh': fmt(data.weather?.origin?.qnh),
@@ -2513,6 +2515,16 @@ async function fetchMetarData(icao) {
             data.qnh = qnhMatch[2];
         }
         
+        try {
+            const atisResp = await fetch(`/api/atis?icao=${icao.toUpperCase()}`);
+            if (atisResp.ok) {
+                const atisData = await atisResp.json();
+                if (atisData.atis_code) data.atis = atisData.atis_code;
+            }
+        } catch (e) {
+            console.error('ATIS Fetch Error', e);
+        }
+        
         return data;
     } catch (e) {
         console.error('METAR Fetch Error:', e);
@@ -2528,6 +2540,10 @@ function initMetarAutoSync() {
         if (!icao || icao.length !== 4) return;
         const data = await fetchMetarData(icao);
         if (data) {
+            if (data.atis) {
+                const el = document.getElementById(`b-${prefix}-atis`);
+                if (el && !el.value) el.value = data.atis;
+            }
             if (data.qnh) {
                 const el = document.getElementById(`b-${prefix}-qnh`);
                 if (el && !el.value) el.value = data.qnh;
