@@ -68,7 +68,7 @@ let isMuted = localStorage.getItem('b738_muted') === 'true';
 const BRIEF_FIELDS = [
     'b-simbrief-id',
     'b-callsign', 'b-origin', 'b-dest',
-    'b-dep-atis', 'b-dep-qnh', 'b-dep-rwy', 'b-dep-rwy-hdg', 'b-sid', 'b-init-alt', 'b-dep-tl', 'b-squawk',
+    'b-dep-atis', 'b-dep-qnh', 'b-dep-rwy', 'b-dep-rwy-hdg', 'b-sid', 'b-initial-alt', 'b-init-alt', 'b-dep-tl', 'b-squawk',
     'b-dep-dewpt', 'b-dep-temp', 'b-dep-wind', 'b-dep-flaps', 'b-dep-assumed',
     'b-total-fuel', 'b-trip-fuel', 'b-reserve-fuel',
     'b-v1', 'b-vr', 'b-v2', 'b-trim', 'b-taxi-out',
@@ -1104,9 +1104,10 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-arr-rwy': data.destination?.plan_rwy,
                     'b-sid': data.general?.sid_ident || data.origin?.sid,
                     'b-star': data.general?.star_ident || data.destination?.star,
-                    'b-init-alt': fmt(data.general?.initial_altitude),
+                    'b-initial-alt': fmt(data.general?.initial_altitude),
+                    'b-init-alt': fmt(data.general?.cruise_altitude || data.general?.initial_altitude),
                     'b-dep-tl': fmt(data.origin?.trans_alt),
-                    'b-arr-ta': fmt(data.destination?.trans_level),
+                    'b-arr-ta': fmt(data.destination?.trans_level ? parseInt(data.destination.trans_level)/10 : ''),
                     'b-taxi-out': data.origin?.taxi_out_route,
                     'b-taxi-in': data.destination?.taxi_in_route
                 };
@@ -1119,6 +1120,9 @@ if (simbriefFetchBtn && simbriefIdInput) {
                 }
                 
                 saveBriefing();
+                // Trigger METAR sync automatically after SimBrief
+                const syncMetarBtn = document.getElementById('b-metar-sync');
+                if (syncMetarBtn) syncMetarBtn.click();
                 // We also trigger the landing type dropdown sync if it changed
                 const lInput = document.getElementById('b-landing-type');
                 if (lInput) lInput.dispatchEvent(new Event('input'));
@@ -2503,5 +2507,15 @@ function initMetarAutoSync() {
     if (destInput) {
         destInput.addEventListener('change', (e) => sync(e.target.value, 'arr'));
         destInput.addEventListener('blur', (e) => sync(e.target.value, 'arr'));
+    }
+    
+    const metarSyncBtn = document.getElementById('b-metar-sync');
+    if (metarSyncBtn) {
+        metarSyncBtn.addEventListener('click', async () => {
+            const o = document.getElementById('b-origin')?.value;
+            const d = document.getElementById('b-dest')?.value;
+            if (o) await sync(o, 'dep');
+            if (d) await sync(d, 'arr');
+        });
     }
 }
