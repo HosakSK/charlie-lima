@@ -66,6 +66,7 @@ if (audioClick) { audioClick.volume = 0.1; console.log("AudioClick initialized a
 let isMuted = localStorage.getItem('b738_muted') === 'true';
 
 const BRIEF_FIELDS = [
+    'b-simbrief-id',
     'b-callsign', 'b-origin', 'b-dest',
     'b-dep-atis', 'b-dep-qnh', 'b-dep-rwy', 'b-dep-rwy-hdg', 'b-sid', 'b-init-alt', 'b-dep-tl', 'b-squawk',
     'b-dep-dewpt', 'b-dep-temp', 'b-dep-wind', 'b-dep-flaps', 'b-dep-assumed',
@@ -1037,6 +1038,92 @@ if (lTrigger && lOptions && lInput) {
     lInput.addEventListener('input', syncDropdownUI);
     // Initial sync
     setTimeout(syncDropdownUI, 200);
+}
+
+// ============================================================
+// SIMBRIEF INTEGRATION
+// ============================================================
+const simbriefFetchBtn = document.getElementById('b-simbrief-fetch');
+const simbriefIdInput = document.getElementById('b-simbrief-id');
+
+if (simbriefFetchBtn && simbriefIdInput) {
+    simbriefFetchBtn.onclick = async (e) => {
+        e.preventDefault();
+        const userid = simbriefIdInput.value.trim();
+        if (!userid) {
+            alert('Please enter your SimBrief User ID first.');
+            return;
+        }
+
+        simbriefFetchBtn.classList.add('loading');
+        simbriefFetchBtn.disabled = true;
+        const originalBtnHTML = simbriefFetchBtn.innerHTML;
+        simbriefFetchBtn.innerHTML = '<span>Syncing...</span>';
+
+        try {
+            const response = await fetch(`/api/simbrief?userid=${userid}`);
+            if (!response.ok) throw new Error('API request failed');
+            
+            const data = await response.json();
+
+            if (data.error) {
+                alert('SimBrief Error: ' + data.error);
+            } else if (!data.atc || !data.atc.callsign) {
+                 alert('No active flight plan found for this SimBrief ID.');
+            } else {
+                // Map SimBrief data to our fields
+                const fields = {
+                    'b-callsign': data.atc?.callsign,
+                    'b-origin': data.origin?.icao_code,
+                    'b-dest': data.destination?.icao_code,
+                    'b-total-fuel': data.fuel?.plan_ramp,
+                    'b-trip-fuel': data.fuel?.trip_burn,
+                    'b-reserve-fuel': data.fuel?.reserve_fuel,
+                    'b-v1': data.vspeeds?.v1,
+                    'b-vr': data.vspeeds?.vr,
+                    'b-v2': data.vspeeds?.v2,
+                    'b-trim': data.takeoff?.trim,
+                    'b-dep-flaps': data.takeoff?.flaps,
+                    'b-squawk': data.atc?.squawk,
+                    'b-dep-qnh': data.weather?.origin?.qnh,
+                    'b-arr-qnh': data.weather?.destination?.qnh,
+                    'b-dep-temp': data.weather?.origin?.temp,
+                    'b-arr-temp': data.weather?.destination?.temp,
+                    'b-dep-wind': data.weather?.origin?.wind_dir ? `${data.weather.origin.wind_dir}/${data.weather.origin.wind_spd}` : '',
+                    'b-arr-wind': data.weather?.destination?.wind_dir ? `${data.weather.destination.wind_dir}/${data.weather.destination.wind_spd}` : '',
+                    'b-dep-dewpt': data.weather?.origin?.dewpoint,
+                    'b-arr-dewpt': data.weather?.destination?.dewpoint,
+                    'b-dep-rwy': data.origin?.plan_rwy,
+                    'b-arr-rwy': data.destination?.plan_rwy,
+                    'b-sid': data.origin?.sid,
+                    'b-star': data.destination?.star,
+                    'b-taxi-out': data.origin?.taxi_out_route,
+                    'b-taxi-in': data.destination?.taxi_in_route
+                };
+
+                for (const [id, value] of Object.entries(fields)) {
+                    const el = document.getElementById(id);
+                    if (el && value) {
+                        el.value = value;
+                    }
+                }
+                
+                saveBriefing();
+                // We also trigger the landing type dropdown sync if it changed
+                const lInput = document.getElementById('b-landing-type');
+                if (lInput) lInput.dispatchEvent(new Event('input'));
+                
+                alert('SimBrief flight data imported successfully!');
+            }
+        } catch (err) {
+            console.error('Fetch error:', err);
+            alert('Failed to connect to SimBrief. Please check your connection and User ID.');
+        } finally {
+            simbriefFetchBtn.classList.remove('loading');
+            simbriefFetchBtn.disabled = false;
+            simbriefFetchBtn.innerHTML = originalBtnHTML;
+        }
+    };
 }
 
 function parseVariables(text, forSpeech = false) {

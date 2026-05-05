@@ -1472,3 +1472,53 @@ button:active:not(:disabled) {
 [data-theme='dark'] .custom-select-options { box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
 
 /* Removed duplicate global-footer css */
+
+/* ========== SimBrief Integration ========== */
+.simbrief-row {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed rgba(var(--color-accent-rgb), 0.2);
+}
+
+.simbrief-fetch-btn {
+    background: var(--color-accent) !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 8px !important;
+    font-size: 0.75rem !important;
+    font-weight: 800 !important;
+    padding: 0 15px !important;
+    height: 36px !important;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(var(--color-accent-rgb), 0.2);
+}
+
+.simbrief-fetch-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(var(--color-accent-rgb), 0.3);
+}
+
+.simbrief-fetch-btn:active {
+    transform: translateY(0);
+}
+
+.simbrief-fetch-btn.loading {
+    opacity: 0.7;
+    pointer-events: none;
+    cursor: wait;
+}
+
+.simbrief-id-input {
+    width: 100px !important;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
