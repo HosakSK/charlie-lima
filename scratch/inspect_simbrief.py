@@ -9,10 +9,7 @@ def print_keys(obj, prefix=''):
         if obj:
             print_keys(obj[0], f"{prefix}[]")
     else:
-        # Check if the value looks like a V-speed or performance data
-        val = str(obj).lower()
-        search_terms = ['brake', 'gate', 'parking', 'stand']
-        if any(x in prefix.lower() for x in search_terms):
+        if 'dew' in prefix.lower() or 'temp' in prefix.lower():
             print(f"{prefix}: {obj}")
 
 def try_load(filename):
@@ -28,4 +25,4 @@ data = try_load('simbrief_inspect.json')
 if data:
     print_keys(data)
 else:
-    print("Error: Could not load JSON.")
+    print("Error loading JSON")

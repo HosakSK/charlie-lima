@@ -1521,7 +1521,7 @@ button:active:not(:disabled) {
 
 [data-theme="dark"] .simbrief-id-input {
     color: var(--color-text) !important;
-    background-color: transparent !important;
+    background-color: #242627 !important; /* Perfect match for notepad in dark mode */
 }
 
 .brief-divider {

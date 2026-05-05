@@ -68,7 +68,7 @@ let isMuted = localStorage.getItem('b738_muted') === 'true';
 const BRIEF_FIELDS = [
     'b-simbrief-id',
     'b-callsign', 'b-origin', 'b-dest',
-    'b-dep-atis', 'b-dep-qnh', 'b-dep-rwy', 'b-dep-rwy-hdg', 'b-sid', 'b-initial-alt', 'b-init-alt', 'b-dep-tl', 'b-squawk',
+    'b-dep-atis', 'b-dep-qnh', 'b-dep-rwy', 'b-dep-rwy-hdg', 'b-sid', 'b-dep-gate', 'b-initial-alt', 'b-init-alt', 'b-dep-tl', 'b-squawk',
     'b-dep-dewpt', 'b-dep-temp', 'b-dep-wind', 'b-dep-flaps', 'b-dep-assumed',
     'b-total-fuel', 'b-trip-fuel', 'b-reserve-fuel',
     'b-v1', 'b-vr', 'b-v2', 'b-trim', 'b-taxi-out',
@@ -1079,9 +1079,19 @@ if (simbriefFetchBtn && simbriefIdInput) {
                 };
 
                 // Map SimBrief data to our fields
-                const takeoff = data.tlr?.takeoff?.runway?.[0] || {};
-                const landing = data.tlr?.landing?.runway?.[0] || {};
+                const takeoff = data.tlr?.takeoff?.runway?.find(r => r.identifier === data.origin?.plan_rwy) || data.tlr?.takeoff?.runway?.[0] || {};
+                const landing = data.tlr?.landing?.runway?.find(r => r.identifier === data.destination?.plan_rwy) || data.tlr?.landing?.runway?.[0] || {};
                 const landingPerf = data.tlr?.landing?.distance_dry || {};
+                
+                const mapAutobrake = (val) => {
+                    if (!val) return '';
+                    const v = val.toUpperCase();
+                    if (v.includes('MAX')) return 'MAX';
+                    if (v.includes('MED')) return '3';
+                    if (v.includes('MIN') || v.includes('LOW')) return '1';
+                    const num = v.match(/\d+/);
+                    return num ? num[0] : '';
+                };
                 
                 const fields = {
                     'b-callsign': data.atc?.callsign,
@@ -1093,7 +1103,7 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-v1': fmt(data.vspeeds?.v1 || takeoff.speeds_v1),
                     'b-vr': fmt(data.vspeeds?.vr || takeoff.speeds_vr),
                     'b-v2': fmt(data.vspeeds?.v2 || takeoff.speeds_v2),
-                    'b-vref': fmt(landingPerf.speeds_vref),
+                    'b-vref': fmt(data.vspeeds?.vref || landingPerf.speeds_vref),
                     'b-ils-freq': landing.ils_frequency,
                     'b-course': landing.magnetic_course,
                     'b-trim': data.takeoff?.trim,
@@ -1101,12 +1111,12 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-arr-flaps': landing.flap_setting || '30',
                     'b-dep-assumed': data.takeoff?.flex || takeoff.flex_temperature,
                     'b-dep-rwy-hdg': takeoff.magnetic_course,
-                    'b-autobrake': landingPerf.brake_setting?.replace('AUTOBRAKE ', '') || '',
+                    'b-autobrake': mapAutobrake(landingPerf.brake_setting),
                     'b-squawk': data.atc?.squawk,
                     'b-dep-qnh': fmt(data.weather?.origin?.qnh),
                     'b-arr-qnh': fmt(data.weather?.destination?.qnh),
-                    'b-dep-temp': data.weather?.origin?.temp,
-                    'b-arr-temp': data.weather?.destination?.temp,
+                    'b-dep-temp': data.tlr?.takeoff?.conditions?.temperature || data.weather?.origin?.temp,
+                    'b-arr-temp': data.tlr?.landing?.conditions?.temperature || data.weather?.destination?.temp,
                     'b-dep-wind': data.weather?.origin?.wind_dir ? `${data.weather.origin.wind_dir}/${data.weather.origin.wind_spd}` : '',
                     'b-arr-wind': data.weather?.destination?.wind_dir ? `${data.weather.destination.wind_dir}/${data.weather.destination.wind_spd}` : '',
                     'b-dep-dewpt': data.weather?.origin?.dewpoint,
@@ -1120,7 +1130,8 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-dep-tl': fmt(data.origin?.trans_alt),
                     'b-arr-ta': fmt(data.destination?.trans_level ? parseInt(data.destination.trans_level)/10 : ''),
                     'b-taxi-out': data.origin?.taxi_out_route,
-                    'b-taxi-in': data.destination?.taxi_in_route
+                    'b-taxi-in': data.destination?.taxi_in_route,
+                    'b-dep-gate': data.origin?.gate || ''
                 };
 
                 for (const [id, value] of Object.entries(fields)) {
