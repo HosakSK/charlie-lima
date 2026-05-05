@@ -1071,22 +1071,29 @@ if (simbriefFetchBtn && simbriefIdInput) {
             } else if (!data.atc || !data.atc.callsign) {
                  alert('No active flight plan found for this SimBrief ID.');
             } else {
+                // Formatting helper to remove leading zeros (e.g. 06000 -> 6000)
+                const fmt = (val) => {
+                    if (val === undefined || val === null) return '';
+                    const s = String(val);
+                    return s.replace(/^0+(?=\d)/, '');
+                };
+
                 // Map SimBrief data to our fields
                 const fields = {
                     'b-callsign': data.atc?.callsign,
                     'b-origin': data.origin?.icao_code,
                     'b-dest': data.destination?.icao_code,
-                    'b-total-fuel': data.fuel?.plan_takeoff, // T/OFF FUEL
-                    'b-trip-fuel': data.fuel?.enroute_burn,
-                    'b-reserve-fuel': data.fuel?.reserve,
-                    'b-v1': data.vspeeds?.v1,
-                    'b-vr': data.vspeeds?.vr,
-                    'b-v2': data.vspeeds?.v2,
+                    'b-total-fuel': fmt(data.fuel?.plan_takeoff),
+                    'b-trip-fuel': fmt(data.fuel?.enroute_burn),
+                    'b-reserve-fuel': fmt(data.fuel?.reserve),
+                    'b-v1': fmt(data.vspeeds?.v1),
+                    'b-vr': fmt(data.vspeeds?.vr),
+                    'b-v2': fmt(data.vspeeds?.v2),
                     'b-trim': data.takeoff?.trim,
                     'b-dep-flaps': data.takeoff?.flaps,
                     'b-squawk': data.atc?.squawk,
-                    'b-dep-qnh': data.weather?.origin?.qnh,
-                    'b-arr-qnh': data.weather?.destination?.qnh,
+                    'b-dep-qnh': fmt(data.weather?.origin?.qnh),
+                    'b-arr-qnh': fmt(data.weather?.destination?.qnh),
                     'b-dep-temp': data.weather?.origin?.temp,
                     'b-arr-temp': data.weather?.destination?.temp,
                     'b-dep-wind': data.weather?.origin?.wind_dir ? `${data.weather.origin.wind_dir}/${data.weather.origin.wind_spd}` : '',
@@ -1097,9 +1104,9 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-arr-rwy': data.destination?.plan_rwy,
                     'b-sid': data.general?.sid_ident || data.origin?.sid,
                     'b-star': data.general?.star_ident || data.destination?.star,
-                    'b-init-alt': data.general?.initial_altitude,
-                    'b-dep-tl': data.origin?.trans_alt,
-                    'b-arr-ta': data.destination?.trans_level,
+                    'b-init-alt': fmt(data.general?.initial_altitude),
+                    'b-dep-tl': fmt(data.origin?.trans_alt),
+                    'b-arr-ta': fmt(data.destination?.trans_level),
                     'b-taxi-out': data.origin?.taxi_out_route,
                     'b-taxi-in': data.destination?.taxi_in_route
                 };
