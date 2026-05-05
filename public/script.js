@@ -1070,6 +1070,7 @@ if (simbriefFetchBtn && simbriefIdInput) {
                 alert('SimBrief Error: ' + data.error);
             } else if (!data.atc || !data.atc.callsign) {
                  alert('No active flight plan found for this SimBrief ID.');
+            } else {
                 window.simbriefData = data;
                 
                 const fmt = (val) => {
