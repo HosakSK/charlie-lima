@@ -1525,3 +1525,34 @@ button:active:not(:disabled) {
     flex-shrink: 0;
 }
 
+@media (max-width: 600px) {
+    .brief-flight {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        justify-content: flex-start !important;
+    }
+    
+    .simbrief-id-input {
+        flex: 1 1 100px;
+        min-width: 115px;
+    }
+
+    .overlay-close {
+        top: 15px !important;
+        right: 15px !important;
+        background: rgba(0, 0, 0, 0.4) !important;
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    
+    .overlay-section-title {
+        padding-right: 45px; /* Leave space for X button */
+    }
+}
+

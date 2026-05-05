@@ -1079,6 +1079,8 @@ if (simbriefFetchBtn && simbriefIdInput) {
                 };
 
                 // Map SimBrief data to our fields
+                const takeoff = data.tlr?.takeoff?.runway?.[0] || {};
+                
                 const fields = {
                     'b-callsign': data.atc?.callsign,
                     'b-origin': data.origin?.icao_code,
@@ -1086,11 +1088,12 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-total-fuel': fmt(data.fuel?.plan_takeoff),
                     'b-trip-fuel': fmt(data.fuel?.enroute_burn),
                     'b-reserve-fuel': fmt(data.fuel?.reserve),
-                    'b-v1': fmt(data.vspeeds?.v1),
-                    'b-vr': fmt(data.vspeeds?.vr),
-                    'b-v2': fmt(data.vspeeds?.v2),
+                    'b-v1': fmt(data.vspeeds?.v1 || takeoff.speeds_v1),
+                    'b-vr': fmt(data.vspeeds?.vr || takeoff.speeds_vr),
+                    'b-v2': fmt(data.vspeeds?.v2 || takeoff.speeds_v2),
                     'b-trim': data.takeoff?.trim,
-                    'b-dep-flaps': data.takeoff?.flaps,
+                    'b-dep-flaps': data.takeoff?.flaps || takeoff.flap_setting,
+                    'b-dep-assumed': data.takeoff?.flex || takeoff.flex_temperature,
                     'b-squawk': data.atc?.squawk,
                     'b-dep-qnh': fmt(data.weather?.origin?.qnh),
                     'b-arr-qnh': fmt(data.weather?.destination?.qnh),
