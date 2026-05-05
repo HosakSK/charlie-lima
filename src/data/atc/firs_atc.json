@@ -1,0 +1,5227 @@
+{
+  "ADR": {
+    "name": "Adria Radar",
+    "callsign": "Adria Radar Radar",
+    "frequency": ""
+  },
+  "ADR-E": {
+    "name": "Adria Radar (East)",
+    "callsign": "Adria Radar (East) Radar",
+    "frequency": ""
+  },
+  "ADR-W": {
+    "name": "Adria Radar (West)",
+    "callsign": "Adria Radar (West) Radar",
+    "frequency": ""
+  },
+  "AGGG": {
+    "name": "Honiara",
+    "callsign": "Honiara Radar",
+    "frequency": ""
+  },
+  "ANAU": {
+    "name": "Nauru",
+    "callsign": "Nauru Radar",
+    "frequency": ""
+  },
+  "AYPM": {
+    "name": "Port Moresby",
+    "callsign": "Port Moresby Radar",
+    "frequency": ""
+  },
+  "BAIRES": {
+    "name": "Baires TMA - Ezeiza",
+    "callsign": "Baires TMA - Ezeiza Radar",
+    "frequency": ""
+  },
+  "BGGL": {
+    "name": "Nuuk",
+    "callsign": "Nuuk Radar",
+    "frequency": ""
+  },
+  "BIRD": {
+    "name": "Reykjavik",
+    "callsign": "Reykjavik Radar",
+    "frequency": "118.7"
+  },
+  "BIRD-E": {
+    "name": "Reykjavik ACC (East) - Reykjavik",
+    "callsign": "Reykjavik ACC (East) - Reykjavik Radar",
+    "frequency": ""
+  },
+  "BIRD-N": {
+    "name": "Reykjavik ACC (North) - Reykjavik",
+    "callsign": "Reykjavik ACC (North) - Reykjavik Radar",
+    "frequency": ""
+  },
+  "BIRD-S": {
+    "name": "Reykjavik ACC (South) - Reykjavik",
+    "callsign": "Reykjavik ACC (South) - Reykjavik Radar",
+    "frequency": ""
+  },
+  "BIRD-W": {
+    "name": "Reykjavik ACC (West) - Reykjavik",
+    "callsign": "Reykjavik ACC (West) - Reykjavik Radar",
+    "frequency": ""
+  },
+  "CZEG": {
+    "name": "Edmonton",
+    "callsign": "Edmonton Center",
+    "frequency": ""
+  },
+  "CZQM": {
+    "name": "Moncton",
+    "callsign": "Moncton Center",
+    "frequency": ""
+  },
+  "CZQO": {
+    "name": "Gander Oceanic",
+    "callsign": "Gander Oceanic Center",
+    "frequency": ""
+  },
+  "CZQO-GOTA": {
+    "name": "Gander Oceanic Transition Area (CZQO SFC-280 / CZQX 290-ABV)",
+    "callsign": "Gander Oceanic Transition Area (CZQO SFC-280 / CZQX 290-ABV) Center",
+    "frequency": ""
+  },
+  "CZQX": {
+    "name": "Gander",
+    "callsign": "Gander Center",
+    "frequency": ""
+  },
+  "CZUL": {
+    "name": "Montreal",
+    "callsign": "Montreal Center",
+    "frequency": ""
+  },
+  "CZVR": {
+    "name": "Vancouver",
+    "callsign": "Vancouver Center",
+    "frequency": ""
+  },
+  "CZWG": {
+    "name": "Winnipeg",
+    "callsign": "Winnipeg Center",
+    "frequency": ""
+  },
+  "CZYZ": {
+    "name": "Toronto",
+    "callsign": "Toronto Center",
+    "frequency": ""
+  },
+  "CZZV": {
+    "name": "Sept-Iles (CZUL SFC-280 / CZQM 290-ABV)",
+    "callsign": "Sept-Iles (CZUL SFC-280 / CZQM 290-ABV) Center",
+    "frequency": ""
+  },
+  "DAAA": {
+    "name": "Algiers",
+    "callsign": "Algiers Radar",
+    "frequency": ""
+  },
+  "DAAA_NC": {
+    "name": "Algiers North Central",
+    "callsign": "Algiers North Central Radar",
+    "frequency": ""
+  },
+  "DAAA_NE": {
+    "name": "Algiers North East",
+    "callsign": "Algiers North East Radar",
+    "frequency": ""
+  },
+  "DAAA_NW": {
+    "name": "Algiers North West",
+    "callsign": "Algiers North West Radar",
+    "frequency": ""
+  },
+  "DAAA_SC": {
+    "name": "Algiers South Central",
+    "callsign": "Algiers South Central Radar",
+    "frequency": ""
+  },
+  "DAAA_C": {
+    "name": "Algiers Central",
+    "callsign": "Algiers Central Radar",
+    "frequency": ""
+  },
+  "DAAA_W": {
+    "name": "Algiers West",
+    "callsign": "Algiers West Radar",
+    "frequency": ""
+  },
+  "DAAA_E": {
+    "name": "Algiers East",
+    "callsign": "Algiers East Radar",
+    "frequency": ""
+  },
+  "DAAA_SS": {
+    "name": "Algiers South Sector",
+    "callsign": "Algiers South Sector Radar",
+    "frequency": ""
+  },
+  "DAAA_SW": {
+    "name": "Algiers South West",
+    "callsign": "Algiers South West Radar",
+    "frequency": ""
+  },
+  "DAAA_SE": {
+    "name": "Algiers South East",
+    "callsign": "Algiers South East Radar",
+    "frequency": ""
+  },
+  "DGAC": {
+    "name": "Accra",
+    "callsign": "Accra Radar",
+    "frequency": ""
+  },
+  "DGAO": {
+    "name": "Accra Oceanic",
+    "callsign": "Accra Oceanic Radar",
+    "frequency": ""
+  },
+  "DIII": {
+    "name": "Abidjan",
+    "callsign": "Abidjan Radar",
+    "frequency": ""
+  },
+  "DNKK": {
+    "name": "Kano",
+    "callsign": "Kano Radar",
+    "frequency": ""
+  },
+  "DNKK-W": {
+    "name": "Kano (West)",
+    "callsign": "Kano (West) Radar",
+    "frequency": ""
+  },
+  "DNMM": {
+    "name": "Lagos",
+    "callsign": "Lagos Radar",
+    "frequency": ""
+  },
+  "DRRR": {
+    "name": "Niamey",
+    "callsign": "Niamey Radar",
+    "frequency": ""
+  },
+  "DTTC": {
+    "name": "Tunis",
+    "callsign": "Tunis Radar",
+    "frequency": ""
+  },
+  "EBBU": {
+    "name": "Brussels",
+    "callsign": "Brussels Radar",
+    "frequency": "131.100"
+  },
+  "EBUR": {
+    "name": "Brussels Upper",
+    "callsign": "Brussels Upper Radar",
+    "frequency": ""
+  },
+  "EDGG": {
+    "name": "Langen",
+    "callsign": "Langen Radar",
+    "frequency": "129.675"
+  },
+  "EDGG-N": {
+    "name": "Langen Radar (Baden) - Langen",
+    "callsign": "Langen Radar (Baden) - Langen Radar",
+    "frequency": "35.875"
+  },
+  "EDGG-C": {
+    "name": "Langen Radar (Baden) - Langen",
+    "callsign": "Langen Radar (Baden) - Langen Radar",
+    "frequency": "123.3"
+  },
+  "EDGG-S": {
+    "name": "Langen Radar (Baden) - Langen",
+    "callsign": "Langen Radar (Baden) - Langen Radar",
+    "frequency": "118.45"
+  },
+  "EDGG-A": {
+    "name": "Langen Radar (Baden) - Langen",
+    "callsign": "Langen Radar (Baden) - Langen Radar",
+    "frequency": "127.275"
+  },
+  "EDGG-BAD": {
+    "name": "Langen Radar (Baden) - Langen",
+    "callsign": "Langen Radar (Baden) - Langen Radar",
+    "frequency": "118.75"
+  },
+  "EDGG-DKB": {
+    "name": "Langen Radar (Dinkelsbuehl) - Langen",
+    "callsign": "Langen Radar (Dinkelsbuehl) - Langen Radar",
+    "frequency": "128.55"
+  },
+  "EDGG-GIN": {
+    "name": "Langen Radar (Giessen) - Langen",
+    "callsign": "Langen Radar (Giessen) - Langen Radar",
+    "frequency": "123.9"
+  },
+  "EDGG-CS": {
+    "name": "Langen Radar (Kitzingen) - Langen",
+    "callsign": "Langen Radar (Kitzingen) - Langen Radar",
+    "frequency": "129.675"
+  },
+  "EDGG-PAH": {
+    "name": "Langen Radar (Pad High) - Langen",
+    "callsign": "Langen Radar (Pad High) - Langen Radar",
+    "frequency": "119.2"
+  },
+  "EDGG-RUD": {
+    "name": "Langen Radar (Ruedesheim) - Langen",
+    "callsign": "Langen Radar (Ruedesheim) - Langen Radar",
+    "frequency": "124.8"
+  },
+  "EDGG-KL": {
+    "name": "Langen Radar (Köln Düsseldorf Approach) - Langen",
+    "callsign": "Langen Radar (Koln Dusseldorf Approach) - Langen Radar",
+    "frequency": "125.6"
+  },
+  "EDMM": {
+    "name": "Muenchen",
+    "callsign": "Muenchen Radar",
+    "frequency": "124.050"
+  },
+  "EDMM-GER": {
+    "name": "Muenchen ACC (Gera) - Muenchen",
+    "callsign": "Muenchen ACC (Gera) - Muenchen Radar",
+    "frequency": "118.975"
+  },
+  "EDMM-HOF": {
+    "name": "Muenchen ACC (Hof) - Muenchen",
+    "callsign": "Muenchen ACC (Hof) - Muenchen Radar",
+    "frequency": ""
+  },
+  "EDMM-RDG": {
+    "name": "Muenchen ACC (Roding) - Muenchen",
+    "callsign": "Muenchen ACC (Roding) - Muenchen Radar",
+    "frequency": ""
+  },
+  "EDMM-ZUG": {
+    "name": "Muenchen ACC (Zugspitze) - Muenchen",
+    "callsign": "Muenchen ACC (Zugspitze) - Muenchen Radar",
+    "frequency": ""
+  },
+  "EDWW": {
+    "name": "Bremen",
+    "callsign": "Bremen Radar",
+    "frequency": "125.100"
+  },
+  "EDWW-ALR": {
+    "name": "Bremen ACC (Aller) - Bremen",
+    "callsign": "Bremen ACC (Aller) - Bremen Radar",
+    "frequency": "124.175"
+  },
+  "EDWW-FLG": {
+    "name": "Bremen ACC (Flaeming) - Bremen",
+    "callsign": "Bremen ACC (Flaeming) - Bremen Radar",
+    "frequency": "134.25"
+  },
+  "EDWW-BOR": {
+    "name": "Bremen ACC (Boerde) - Bremen",
+    "callsign": "Bremen ACC (Boerde) - Bremen Radar",
+    "frequency": "131.325"
+  },
+  "EDWW-MAR": {
+    "name": "Bremen ACC (Mark) - Bremen",
+    "callsign": "Bremen ACC (Mark) - Bremen Radar",
+    "frequency": "124.225"
+  },
+  "EDWW-MRZ": {
+    "name": "Bremen ACC (Mueritz) - Bremen",
+    "callsign": "Bremen ACC (Mueritz) - Bremen Radar",
+    "frequency": "136.225"
+  },
+  "EDWW-EMS": {
+    "name": "Bremen ACC (Ems) - Bremen",
+    "callsign": "Bremen ACC (Ems) - Bremen Radar",
+    "frequency": "124.225"
+  },
+  "EDWW-W": {
+    "name": "Bremen ACC (West) - Bremen",
+    "callsign": "Bremen ACC (West) - Bremen Radar",
+    "frequency": "123.925"
+  },
+  "EDXX": {
+    "name": "Langen Information - FIS only",
+    "callsign": "Langen Information - FIS only Radar",
+    "frequency": "124.725"
+  },
+  "EETT": {
+    "name": "Tallinn",
+    "callsign": "Tallinn Radar",
+    "frequency": "127.905"
+  },
+  "EFIN": {
+    "name": "Helsinki",
+    "callsign": "Helsinki Radar",
+    "frequency": ""
+  },
+  "EGGX": {
+    "name": "Shanwick Oceanic",
+    "callsign": "Shanwick Oceanic Radar",
+    "frequency": "120.975"
+  },
+  "EGPX": {
+    "name": "Scottish",
+    "callsign": "Scottish Radar",
+    "frequency": "135.525"
+  },
+  "EGPX-ANT": {
+    "name": "Scottish TMA Antrim (Up to FL255) - Scottish",
+    "callsign": "Scottish TMA Antrim (Up to FL255) - Scottish Radar",
+    "frequency": "127.35"
+  },
+  "EGPX-GTA": {
+    "name": "Scottish Antrim & TMA (Up to FL255) - Scottish",
+    "callsign": "Scottish Antrim & TMA (Up to FL255) - Scottish Radar",
+    "frequency": "125.225"
+  },
+  "EGPX-BDS": {
+    "name": "Scottish TMA (Up to FL255) - Scottish",
+    "callsign": "Scottish TMA (Up to FL255) - Scottish Radar",
+    "frequency": "131.3"
+  },
+  "EGPX-E": {
+    "name": "Scottish ACC (East) - Scottish",
+    "callsign": "Scottish ACC (East) - Scottish Radar",
+    "frequency": "128.9"
+  },
+  "EGPX-N": {
+    "name": "Scottish ACC (North) - Scottish",
+    "callsign": "Scottish ACC (North) - Scottish Radar",
+    "frequency": ""
+  },
+  "EGPX-S": {
+    "name": "Scottish ACC (Tay) - Scottish",
+    "callsign": "Scottish ACC (Tay) - Scottish Radar",
+    "frequency": ""
+  },
+  "EGPX-W": {
+    "name": "Scottish ACC (Rathlin) - Scottish",
+    "callsign": "Scottish ACC (Rathlin) - Scottish Radar",
+    "frequency": ""
+  },
+  "EGPX-WB": {
+    "name": "Scottish ACC (West/Borders) - Scottish",
+    "callsign": "Scottish ACC (West/Borders) - Scottish Radar",
+    "frequency": ""
+  },
+  "EGTL": {
+    "name": "London TMA (Up to FL195) - London",
+    "callsign": "London TMA (Up to FL195) - London Radar",
+    "frequency": ""
+  },
+  "EGTL-N": {
+    "name": "London TMA North (Up to FL155) - London",
+    "callsign": "London TMA North (Up to FL155) - London Radar",
+    "frequency": ""
+  },
+  "EGTL-S": {
+    "name": "London TMA South (Up to FL195) - London",
+    "callsign": "London TMA South (Up to FL195) - London Radar",
+    "frequency": ""
+  },
+  "EGTM": {
+    "name": "Manchester TMA (Up to FL285) - London",
+    "callsign": "Manchester TMA (Up to FL285) - London Radar",
+    "frequency": ""
+  },
+  "EGTM-NE": {
+    "name": "Manchester TMA North East (Up to FL285) - London",
+    "callsign": "Manchester TMA North East (Up to FL285) - London Radar",
+    "frequency": ""
+  },
+  "EGTM-W": {
+    "name": "Manchester TMA South East (Up to FL195) - London",
+    "callsign": "Manchester TMA South East (Up to FL195) - London Radar",
+    "frequency": ""
+  },
+  "EGTT": {
+    "name": "London",
+    "callsign": "London Radar",
+    "frequency": "135.050"
+  },
+  "EGTT-C": {
+    "name": "London ACC (Central) - London",
+    "callsign": "London ACC (Central) - London Radar",
+    "frequency": ""
+  },
+  "EGTT-D": {
+    "name": "London ACC (Dover) - London",
+    "callsign": "London ACC (Dover) - London Radar",
+    "frequency": ""
+  },
+  "EGTT-E": {
+    "name": "London TMA East (Up to FL245) - London",
+    "callsign": "London TMA East (Up to FL245) - London Radar",
+    "frequency": ""
+  },
+  "EGTT-H": {
+    "name": "London ACC (Worthing) - London",
+    "callsign": "London ACC (Worthing) - London Radar",
+    "frequency": ""
+  },
+  "EGTT-M": {
+    "name": "London TMA Midlands (Up to FL225) - London",
+    "callsign": "London TMA Midlands (Up to FL225) - London Radar",
+    "frequency": ""
+  },
+  "EGTT-N": {
+    "name": "London ACC (North) - London",
+    "callsign": "London ACC (North) - London Radar",
+    "frequency": ""
+  },
+  "EGTT-NE": {
+    "name": "London ACC (North Sea) - London",
+    "callsign": "London ACC (North Sea) - London Radar",
+    "frequency": ""
+  },
+  "EGTT-NW": {
+    "name": "London ACC (Lakes) - London",
+    "callsign": "London ACC (Lakes) - London Radar",
+    "frequency": ""
+  },
+  "EGTT-S": {
+    "name": "London ACC (LMS) - London",
+    "callsign": "London ACC (LMS) - London Radar",
+    "frequency": ""
+  },
+  "EGTT-SC": {
+    "name": "London ACC (South-Central) - London",
+    "callsign": "London ACC (South-Central) - London Radar",
+    "frequency": ""
+  },
+  "EGTT-W": {
+    "name": "London ACC (West) - London",
+    "callsign": "London ACC (West) - London Radar",
+    "frequency": ""
+  },
+  "EGVV": {
+    "name": "Swanwick Military",
+    "callsign": "Swanwick Military Radar",
+    "frequency": ""
+  },
+  "EGYP": {
+    "name": "Mount Pleasant (Monte Agradable)",
+    "callsign": "Mount Pleasant (Monte Agradable) Radar",
+    "frequency": ""
+  },
+  "EHAA": {
+    "name": "Amsterdam (Up to FL245)",
+    "callsign": "Amsterdam (Up to FL245) Radar",
+    "frequency": "124.875"
+  },
+  "EHMC": {
+    "name": "Dutch Mil (Up to FL245)",
+    "callsign": "Dutch Mil (Up to FL245) Radar",
+    "frequency": ""
+  },
+  "EHML": {
+    "name": "Bandbox CRC (Military)",
+    "callsign": "Bandbox CRC (Military) Radar",
+    "frequency": ""
+  },
+  "EIDW": {
+    "name": "Dublin ACC (Up to FL245) - Dublin",
+    "callsign": "Dublin ACC (Up to FL245) - Dublin Radar",
+    "frequency": ""
+  },
+  "EISN": {
+    "name": "Shannon ACC - Shannon",
+    "callsign": "Shannon ACC - Shannon Radar",
+    "frequency": ""
+  },
+  "EISN-L": {
+    "name": "Shannon ACC (Up to FL245) - Shannon",
+    "callsign": "Shannon ACC (Up to FL245) - Shannon Radar",
+    "frequency": ""
+  },
+  "EKDK": {
+    "name": "Kobenhavn",
+    "callsign": "Kobenhavn Radar",
+    "frequency": "124.050"
+  },
+  "EKDK-E": {
+    "name": "Kobenhavn (East)",
+    "callsign": "Kobenhavn (East) Radar",
+    "frequency": ""
+  },
+  "EKDK-L": {
+    "name": "Kobenhavn (West Low)",
+    "callsign": "Kobenhavn (West Low) Radar",
+    "frequency": ""
+  },
+  "EKDK-W": {
+    "name": "Kobenhavn (West)",
+    "callsign": "Kobenhavn (West) Radar",
+    "frequency": ""
+  },
+  "ENBD": {
+    "name": "Bodo ACC - Polaris",
+    "callsign": "Bodo ACC - Polaris Radar",
+    "frequency": "121"
+  },
+  "ENBD-19": {
+    "name": "Bodø ACC - Polaris",
+    "callsign": "Bodø ACC - Polaris Radar",
+    "frequency": ""
+  },
+  "ENBD-C": {
+    "name": "Bodø ACC (Central) - Polaris",
+    "callsign": "Bodø ACC (Central) - Polaris Radar",
+    "frequency": ""
+  },
+  "ENBD-N": {
+    "name": "Bodø ACC (North) - Polaris",
+    "callsign": "Bodø ACC (North) - Polaris Radar",
+    "frequency": ""
+  },
+  "ENBD-E": {
+    "name": "Bodø ACC (East) - Polaris",
+    "callsign": "Bodø ACC (East) - Polaris Radar",
+    "frequency": ""
+  },
+  "ENBD-S": {
+    "name": "Bodø ACC (South) - Polaris",
+    "callsign": "Bodø ACC (South) - Polaris Radar",
+    "frequency": ""
+  },
+  "ENOB": {
+    "name": "Bodo Oceanic",
+    "callsign": "Bodo Oceanic Radar",
+    "frequency": ""
+  },
+  "ENOR": {
+    "name": "Polaris",
+    "callsign": "Polaris Radar",
+    "frequency": ""
+  },
+  "ENOR-S": {
+    "name": "Polaris (South)",
+    "callsign": "Polaris (South) Radar",
+    "frequency": ""
+  },
+  "ENOR-SC": {
+    "name": "Polaris (South-Central)",
+    "callsign": "Polaris (South-Central) Radar",
+    "frequency": ""
+  },
+  "ENOS": {
+    "name": "Oslo ACC - Polaris",
+    "callsign": "Oslo ACC - Polaris Radar",
+    "frequency": ""
+  },
+  "ENOS-1": {
+    "name": "Oslo ACC (Sector 1) - Polaris",
+    "callsign": "Oslo ACC (Sector 1) - Polaris Radar",
+    "frequency": ""
+  },
+  "ENOS-4": {
+    "name": "Oslo ACC (Sector 4) - Polaris",
+    "callsign": "Oslo ACC (Sector 4) - Polaris Radar",
+    "frequency": ""
+  },
+  "ENOS-7": {
+    "name": "Oslo ACC (Sector 7) - Polaris",
+    "callsign": "Oslo ACC (Sector 7) - Polaris Radar",
+    "frequency": ""
+  },
+  "ENOS-8": {
+    "name": "Oslo ACC (Sector 8) - Polaris",
+    "callsign": "Oslo ACC (Sector 8) - Polaris Radar",
+    "frequency": ""
+  },
+  "ENRC-N": {
+    "name": "Bodo RTC North",
+    "callsign": "Bodo RTC North Radar",
+    "frequency": ""
+  },
+  "ENRC-S": {
+    "name": "Bodo RTC South",
+    "callsign": "Bodo RTC South Radar",
+    "frequency": ""
+  },
+  "ENSV": {
+    "name": "Stavanger ACC - Polaris",
+    "callsign": "Stavanger ACC - Polaris Radar",
+    "frequency": ""
+  },
+  "ENSV-E": {
+    "name": "Stavanger ACC (East) - Polaris",
+    "callsign": "Stavanger ACC (East) - Polaris Radar",
+    "frequency": ""
+  },
+  "ENSV-O": {
+    "name": "Stavanger Offshore ACC (Below FL85) - Polaris",
+    "callsign": "Stavanger Offshore ACC (Below FL85) - Polaris Radar",
+    "frequency": ""
+  },
+  "ENSV-W": {
+    "name": "Stavanger ACC (West) - Polaris",
+    "callsign": "Stavanger ACC (West) - Polaris Radar",
+    "frequency": ""
+  },
+  "EPWW": {
+    "name": "Warszawa High",
+    "callsign": "Warszawa High Radar",
+    "frequency": "134.925"
+  },
+  "EPWW-C": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": "127.6"
+  },
+  "EPWW-D": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-DBT": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-DFB": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-DT": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-DTC": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-F": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-G": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-FG": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-J": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-JR": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-NE": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-TM": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-TCJ": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-E": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-N": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "EPWW-S": {
+    "name": "Warszawa",
+    "callsign": "Warszawa Radar",
+    "frequency": ""
+  },
+  "ESAA": {
+    "name": "Sweden",
+    "callsign": "Sweden Radar",
+    "frequency": "128.500"
+  },
+  "ESMM": {
+    "name": "Malmo ACC - Sweden",
+    "callsign": "Malmo ACC - Sweden Radar",
+    "frequency": "118.205"
+  },
+  "ESMM-4": {
+    "name": "Malmo ACC (4) - Sweden",
+    "callsign": "Malmo ACC (4) - Sweden Radar",
+    "frequency": "128.625"
+  },
+  "ESMM-5": {
+    "name": "Malmo ACC (5) - Sweden",
+    "callsign": "Malmo ACC (5) - Sweden Radar",
+    "frequency": ""
+  },
+  "ESMM-7": {
+    "name": "Malmo ACC (7) - Sweden",
+    "callsign": "Malmo ACC (7) - Sweden Radar",
+    "frequency": ""
+  },
+  "ESMM-8": {
+    "name": "Malmo ACC (8) - Sweden",
+    "callsign": "Malmo ACC (8) - Sweden Radar",
+    "frequency": ""
+  },
+  "ESMM-K": {
+    "name": "Malmo ACC (K) - Sweden",
+    "callsign": "Malmo ACC (K) - Sweden Radar",
+    "frequency": ""
+  },
+  "ESOS": {
+    "name": "Stockholm ACC - Sweden",
+    "callsign": "Stockholm ACC - Sweden Radar",
+    "frequency": ""
+  },
+  "ESOS-1": {
+    "name": "Stockholm ACC (1) - Sweden",
+    "callsign": "Stockholm ACC (1) - Sweden Radar",
+    "frequency": ""
+  },
+  "ESOS-9": {
+    "name": "Stockholm ACC (9) - Sweden",
+    "callsign": "Stockholm ACC (9) - Sweden Radar",
+    "frequency": ""
+  },
+  "ESOS-K": {
+    "name": "Stockholm ACC (K) - Sweden",
+    "callsign": "Stockholm ACC (K) - Sweden Radar",
+    "frequency": ""
+  },
+  "ESOS-N": {
+    "name": "Stockholm ACC (N) - Sweden",
+    "callsign": "Stockholm ACC (N) - Sweden Radar",
+    "frequency": ""
+  },
+  "ESSR": {
+    "name": "RTC Stockholm - Sweden",
+    "callsign": "RTC Stockholm - Sweden Radar",
+    "frequency": ""
+  },
+  "EVRR": {
+    "name": "Riga",
+    "callsign": "Riga Radar",
+    "frequency": ""
+  },
+  "EYVL": {
+    "name": "Vilnius",
+    "callsign": "Vilnius Radar",
+    "frequency": ""
+  },
+  "EYVL-E": {
+    "name": "Vilnius",
+    "callsign": "Vilnius Radar",
+    "frequency": ""
+  },
+  "FACA": {
+    "name": "Cape Town (Bandbox) - Cape Town",
+    "callsign": "Cape Town (Bandbox) - Cape Town Radar",
+    "frequency": ""
+  },
+  "FACA-E": {
+    "name": "Cape Town ACC (East) - Cape Town",
+    "callsign": "Cape Town ACC (East) - Cape Town Radar",
+    "frequency": "124.5"
+  },
+  "FACA-W": {
+    "name": "Cape Town ACC (West) - Cape Town",
+    "callsign": "Cape Town ACC (West) - Cape Town Radar",
+    "frequency": "123.7"
+  },
+  "FAJA": {
+    "name": "Johannesburg ACC (Bandbox) - Johannesburg",
+    "callsign": "Johannesburg ACC (Bandbox) - Johannesburg Radar",
+    "frequency": ""
+  },
+  "FAJA-C": {
+    "name": "Johannesburg ACC (Central) - Johannesburg",
+    "callsign": "Johannesburg ACC (Central) - Johannesburg Radar",
+    "frequency": ""
+  },
+  "FAJA-E": {
+    "name": "Johannesburg ACC (East) - Johannesburg",
+    "callsign": "Johannesburg ACC (East) - Johannesburg Radar",
+    "frequency": ""
+  },
+  "FAJA-N": {
+    "name": "Johannesburg ACC (North) - Johannesburg",
+    "callsign": "Johannesburg ACC (North) - Johannesburg Radar",
+    "frequency": ""
+  },
+  "FAJA-NE": {
+    "name": "Johannesburg ACC (Sector 1) - Johannesburg",
+    "callsign": "Johannesburg ACC (Sector 1) - Johannesburg Radar",
+    "frequency": ""
+  },
+  "FAJA-NW": {
+    "name": "Johannesburg ACC (Sector 2) - Johannesburg",
+    "callsign": "Johannesburg ACC (Sector 2) - Johannesburg Radar",
+    "frequency": ""
+  },
+  "FAJA-S": {
+    "name": "Johannesburg ACC (South) - Johannesburg",
+    "callsign": "Johannesburg ACC (South) - Johannesburg Radar",
+    "frequency": ""
+  },
+  "FAJA-SE": {
+    "name": "Johannesburg ACC (Sector 3) - Johannesburg",
+    "callsign": "Johannesburg ACC (Sector 3) - Johannesburg Radar",
+    "frequency": ""
+  },
+  "FAJA-SW": {
+    "name": "Johannesburg ACC (Sector 4) - Johannesburg",
+    "callsign": "Johannesburg ACC (Sector 4) - Johannesburg Radar",
+    "frequency": ""
+  },
+  "FAJA-W": {
+    "name": "Johannesburg ACC (West) - Johannesburg",
+    "callsign": "Johannesburg ACC (West) - Johannesburg Radar",
+    "frequency": ""
+  },
+  "FAJO": {
+    "name": "Johannesburg Oceanic",
+    "callsign": "Johannesburg Oceanic Radar",
+    "frequency": ""
+  },
+  "FAMR": {
+    "name": "Lowveld Military Airspace Sector (SFC-FL195) - Lowveld Information",
+    "callsign": "Lowveld Military Airspace Sector (SFC-FL195) - Lowveld Information Radar",
+    "frequency": ""
+  },
+  "FASA": {
+    "name": "South Africa",
+    "callsign": "South Africa Radar",
+    "frequency": ""
+  },
+  "FBGR": {
+    "name": "Gaborone",
+    "callsign": "Gaborone Radar",
+    "frequency": ""
+  },
+  "FCCC": {
+    "name": "Brazzaville",
+    "callsign": "Brazzaville Radar",
+    "frequency": "127.1"
+  },
+  "FIMM": {
+    "name": "Mauritius",
+    "callsign": "Mauritius Radar",
+    "frequency": ""
+  },
+  "FLFI": {
+    "name": "Lusaka",
+    "callsign": "Lusaka Radar",
+    "frequency": ""
+  },
+  "FMMM": {
+    "name": "Antananarivo",
+    "callsign": "Antananarivo Radar",
+    "frequency": ""
+  },
+  "FNAN": {
+    "name": "Luanda",
+    "callsign": "Luanda Radar",
+    "frequency": ""
+  },
+  "FQBE": {
+    "name": "Beira",
+    "callsign": "Beira Radar",
+    "frequency": "127.7"
+  },
+  "FQMA": {
+    "name": "Maputo",
+    "callsign": "Maputo Radar",
+    "frequency": ""
+  },
+  "FSSS": {
+    "name": "Seychelles",
+    "callsign": "Seychelles Radar",
+    "frequency": ""
+  },
+  "FTTT": {
+    "name": "N'Djamena",
+    "callsign": "N'Djamena Radar",
+    "frequency": ""
+  },
+  "FVHF": {
+    "name": "Harare",
+    "callsign": "Harare Radar",
+    "frequency": ""
+  },
+  "FWLL": {
+    "name": "Lilongwe",
+    "callsign": "Lilongwe Radar",
+    "frequency": "124.7"
+  },
+  "FYWF": {
+    "name": "Windhoek",
+    "callsign": "Windhoek Radar",
+    "frequency": ""
+  },
+  "FZZA": {
+    "name": "Kinshasa",
+    "callsign": "Kinshasa Radar",
+    "frequency": ""
+  },
+  "GCCC": {
+    "name": "Canarias",
+    "callsign": "Canarias Radar",
+    "frequency": ""
+  },
+  "GCCC-R6": {
+    "name": "Canarias",
+    "callsign": "Canarias Radar",
+    "frequency": ""
+  },
+  "GCCC-RC2": {
+    "name": "Canarias (Central Sector) - Canarias",
+    "callsign": "Canarias (Central Sector) - Canarias Radar",
+    "frequency": ""
+  },
+  "GCCC-RCW": {
+    "name": "Canarias (Central West Sector) - Canarias",
+    "callsign": "Canarias (Central West Sector) - Canarias Radar",
+    "frequency": ""
+  },
+  "GCCC-RES": {
+    "name": "Canarias (South East Sector Combined) - Canarias",
+    "callsign": "Canarias (South East Sector Combined) - Canarias Radar",
+    "frequency": ""
+  },
+  "GCCC-RNE": {
+    "name": "Canarias (North East Sector) - Canarias",
+    "callsign": "Canarias (North East Sector) - Canarias Radar",
+    "frequency": ""
+  },
+  "GCCC-NEL": {
+    "name": "Canarias (-FL285) - Canarias",
+    "callsign": "Canarias (-FL285) - Canarias Radar",
+    "frequency": ""
+  },
+  "GCCC-RW3": {
+    "name": "Canarias (North West Sector) - Canarias",
+    "callsign": "Canarias (North West Sector) - Canarias Radar",
+    "frequency": ""
+  },
+  "GCCO": {
+    "name": "Canarias Oceanic",
+    "callsign": "Canarias Oceanic Radar",
+    "frequency": ""
+  },
+  "GLRB": {
+    "name": "Roberts",
+    "callsign": "Roberts Radar",
+    "frequency": ""
+  },
+  "GMAC": {
+    "name": "Agadir",
+    "callsign": "Agadir Radar",
+    "frequency": ""
+  },
+  "GMAC_O": {
+    "name": "Agadir Oceanic",
+    "callsign": "Agadir Oceanic Radar",
+    "frequency": ""
+  },
+  "GMAC-ON": {
+    "name": "Agadir Oceanic North",
+    "callsign": "Agadir Oceanic North Radar",
+    "frequency": ""
+  },
+  "GMAC-OS": {
+    "name": "Agadir Oceanic South",
+    "callsign": "Agadir Oceanic South Radar",
+    "frequency": ""
+  },
+  "GMAC-W": {
+    "name": "Agadir West",
+    "callsign": "Agadir West Radar",
+    "frequency": ""
+  },
+  "GMAC-WS": {
+    "name": "Agadir Oceanic South West",
+    "callsign": "Agadir Oceanic South West Radar",
+    "frequency": ""
+  },
+  "GMAC-WN": {
+    "name": "Agadir North West",
+    "callsign": "Agadir North West Radar",
+    "frequency": ""
+  },
+  "GMMM-ALL": {
+    "name": "Casablanca",
+    "callsign": "Casablanca Radar",
+    "frequency": ""
+  },
+  "GMMM": {
+    "name": "Casablanca",
+    "callsign": "Casablanca Radar",
+    "frequency": ""
+  },
+  "GMMM-S": {
+    "name": "Casablanca South",
+    "callsign": "Casablanca South Radar",
+    "frequency": ""
+  },
+  "GMMM-N": {
+    "name": "Casablanca North",
+    "callsign": "Casablanca North Radar",
+    "frequency": ""
+  },
+  "GMMM-E": {
+    "name": "Casablanca East",
+    "callsign": "Casablanca East Radar",
+    "frequency": ""
+  },
+  "GMMM-NE": {
+    "name": "Casablanca North East",
+    "callsign": "Casablanca North East Radar",
+    "frequency": ""
+  },
+  "GOOC": {
+    "name": "Dakar Oceanic",
+    "callsign": "Dakar Oceanic Radar",
+    "frequency": ""
+  },
+  "GOOO": {
+    "name": "Dakar",
+    "callsign": "Dakar Radar",
+    "frequency": ""
+  },
+  "GVSC": {
+    "name": "Sal Oceanic",
+    "callsign": "Sal Oceanic Radar",
+    "frequency": ""
+  },
+  "HAAA": {
+    "name": "Addis Ababa",
+    "callsign": "Addis Ababa Radar",
+    "frequency": "125.2"
+  },
+  "HBBA": {
+    "name": "Bujumbura",
+    "callsign": "Bujumbura Radar",
+    "frequency": ""
+  },
+  "HCSM": {
+    "name": "Mogadishu",
+    "callsign": "Mogadishu Radar",
+    "frequency": ""
+  },
+  "HECC": {
+    "name": "Cairo",
+    "callsign": "Cairo Radar",
+    "frequency": "123.725"
+  },
+  "HECC-1": {
+    "name": "Cairo ACC (Sector 1) - Cairo",
+    "callsign": "Cairo ACC (Sector 1) - Cairo Radar",
+    "frequency": "123.4"
+  },
+  "HECC-2": {
+    "name": "Cairo ACC (Sector 2) - Cairo",
+    "callsign": "Cairo ACC (Sector 2) - Cairo Radar",
+    "frequency": "124.3"
+  },
+  "HECC-3": {
+    "name": "Cairo ACC (Sector 3) - Cairo",
+    "callsign": "Cairo ACC (Sector 3) - Cairo Radar",
+    "frequency": "121.1"
+  },
+  "HECC-4": {
+    "name": "Cairo ACC (Sector 4) - Cairo",
+    "callsign": "Cairo ACC (Sector 4) - Cairo Radar",
+    "frequency": "119.35"
+  },
+  "HECC-46": {
+    "name": "Cairo ACC (Sectors 4-6) - Cairo",
+    "callsign": "Cairo ACC (Sectors 4-6) - Cairo Radar",
+    "frequency": "122.8"
+  },
+  "HECC-5": {
+    "name": "Cairo ACC (Sector 5) - Cairo",
+    "callsign": "Cairo ACC (Sector 5) - Cairo Radar",
+    "frequency": ""
+  },
+  "HECC-6": {
+    "name": "Cairo ACC (Sector 6) - Cairo",
+    "callsign": "Cairo ACC (Sector 6) - Cairo Radar",
+    "frequency": ""
+  },
+  "HHAA": {
+    "name": "Asmara",
+    "callsign": "Asmara Radar",
+    "frequency": ""
+  },
+  "HJJJ": {
+    "name": "Juba (Up to FL245)",
+    "callsign": "Juba (Up to FL245) Radar",
+    "frequency": ""
+  },
+  "HKNA": {
+    "name": "Nairobi",
+    "callsign": "Nairobi Radar",
+    "frequency": "121.1"
+  },
+  "HLLB": {
+    "name": "Benina",
+    "callsign": "Benina Radar",
+    "frequency": ""
+  },
+  "HLLL": {
+    "name": "Tripoli",
+    "callsign": "Tripoli Radar",
+    "frequency": ""
+  },
+  "HRYR": {
+    "name": "Kigali",
+    "callsign": "Kigali Radar",
+    "frequency": ""
+  },
+  "HSSS": {
+    "name": "Khartoum",
+    "callsign": "Khartoum Radar",
+    "frequency": ""
+  },
+  "HTDC": {
+    "name": "Dar-Es-Salaam",
+    "callsign": "Dar-Es-Salaam Radar",
+    "frequency": ""
+  },
+  "HUEC": {
+    "name": "Entebbe",
+    "callsign": "Entebbe Radar",
+    "frequency": "126.6"
+  },
+  "KZA1": {
+    "name": "San Francisco Oceanic",
+    "callsign": "San Francisco Oceanic Center",
+    "frequency": ""
+  },
+  "KZAB": {
+    "name": "Albuquerque",
+    "callsign": "Albuquerque Center",
+    "frequency": ""
+  },
+  "KZAK": {
+    "name": "Oakland Oceanic",
+    "callsign": "Oakland Oceanic Center",
+    "frequency": ""
+  },
+  "KZAU": {
+    "name": "Chicago",
+    "callsign": "Chicago Center",
+    "frequency": "128.450"
+  },
+  "KZBW": {
+    "name": "Boston",
+    "callsign": "Boston Center",
+    "frequency": "124.520"
+  },
+  "KZDC": {
+    "name": "Washington",
+    "callsign": "Washington Center",
+    "frequency": "133.900"
+  },
+  "KZDV": {
+    "name": "Denver",
+    "callsign": "Denver Center",
+    "frequency": ""
+  },
+  "KZFW": {
+    "name": "Fort Worth",
+    "callsign": "Fort Worth Center",
+    "frequency": ""
+  },
+  "KZHU": {
+    "name": "Houston",
+    "callsign": "Houston Center",
+    "frequency": ""
+  },
+  "KZID": {
+    "name": "Indianapolis",
+    "callsign": "Indianapolis Center",
+    "frequency": ""
+  },
+  "KZJX": {
+    "name": "Jacksonville",
+    "callsign": "Jacksonville Center",
+    "frequency": ""
+  },
+  "KZJX-A": {
+    "name": "Jacksonville (Atlantic)",
+    "callsign": "Jacksonville (Atlantic) Center",
+    "frequency": ""
+  },
+  "KZJX-C": {
+    "name": "Jacksonville (Central)",
+    "callsign": "Jacksonville (Central) Center",
+    "frequency": ""
+  },
+  "KZJX-P": {
+    "name": "Jacksonville (Panhandle)",
+    "callsign": "Jacksonville (Panhandle) Center",
+    "frequency": ""
+  },
+  "KZKC": {
+    "name": "Kansas City",
+    "callsign": "Kansas City Center",
+    "frequency": ""
+  },
+  "KZKC-E": {
+    "name": "Kansas City (East)",
+    "callsign": "Kansas City (East) Center",
+    "frequency": ""
+  },
+  "KZKC-W": {
+    "name": "Kansas City (West)",
+    "callsign": "Kansas City (West) Center",
+    "frequency": ""
+  },
+  "KZLA": {
+    "name": "Los Angeles",
+    "callsign": "Los Angeles Center",
+    "frequency": "125.200"
+  },
+  "KZLC": {
+    "name": "Salt Lake",
+    "callsign": "Salt Lake Center",
+    "frequency": ""
+  },
+  "KZMA": {
+    "name": "Miami",
+    "callsign": "Miami Center",
+    "frequency": ""
+  },
+  "KZMA-OCN": {
+    "name": "Miami",
+    "callsign": "Miami Center",
+    "frequency": ""
+  },
+  "KZMA-N": {
+    "name": "Miami",
+    "callsign": "Miami Center",
+    "frequency": ""
+  },
+  "KZME": {
+    "name": "Memphis",
+    "callsign": "Memphis Center",
+    "frequency": ""
+  },
+  "KZMP": {
+    "name": "Minneapolis",
+    "callsign": "Minneapolis Center",
+    "frequency": ""
+  },
+  "KZNY": {
+    "name": "New York",
+    "callsign": "New York Center",
+    "frequency": "121.500"
+  },
+  "KZNY-BDA": {
+    "name": "New York - Bermuda TMA",
+    "callsign": "New York - Bermuda TMA Center",
+    "frequency": ""
+  },
+  "KZNY-W": {
+    "name": "New York (West)",
+    "callsign": "New York (West) Center",
+    "frequency": ""
+  },
+  "KZOA": {
+    "name": "Oakland",
+    "callsign": "Oakland Center",
+    "frequency": ""
+  },
+  "KZOB": {
+    "name": "Cleveland",
+    "callsign": "Cleveland Center",
+    "frequency": ""
+  },
+  "KZSE": {
+    "name": "Seattle",
+    "callsign": "Seattle Center",
+    "frequency": ""
+  },
+  "KZTL": {
+    "name": "Atlanta",
+    "callsign": "Atlanta Center",
+    "frequency": "124.200"
+  },
+  "LAAA": {
+    "name": "Tirana",
+    "callsign": "Tirana Radar",
+    "frequency": ""
+  },
+  "LBSR": {
+    "name": "Sofia",
+    "callsign": "Sofia Radar",
+    "frequency": ""
+  },
+  "LBSR-B": {
+    "name": "Sofia (Black Sea Sector) - Sofia",
+    "callsign": "Sofia (Black Sea Sector) - Sofia Radar",
+    "frequency": ""
+  },
+  "LBSR-E": {
+    "name": "Sofia (East Sector) - Sofia",
+    "callsign": "Sofia (East Sector) - Sofia Radar",
+    "frequency": ""
+  },
+  "LBSR-V": {
+    "name": "Sofia (Varna Sector) - Sofia",
+    "callsign": "Sofia (Varna Sector) - Sofia Radar",
+    "frequency": ""
+  },
+  "LCCC": {
+    "name": "Nicosia",
+    "callsign": "Nicosia Radar",
+    "frequency": ""
+  },
+  "LCCC-E": {
+    "name": "Nicosia-East",
+    "callsign": "Nicosia-East Radar",
+    "frequency": ""
+  },
+  "LCCC-S1": {
+    "name": "Nicosia-South1",
+    "callsign": "Nicosia-South1 Radar",
+    "frequency": ""
+  },
+  "LCCC-S2": {
+    "name": "Nicosia-South2",
+    "callsign": "Nicosia-South2 Radar",
+    "frequency": ""
+  },
+  "LCCC-W": {
+    "name": "Nicosia-West",
+    "callsign": "Nicosia-West Radar",
+    "frequency": ""
+  },
+  "LDZO": {
+    "name": "Zagreb",
+    "callsign": "Zagreb Radar",
+    "frequency": "120.7"
+  },
+  "LECB": {
+    "name": "Barcelona",
+    "callsign": "Barcelona Radar",
+    "frequency": "124.700"
+  },
+  "LECB-CCC": {
+    "name": "Barcelona (Central Sector) - Barcelona",
+    "callsign": "Barcelona (Central Sector) - Barcelona Radar",
+    "frequency": ""
+  },
+  "LECB-CVN": {
+    "name": "Barcelona (CCC+VNI Sector) - Barcelona",
+    "callsign": "Barcelona (CCC+VNI Sector) - Barcelona Radar",
+    "frequency": ""
+  },
+  "LECB-E": {
+    "name": "Barcelona (Combined East) - Barcelona",
+    "callsign": "Barcelona (Combined East) - Barcelona Radar",
+    "frequency": ""
+  },
+  "LECB-LLI": {
+    "name": "Barcelona (Levante Sector) - Barcelona",
+    "callsign": "Barcelona (Levante Sector) - Barcelona Radar",
+    "frequency": ""
+  },
+  "LECB-MVS": {
+    "name": "Barcelona (Mediterraneo Sector) - Barcelona",
+    "callsign": "Barcelona (Mediterraneo Sector) - Barcelona Radar",
+    "frequency": ""
+  },
+  "LECB-N": {
+    "name": "Barcelona (Combined North) - Barcelona",
+    "callsign": "Barcelona (Combined North) - Barcelona Radar",
+    "frequency": ""
+  },
+  "LECB-PPI": {
+    "name": "Barcelona (North East Sector) - Barcelona",
+    "callsign": "Barcelona (North East Sector) - Barcelona Radar",
+    "frequency": ""
+  },
+  "LECB-S": {
+    "name": "Barcelona (Combined South) - Barcelona",
+    "callsign": "Barcelona (Combined South) - Barcelona Radar",
+    "frequency": ""
+  },
+  "LECB-TMA": {
+    "name": "Barcelona (FL305-) - Barcelona",
+    "callsign": "Barcelona (FL305-) - Barcelona Radar",
+    "frequency": ""
+  },
+  "LECB-VNI": {
+    "name": "Barcelona (Verso North Sector) - Barcelona",
+    "callsign": "Barcelona (Verso North Sector) - Barcelona Radar",
+    "frequency": ""
+  },
+  "LECB-W": {
+    "name": "Barcelona (Combined West) - Barcelona",
+    "callsign": "Barcelona (Combined West) - Barcelona Radar",
+    "frequency": ""
+  },
+  "LECL": {
+    "name": "Valencia (FL245-)",
+    "callsign": "Valencia (FL245-) Radar",
+    "frequency": ""
+  },
+  "LECM": {
+    "name": "Madrid",
+    "callsign": "Madrid Radar",
+    "frequency": "132.550"
+  },
+  "LECM-ALL": {
+    "name": "Madrid (Combined LECM+LECS) - Madrid",
+    "callsign": "Madrid (Combined LECM+LECS) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-BDP": {
+    "name": "Madrid (Bilbao-Pamplona Sector) - Madrid",
+    "callsign": "Madrid (Bilbao-Pamplona Sector) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-BLU": {
+    "name": "Madrid (Covers Above FL345 Bilbao Sector) - Madrid",
+    "callsign": "Madrid (Covers Above FL345 Bilbao Sector) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-CJU": {
+    "name": "Madrid (Covers Above FL345 Castejon Sector) - Madrid",
+    "callsign": "Madrid (Covers Above FL345 Castejon Sector) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-CZI": {
+    "name": "Madrid (Castejon-Zaragoza Sector) - Madrid",
+    "callsign": "Madrid (Castejon-Zaragoza Sector) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-PAU": {
+    "name": "Madrid (Covers Above FL345 Pamplona Sector) - Madrid",
+    "callsign": "Madrid (Covers Above FL345 Pamplona Sector) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-R1": {
+    "name": "Madrid",
+    "callsign": "Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-R2": {
+    "name": "Madrid",
+    "callsign": "Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-SAI": {
+    "name": "Madrid (Santiago-Asturias Sector) - Madrid",
+    "callsign": "Madrid (Santiago-Asturias Sector) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-SAO": {
+    "name": "Madrid (Covers Above FL345) - Madrid",
+    "callsign": "Madrid (Covers Above FL345) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-SAS": {
+    "name": "Madrid (Covers up to FL345) - Madrid",
+    "callsign": "Madrid (Covers up to FL345) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-TLI": {
+    "name": "Madrid (Toledo Sector) - Madrid",
+    "callsign": "Madrid (Toledo Sector) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-TLU": {
+    "name": "Madrid (Covers Above FL345 Toledo Sector) - Madrid",
+    "callsign": "Madrid (Covers Above FL345 Toledo Sector) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-ZMI": {
+    "name": "Madrid (Zamora Sector) - Madrid",
+    "callsign": "Madrid (Zamora Sector) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECM-ZMU": {
+    "name": "Madrid (Covers Above FL345 Zamora Sector) - Madrid",
+    "callsign": "Madrid (Covers Above FL345 Zamora Sector) - Madrid Radar",
+    "frequency": ""
+  },
+  "LECP": {
+    "name": "Palma (FL245-)",
+    "callsign": "Palma (FL245-) Radar",
+    "frequency": ""
+  },
+  "LECS": {
+    "name": "Sevilla",
+    "callsign": "Sevilla Radar",
+    "frequency": ""
+  },
+  "LECS-NCS": {
+    "name": "Sevilla (East) - Sevilla",
+    "callsign": "Sevilla (East) - Sevilla Radar",
+    "frequency": ""
+  },
+  "LECS-SM2": {
+    "name": "Sevilla (West) - Sevilla",
+    "callsign": "Sevilla (West) - Sevilla Radar",
+    "frequency": ""
+  },
+  "LECS-CEN": {
+    "name": "Sevilla (FL305-) - Sevilla",
+    "callsign": "Sevilla (FL305-) - Sevilla Radar",
+    "frequency": ""
+  },
+  "LFBB": {
+    "name": "Bordeaux",
+    "callsign": "Bordeaux Radar",
+    "frequency": "125.100"
+  },
+  "LFBB-H": {
+    "name": "Bordeaux ACC (FL195+) - Bordeaux",
+    "callsign": "Bordeaux ACC (FL195+) - Bordeaux Radar",
+    "frequency": ""
+  },
+  "LFBB-L": {
+    "name": "Bordeaux ACC (FL195+) - Bordeaux",
+    "callsign": "Bordeaux ACC (FL195+) - Bordeaux Radar",
+    "frequency": ""
+  },
+  "LFBB-N": {
+    "name": "Bordeaux ACC (FL195+) - Bordeaux",
+    "callsign": "Bordeaux ACC (FL195+) - Bordeaux Radar",
+    "frequency": ""
+  },
+  "LFBB-P": {
+    "name": "Bordeaux ACC (FL195+) - Bordeaux",
+    "callsign": "Bordeaux ACC (FL195+) - Bordeaux Radar",
+    "frequency": ""
+  },
+  "LFBB-R": {
+    "name": "Bordeaux ACC (FL195+) - Bordeaux",
+    "callsign": "Bordeaux ACC (FL195+) - Bordeaux Radar",
+    "frequency": ""
+  },
+  "LFBB-T": {
+    "name": "Bordeaux ACC (FL195+) - Bordeaux",
+    "callsign": "Bordeaux ACC (FL195+) - Bordeaux Radar",
+    "frequency": ""
+  },
+  "LFBB-UN": {
+    "name": "Bordeaux ACC (FL195+) - Bordeaux",
+    "callsign": "Bordeaux ACC (FL195+) - Bordeaux Radar",
+    "frequency": ""
+  },
+  "LFBB-US": {
+    "name": "Bordeaux ACC (FL195+) - Bordeaux",
+    "callsign": "Bordeaux ACC (FL195+) - Bordeaux Radar",
+    "frequency": ""
+  },
+  "LFBB-X": {
+    "name": "Bordeaux ACC (FL195+) - Bordeaux",
+    "callsign": "Bordeaux ACC (FL195+) - Bordeaux Radar",
+    "frequency": ""
+  },
+  "LFBB-Z": {
+    "name": "Bordeaux ACC (FL195+) - Bordeaux",
+    "callsign": "Bordeaux ACC (FL195+) - Bordeaux Radar",
+    "frequency": ""
+  },
+  "LFEE": {
+    "name": "Reims",
+    "callsign": "Reims Radar",
+    "frequency": "128.300"
+  },
+  "LFEE-E": {
+    "name": "Reims ACC (FL195+) - Reims",
+    "callsign": "Reims ACC (FL195+) - Reims Radar",
+    "frequency": ""
+  },
+  "LFEE-N": {
+    "name": "Reims ACC (FL265+) - Reims",
+    "callsign": "Reims ACC (FL265+) - Reims Radar",
+    "frequency": ""
+  },
+  "LFFF": {
+    "name": "Paris",
+    "callsign": "Paris Radar",
+    "frequency": "128.100"
+  },
+  "LFFF-AENB": {
+    "name": "Paris",
+    "callsign": "Paris Radar",
+    "frequency": ""
+  },
+  "LFFF-AOML": {
+    "name": "Paris",
+    "callsign": "Paris Radar",
+    "frequency": ""
+  },
+  "LFFF-DGTJ": {
+    "name": "Paris",
+    "callsign": "Paris Radar",
+    "frequency": ""
+  },
+  "LFFF-OPKZ": {
+    "name": "Paris",
+    "callsign": "Paris Radar",
+    "frequency": ""
+  },
+  "LFFF-RPAE": {
+    "name": "Paris",
+    "callsign": "Paris Radar",
+    "frequency": ""
+  },
+  "LFFF-RPAW": {
+    "name": "Paris",
+    "callsign": "Paris Radar",
+    "frequency": ""
+  },
+  "LFMM": {
+    "name": "Marseille",
+    "callsign": "Marseille Radar",
+    "frequency": "126.150"
+  },
+  "LFMM-RAE": {
+    "name": "Marseille",
+    "callsign": "Marseille Radar",
+    "frequency": ""
+  },
+  "LFMM-RAW": {
+    "name": "Marseille",
+    "callsign": "Marseille Radar",
+    "frequency": ""
+  },
+  "LFRR": {
+    "name": "Brest",
+    "callsign": "Brest Radar",
+    "frequency": "125.500"
+  },
+  "LFRR-A": {
+    "name": "Brest",
+    "callsign": "Brest Radar",
+    "frequency": ""
+  },
+  "LFRR-E": {
+    "name": "Brest ACC (FL295+) - Brest",
+    "callsign": "Brest ACC (FL295+) - Brest Radar",
+    "frequency": ""
+  },
+  "LFRR-G": {
+    "name": "Brest",
+    "callsign": "Brest Radar",
+    "frequency": ""
+  },
+  "LFRR-J": {
+    "name": "Brest",
+    "callsign": "Brest Radar",
+    "frequency": ""
+  },
+  "LFRR-K": {
+    "name": "Brest",
+    "callsign": "Brest Radar",
+    "frequency": ""
+  },
+  "LFRR-N": {
+    "name": "Brest",
+    "callsign": "Brest Radar",
+    "frequency": ""
+  },
+  "LFRR-S": {
+    "name": "Brest",
+    "callsign": "Brest Radar",
+    "frequency": ""
+  },
+  "LFRR-V": {
+    "name": "Brest",
+    "callsign": "Brest Radar",
+    "frequency": ""
+  },
+  "LFRR-VK": {
+    "name": "Brest",
+    "callsign": "Brest Radar",
+    "frequency": ""
+  },
+  "LFRR-W": {
+    "name": "Brest",
+    "callsign": "Brest Radar",
+    "frequency": ""
+  },
+  "LGGG": {
+    "name": "Athinai ACC (Above FL325) - Athinai",
+    "callsign": "Athinai ACC (Above FL325) - Athinai Radar",
+    "frequency": ""
+  },
+  "LGGG-KAV": {
+    "name": "Athinai ACC (Kavos) - Athinai",
+    "callsign": "Athinai ACC (Kavos) - Athinai Radar",
+    "frequency": ""
+  },
+  "LGGG-KFN": {
+    "name": "Athinai ACC (Kefallinia) - Athinai",
+    "callsign": "Athinai ACC (Kefallinia) - Athinai Radar",
+    "frequency": ""
+  },
+  "LGGG-KRK": {
+    "name": "Athinai ACC (Kerkira) - Athinai",
+    "callsign": "Athinai ACC (Kerkira) - Athinai Radar",
+    "frequency": ""
+  },
+  "LGGG-MIL": {
+    "name": "Athinai ACC (Milos) - Athinai",
+    "callsign": "Athinai ACC (Milos) - Athinai Radar",
+    "frequency": ""
+  },
+  "LGGG-PLH": {
+    "name": "Athinai ACC (Paleochora) - Athinai",
+    "callsign": "Athinai ACC (Paleochora) - Athinai Radar",
+    "frequency": ""
+  },
+  "LGGG-RDS": {
+    "name": "Athinai ACC (Rodos) - Athinai",
+    "callsign": "Athinai ACC (Rodos) - Athinai Radar",
+    "frequency": ""
+  },
+  "LGGG-SIT": {
+    "name": "Athinai ACC (Sitia) - Athinai",
+    "callsign": "Athinai ACC (Sitia) - Athinai Radar",
+    "frequency": ""
+  },
+  "LGMD-KVL": {
+    "name": "Makedonia ACC (Kavala) - Athinai",
+    "callsign": "Makedonia ACC (Kavala) - Athinai Radar",
+    "frequency": ""
+  },
+  "LGMD-LMO": {
+    "name": "Makedonia ACC (Limnos) - Athinai",
+    "callsign": "Makedonia ACC (Limnos) - Athinai Radar",
+    "frequency": ""
+  },
+  "LGMD-W": {
+    "name": "Makedonia ACC (West) - Athinai",
+    "callsign": "Makedonia ACC (West) - Athinai Radar",
+    "frequency": ""
+  },
+  "LHCC": {
+    "name": "Budapest",
+    "callsign": "Budapest Radar",
+    "frequency": "133.000"
+  },
+  "LIBB": {
+    "name": "Brindisi",
+    "callsign": "Brindisi Radar",
+    "frequency": ""
+  },
+  "LIMM": {
+    "name": "Milano",
+    "callsign": "Milano Radar",
+    "frequency": ""
+  },
+  "LIMM-ES": {
+    "name": "Milano ES - Milano",
+    "callsign": "Milano ES - Milano Radar",
+    "frequency": ""
+  },
+  "LIMM-ES5": {
+    "name": "Milano ES - Milano",
+    "callsign": "Milano ES - Milano Radar",
+    "frequency": ""
+  },
+  "LIMM-EN": {
+    "name": "Milano EN - Milano",
+    "callsign": "Milano EN - Milano Radar",
+    "frequency": ""
+  },
+  "LIMM-WN": {
+    "name": "Milano WN - Milano",
+    "callsign": "Milano WN - Milano Radar",
+    "frequency": ""
+  },
+  "LIPP": {
+    "name": "Padova",
+    "callsign": "Padova Radar",
+    "frequency": ""
+  },
+  "LIPP-CW": {
+    "name": "Padova CW - Padova",
+    "callsign": "Padova CW - Padova Radar",
+    "frequency": ""
+  },
+  "LIPP-NW": {
+    "name": "Padova NW - Padova",
+    "callsign": "Padova NW - Padova Radar",
+    "frequency": ""
+  },
+  "LIPP-SD": {
+    "name": "Padova SD - Padova",
+    "callsign": "Padova SD - Padova Radar",
+    "frequency": ""
+  },
+  "LIRR": {
+    "name": "Roma",
+    "callsign": "Roma Radar",
+    "frequency": "125.750"
+  },
+  "LIRR-NE": {
+    "name": "Roma NE - Roma",
+    "callsign": "Roma NE - Roma Radar",
+    "frequency": ""
+  },
+  "LIRR-EE": {
+    "name": "Roma EE - Roma",
+    "callsign": "Roma EE - Roma Radar",
+    "frequency": ""
+  },
+  "LIRR-ES": {
+    "name": "Roma ES - Roma",
+    "callsign": "Roma ES - Roma Radar",
+    "frequency": ""
+  },
+  "LIRR-EW": {
+    "name": "Roma EW - Roma",
+    "callsign": "Roma EW - Roma Radar",
+    "frequency": ""
+  },
+  "LIRR-ND": {
+    "name": "Roma ND - Roma",
+    "callsign": "Roma ND - Roma Radar",
+    "frequency": ""
+  },
+  "LIRR-NN": {
+    "name": "Roma NN - Roma",
+    "callsign": "Roma NN - Roma Radar",
+    "frequency": ""
+  },
+  "LIRR-NW": {
+    "name": "Roma NW - Roma",
+    "callsign": "Roma NW - Roma Radar",
+    "frequency": ""
+  },
+  "LIRR-OV": {
+    "name": "Roma OV - Roma",
+    "callsign": "Roma OV - Roma Radar",
+    "frequency": ""
+  },
+  "LIRR-SU": {
+    "name": "Roma SU - Roma",
+    "callsign": "Roma SU - Roma Radar",
+    "frequency": ""
+  },
+  "LIRR-TS": {
+    "name": "Roma TS - Roma",
+    "callsign": "Roma TS - Roma Radar",
+    "frequency": ""
+  },
+  "LIRR-US": {
+    "name": "Roma US - Roma",
+    "callsign": "Roma US - Roma Radar",
+    "frequency": ""
+  },
+  "LJLA": {
+    "name": "Ljubljana",
+    "callsign": "Ljubljana Radar",
+    "frequency": ""
+  },
+  "LKAA": {
+    "name": "Praha",
+    "callsign": "Praha Radar",
+    "frequency": "120.900"
+  },
+  "LLGV": {
+    "name": "Hagav",
+    "callsign": "Hagav Radar",
+    "frequency": ""
+  },
+  "LLLL": {
+    "name": "Tel Aviv",
+    "callsign": "Tel Aviv Radar",
+    "frequency": "121.4"
+  },
+  "LLPL": {
+    "name": "Pluto",
+    "callsign": "Pluto Radar",
+    "frequency": ""
+  },
+  "LLPT": {
+    "name": "Tel Aviv North",
+    "callsign": "Tel Aviv North Radar",
+    "frequency": ""
+  },
+  "LLSC": {
+    "name": "Tel Aviv South",
+    "callsign": "Tel Aviv South Radar",
+    "frequency": ""
+  },
+  "LMMM": {
+    "name": "Malta",
+    "callsign": "Malta Radar",
+    "frequency": ""
+  },
+  "LOVV": {
+    "name": "Wien",
+    "callsign": "Wien Radar",
+    "frequency": "133.600"
+  },
+  "LOVV-B": {
+    "name": "Wien",
+    "callsign": "Wien Radar",
+    "frequency": "134.675"
+  },
+  "LOVV-C": {
+    "name": "Wien",
+    "callsign": "Wien Radar",
+    "frequency": "129.62"
+  },
+  "LOVV-E": {
+    "name": "Wien",
+    "callsign": "Wien Radar",
+    "frequency": "134.675"
+  },
+  "LOVV-N": {
+    "name": "Wien",
+    "callsign": "Wien Radar",
+    "frequency": "129.475"
+  },
+  "LOVV-W": {
+    "name": "Wien",
+    "callsign": "Wien Radar",
+    "frequency": ""
+  },
+  "LPAM": {
+    "name": "Lisboa Military",
+    "callsign": "Lisboa Military Radar",
+    "frequency": ""
+  },
+  "LPPC": {
+    "name": "Lisboa",
+    "callsign": "Lisboa Radar",
+    "frequency": "125.550"
+  },
+  "LPPC-C": {
+    "name": "Lisboa - CENTRE Sector",
+    "callsign": "Lisboa - CENTRE Sector Radar",
+    "frequency": ""
+  },
+  "LPPC-E": {
+    "name": "Lisboa - EAST COMBINED",
+    "callsign": "Lisboa - EAST COMBINED Radar",
+    "frequency": ""
+  },
+  "LPPC-I": {
+    "name": "Lisboa - MADEIRA Sector",
+    "callsign": "Lisboa - MADEIRA Sector Radar",
+    "frequency": ""
+  },
+  "LPPC-N": {
+    "name": "Lisboa - NORTH Sector",
+    "callsign": "Lisboa - NORTH Sector Radar",
+    "frequency": ""
+  },
+  "LPPC-O": {
+    "name": "Lisboa - WEST EXPANDED",
+    "callsign": "Lisboa - WEST EXPANDED Radar",
+    "frequency": ""
+  },
+  "LPPC-S": {
+    "name": "Lisboa - SOUTH Sector",
+    "callsign": "Lisboa - SOUTH Sector Radar",
+    "frequency": ""
+  },
+  "LPPC-W": {
+    "name": "Lisboa - WEST Sector",
+    "callsign": "Lisboa - WEST Sector Radar",
+    "frequency": ""
+  },
+  "LPPO": {
+    "name": "Santa Maria",
+    "callsign": "Santa Maria Radar",
+    "frequency": ""
+  },
+  "LPPO-TMA": {
+    "name": "Santa Maria Radar",
+    "callsign": "Santa Maria Radar Radar",
+    "frequency": ""
+  },
+  "LQSB": {
+    "name": "Sarajevo",
+    "callsign": "Sarajevo Radar",
+    "frequency": ""
+  },
+  "LRBB": {
+    "name": "Bucuresti ACC (KONEL) - Bucharest",
+    "callsign": "Bucuresti ACC (KONEL) - Bucharest Radar",
+    "frequency": "128.61"
+  },
+  "LRBB-A": {
+    "name": "Bucuresti ACC (DINAR) - Bucharest",
+    "callsign": "Bucuresti ACC (DINAR) - Bucharest Radar",
+    "frequency": ""
+  },
+  "LRBB-B": {
+    "name": "Bucuresti ACC (BUDMO) - Bucharest",
+    "callsign": "Bucuresti ACC (BUDMO) - Bucharest Radar",
+    "frequency": ""
+  },
+  "LRBB-N": {
+    "name": "Bucuresti ACC (BANAP) - Bucharest",
+    "callsign": "Bucuresti ACC (BANAP) - Bucharest Radar",
+    "frequency": ""
+  },
+  "LSAG": {
+    "name": "Swiss Radar (Geneva ACC) - Switzerland",
+    "callsign": "Swiss Radar (Geneva ACC) - Switzerland Radar",
+    "frequency": "126.825"
+  },
+  "LSAS": {
+    "name": "Swiss Radar - Switzerland",
+    "callsign": "Swiss Radar - Switzerland Radar",
+    "frequency": "128.050"
+  },
+  "LSAZ": {
+    "name": "Swiss Radar (Zurich ACC) - Switzerland",
+    "callsign": "Swiss Radar (Zurich ACC) - Switzerland Radar",
+    "frequency": "139.5"
+  },
+  "LTAA": {
+    "name": "Ankara",
+    "callsign": "Ankara Radar",
+    "frequency": ""
+  },
+  "LTAA-10": {
+    "name": "Ankara (Sector 10)",
+    "callsign": "Ankara (Sector 10) Radar",
+    "frequency": ""
+  },
+  "LTAA-11": {
+    "name": "Ankara (Sector 11)",
+    "callsign": "Ankara (Sector 11) Radar",
+    "frequency": ""
+  },
+  "LTAA-12": {
+    "name": "Ankara (Sector 12)",
+    "callsign": "Ankara (Sector 12) Radar",
+    "frequency": ""
+  },
+  "LTAA-13": {
+    "name": "Ankara (Sector 13)",
+    "callsign": "Ankara (Sector 13) Radar",
+    "frequency": ""
+  },
+  "LTAA-14": {
+    "name": "Ankara (Sector 14)",
+    "callsign": "Ankara (Sector 14) Radar",
+    "frequency": ""
+  },
+  "LTAA-15": {
+    "name": "Ankara (Sector 15)",
+    "callsign": "Ankara (Sector 15) Radar",
+    "frequency": ""
+  },
+  "LTAA-16": {
+    "name": "Ankara (Sector 16)",
+    "callsign": "Ankara (Sector 16) Radar",
+    "frequency": ""
+  },
+  "LTAA-17": {
+    "name": "Ankara (Sector 17)",
+    "callsign": "Ankara (Sector 17) Radar",
+    "frequency": ""
+  },
+  "LTAA-18": {
+    "name": "Ankara (Sector 18)",
+    "callsign": "Ankara (Sector 18) Radar",
+    "frequency": ""
+  },
+  "LTAA-19": {
+    "name": "Ankara (Sector 19)",
+    "callsign": "Ankara (Sector 19) Radar",
+    "frequency": ""
+  },
+  "LTAA-7": {
+    "name": "Ankara (Sector 7)",
+    "callsign": "Ankara (Sector 7) Radar",
+    "frequency": ""
+  },
+  "LTAA-8": {
+    "name": "Ankara (Sector 8)",
+    "callsign": "Ankara (Sector 8) Radar",
+    "frequency": ""
+  },
+  "LTAA-9": {
+    "name": "Ankara (Sector 9)",
+    "callsign": "Ankara (Sector 9) Radar",
+    "frequency": ""
+  },
+  "LTAA-A": {
+    "name": "Ankara Central & East",
+    "callsign": "Ankara Central & East Radar",
+    "frequency": ""
+  },
+  "LTAA-C": {
+    "name": "Ankara Central",
+    "callsign": "Ankara Central Radar",
+    "frequency": ""
+  },
+  "LTAA-E": {
+    "name": "Ankara East",
+    "callsign": "Ankara East Radar",
+    "frequency": ""
+  },
+  "LTAA-EN": {
+    "name": "Ankara East North",
+    "callsign": "Ankara East North Radar",
+    "frequency": ""
+  },
+  "LTAA-ES": {
+    "name": "Ankara East South",
+    "callsign": "Ankara East South Radar",
+    "frequency": ""
+  },
+  "LTAA-N": {
+    "name": "Ankara North",
+    "callsign": "Ankara North Radar",
+    "frequency": ""
+  },
+  "LTAA-S": {
+    "name": "Ankara South",
+    "callsign": "Ankara South Radar",
+    "frequency": ""
+  },
+  "LTBB": {
+    "name": "Istanbul",
+    "callsign": "Istanbul Radar",
+    "frequency": ""
+  },
+  "LTBB-1": {
+    "name": "Ankara (Sector 1)",
+    "callsign": "Ankara (Sector 1) Radar",
+    "frequency": ""
+  },
+  "LTBB-2": {
+    "name": "Ankara (Sector 2)",
+    "callsign": "Ankara (Sector 2) Radar",
+    "frequency": ""
+  },
+  "LTBB-3": {
+    "name": "Ankara (Sector 3)",
+    "callsign": "Ankara (Sector 3) Radar",
+    "frequency": ""
+  },
+  "LTBB-4": {
+    "name": "Ankara (Sector 4)",
+    "callsign": "Ankara (Sector 4) Radar",
+    "frequency": ""
+  },
+  "LTBB-5": {
+    "name": "Ankara (Sector 5)",
+    "callsign": "Ankara (Sector 5) Radar",
+    "frequency": ""
+  },
+  "LTBB-6": {
+    "name": "Ankara (Sector 6)",
+    "callsign": "Ankara (Sector 6) Radar",
+    "frequency": ""
+  },
+  "LTBB-W": {
+    "name": "Ankara West",
+    "callsign": "Ankara West Radar",
+    "frequency": ""
+  },
+  "LTBB-W78": {
+    "name": "Ankara West Combined",
+    "callsign": "Ankara West Combined Radar",
+    "frequency": ""
+  },
+  "LTBB-WN": {
+    "name": "Ankara West North",
+    "callsign": "Ankara West North Radar",
+    "frequency": ""
+  },
+  "LTBB-WS": {
+    "name": "Ankara West South",
+    "callsign": "Ankara West South Radar",
+    "frequency": ""
+  },
+  "LTXX": {
+    "name": "Ankara Control",
+    "callsign": "Ankara Control Radar",
+    "frequency": ""
+  },
+  "LUUU": {
+    "name": "Chisinau",
+    "callsign": "Chisinau Radar",
+    "frequency": ""
+  },
+  "LWSS": {
+    "name": "Skopje",
+    "callsign": "Skopje Radar",
+    "frequency": ""
+  },
+  "LYBA": {
+    "name": "Beograd",
+    "callsign": "Beograd Radar",
+    "frequency": ""
+  },
+  "LZBB": {
+    "name": "Bratislava",
+    "callsign": "Bratislava Radar",
+    "frequency": "134.475"
+  },
+  "MDCS": {
+    "name": "Santo Domingo",
+    "callsign": "Santo Domingo Radar",
+    "frequency": ""
+  },
+  "MHCC": {
+    "name": "Cenamer",
+    "callsign": "Cenamer Radar",
+    "frequency": ""
+  },
+  "MKJK": {
+    "name": "Kingston",
+    "callsign": "Kingston Radar",
+    "frequency": ""
+  },
+  "MMEX": {
+    "name": "Mexico",
+    "callsign": "Mexico Radar",
+    "frequency": ""
+  },
+  "MMFO": {
+    "name": "Mazatlan",
+    "callsign": "Mazatlan Radar",
+    "frequency": ""
+  },
+  "MMFR": {
+    "name": "Mexico",
+    "callsign": "Mexico Radar",
+    "frequency": ""
+  },
+  "MMID": {
+    "name": "Merida",
+    "callsign": "Merida Radar",
+    "frequency": ""
+  },
+  "MMTY": {
+    "name": "Monterrey",
+    "callsign": "Monterrey Radar",
+    "frequency": ""
+  },
+  "MMZT": {
+    "name": "Mazatlan",
+    "callsign": "Mazatlan Radar",
+    "frequency": ""
+  },
+  "MPZL": {
+    "name": "Panama",
+    "callsign": "Panama Radar",
+    "frequency": ""
+  },
+  "MTEG": {
+    "name": "Port-Au-Prince",
+    "callsign": "Port-Au-Prince Radar",
+    "frequency": "124.5"
+  },
+  "MUFH": {
+    "name": "Havana",
+    "callsign": "Havana Radar",
+    "frequency": ""
+  },
+  "NAT": {
+    "name": "Shanwick & Gander",
+    "callsign": "Shanwick & Gander Radar",
+    "frequency": ""
+  },
+  "NCRG": {
+    "name": "Rarotonga",
+    "callsign": "Rarotonga Radar",
+    "frequency": ""
+  },
+  "NFFF": {
+    "name": "Nadi Oceanic",
+    "callsign": "Nadi Oceanic Radar",
+    "frequency": ""
+  },
+  "NFFJ": {
+    "name": "Nadi",
+    "callsign": "Nadi Radar",
+    "frequency": ""
+  },
+  "NSFA": {
+    "name": "Faleolo",
+    "callsign": "Faleolo Radar",
+    "frequency": ""
+  },
+  "NSTU": {
+    "name": "Pago Pago",
+    "callsign": "Pago Pago Radar",
+    "frequency": ""
+  },
+  "NTTC": {
+    "name": "Tahiti",
+    "callsign": "Tahiti Radar",
+    "frequency": ""
+  },
+  "NTTT": {
+    "name": "Tahiti Radio",
+    "callsign": "Tahiti Radio Radar",
+    "frequency": ""
+  },
+  "NZAA": {
+    "name": "Auckland (Raglan)",
+    "callsign": "Auckland (Raglan) Radar",
+    "frequency": "120.9"
+  },
+  "NZCB": {
+    "name": "Christchurch (Bay)",
+    "callsign": "Christchurch (Bay) Radar",
+    "frequency": "120.9"
+  },
+  "NZCK": {
+    "name": "Christchurch (Kaikoura)",
+    "callsign": "Christchurch (Kaikoura) Radar",
+    "frequency": "120.9"
+  },
+  "NZCM": {
+    "name": "McMurdo (Mac)",
+    "callsign": "McMurdo (Mac) Radar",
+    "frequency": ""
+  },
+  "NZCS": {
+    "name": "Christchurch (South)",
+    "callsign": "Christchurch (South) Radar",
+    "frequency": ""
+  },
+  "NZCT": {
+    "name": "Christchurch (Taranaki)",
+    "callsign": "Christchurch (Taranaki) Radar",
+    "frequency": ""
+  },
+  "NZOH": {
+    "name": "Ohakea",
+    "callsign": "Ohakea Radar",
+    "frequency": ""
+  },
+  "NZZO": {
+    "name": "Auckland Radio - Tasman",
+    "callsign": "Auckland Radio - Tasman Radar",
+    "frequency": ""
+  },
+  "OAKX": {
+    "name": "Kabul",
+    "callsign": "Kabul Radar",
+    "frequency": ""
+  },
+  "OBBB": {
+    "name": "Bahrain",
+    "callsign": "Bahrain Radar",
+    "frequency": ""
+  },
+  "OBBB-C": {
+    "name": "Bahrain Central",
+    "callsign": "Bahrain Central Radar",
+    "frequency": ""
+  },
+  "OBBB-E": {
+    "name": "Bahrain East",
+    "callsign": "Bahrain East Radar",
+    "frequency": ""
+  },
+  "OBBB-N": {
+    "name": "Bahrain North",
+    "callsign": "Bahrain North Radar",
+    "frequency": ""
+  },
+  "OBBB-S": {
+    "name": "Bahrain South",
+    "callsign": "Bahrain South Radar",
+    "frequency": ""
+  },
+  "OEJD": {
+    "name": "Jeddah",
+    "callsign": "Jeddah Radar",
+    "frequency": ""
+  },
+  "OEJD-2": {
+    "name": "Jeddah",
+    "callsign": "Jeddah Radar",
+    "frequency": ""
+  },
+  "OEJD-3": {
+    "name": "Jeddah",
+    "callsign": "Jeddah Radar",
+    "frequency": ""
+  },
+  "OEJD-C": {
+    "name": "Jeddah Central",
+    "callsign": "Jeddah Central Radar",
+    "frequency": ""
+  },
+  "OEJD-E": {
+    "name": "Jeddah East",
+    "callsign": "Jeddah East Radar",
+    "frequency": ""
+  },
+  "OEJD-N": {
+    "name": "Jeddah North",
+    "callsign": "Jeddah North Radar",
+    "frequency": ""
+  },
+  "OEJD-NE": {
+    "name": "Jeddah North-East",
+    "callsign": "Jeddah North-East Radar",
+    "frequency": ""
+  },
+  "OEJD-S": {
+    "name": "Jeddah South",
+    "callsign": "Jeddah South Radar",
+    "frequency": ""
+  },
+  "OEJD-SE": {
+    "name": "Jeddah South-East",
+    "callsign": "Jeddah South-East Radar",
+    "frequency": ""
+  },
+  "OEJD-W": {
+    "name": "Jeddah West",
+    "callsign": "Jeddah West Radar",
+    "frequency": ""
+  },
+  "OEJN": {
+    "name": "Jeddah Terminal",
+    "callsign": "Jeddah Terminal Radar",
+    "frequency": ""
+  },
+  "OERD": {
+    "name": "Riyadh (From FL345)",
+    "callsign": "Riyadh (From FL345) Radar",
+    "frequency": ""
+  },
+  "OERD-E": {
+    "name": "Riyadh East (From FL345)",
+    "callsign": "Riyadh East (From FL345) Radar",
+    "frequency": ""
+  },
+  "OERD-N": {
+    "name": "Riyadh North (From FL345)",
+    "callsign": "Riyadh North (From FL345) Radar",
+    "frequency": ""
+  },
+  "OERD-NE": {
+    "name": "Riyadh North-East (From FL345)",
+    "callsign": "Riyadh North-East (From FL345) Radar",
+    "frequency": ""
+  },
+  "OERK": {
+    "name": "Riyadh Terminal",
+    "callsign": "Riyadh Terminal Radar",
+    "frequency": ""
+  },
+  "OIIX": {
+    "name": "Tehran",
+    "callsign": "Tehran Radar",
+    "frequency": ""
+  },
+  "OJAC": {
+    "name": "Amman",
+    "callsign": "Amman Radar",
+    "frequency": ""
+  },
+  "OKAC": {
+    "name": "Kuwait",
+    "callsign": "Kuwait Radar",
+    "frequency": ""
+  },
+  "OLBB": {
+    "name": "Beirut",
+    "callsign": "Beirut Radar",
+    "frequency": ""
+  },
+  "OMAE": {
+    "name": "U.A.E",
+    "callsign": "U.A.E Radar",
+    "frequency": "129.4"
+  },
+  "OOMM": {
+    "name": "Muscat",
+    "callsign": "Muscat Radar",
+    "frequency": "121.2"
+  },
+  "OPKR": {
+    "name": "Karachi",
+    "callsign": "Karachi Radar",
+    "frequency": ""
+  },
+  "OPLR": {
+    "name": "Lahore",
+    "callsign": "Lahore Radar",
+    "frequency": ""
+  },
+  "ORBB": {
+    "name": "Baghdad",
+    "callsign": "Baghdad Radar",
+    "frequency": ""
+  },
+  "ORBB-S": {
+    "name": "Baghdad South",
+    "callsign": "Baghdad South Radar",
+    "frequency": ""
+  },
+  "OSTT": {
+    "name": "Damascus",
+    "callsign": "Damascus Radar",
+    "frequency": ""
+  },
+  "OTDF": {
+    "name": "Doha",
+    "callsign": "Doha Radar",
+    "frequency": ""
+  },
+  "OTDF-N": {
+    "name": "Doha (North SFC-FL245)",
+    "callsign": "Doha (North SFC-FL245) Radar",
+    "frequency": ""
+  },
+  "OTDF-S": {
+    "name": "Doha (South SFC-UNL)",
+    "callsign": "Doha (South SFC-UNL) Radar",
+    "frequency": ""
+  },
+  "OYSC": {
+    "name": "Sanaa",
+    "callsign": "Sanaa Radar",
+    "frequency": ""
+  },
+  "PAZA": {
+    "name": "Anchorage",
+    "callsign": "Anchorage Radar",
+    "frequency": ""
+  },
+  "PAZA-A": {
+    "name": "Anchorage Oceanic - Arctic",
+    "callsign": "Anchorage Oceanic - Arctic Radar",
+    "frequency": ""
+  },
+  "PAZA-D": {
+    "name": "Anchorage",
+    "callsign": "Anchorage Radar",
+    "frequency": ""
+  },
+  "PAZA-P": {
+    "name": "Anchorage Oceanic - Pacific",
+    "callsign": "Anchorage Oceanic - Pacific Radar",
+    "frequency": ""
+  },
+  "PGZU": {
+    "name": "Guam",
+    "callsign": "Guam Radar",
+    "frequency": ""
+  },
+  "PHZH": {
+    "name": "Honolulu",
+    "callsign": "Honolulu Radar",
+    "frequency": ""
+  },
+  "RCAA": {
+    "name": "Taipei",
+    "callsign": "Taipei Radar",
+    "frequency": "126.18"
+  },
+  "RJBG": {
+    "name": "Kobe ACC - Kobe",
+    "callsign": "Kobe ACC - Kobe Radar",
+    "frequency": "124.05"
+  },
+  "RJBG-E": {
+    "name": "Kobe ACC N49 Sector (Up to FL335) - Kobe",
+    "callsign": "Kobe ACC N49 Sector (Up to FL335) - Kobe Radar",
+    "frequency": ""
+  },
+  "RJBG-N": {
+    "name": "Kobe ACC North (Up to FL335) - Kobe",
+    "callsign": "Kobe ACC North (Up to FL335) - Kobe Radar",
+    "frequency": ""
+  },
+  "RJBG-S": {
+    "name": "Kobe ACC N55 Sector (Up to FL335) - Kobe",
+    "callsign": "Kobe ACC N55 Sector (Up to FL335) - Kobe Radar",
+    "frequency": ""
+  },
+  "RJBG-W": {
+    "name": "Kobe ACC N54 Sector (Up to FL335) - Kobe",
+    "callsign": "Kobe ACC N54 Sector (Up to FL335) - Kobe Radar",
+    "frequency": ""
+  },
+  "RJDG": {
+    "name": "Fukuoka ACC - Fukuoka",
+    "callsign": "Fukuoka ACC - Fukuoka Radar",
+    "frequency": ""
+  },
+  "RJDG-C": {
+    "name": "Fukuoka ACC Central - Fukuoka",
+    "callsign": "Fukuoka ACC Central - Fukuoka Radar",
+    "frequency": ""
+  },
+  "RJDG-E": {
+    "name": "Fukuoka ACC F07 Sector - Fukuoka",
+    "callsign": "Fukuoka ACC F07 Sector - Fukuoka Radar",
+    "frequency": ""
+  },
+  "RJDG-N": {
+    "name": "Fukuoka ACC F01 Sector - Fukuoka",
+    "callsign": "Fukuoka ACC F01 Sector - Fukuoka Radar",
+    "frequency": ""
+  },
+  "RJDG-S": {
+    "name": "Fukuoka ACC F17 Sector - Fukuoka",
+    "callsign": "Fukuoka ACC F17 Sector - Fukuoka Radar",
+    "frequency": ""
+  },
+  "RJDG-W": {
+    "name": "Fukuoka ACC F20 Sector - Fukuoka",
+    "callsign": "Fukuoka ACC F20 Sector - Fukuoka Radar",
+    "frequency": ""
+  },
+  "RJJJ": {
+    "name": "Fukuoka ACC - Tokyo",
+    "callsign": "Fukuoka ACC - Tokyo Radar",
+    "frequency": ""
+  },
+  "RJTG": {
+    "name": "Tokyo ACC - Tokyo",
+    "callsign": "Tokyo ACC - Tokyo Radar",
+    "frequency": ""
+  },
+  "RJTG-E": {
+    "name": "Tokyo ACC T36 Sector (Up to FL335) - Tokyo",
+    "callsign": "Tokyo ACC T36 Sector (Up to FL335) - Tokyo Radar",
+    "frequency": ""
+  },
+  "RJTG-N": {
+    "name": "Tokyo ACC T32 Sector (Up to FL335) - Tokyo",
+    "callsign": "Tokyo ACC T32 Sector (Up to FL335) - Tokyo Radar",
+    "frequency": ""
+  },
+  "RJTG-S": {
+    "name": "Tokyo ACC South (Up to FL335) - Tokyo",
+    "callsign": "Tokyo ACC South (Up to FL335) - Tokyo Radar",
+    "frequency": ""
+  },
+  "RJTG-W": {
+    "name": "Tokyo ACC T46 Sector (Up to FL335) - Tokyo",
+    "callsign": "Tokyo ACC T46 Sector (Up to FL335) - Tokyo Radar",
+    "frequency": ""
+  },
+  "RKDA": {
+    "name": "Daegu ACC - Incheon",
+    "callsign": "Daegu ACC - Incheon Radar",
+    "frequency": ""
+  },
+  "RKDA-C": {
+    "name": "Daegu ACC (Central) - Incheon",
+    "callsign": "Daegu ACC (Central) - Incheon Radar",
+    "frequency": ""
+  },
+  "RKDA-E": {
+    "name": "Daegu ACC (East) - Incheon",
+    "callsign": "Daegu ACC (East) - Incheon Radar",
+    "frequency": ""
+  },
+  "RKDA-W": {
+    "name": "Daegu ACC (West) - Incheon",
+    "callsign": "Daegu ACC (West) - Incheon Radar",
+    "frequency": ""
+  },
+  "RKRR": {
+    "name": "Incheon ACC - Incheon",
+    "callsign": "Incheon ACC - Incheon Radar",
+    "frequency": ""
+  },
+  "RKRR-N": {
+    "name": "Incheon ACC (North) - Incheon",
+    "callsign": "Incheon ACC (North) - Incheon Radar",
+    "frequency": ""
+  },
+  "RKRR-S": {
+    "name": "Incheon ACC (South) - Incheon",
+    "callsign": "Incheon ACC (South) - Incheon Radar",
+    "frequency": ""
+  },
+  "RPHI": {
+    "name": "Manila",
+    "callsign": "Manila Radar",
+    "frequency": ""
+  },
+  "RPHI-2": {
+    "name": "Manila South Combined",
+    "callsign": "Manila South Combined Radar",
+    "frequency": ""
+  },
+  "RPHI-C": {
+    "name": "Manila Central Combined",
+    "callsign": "Manila Central Combined Radar",
+    "frequency": ""
+  },
+  "RPHI-CE": {
+    "name": "Manila Central East",
+    "callsign": "Manila Central East Radar",
+    "frequency": ""
+  },
+  "RPHI-CN": {
+    "name": "Manila Central North",
+    "callsign": "Manila Central North Radar",
+    "frequency": ""
+  },
+  "RPHI-CS": {
+    "name": "Manila Central South",
+    "callsign": "Manila Central South Radar",
+    "frequency": ""
+  },
+  "RPHI-CW": {
+    "name": "Manila Central West",
+    "callsign": "Manila Central West Radar",
+    "frequency": ""
+  },
+  "RPHI-N": {
+    "name": "Manila North Combined",
+    "callsign": "Manila North Combined Radar",
+    "frequency": ""
+  },
+  "RPHI-N1": {
+    "name": "Manila Central North Combined",
+    "callsign": "Manila Central North Combined Radar",
+    "frequency": ""
+  },
+  "RPHI-NE": {
+    "name": "Manila Oceanic",
+    "callsign": "Manila Oceanic Radar",
+    "frequency": ""
+  },
+  "RPHI-NW": {
+    "name": "Manila Northwest",
+    "callsign": "Manila Northwest Radar",
+    "frequency": ""
+  },
+  "RPHI-S": {
+    "name": "Manila South Combined",
+    "callsign": "Manila South Combined Radar",
+    "frequency": ""
+  },
+  "RPHI-S1": {
+    "name": "Manila Central South Combined",
+    "callsign": "Manila Central South Combined Radar",
+    "frequency": ""
+  },
+  "RPHI-SE": {
+    "name": "Manila Southeast",
+    "callsign": "Manila Southeast Radar",
+    "frequency": ""
+  },
+  "RPHI-SW": {
+    "name": "Manila Southwest",
+    "callsign": "Manila Southwest Radar",
+    "frequency": ""
+  },
+  "RPHI-W": {
+    "name": "Manila West",
+    "callsign": "Manila West Radar",
+    "frequency": ""
+  },
+  "SACF": {
+    "name": "Cordoba",
+    "callsign": "Cordoba Radar",
+    "frequency": ""
+  },
+  "SACO": {
+    "name": "Cordoba TMA - Cordoba",
+    "callsign": "Cordoba TMA - Cordoba Radar",
+    "frequency": ""
+  },
+  "SAEF": {
+    "name": "Ezeiza",
+    "callsign": "Ezeiza Radar",
+    "frequency": ""
+  },
+  "SAEF-N": {
+    "name": "Ezeiza ACC (North) - Ezeiza",
+    "callsign": "Ezeiza ACC (North) - Ezeiza Radar",
+    "frequency": ""
+  },
+  "SAEF-S": {
+    "name": "Ezeiza ACC (South) - Ezeiza",
+    "callsign": "Ezeiza ACC (South) - Ezeiza Radar",
+    "frequency": ""
+  },
+  "SAME": {
+    "name": "Mendoza TMA - Mendoza",
+    "callsign": "Mendoza TMA - Mendoza Radar",
+    "frequency": ""
+  },
+  "SAMF": {
+    "name": "Mendoza",
+    "callsign": "Mendoza Radar",
+    "frequency": ""
+  },
+  "SARE": {
+    "name": "Resistencia TMA - Resistencia",
+    "callsign": "Resistencia TMA - Resistencia Radar",
+    "frequency": ""
+  },
+  "SARR": {
+    "name": "Resistencia",
+    "callsign": "Resistencia Radar",
+    "frequency": ""
+  },
+  "SAVC": {
+    "name": "Comodoro Rivadavia TMA - Comodoro Rivadavia",
+    "callsign": "Comodoro Rivadavia TMA - Comodoro Rivadavia Radar",
+    "frequency": ""
+  },
+  "SAVF": {
+    "name": "Comodoro Rivadavia",
+    "callsign": "Comodoro Rivadavia Radar",
+    "frequency": ""
+  },
+  "SBAO": {
+    "name": "Atlantico (Completo) - Atlantico",
+    "callsign": "Atlantico (Completo) - Atlantico Radar",
+    "frequency": ""
+  },
+  "SBAO-N": {
+    "name": "Atlantico (Supercombinado Norte) - Atlantico",
+    "callsign": "Atlantico (Supercombinado Norte) - Atlantico Radar",
+    "frequency": ""
+  },
+  "SBAO-S": {
+    "name": "Atlantico (Supercombinado Sul) - Atlantico",
+    "callsign": "Atlantico (Supercombinado Sul) - Atlantico Radar",
+    "frequency": ""
+  },
+  "SBAO-NW": {
+    "name": "Atlantico (Combinado Noroeste) - Atlantico",
+    "callsign": "Atlantico (Combinado Noroeste) - Atlantico Radar",
+    "frequency": ""
+  },
+  "SBAO-NE": {
+    "name": "Atlantico (Combinado Nordeste) - Atlantico",
+    "callsign": "Atlantico (Combinado Nordeste) - Atlantico Radar",
+    "frequency": ""
+  },
+  "SBAO-SW": {
+    "name": "Atlantico (Combinado Sudoeste) - Atlantico",
+    "callsign": "Atlantico (Combinado Sudoeste) - Atlantico Radar",
+    "frequency": ""
+  },
+  "SBAO-SE": {
+    "name": "Atlantico (Combinado Sudeste) - Atlantico",
+    "callsign": "Atlantico (Combinado Sudeste) - Atlantico Radar",
+    "frequency": ""
+  },
+  "SBAZ": {
+    "name": "Amazonico (Completo) - Amazonico",
+    "callsign": "Amazonico (Completo) - Amazonico Radar",
+    "frequency": ""
+  },
+  "SBAZ-CW": {
+    "name": "Amazonico (Supercombinado Centro-Oeste) - Amazonico",
+    "callsign": "Amazonico (Supercombinado Centro-Oeste) - Amazonico Radar",
+    "frequency": ""
+  },
+  "SBAZ-CE": {
+    "name": "Amazonico (Supercombinado Centro-Leste) - Amazonico",
+    "callsign": "Amazonico (Supercombinado Centro-Leste) - Amazonico Radar",
+    "frequency": ""
+  },
+  "SBAZ-W": {
+    "name": "Amazonico (Combinado Oeste) - Amazonico",
+    "callsign": "Amazonico (Combinado Oeste) - Amazonico Radar",
+    "frequency": ""
+  },
+  "SBAZ-C": {
+    "name": "Amazonico (Combinado Central) - Amazonico",
+    "callsign": "Amazonico (Combinado Central) - Amazonico Radar",
+    "frequency": ""
+  },
+  "SBAZ-E": {
+    "name": "Amazonico (Combinado Leste) - Amazonico",
+    "callsign": "Amazonico (Combinado Leste) - Amazonico Radar",
+    "frequency": ""
+  },
+  "SBBS": {
+    "name": "Brasilia (Completo) - Brasilia",
+    "callsign": "Brasilia (Completo) - Brasilia Radar",
+    "frequency": ""
+  },
+  "SBBS-NS": {
+    "name": "Brasilia (Supercombinado Norte-Sul) - Brasilia",
+    "callsign": "Brasilia (Supercombinado Norte-Sul) - Brasilia Radar",
+    "frequency": ""
+  },
+  "SBBS-NE": {
+    "name": "Brasilia (Supercombinado Norte-Leste) - Brasilia",
+    "callsign": "Brasilia (Supercombinado Norte-Leste) - Brasilia Radar",
+    "frequency": ""
+  },
+  "SBBS-SE": {
+    "name": "Brasilia (Supercombinado Sul-Leste) - Brasilia",
+    "callsign": "Brasilia (Supercombinado Sul-Leste) - Brasilia Radar",
+    "frequency": ""
+  },
+  "SBBS-N": {
+    "name": "Brasilia (Combinado Norte) - Brasilia",
+    "callsign": "Brasilia (Combinado Norte) - Brasilia Radar",
+    "frequency": ""
+  },
+  "SBBS-S": {
+    "name": "Brasilia (Combinado Sul) - Brasilia",
+    "callsign": "Brasilia (Combinado Sul) - Brasilia Radar",
+    "frequency": ""
+  },
+  "SBBS-E": {
+    "name": "Brasilia (Combinado Leste) - Brasilia",
+    "callsign": "Brasilia (Combinado Leste) - Brasilia Radar",
+    "frequency": ""
+  },
+  "SBCW": {
+    "name": "Curitiba (Completo) - Curitiba",
+    "callsign": "Curitiba (Completo) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBCW-CWE": {
+    "name": "Curitiba (Supercombinado Centro-Oeste-Leste) - Curitiba",
+    "callsign": "Curitiba (Supercombinado Centro-Oeste-Leste) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBCW-CSW": {
+    "name": "Curitiba (Supercombinado Centro-Sul-Oeste) - Curitiba",
+    "callsign": "Curitiba (Supercombinado Centro-Sul-Oeste) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBCW-CSE": {
+    "name": "Curitiba (Supercombinado Centro-Sul-Leste) - Curitiba",
+    "callsign": "Curitiba (Supercombinado Centro-Sul-Leste) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBCW-CW": {
+    "name": "Curitiba (Supercombinado Centro-Oeste) - Curitiba",
+    "callsign": "Curitiba (Supercombinado Centro-Oeste) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBCW-CS": {
+    "name": "Curitiba (Supercombinado Centro-Sul) - Curitiba",
+    "callsign": "Curitiba (Supercombinado Centro-Sul) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBCW-CE": {
+    "name": "Curitiba (Supercombinado Centro-Leste) - Curitiba",
+    "callsign": "Curitiba (Supercombinado Centro-Leste) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBCW-SW": {
+    "name": "Curitiba (Supercombinado Sul-Oeste) - Curitiba",
+    "callsign": "Curitiba (Supercombinado Sul-Oeste) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBCW-SE": {
+    "name": "Curitiba (Supercombinado Sul-Leste) - Curitiba",
+    "callsign": "Curitiba (Supercombinado Sul-Leste) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBCW-C": {
+    "name": "Curitiba (Combinado Central) - Curitiba",
+    "callsign": "Curitiba (Combinado Central) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBCW-W": {
+    "name": "Curitiba (Combinado Oeste) - Curitiba",
+    "callsign": "Curitiba (Combinado Oeste) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBCW-E": {
+    "name": "Curitiba (Combinado Leste) - Curitiba",
+    "callsign": "Curitiba (Combinado Leste) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBCW-S": {
+    "name": "Curitiba (Combinado Sul) - Curitiba",
+    "callsign": "Curitiba (Combinado Sul) - Curitiba Radar",
+    "frequency": ""
+  },
+  "SBRE": {
+    "name": "Recife (Completo) - Recife",
+    "callsign": "Recife (Completo) - Recife Radar",
+    "frequency": ""
+  },
+  "SBRE-NS": {
+    "name": "Recife (Supercombinado Norte-Sul) - Recife",
+    "callsign": "Recife (Supercombinado Norte-Sul) - Recife Radar",
+    "frequency": ""
+  },
+  "SBRE-NW": {
+    "name": "Recife (Supercombinado Norte-Oeste) - Recife",
+    "callsign": "Recife (Supercombinado Norte-Oeste) - Recife Radar",
+    "frequency": ""
+  },
+  "SBRE-SW": {
+    "name": "Recife (Supercombinado Sul-Oeste) - Recife",
+    "callsign": "Recife (Supercombinado Sul-Oeste) - Recife Radar",
+    "frequency": ""
+  },
+  "SBRE-N": {
+    "name": "Recife (Combinado Norte) - Recife",
+    "callsign": "Recife (Combinado Norte) - Recife Radar",
+    "frequency": ""
+  },
+  "SBRE-S": {
+    "name": "Recife (Combinado Sul) - Recife",
+    "callsign": "Recife (Combinado Sul) - Recife Radar",
+    "frequency": ""
+  },
+  "SBRE-W": {
+    "name": "Recife (Combinado Oeste) - Recife",
+    "callsign": "Recife (Combinado Oeste) - Recife Radar",
+    "frequency": ""
+  },
+  "SCCZ": {
+    "name": "Punta Arenas",
+    "callsign": "Punta Arenas Radar",
+    "frequency": ""
+  },
+  "SCEZ": {
+    "name": "Santiago",
+    "callsign": "Santiago Radar",
+    "frequency": ""
+  },
+  "SCFZ": {
+    "name": "Antofagasta",
+    "callsign": "Antofagasta Radar",
+    "frequency": ""
+  },
+  "SCIZ": {
+    "name": "Pascua",
+    "callsign": "Pascua Radar",
+    "frequency": ""
+  },
+  "SCTZ": {
+    "name": "Puerto Montt",
+    "callsign": "Puerto Montt Radar",
+    "frequency": ""
+  },
+  "SEFG": {
+    "name": "Guayaquil",
+    "callsign": "Guayaquil Radar",
+    "frequency": ""
+  },
+  "SGFA": {
+    "name": "Asuncion",
+    "callsign": "Asuncion Radar",
+    "frequency": "128.4"
+  },
+  "SKCL": {
+    "name": "Cali (Up To FL245)",
+    "callsign": "Cali (Up To FL245) Radar",
+    "frequency": ""
+  },
+  "SKEC": {
+    "name": "Barranquilla",
+    "callsign": "Barranquilla Radar",
+    "frequency": ""
+  },
+  "SKED": {
+    "name": "Bogota",
+    "callsign": "Bogota Radar",
+    "frequency": ""
+  },
+  "SKMD": {
+    "name": "Cali (Up To FL245)",
+    "callsign": "Cali (Up To FL245) Radar",
+    "frequency": ""
+  },
+  "SLLF": {
+    "name": "La Paz",
+    "callsign": "La Paz Radar",
+    "frequency": ""
+  },
+  "SMPM": {
+    "name": "Paramaribo",
+    "callsign": "Paramaribo Radar",
+    "frequency": "123.9"
+  },
+  "SOOO": {
+    "name": "Cayenne",
+    "callsign": "Cayenne Radar",
+    "frequency": ""
+  },
+  "SPI1": {
+    "name": "Lima North",
+    "callsign": "Lima North Radar",
+    "frequency": ""
+  },
+  "SPI2": {
+    "name": "Lima South",
+    "callsign": "Lima South Radar",
+    "frequency": ""
+  },
+  "SPI3": {
+    "name": "Lima North East",
+    "callsign": "Lima North East Radar",
+    "frequency": ""
+  },
+  "SPIM": {
+    "name": "Lima",
+    "callsign": "Lima Radar",
+    "frequency": ""
+  },
+  "SUEO": {
+    "name": "Montevideo",
+    "callsign": "Montevideo Radar",
+    "frequency": ""
+  },
+  "SVZM": {
+    "name": "Maiquetia",
+    "callsign": "Maiquetia Radar",
+    "frequency": ""
+  },
+  "SYGC": {
+    "name": "Georgetown",
+    "callsign": "Georgetown Radar",
+    "frequency": ""
+  },
+  "TEH-1E": {
+    "name": "Tehran 1 East",
+    "callsign": "Tehran 1 East Radar",
+    "frequency": ""
+  },
+  "TEH-1N": {
+    "name": "Tehran 1 North",
+    "callsign": "Tehran 1 North Radar",
+    "frequency": ""
+  },
+  "TEH-1W": {
+    "name": "Tehran 1 West",
+    "callsign": "Tehran 1 West Radar",
+    "frequency": ""
+  },
+  "TEH-2E": {
+    "name": "Tehran 2 East",
+    "callsign": "Tehran 2 East Radar",
+    "frequency": ""
+  },
+  "TEH-2W": {
+    "name": "Tehran 2 West",
+    "callsign": "Tehran 2 West Radar",
+    "frequency": ""
+  },
+  "TEH-3N": {
+    "name": "Tehran 3 North",
+    "callsign": "Tehran 3 North Radar",
+    "frequency": ""
+  },
+  "TEH-3S": {
+    "name": "Tehran 3 South",
+    "callsign": "Tehran 3 South Radar",
+    "frequency": ""
+  },
+  "TEH-4E": {
+    "name": "Tehran 4 East",
+    "callsign": "Tehran 4 East Radar",
+    "frequency": ""
+  },
+  "TEH-4S": {
+    "name": "Tehran 4 South",
+    "callsign": "Tehran 4 South Radar",
+    "frequency": ""
+  },
+  "TEH-4W": {
+    "name": "Tehran 4 West",
+    "callsign": "Tehran 4 West Radar",
+    "frequency": ""
+  },
+  "TEH-5E": {
+    "name": "Tehran 5 East",
+    "callsign": "Tehran 5 East Radar",
+    "frequency": ""
+  },
+  "TEH-5W": {
+    "name": "Tehran 5 West",
+    "callsign": "Tehran 5 West Radar",
+    "frequency": ""
+  },
+  "TEH-6E": {
+    "name": "Tehran 6 East",
+    "callsign": "Tehran 6 East Radar",
+    "frequency": ""
+  },
+  "TEH-6W": {
+    "name": "Tehran 6 West",
+    "callsign": "Tehran 6 West Radar",
+    "frequency": ""
+  },
+  "TEH-7": {
+    "name": "Tehran 7",
+    "callsign": "Tehran 7 Radar",
+    "frequency": ""
+  },
+  "TEH-1": {
+    "name": "Tehran 1",
+    "callsign": "Tehran 1 Radar",
+    "frequency": ""
+  },
+  "TEH-2": {
+    "name": "Tehran 2",
+    "callsign": "Tehran 2 Radar",
+    "frequency": ""
+  },
+  "TEH-3": {
+    "name": "Tehran 3",
+    "callsign": "Tehran 3 Radar",
+    "frequency": ""
+  },
+  "TEH-4": {
+    "name": "Tehran 4",
+    "callsign": "Tehran 4 Radar",
+    "frequency": ""
+  },
+  "TEH-5": {
+    "name": "Tehran 5",
+    "callsign": "Tehran 5 Radar",
+    "frequency": ""
+  },
+  "TEH-6": {
+    "name": "Tehran 6",
+    "callsign": "Tehran 6 Radar",
+    "frequency": ""
+  },
+  "TEH-W": {
+    "name": "Tehran West",
+    "callsign": "Tehran West Radar",
+    "frequency": ""
+  },
+  "TEH-E": {
+    "name": "Tehran East",
+    "callsign": "Tehran East Radar",
+    "frequency": ""
+  },
+  "TEH-N": {
+    "name": "Tehran North",
+    "callsign": "Tehran North Radar",
+    "frequency": ""
+  },
+  "TEH-S": {
+    "name": "Tehran South",
+    "callsign": "Tehran South Radar",
+    "frequency": ""
+  },
+  "TJZS": {
+    "name": "San Juan",
+    "callsign": "San Juan Radar",
+    "frequency": ""
+  },
+  "TNCF": {
+    "name": "Curaçao",
+    "callsign": "Curacao Radar",
+    "frequency": ""
+  },
+  "TTZO": {
+    "name": "Piarco Oceanic",
+    "callsign": "Piarco Oceanic Radar",
+    "frequency": ""
+  },
+  "TTZP": {
+    "name": "Piarco",
+    "callsign": "Piarco Radar",
+    "frequency": ""
+  },
+  "UAAA": {
+    "name": "Almaty",
+    "callsign": "Almaty Radar",
+    "frequency": "120.7"
+  },
+  "UAAA-A1A": {
+    "name": "Almaty ACC Sector A1A - Almaty",
+    "callsign": "Almaty ACC Sector A1A - Almaty Radar",
+    "frequency": "120.8"
+  },
+  "UAAA-A3A": {
+    "name": "Almaty ACC Sector A3A - Almaty",
+    "callsign": "Almaty ACC Sector A3A - Almaty Radar",
+    "frequency": "120.7"
+  },
+  "UAAA-A4A": {
+    "name": "Almaty ACC Sector A4A - Almaty",
+    "callsign": "Almaty ACC Sector A4A - Almaty Radar",
+    "frequency": ""
+  },
+  "UAAA-A5A": {
+    "name": "Almaty ACC Sector A5A - Almaty",
+    "callsign": "Almaty ACC Sector A5A - Almaty Radar",
+    "frequency": ""
+  },
+  "UACN": {
+    "name": "Astana",
+    "callsign": "Astana Radar",
+    "frequency": ""
+  },
+  "UACN-A1C": {
+    "name": "Astana ACC Sector A1C - Astana",
+    "callsign": "Astana ACC Sector A1C - Astana Radar",
+    "frequency": ""
+  },
+  "UACN-A2C": {
+    "name": "Astana ACC Sector A2C - Astana",
+    "callsign": "Astana ACC Sector A2C - Astana Radar",
+    "frequency": ""
+  },
+  "UACN-A3C": {
+    "name": "Astana ACC Sector A3C - Astana",
+    "callsign": "Astana ACC Sector A3C - Astana Radar",
+    "frequency": ""
+  },
+  "UACN-A4C": {
+    "name": "Astana ACC Sector A4C - Astana",
+    "callsign": "Astana ACC Sector A4C - Astana Radar",
+    "frequency": ""
+  },
+  "UAII": {
+    "name": "Shymkent",
+    "callsign": "Shymkent Radar",
+    "frequency": ""
+  },
+  "UAII-A1I": {
+    "name": "Shymkent ACC Sector A1I - Shymkent",
+    "callsign": "Shymkent ACC Sector A1I - Shymkent Radar",
+    "frequency": ""
+  },
+  "UAII-A2I": {
+    "name": "Shymkent ACC Sector A2I - Shymkent",
+    "callsign": "Shymkent ACC Sector A2I - Shymkent Radar",
+    "frequency": ""
+  },
+  "UATT": {
+    "name": "Aktobe",
+    "callsign": "Aktobe Radar",
+    "frequency": ""
+  },
+  "UATT-A1B": {
+    "name": "Aktobe ACC Sector A1B - Aktobe",
+    "callsign": "Aktobe ACC Sector A1B - Aktobe Radar",
+    "frequency": ""
+  },
+  "UATT-A2B": {
+    "name": "Aktobe ACC Sector A2B - Aktobe",
+    "callsign": "Aktobe ACC Sector A2B - Aktobe Radar",
+    "frequency": ""
+  },
+  "UATT-A3B": {
+    "name": "Aktobe ACC Sector A3B - Aktobe",
+    "callsign": "Aktobe ACC Sector A3B - Aktobe Radar",
+    "frequency": ""
+  },
+  "UATT-A4B": {
+    "name": "Aktobe ACC Sector A4B - Aktobe",
+    "callsign": "Aktobe ACC Sector A4B - Aktobe Radar",
+    "frequency": ""
+  },
+  "UATT-A5B": {
+    "name": "Aktobe ACC Sector A5B - Aktobe",
+    "callsign": "Aktobe ACC Sector A5B - Aktobe Radar",
+    "frequency": ""
+  },
+  "UATT-A6B": {
+    "name": "Aktobe ACC Sector A6B - Aktobe",
+    "callsign": "Aktobe ACC Sector A6B - Aktobe Radar",
+    "frequency": ""
+  },
+  "UBBA": {
+    "name": "Baku",
+    "callsign": "Baku Radar",
+    "frequency": "120.8"
+  },
+  "UBBA-S": {
+    "name": "Baku South",
+    "callsign": "Baku South Radar",
+    "frequency": ""
+  },
+  "UCFM": {
+    "name": "Bishkek",
+    "callsign": "Bishkek Radar",
+    "frequency": ""
+  },
+  "UCFO": {
+    "name": "Osh",
+    "callsign": "Osh Radar",
+    "frequency": ""
+  },
+  "UDDD": {
+    "name": "Yerevan",
+    "callsign": "Yerevan Radar",
+    "frequency": ""
+  },
+  "UEEE": {
+    "name": "Yakutsk",
+    "callsign": "Yakutsk Radar",
+    "frequency": ""
+  },
+  "UGGG": {
+    "name": "Tbilisi",
+    "callsign": "Tbilisi Radar",
+    "frequency": ""
+  },
+  "UHHH": {
+    "name": "Khabarovsk",
+    "callsign": "Khabarovsk Radar",
+    "frequency": ""
+  },
+  "UHHH-1": {
+    "name": "Khabarovsk ACC Sector 1 - Khabarovsk",
+    "callsign": "Khabarovsk ACC Sector 1 - Khabarovsk Radar",
+    "frequency": ""
+  },
+  "UHHH-2": {
+    "name": "Khabarovsk ACC Sector 2 - Khabarovsk",
+    "callsign": "Khabarovsk ACC Sector 2 - Khabarovsk Radar",
+    "frequency": ""
+  },
+  "UHHH-3": {
+    "name": "Khabarovsk ACC Sector 3 - Khabarovsk",
+    "callsign": "Khabarovsk ACC Sector 3 - Khabarovsk Radar",
+    "frequency": ""
+  },
+  "UHHH-HF": {
+    "name": "Khabarovsk ACC Sector HF - Khabarovsk",
+    "callsign": "Khabarovsk ACC Sector HF - Khabarovsk Radar",
+    "frequency": ""
+  },
+  "UHMM": {
+    "name": "Magadan",
+    "callsign": "Magadan Radar",
+    "frequency": ""
+  },
+  "UHMM-K1": {
+    "name": "Magadan ACC Sector Kamchatka-1 - Magadan",
+    "callsign": "Magadan ACC Sector Kamchatka-1 - Magadan Radar",
+    "frequency": ""
+  },
+  "UHMM-K2": {
+    "name": "Magadan ACC Sector Kamchatka-2 - Magadan",
+    "callsign": "Magadan ACC Sector Kamchatka-2 - Magadan Radar",
+    "frequency": ""
+  },
+  "UHMM-N": {
+    "name": "Magadan ACC Sector North - Magadan",
+    "callsign": "Magadan ACC Sector North - Magadan Radar",
+    "frequency": ""
+  },
+  "UHMM-N1": {
+    "name": "Magadan ACC Sector North-1 - Magadan",
+    "callsign": "Magadan ACC Sector North-1 - Magadan Radar",
+    "frequency": ""
+  },
+  "UHMM-N2": {
+    "name": "Magadan ACC Sector North-2 - Magadan",
+    "callsign": "Magadan ACC Sector North-2 - Magadan Radar",
+    "frequency": ""
+  },
+  "UHMM-O": {
+    "name": "Magadan ACC Sector Oceanic - Magadan",
+    "callsign": "Magadan ACC Sector Oceanic - Magadan Radar",
+    "frequency": ""
+  },
+  "UHMM-S": {
+    "name": "Magadan ACC Sector South - Magadan",
+    "callsign": "Magadan ACC Sector South - Magadan Radar",
+    "frequency": ""
+  },
+  "UIII": {
+    "name": "Irkutsk",
+    "callsign": "Irkutsk Radar",
+    "frequency": "119.3"
+  },
+  "UIII-E": {
+    "name": "Irkutsk ACC Sector East - Irkutsk",
+    "callsign": "Irkutsk ACC Sector East - Irkutsk Radar",
+    "frequency": ""
+  },
+  "UIII-N": {
+    "name": "Irkutsk ACC Sector North - Irkutsk",
+    "callsign": "Irkutsk ACC Sector North - Irkutsk Radar",
+    "frequency": ""
+  },
+  "UIII-W": {
+    "name": "Irkutsk ACC Sector West - Irkutsk",
+    "callsign": "Irkutsk ACC Sector West - Irkutsk Radar",
+    "frequency": ""
+  },
+  "UKBV": {
+    "name": "Kyiv",
+    "callsign": "Kyiv Radar",
+    "frequency": "124.675"
+  },
+  "UKDV": {
+    "name": "Dnipro",
+    "callsign": "Dnipro Radar",
+    "frequency": "119.4"
+  },
+  "UKFV": {
+    "name": "Simferopol",
+    "callsign": "Simferopol Radar",
+    "frequency": "124.7"
+  },
+  "UKLV": {
+    "name": "Lviv",
+    "callsign": "Lviv Radar",
+    "frequency": "126"
+  },
+  "UKOV": {
+    "name": "Odesa",
+    "callsign": "Odesa Radar",
+    "frequency": "120.9"
+  },
+  "UKR": {
+    "name": "Ukraine",
+    "callsign": "Ukraine Radar",
+    "frequency": ""
+  },
+  "ULLL": {
+    "name": "Sankt-Peterburg ACC - Peterburg",
+    "callsign": "Sankt-Peterburg ACC - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-AM": {
+    "name": "Sankt-Peterburg ACC, sectors Arkhangelsk, Murmansk, Naryan-Mar, Oceanic - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sectors Arkhangelsk, Murmansk, Naryan-Mar, Oceanic - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-AR": {
+    "name": "Sankt-Peterburg ACC, sector Arkhangelsk - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector Arkhangelsk - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-KT": {
+    "name": "Sankt-Peterburg ACC, sector Kotlas - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector Kotlas - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-MO": {
+    "name": "Sankt-Peterburg ACC, sector Oceanic - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector Oceanic - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-MR": {
+    "name": "Sankt-Peterburg ACC, sector Murmansk - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector Murmansk - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-NM": {
+    "name": "Sankt-Peterburg ACC, sector Naryan-Mar - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector Naryan-Mar - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-R": {
+    "name": "Sankt-Peterburg ACC, sector Peterburg - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector Peterburg - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-R1": {
+    "name": "Sankt-Peterburg ACC, sector R1 North - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector R1 North - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-R2": {
+    "name": "Sankt-Peterburg ACC, sector R2 South-East - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector R2 South-East - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-R3": {
+    "name": "Sankt-Peterburg ACC, sector R3 South-West - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector R3 South-West - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-R4": {
+    "name": "Sankt-Peterburg ACC, sector R4 West - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector R4 West - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-R5": {
+    "name": "Sankt-Peterburg ACC, sector R5 Petrozavodsk - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector R5 Petrozavodsk - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-R6": {
+    "name": "Sankt-Peterburg ACC, sector R6 Velikiye Luki - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector R6 Velikiye Luki - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-S": {
+    "name": "Sankt-Peterburg ACC, sector Syktyvkar - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector Syktyvkar - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-SW": {
+    "name": "Sankt-Peterburg ACC, sector SW (R3+R4) South-West - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector SW (R3+R4) South-West - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-W": {
+    "name": "Sankt-Peterburg ACC, sector Vologda - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sector Vologda - Peterburg Radar",
+    "frequency": ""
+  },
+  "ULLL-WK": {
+    "name": "Sankt-Peterburg ACC, sectors Kotlas, Vologda - Peterburg",
+    "callsign": "Sankt-Peterburg ACC, sectors Kotlas, Vologda - Peterburg Radar",
+    "frequency": ""
+  },
+  "UMKK": {
+    "name": "Kaliningrad",
+    "callsign": "Kaliningrad Radar",
+    "frequency": "126"
+  },
+  "UMMV": {
+    "name": "Minsk",
+    "callsign": "Minsk Radar",
+    "frequency": "125.25"
+  },
+  "UMMV-N": {
+    "name": "Minsk ACC sector North",
+    "callsign": "Minsk ACC sector North Radar",
+    "frequency": ""
+  },
+  "UMMV-S": {
+    "name": "Minsk ACC sector South",
+    "callsign": "Minsk ACC sector South Radar",
+    "frequency": ""
+  },
+  "UMMV-W": {
+    "name": "Minsk ACC sector West",
+    "callsign": "Minsk ACC sector West Radar",
+    "frequency": ""
+  },
+  "UNKL": {
+    "name": "Krasnoyarsk",
+    "callsign": "Krasnoyarsk Radar",
+    "frequency": ""
+  },
+  "UNKL-N": {
+    "name": "Krasnoyarsk ACC Sector North - Krasnoyarsk",
+    "callsign": "Krasnoyarsk ACC Sector North - Krasnoyarsk Radar",
+    "frequency": ""
+  },
+  "UNKL-N1": {
+    "name": "Krasnoyarsk ACC Sector North 1 - Krasnoyarsk",
+    "callsign": "Krasnoyarsk ACC Sector North 1 - Krasnoyarsk Radar",
+    "frequency": ""
+  },
+  "UNKL-N2": {
+    "name": "Krasnoyarsk ACC Sector North 2 - Krasnoyarsk",
+    "callsign": "Krasnoyarsk ACC Sector North 2 - Krasnoyarsk Radar",
+    "frequency": ""
+  },
+  "UNKL-S": {
+    "name": "Krasnoyarsk ACC Sector South - Krasnoyarsk",
+    "callsign": "Krasnoyarsk ACC Sector South - Krasnoyarsk Radar",
+    "frequency": ""
+  },
+  "UNKL-S1": {
+    "name": "Krasnoyarsk ACC Sector South 1 - Krasnoyarsk",
+    "callsign": "Krasnoyarsk ACC Sector South 1 - Krasnoyarsk Radar",
+    "frequency": ""
+  },
+  "UNKL-S2": {
+    "name": "Krasnoyarsk ACC Sector South 2 - Krasnoyarsk",
+    "callsign": "Krasnoyarsk ACC Sector South 2 - Krasnoyarsk Radar",
+    "frequency": ""
+  },
+  "UNKL-S3": {
+    "name": "Krasnoyarsk ACC Sector South 3 - Krasnoyarsk",
+    "callsign": "Krasnoyarsk ACC Sector South 3 - Krasnoyarsk Radar",
+    "frequency": ""
+  },
+  "UNNT": {
+    "name": "Novosibirsk",
+    "callsign": "Novosibirsk Radar",
+    "frequency": ""
+  },
+  "UNNT-C": {
+    "name": "Novosibirsk ACC Sector Center - Novosibirsk",
+    "callsign": "Novosibirsk ACC Sector Center - Novosibirsk Radar",
+    "frequency": ""
+  },
+  "UNNT-E": {
+    "name": "Novosibirsk ACC Sector East - Novosibirsk",
+    "callsign": "Novosibirsk ACC Sector East - Novosibirsk Radar",
+    "frequency": ""
+  },
+  "UNNT-N": {
+    "name": "Novosibirsk ACC Sector North - Novosibirsk",
+    "callsign": "Novosibirsk ACC Sector North - Novosibirsk Radar",
+    "frequency": ""
+  },
+  "UNNT-S": {
+    "name": "Novosibirsk ACC Sector South - Novosibirsk",
+    "callsign": "Novosibirsk ACC Sector South - Novosibirsk Radar",
+    "frequency": ""
+  },
+  "UNNT-W": {
+    "name": "Novosibirsk ACC Sector West - Novosibirsk",
+    "callsign": "Novosibirsk ACC Sector West - Novosibirsk Radar",
+    "frequency": ""
+  },
+  "URRV": {
+    "name": "Rostov",
+    "callsign": "Rostov Radar",
+    "frequency": ""
+  },
+  "USSV": {
+    "name": "Yekaterinburg ACC - Ural",
+    "callsign": "Yekaterinburg ACC - Ural Radar",
+    "frequency": ""
+  },
+  "USSV-C": {
+    "name": "Yekaterinburg ACC Sector Center - Ural",
+    "callsign": "Yekaterinburg ACC Sector Center - Ural Radar",
+    "frequency": ""
+  },
+  "USSV-E": {
+    "name": "Yekaterinburg ACC Sector East - Ural",
+    "callsign": "Yekaterinburg ACC Sector East - Ural Radar",
+    "frequency": ""
+  },
+  "USSV-N": {
+    "name": "Yekaterinburg ACC Sector North - Ural",
+    "callsign": "Yekaterinburg ACC Sector North - Ural Radar",
+    "frequency": ""
+  },
+  "USSV-P": {
+    "name": "Yekaterinburg ACC Sector Perm - Ural",
+    "callsign": "Yekaterinburg ACC Sector Perm - Ural Radar",
+    "frequency": ""
+  },
+  "USSV-S": {
+    "name": "Yekaterinburg ACC Sector South - Ural",
+    "callsign": "Yekaterinburg ACC Sector South - Ural Radar",
+    "frequency": ""
+  },
+  "USSV-W": {
+    "name": "Yekaterinburg ACC Sector West - Ural",
+    "callsign": "Yekaterinburg ACC Sector West - Ural Radar",
+    "frequency": ""
+  },
+  "USTV": {
+    "name": "Tyumen ACC - Tyumen",
+    "callsign": "Tyumen ACC - Tyumen Radar",
+    "frequency": ""
+  },
+  "USTV-C": {
+    "name": "Tyumen ACC Sector Center - Tyumen",
+    "callsign": "Tyumen ACC Sector Center - Tyumen Radar",
+    "frequency": ""
+  },
+  "USTV-E": {
+    "name": "Tyumen ACC Sector East - Tyumen",
+    "callsign": "Tyumen ACC Sector East - Tyumen Radar",
+    "frequency": ""
+  },
+  "USTV-N": {
+    "name": "Tyumen ACC Sector North - Tyumen",
+    "callsign": "Tyumen ACC Sector North - Tyumen Radar",
+    "frequency": ""
+  },
+  "USTV-S": {
+    "name": "Tyumen ACC Sector South - Tyumen",
+    "callsign": "Tyumen ACC Sector South - Tyumen Radar",
+    "frequency": ""
+  },
+  "USTV-W": {
+    "name": "Tyumen ACC Sector West - Tyumen",
+    "callsign": "Tyumen ACC Sector West - Tyumen Radar",
+    "frequency": ""
+  },
+  "UTAA": {
+    "name": "Ashgabat",
+    "callsign": "Ashgabat Radar",
+    "frequency": "124"
+  },
+  "UTAK": {
+    "name": "Turkmenbashi",
+    "callsign": "Turkmenbashi Radar",
+    "frequency": ""
+  },
+  "UTAT": {
+    "name": "Dashoguz",
+    "callsign": "Dashoguz Radar",
+    "frequency": ""
+  },
+  "UTAV": {
+    "name": "Turkmenabat",
+    "callsign": "Turkmenabat Radar",
+    "frequency": ""
+  },
+  "UTDD": {
+    "name": "Dushanbe",
+    "callsign": "Dushanbe Radar",
+    "frequency": ""
+  },
+  "UUWV": {
+    "name": "Moscow",
+    "callsign": "Moscow Radar",
+    "frequency": "118.1"
+  },
+  "UUWV-E": {
+    "name": "Moscow ACC sector Penza - Moscow",
+    "callsign": "Moscow ACC sector Penza - Moscow Radar",
+    "frequency": "126"
+  },
+  "UUWV-N": {
+    "name": "Moscow ACC sector Combined North - Moscow",
+    "callsign": "Moscow ACC sector Combined North - Moscow Radar",
+    "frequency": ""
+  },
+  "UUWV-NE": {
+    "name": "Moscow ACC sector Gorky - Moscow",
+    "callsign": "Moscow ACC sector Gorky - Moscow Radar",
+    "frequency": ""
+  },
+  "UUWV-NW": {
+    "name": "Moscow ACC sector North - Moscow",
+    "callsign": "Moscow ACC sector North - Moscow Radar",
+    "frequency": ""
+  },
+  "UUWV-S": {
+    "name": "Moscow ACC sector Combined South - Moscow",
+    "callsign": "Moscow ACC sector Combined South - Moscow Radar",
+    "frequency": ""
+  },
+  "UUWV-SE": {
+    "name": "Moscow ACC sectors Penza and Voronezh - Moscow",
+    "callsign": "Moscow ACC sectors Penza and Voronezh - Moscow Radar",
+    "frequency": ""
+  },
+  "UUWV-SW": {
+    "name": "Moscow ACC sector South-West - Moscow",
+    "callsign": "Moscow ACC sector South-West - Moscow Radar",
+    "frequency": ""
+  },
+  "UUWV-W": {
+    "name": "Moscow ACC sector West - Moscow",
+    "callsign": "Moscow ACC sector West - Moscow Radar",
+    "frequency": ""
+  },
+  "UWWW": {
+    "name": "Samara",
+    "callsign": "Samara Radar",
+    "frequency": "119.4"
+  },
+  "UWWW-E": {
+    "name": "Samara ACC samara East - Samara",
+    "callsign": "Samara ACC samara East - Samara Radar",
+    "frequency": ""
+  },
+  "UWWW-N": {
+    "name": "Samara ACC sector Kazan - Samara",
+    "callsign": "Samara ACC sector Kazan - Samara Radar",
+    "frequency": ""
+  },
+  "UWWW-SE": {
+    "name": "Samara ACC sector Orenburg - Samara",
+    "callsign": "Samara ACC sector Orenburg - Samara Radar",
+    "frequency": ""
+  },
+  "UWWW-SW": {
+    "name": "Samara ACC sector Saratov - Samara",
+    "callsign": "Samara ACC sector Saratov - Samara Radar",
+    "frequency": ""
+  },
+  "UWWW-W": {
+    "name": "Samara ACC sector West - Samara",
+    "callsign": "Samara ACC sector West - Samara Radar",
+    "frequency": ""
+  },
+  "UZSD": {
+    "name": "Samarkand",
+    "callsign": "Samarkand Radar",
+    "frequency": ""
+  },
+  "UZTR": {
+    "name": "Tashkent",
+    "callsign": "Tashkent Radar",
+    "frequency": ""
+  },
+  "VAAH": {
+    "name": "Ahmedabad ACC - Mumbai",
+    "callsign": "Ahmedabad ACC - Mumbai Radar",
+    "frequency": "123.75"
+  },
+  "VABB": {
+    "name": "Mumbai ACC - Mumbai",
+    "callsign": "Mumbai ACC - Mumbai Radar",
+    "frequency": ""
+  },
+  "VABB-LC": {
+    "name": "Mumbai Lower ACC - Mumbai",
+    "callsign": "Mumbai Lower ACC - Mumbai Radar",
+    "frequency": ""
+  },
+  "VABB-U5": {
+    "name": "Mumbai (U5) ACC - Mumbai",
+    "callsign": "Mumbai (U5) ACC - Mumbai Radar",
+    "frequency": ""
+  },
+  "VABF": {
+    "name": "Mumbai",
+    "callsign": "Mumbai Radar",
+    "frequency": ""
+  },
+  "VABF-OC": {
+    "name": "Oceanic Sector - Mumbai",
+    "callsign": "Oceanic Sector - Mumbai Radar",
+    "frequency": ""
+  },
+  "VABF-UAC": {
+    "name": "Upper Area Control - Mumbai",
+    "callsign": "Upper Area Control - Mumbai Radar",
+    "frequency": ""
+  },
+  "VANP": {
+    "name": "Nagpur ACC - Mumbai",
+    "callsign": "Nagpur ACC - Mumbai Radar",
+    "frequency": ""
+  },
+  "VANP-UAC": {
+    "name": "Nagpur (Upper) ACC - Mumbai",
+    "callsign": "Nagpur (Upper) ACC - Mumbai Radar",
+    "frequency": ""
+  },
+  "VCCF": {
+    "name": "Colombo",
+    "callsign": "Colombo Radar",
+    "frequency": ""
+  },
+  "XVCL": {
+    "name": "Mekong",
+    "callsign": "Mekong Radar",
+    "frequency": ""
+  },
+  "VDPF": {
+    "name": "Phnom Penh",
+    "callsign": "Phnom Penh Radar",
+    "frequency": ""
+  },
+  "VEBN": {
+    "name": "Varanasi ACC - Kolkata",
+    "callsign": "Varanasi ACC - Kolkata Radar",
+    "frequency": "120.575"
+  },
+  "VECC": {
+    "name": "Kolkata ACC - Kolkata",
+    "callsign": "Kolkata ACC - Kolkata Radar",
+    "frequency": "132.35"
+  },
+  "VECC-E": {
+    "name": "Kolkata (East) ACC - Kolkata",
+    "callsign": "Kolkata (East) ACC - Kolkata Radar",
+    "frequency": "133.75"
+  },
+  "VECC-N": {
+    "name": "Kolkata (North) ACC - Kolkata",
+    "callsign": "Kolkata (North) ACC - Kolkata Radar",
+    "frequency": "132.45"
+  },
+  "VECC-W": {
+    "name": "Kolkata (West) ACC - Kolkata",
+    "callsign": "Kolkata (West) ACC - Kolkata Radar",
+    "frequency": "132.45"
+  },
+  "VECF": {
+    "name": "Kolkata",
+    "callsign": "Kolkata Radar",
+    "frequency": ""
+  },
+  "VECF-OC": {
+    "name": "Oceanic Sector - Kolkata",
+    "callsign": "Oceanic Sector - Kolkata Radar",
+    "frequency": ""
+  },
+  "VECF-UAC": {
+    "name": "Upper Area Control - Kolkata",
+    "callsign": "Upper Area Control - Kolkata Radar",
+    "frequency": ""
+  },
+  "VECF-UBN": {
+    "name": "Upper Varanasi Sector - Kolkata",
+    "callsign": "Upper Varanasi Sector - Kolkata Radar",
+    "frequency": ""
+  },
+  "VECF-UBS": {
+    "name": "Upper Bhubaneswar Sector - Kolkata",
+    "callsign": "Upper Bhubaneswar Sector - Kolkata Radar",
+    "frequency": ""
+  },
+  "VECF-UGT": {
+    "name": "Upper Guwahati Sector - Kolkata",
+    "callsign": "Upper Guwahati Sector - Kolkata Radar",
+    "frequency": ""
+  },
+  "VECF-UKE": {
+    "name": "Upper Kolkata (East) Sector - Kolkata",
+    "callsign": "Upper Kolkata (East) Sector - Kolkata Radar",
+    "frequency": ""
+  },
+  "VECF-UKN": {
+    "name": "Upper Kolkata (North) Sector - Kolkata",
+    "callsign": "Upper Kolkata (North) Sector - Kolkata Radar",
+    "frequency": ""
+  },
+  "VECF-UKW": {
+    "name": "Upper Kolkata (West) Sector - Kolkata",
+    "callsign": "Upper Kolkata (West) Sector - Kolkata Radar",
+    "frequency": ""
+  },
+  "VECF-URP": {
+    "name": "Upper Raipur Sector - Kolkata",
+    "callsign": "Upper Raipur Sector - Kolkata Radar",
+    "frequency": ""
+  },
+  "VEGF": {
+    "name": "Guwahati",
+    "callsign": "Guwahati Radar",
+    "frequency": ""
+  },
+  "VGFR": {
+    "name": "Dhaka",
+    "callsign": "Dhaka Radar",
+    "frequency": ""
+  },
+  "VHHK": {
+    "name": "Hong Kong",
+    "callsign": "Hong Kong Radar",
+    "frequency": "121.3"
+  },
+  "VIAR": {
+    "name": "Amritsar ACC - Delhi",
+    "callsign": "Amritsar ACC - Delhi Radar",
+    "frequency": "120.9"
+  },
+  "VIDF": {
+    "name": "Delhi",
+    "callsign": "Delhi Radar",
+    "frequency": "124.55"
+  },
+  "VIDF-LD1": {
+    "name": "Lower Delhi (Northeast) ACC - Delhi",
+    "callsign": "Lower Delhi (Northeast) ACC - Delhi Radar",
+    "frequency": ""
+  },
+  "VIDF-LD2": {
+    "name": "Lower Delhi (Southeast) ACC - Delhi",
+    "callsign": "Lower Delhi (Southeast) ACC - Delhi Radar",
+    "frequency": ""
+  },
+  "VIDF-LD3": {
+    "name": "Lower Delhi (Southwest) ACC - Delhi",
+    "callsign": "Lower Delhi (Southwest) ACC - Delhi Radar",
+    "frequency": ""
+  },
+  "VIDF-LD4": {
+    "name": "Lower Delhi (Northwest) ACC - Delhi",
+    "callsign": "Lower Delhi (Northwest) ACC - Delhi Radar",
+    "frequency": ""
+  },
+  "VIDF-UAC": {
+    "name": "Upper Area Control - Delhi",
+    "callsign": "Upper Area Control - Delhi Radar",
+    "frequency": ""
+  },
+  "VIDF-UD1": {
+    "name": "Upper Delhi (Northeast) ACC - Delhi",
+    "callsign": "Upper Delhi (Northeast) ACC - Delhi Radar",
+    "frequency": ""
+  },
+  "VIDF-UD2": {
+    "name": "Upper Delhi (Southeast) ACC - Delhi",
+    "callsign": "Upper Delhi (Southeast) ACC - Delhi Radar",
+    "frequency": ""
+  },
+  "VIDF-UD3": {
+    "name": "Upper Delhi (Southwest) ACC - Delhi",
+    "callsign": "Upper Delhi (Southwest) ACC - Delhi Radar",
+    "frequency": ""
+  },
+  "VIDF-UD4": {
+    "name": "Upper Delhi (Northwest) ACC - Delhi",
+    "callsign": "Upper Delhi (Northwest) ACC - Delhi Radar",
+    "frequency": ""
+  },
+  "VIDF-UD5": {
+    "name": "Upper Delhi (Central) ACC - Delhi",
+    "callsign": "Upper Delhi (Central) ACC - Delhi Radar",
+    "frequency": ""
+  },
+  "VIJP": {
+    "name": "Jaipur ACC - Delhi",
+    "callsign": "Jaipur ACC - Delhi Radar",
+    "frequency": ""
+  },
+  "VILK": {
+    "name": "Lucknow ACC - Delhi",
+    "callsign": "Lucknow ACC - Delhi Radar",
+    "frequency": ""
+  },
+  "VIUX": {
+    "name": "Udhampur ACC (Northern Control) - Delhi",
+    "callsign": "Udhampur ACC (Northern Control) - Delhi Radar",
+    "frequency": ""
+  },
+  "VLVT": {
+    "name": "Vientiane",
+    "callsign": "Vientiane Radar",
+    "frequency": ""
+  },
+  "VNSM": {
+    "name": "Kathmandu",
+    "callsign": "Kathmandu Radar",
+    "frequency": ""
+  },
+  "VOBG": {
+    "name": "Bengaluru (HAL) ACC - Chennai",
+    "callsign": "Bengaluru (HAL) ACC - Chennai Radar",
+    "frequency": ""
+  },
+  "VOBL": {
+    "name": "Bengaluru ACC - Chennai",
+    "callsign": "Bengaluru ACC - Chennai Radar",
+    "frequency": ""
+  },
+  "VOCI": {
+    "name": "Cochin ACC - Chennai",
+    "callsign": "Cochin ACC - Chennai Radar",
+    "frequency": ""
+  },
+  "VOHS": {
+    "name": "Hyderabad ACC - Chennai",
+    "callsign": "Hyderabad ACC - Chennai Radar",
+    "frequency": ""
+  },
+  "VOMF": {
+    "name": "Chennai",
+    "callsign": "Chennai Radar",
+    "frequency": "125.7"
+  },
+  "VOMF-OC": {
+    "name": "Oceanic Sector - Chennai",
+    "callsign": "Oceanic Sector - Chennai Radar",
+    "frequency": ""
+  },
+  "VOMF-UAC": {
+    "name": "Upper Area Control - Chennai",
+    "callsign": "Upper Area Control - Chennai Radar",
+    "frequency": ""
+  },
+  "VOMF-UBL": {
+    "name": "Upper Bengaluru Sector - Chennai",
+    "callsign": "Upper Bengaluru Sector - Chennai Radar",
+    "frequency": ""
+  },
+  "VOMF-UBW": {
+    "name": "Upper Bengaluru (West) Sector - Chennai",
+    "callsign": "Upper Bengaluru (West) Sector - Chennai Radar",
+    "frequency": ""
+  },
+  "VOMF-UHS": {
+    "name": "Upper Hyderabad Sector - Chennai",
+    "callsign": "Upper Hyderabad Sector - Chennai Radar",
+    "frequency": ""
+  },
+  "VOMF-UML": {
+    "name": "Upper Mangaluru Sector - Chennai",
+    "callsign": "Upper Mangaluru Sector - Chennai Radar",
+    "frequency": ""
+  },
+  "VOMF-UMM": {
+    "name": "Upper Chennai Sector - Chennai",
+    "callsign": "Upper Chennai Sector - Chennai Radar",
+    "frequency": ""
+  },
+  "VOMF-UTV": {
+    "name": "Upper Thiruvananthapuram Sector - Chennai",
+    "callsign": "Upper Thiruvananthapuram Sector - Chennai Radar",
+    "frequency": ""
+  },
+  "VOML": {
+    "name": "Mangaluru ACC - Chennai",
+    "callsign": "Mangaluru ACC - Chennai Radar",
+    "frequency": ""
+  },
+  "VOMM": {
+    "name": "Chennai ACC - Chennai",
+    "callsign": "Chennai ACC - Chennai Radar",
+    "frequency": ""
+  },
+  "VOMM-S": {
+    "name": "Chennai (South) ACC - Chennai",
+    "callsign": "Chennai (South) ACC - Chennai Radar",
+    "frequency": ""
+  },
+  "VOTV": {
+    "name": "Thiruvananthapuram ACC - Chennai",
+    "callsign": "Thiruvananthapuram ACC - Chennai Radar",
+    "frequency": ""
+  },
+  "VRMF": {
+    "name": "Male",
+    "callsign": "Male Radar",
+    "frequency": ""
+  },
+  "VTBB": {
+    "name": "Bangkok ACC - Bangkok",
+    "callsign": "Bangkok ACC - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-1N": {
+    "name": "Bangkok ACC (Sector 1N) - Bangkok",
+    "callsign": "Bangkok ACC (Sector 1N) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-1S": {
+    "name": "Bangkok ACC (Sector 1S) - Bangkok",
+    "callsign": "Bangkok ACC (Sector 1S) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-2N": {
+    "name": "Bangkok ACC (Sector 2N) - Bangkok",
+    "callsign": "Bangkok ACC (Sector 2N) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-2S": {
+    "name": "Bangkok ACC (Sector 2S) - Bangkok",
+    "callsign": "Bangkok ACC (Sector 2S) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-3N": {
+    "name": "Bangkok ACC (Sector 3N) - Bangkok",
+    "callsign": "Bangkok ACC (Sector 3N) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-3S": {
+    "name": "Bangkok ACC (Sector 3S) - Bangkok",
+    "callsign": "Bangkok ACC (Sector 3S) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-4N": {
+    "name": "Bangkok ACC (Sector 4N) - Bangkok",
+    "callsign": "Bangkok ACC (Sector 4N) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-4S": {
+    "name": "Bangkok ACC (Sector 4S) - Bangkok",
+    "callsign": "Bangkok ACC (Sector 4S) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-5N": {
+    "name": "Bangkok ACC (Sector 5N) - Bangkok",
+    "callsign": "Bangkok ACC (Sector 5N) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-5S": {
+    "name": "Bangkok ACC (Sector 5S) - Bangkok",
+    "callsign": "Bangkok ACC (Sector 5S) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-6N": {
+    "name": "Bangkok ACC (Sector 6N) - Bangkok",
+    "callsign": "Bangkok ACC (Sector 6N) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-6S": {
+    "name": "Bangkok ACC (Sector 6S) - Bangkok",
+    "callsign": "Bangkok ACC (Sector 6S) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-N": {
+    "name": "Bangkok ACC (Sectors 1N-6N) - Bangkok",
+    "callsign": "Bangkok ACC (Sectors 1N-6N) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-NE": {
+    "name": "Bangkok ACC (Sectors 2N/5N/6N) - Bangkok",
+    "callsign": "Bangkok ACC (Sectors 2N/5N/6N) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-NW": {
+    "name": "Bangkok ACC (Sectors 1N/3N/4N) - Bangkok",
+    "callsign": "Bangkok ACC (Sectors 1N/3N/4N) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-S": {
+    "name": "Bangkok ACC (Sectors 1S-6S) - Bangkok",
+    "callsign": "Bangkok ACC (Sectors 1S-6S) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-SE": {
+    "name": "Bangkok ACC (Sectors 5S-6S) - Bangkok",
+    "callsign": "Bangkok ACC (Sectors 5S-6S) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VTBB-SW": {
+    "name": "Bangkok ACC (Sectors 1S-4S) - Bangkok",
+    "callsign": "Bangkok ACC (Sectors 1S-4S) - Bangkok Radar",
+    "frequency": ""
+  },
+  "VVHM": {
+    "name": "Ho Chi Minh",
+    "callsign": "Ho Chi Minh Radar",
+    "frequency": "123.3"
+  },
+  "VVHM-1": {
+    "name": "Ho Chi Minh ACC (Sector 1) - Ho Chi Minh",
+    "callsign": "Ho Chi Minh ACC (Sector 1) - Ho Chi Minh Radar",
+    "frequency": "125.9"
+  },
+  "VVHM-2": {
+    "name": "Ho Chi Minh ACC (Sector 2) - Ho Chi Minh",
+    "callsign": "Ho Chi Minh ACC (Sector 2) - Ho Chi Minh Radar",
+    "frequency": "132.3"
+  },
+  "VVHM-3": {
+    "name": "Ho Chi Minh ACC (Sector 3) - Ho Chi Minh",
+    "callsign": "Ho Chi Minh ACC (Sector 3) - Ho Chi Minh Radar",
+    "frequency": "133.65"
+  },
+  "VVHM-4": {
+    "name": "Ho Chi Minh ACC (Sector 4) - Ho Chi Minh",
+    "callsign": "Ho Chi Minh ACC (Sector 4) - Ho Chi Minh Radar",
+    "frequency": ""
+  },
+  "VVHM-5": {
+    "name": "Ho Chi Minh ACC (Sector 5) - Ho Chi Minh",
+    "callsign": "Ho Chi Minh ACC (Sector 5) - Ho Chi Minh Radar",
+    "frequency": ""
+  },
+  "VVHM-6": {
+    "name": "Ho Chi Minh ACC (Sector 6) - Ho Chi Minh",
+    "callsign": "Ho Chi Minh ACC (Sector 6) - Ho Chi Minh Radar",
+    "frequency": ""
+  },
+  "VVHM-7": {
+    "name": "Ho Chi Minh ACC (Sector 7) - Ho Chi Minh",
+    "callsign": "Ho Chi Minh ACC (Sector 7) - Ho Chi Minh Radar",
+    "frequency": ""
+  },
+  "VVHM-A": {
+    "name": "Ho Chi Minh ACC (Sector N) - Ho Chi Minh",
+    "callsign": "Ho Chi Minh ACC (Sector N) - Ho Chi Minh Radar",
+    "frequency": ""
+  },
+  "VVHM-B": {
+    "name": "Ho Chi Minh ACC (Sector S) - Ho Chi Minh",
+    "callsign": "Ho Chi Minh ACC (Sector S) - Ho Chi Minh Radar",
+    "frequency": ""
+  },
+  "VVHN": {
+    "name": "Ha Noi",
+    "callsign": "Ha Noi Radar",
+    "frequency": ""
+  },
+  "VVHN-1": {
+    "name": "Ha Noi ACC (Sector 1) - Ha Noi",
+    "callsign": "Ha Noi ACC (Sector 1) - Ha Noi Radar",
+    "frequency": ""
+  },
+  "VVHN-2": {
+    "name": "Ha Noi ACC (Sector 2) - Ha Noi",
+    "callsign": "Ha Noi ACC (Sector 2) - Ha Noi Radar",
+    "frequency": ""
+  },
+  "VVHN-3": {
+    "name": "Ha Noi ACC (Sector 3) - Ha Noi",
+    "callsign": "Ha Noi ACC (Sector 3) - Ha Noi Radar",
+    "frequency": ""
+  },
+  "VVHN-4": {
+    "name": "Ha Noi ACC (Sector 4) - Ha Noi",
+    "callsign": "Ha Noi ACC (Sector 4) - Ha Noi Radar",
+    "frequency": ""
+  },
+  "VYYF": {
+    "name": "Yangon",
+    "callsign": "Yangon Radar",
+    "frequency": ""
+  },
+  "WAAF": {
+    "name": "Ujung Pandang",
+    "callsign": "Ujung Pandang Radar",
+    "frequency": "119.3"
+  },
+  "WAAF-AN": {
+    "name": "Ujung Pandang (Ambon)",
+    "callsign": "Ujung Pandang (Ambon) Radar",
+    "frequency": ""
+  },
+  "WAAF-BI": {
+    "name": "Ujung Pandang (Bali)",
+    "callsign": "Ujung Pandang (Bali) Radar",
+    "frequency": ""
+  },
+  "WAAF-BN": {
+    "name": "Ujung Pandang (Balikpapan)",
+    "callsign": "Ujung Pandang (Balikpapan) Radar",
+    "frequency": ""
+  },
+  "WAAF-MO": {
+    "name": "Ujung Pandang (Manado)",
+    "callsign": "Ujung Pandang (Manado) Radar",
+    "frequency": ""
+  },
+  "WAAF-MS": {
+    "name": "Ujung Pandang (Makassar)",
+    "callsign": "Ujung Pandang (Makassar) Radar",
+    "frequency": ""
+  },
+  "WAAF-NA": {
+    "name": "Ujung Pandang (Nusa Tenggara)",
+    "callsign": "Ujung Pandang (Nusa Tenggara) Radar",
+    "frequency": ""
+  },
+  "WAAF-PA": {
+    "name": "Ujung Pandang (Papua)",
+    "callsign": "Ujung Pandang (Papua) Radar",
+    "frequency": ""
+  },
+  "WAAF-PN": {
+    "name": "Ujung Pandang (Pangkalan Bun)",
+    "callsign": "Ujung Pandang (Pangkalan Bun) Radar",
+    "frequency": ""
+  },
+  "WAAF-SY": {
+    "name": "Ujung Pandang (Surabaya)",
+    "callsign": "Ujung Pandang (Surabaya) Radar",
+    "frequency": ""
+  },
+  "WBFC": {
+    "name": "Kota Kinabalu",
+    "callsign": "Kota Kinabalu Radar",
+    "frequency": "121.3"
+  },
+  "WBGG": {
+    "name": "Kuching",
+    "callsign": "Kuching Radar",
+    "frequency": ""
+  },
+  "WIIF": {
+    "name": "Jakarta",
+    "callsign": "Jakarta Radar",
+    "frequency": ""
+  },
+  "WIIF-BC": {
+    "name": "Jakarta (Banda Aceh)",
+    "callsign": "Jakarta (Banda Aceh) Radar",
+    "frequency": ""
+  },
+  "WIIF-BD": {
+    "name": "Jakarta (Bandung)",
+    "callsign": "Jakarta (Bandung) Radar",
+    "frequency": ""
+  },
+  "WIIF-IS": {
+    "name": "Jakarta (Upper Indian Ocean)",
+    "callsign": "Jakarta (Upper Indian Ocean) Radar",
+    "frequency": ""
+  },
+  "WIIF-JG": {
+    "name": "Jakarta (Yogyakarta)",
+    "callsign": "Jakarta (Yogyakarta) Radar",
+    "frequency": ""
+  },
+  "WIIF-JT": {
+    "name": "Jakarta (Jakarta)",
+    "callsign": "Jakarta (Jakarta) Radar",
+    "frequency": ""
+  },
+  "WIIF-MN": {
+    "name": "Jakarta (Medan)",
+    "callsign": "Jakarta (Medan) Radar",
+    "frequency": ""
+  },
+  "WIIF-NA": {
+    "name": "Jakarta (Natuna)",
+    "callsign": "Jakarta (Natuna) Radar",
+    "frequency": ""
+  },
+  "WIIF-PB": {
+    "name": "Jakarta (Palembang)",
+    "callsign": "Jakarta (Palembang) Radar",
+    "frequency": ""
+  },
+  "WIIF-PK": {
+    "name": "Jakarta (Pontianak)",
+    "callsign": "Jakarta (Pontianak) Radar",
+    "frequency": ""
+  },
+  "WIIF-PP": {
+    "name": "Jakarta (Pangkalpinang)",
+    "callsign": "Jakarta (Pangkalpinang) Radar",
+    "frequency": ""
+  },
+  "WIIF-PU": {
+    "name": "Jakarta (Pekanbaru)",
+    "callsign": "Jakarta (Pekanbaru) Radar",
+    "frequency": ""
+  },
+  "WIIF-SG": {
+    "name": "Jakarta (Semarang)",
+    "callsign": "Jakarta (Semarang) Radar",
+    "frequency": ""
+  },
+  "WIIF-TG": {
+    "name": "Jakarta (Tanjungpinang)",
+    "callsign": "Jakarta (Tanjungpinang) Radar",
+    "frequency": ""
+  },
+  "WIIF-TN": {
+    "name": "Jakarta (Tanjung Pandan)",
+    "callsign": "Jakarta (Tanjung Pandan) Radar",
+    "frequency": ""
+  },
+  "WMFC": {
+    "name": "Kuala Lumpur",
+    "callsign": "Kuala Lumpur Radar",
+    "frequency": ""
+  },
+  "WSJC": {
+    "name": "Singapore",
+    "callsign": "Singapore Radar",
+    "frequency": "127.3"
+  },
+  "YARA": {
+    "name": "Brisbane (Arafura) 133.7* (125.7)",
+    "callsign": "Brisbane (Arafura) 133.7* (125.7) Center",
+    "frequency": ""
+  },
+  "YARL": {
+    "name": "Brisbane (Armidale) 130.9",
+    "callsign": "Brisbane (Armidale) 130.9 Center",
+    "frequency": ""
+  },
+  "YASH": {
+    "name": "Brisbane (Ashmore) 133.4* (123.85)",
+    "callsign": "Brisbane (Ashmore) 133.4* (123.85) Center",
+    "frequency": ""
+  },
+  "YASP": {
+    "name": "Melbourne (Alice Springs) 128.85",
+    "callsign": "Melbourne (Alice Springs) 128.85 Center",
+    "frequency": ""
+  },
+  "YASW": {
+    "name": "Melbourne (Alice Springs West) 131.8* (128.85)",
+    "callsign": "Melbourne (Alice Springs West) 131.8* (128.85) Center",
+    "frequency": ""
+  },
+  "YAUG": {
+    "name": "Melbourne (Augusta) 127.05* (123.05)",
+    "callsign": "Melbourne (Augusta) 127.05* (123.05) Center",
+    "frequency": ""
+  },
+  "YBAR": {
+    "name": "Brisbane (Barra) 123.8* (120.15)",
+    "callsign": "Brisbane (Barra) 123.8* (120.15) Center",
+    "frequency": "125.7"
+  },
+  "YBIK": {
+    "name": "Melbourne (Bindook) 129.8* (133.15)",
+    "callsign": "Melbourne (Bindook) 129.8* (133.15) Center",
+    "frequency": "125.7"
+  },
+  "YBKE": {
+    "name": "Melbourne (Bourke) 128.2* (128.85)",
+    "callsign": "Melbourne (Bourke) 128.2* (128.85) Center",
+    "frequency": "123.9"
+  },
+  "YBLA": {
+    "name": "Melbourne (Benalla) 132.2",
+    "callsign": "Melbourne (Benalla) 132.2 Center",
+    "frequency": "135.7"
+  },
+  "YBUR": {
+    "name": "Brisbane (Burnett) 123.0* (134.2)",
+    "callsign": "Brisbane (Burnett) 123.0* (134.2) Center",
+    "frequency": "119.5"
+  },
+  "YCNK": {
+    "name": "Brisbane (Cessnock) 123.4* (130.9)",
+    "callsign": "Brisbane (Cessnock) 123.4* (130.9) Center",
+    "frequency": "119.6"
+  },
+  "YCOL": {
+    "name": "Brisbane Radio (Coral) 133.15* (124.65)",
+    "callsign": "Brisbane Radio (Coral) 133.15* (124.65) Center",
+    "frequency": ""
+  },
+  "YCVN": {
+    "name": "Brisbane (Carnarvon) 133.8* (125.9)",
+    "callsign": "Brisbane (Carnarvon) 133.8* (125.9) Center",
+    "frequency": ""
+  },
+  "YDOS": {
+    "name": "Brisbane (Downs) 135.6* (134.2)",
+    "callsign": "Brisbane (Downs) 135.6* (134.2) Center",
+    "frequency": ""
+  },
+  "YELW": {
+    "name": "Melbourne (Eildon Weir) 123.75* (132.2)",
+    "callsign": "Melbourne (Eildon Weir) 123.75* (132.2) Center",
+    "frequency": ""
+  },
+  "YESP": {
+    "name": "Melbourne (Esperance) 123.95* (128.85)",
+    "callsign": "Melbourne (Esperance) 123.95* (128.85) Center",
+    "frequency": ""
+  },
+  "YFLD": {
+    "name": "Brisbane Radio (Flinders) 132.85* (124.65)",
+    "callsign": "Brisbane Radio (Flinders) 132.85* (124.65) Center",
+    "frequency": ""
+  },
+  "YFOR": {
+    "name": "Melbourne (Forrest) 132.7* (128.85)",
+    "callsign": "Melbourne (Forrest) 132.7* (128.85) Center",
+    "frequency": ""
+  },
+  "YGEL": {
+    "name": "Melbourne (Geraldton) 134.2* (118.2)",
+    "callsign": "Melbourne (Geraldton) 134.2* (118.2) Center",
+    "frequency": ""
+  },
+  "YGOL": {
+    "name": "Brisbane (Gold Coast) 130.4* (134.2)",
+    "callsign": "Brisbane (Gold Coast) 130.4* (134.2) Center",
+    "frequency": ""
+  },
+  "YGTH": {
+    "name": "Melbourne (Griffith) 122.75* (132.6)",
+    "callsign": "Melbourne (Griffith) 122.75* (132.6) Center",
+    "frequency": ""
+  },
+  "YGUN": {
+    "name": "Melbourne (Gundagai) 133.15",
+    "callsign": "Melbourne (Gundagai) 133.15 Center",
+    "frequency": ""
+  },
+  "YGVE": {
+    "name": "Melbourne (Grove) 133.8* (118.2)",
+    "callsign": "Melbourne (Grove) 133.8* (118.2) Center",
+    "frequency": ""
+  },
+  "YHUO": {
+    "name": "Melbourne (Huon) 122.6",
+    "callsign": "Melbourne (Huon) 122.6 Center",
+    "frequency": ""
+  },
+  "YHWE": {
+    "name": "Brisbane (Howe) 124.95",
+    "callsign": "Brisbane (Howe) 124.95 Center",
+    "frequency": ""
+  },
+  "YHYD": {
+    "name": "Melbourne (Hyden) 118.2",
+    "callsign": "Melbourne (Hyden) 118.2 Center",
+    "frequency": ""
+  },
+  "YIND": {
+    "name": "Brisbane Radio (Indian) 129.25",
+    "callsign": "Brisbane Radio (Indian) 129.25 Center",
+    "frequency": ""
+  },
+  "YINE": {
+    "name": "Brisbane Radio (Indian East) 123.65* (129.25)",
+    "callsign": "Brisbane Radio (Indian East) 123.65* (129.25) Center",
+    "frequency": ""
+  },
+  "YINL": {
+    "name": "Brisbane (Inverell) 134.2",
+    "callsign": "Brisbane (Inverell) 134.2 Center",
+    "frequency": ""
+  },
+  "YINS": {
+    "name": "Brisbane Radio (Indian South) 123.2* (129.25)",
+    "callsign": "Brisbane Radio (Indian South) 123.2* (129.25) Center",
+    "frequency": ""
+  },
+  "YISA": {
+    "name": "Brisbane (Isa) 125.7",
+    "callsign": "Brisbane (Isa) 125.7 Center",
+    "frequency": ""
+  },
+  "YJAR": {
+    "name": "Melbourne (Jarrah) 120.3* (118.2)",
+    "callsign": "Melbourne (Jarrah) 120.3* (118.2) Center",
+    "frequency": ""
+  },
+  "YKAT": {
+    "name": "Melbourne (Katoomba) 133.5* (133.15)",
+    "callsign": "Melbourne (Katoomba) 133.5* (133.15) Center",
+    "frequency": ""
+  },
+  "YKEN": {
+    "name": "Brisbane (Kennedy) 120.15",
+    "callsign": "Brisbane (Kennedy) 120.15 Center",
+    "frequency": ""
+  },
+  "YKIY": {
+    "name": "Brisbane (Kimberley) 133.4* (123.85)",
+    "callsign": "Brisbane (Kimberley) 133.4* (123.85) Center",
+    "frequency": ""
+  },
+  "YKPL": {
+    "name": "Brisbane (Keppel) 125.9",
+    "callsign": "Brisbane (Keppel) 125.9 Center",
+    "frequency": ""
+  },
+  "YLEA": {
+    "name": "Melbourne (Leeman) 122.4* (118.2)",
+    "callsign": "Melbourne (Leeman) 122.4* (118.2) Center",
+    "frequency": ""
+  },
+  "YMDE": {
+    "name": "Brisbane (Mudgee) 133.0* (130.9)",
+    "callsign": "Brisbane (Mudgee) 133.0* (130.9) Center",
+    "frequency": ""
+  },
+  "YMEK": {
+    "name": "Melbourne (Meekatharra) 132.0* (134.0)",
+    "callsign": "Melbourne (Meekatharra) 132.0* (134.0) Center",
+    "frequency": "135.7"
+  },
+  "YMLD": {
+    "name": "Brisbane (Maitland) 132.35* (130.9)",
+    "callsign": "Brisbane (Maitland) 132.35* (130.9) Center",
+    "frequency": ""
+  },
+  "YMNN": {
+    "name": "Brisbane (Manning) 130.1* (130.9)",
+    "callsign": "Brisbane (Manning) 130.1* (130.9) Center",
+    "frequency": ""
+  },
+  "YMTK": {
+    "name": "Melbourne (Mount) 133.7* (134.0)",
+    "callsign": "Melbourne (Mount) 133.7* (134.0) Center",
+    "frequency": "135.7"
+  },
+  "YMUN": {
+    "name": "Melbourne (Mungo) 132.6",
+    "callsign": "Melbourne (Mungo) 132.6 Center",
+    "frequency": ""
+  },
+  "YMZI": {
+    "name": "Melbourne (Menzies) 134.3* (134.0)",
+    "callsign": "Melbourne (Menzies) 134.3* (134.0) Center",
+    "frequency": ""
+  },
+  "YNEW": {
+    "name": "Melbourne (Newman) 125.4* (134.0)",
+    "callsign": "Melbourne (Newman) 125.4* (134.0) Center",
+    "frequency": ""
+  },
+  "YNSA": {
+    "name": "Brisbane (Noosa) 124.1* (134.2)",
+    "callsign": "Brisbane (Noosa) 124.1* (134.2) Center",
+    "frequency": ""
+  },
+  "YOCN": {
+    "name": "Brisbane (Ocean) 128.6* (130.9)",
+    "callsign": "Brisbane (Ocean) 128.6* (130.9) Center",
+    "frequency": ""
+  },
+  "YOLW": {
+    "name": "Melbourne (Onslow) 134.0",
+    "callsign": "Melbourne (Onslow) 134.0 Center",
+    "frequency": ""
+  },
+  "YOXL": {
+    "name": "Melbourne (Oxley) 128.5* (132.6)",
+    "callsign": "Melbourne (Oxley) 128.5* (132.6) Center",
+    "frequency": ""
+  },
+  "YPAR": {
+    "name": "Melbourne (Paraburdoo) 133.5* (134.0)",
+    "callsign": "Melbourne (Paraburdoo) 133.5* (134.0) Center",
+    "frequency": "135.25"
+  },
+  "YPIY": {
+    "name": "Melbourne (Pingelly) 133.9* (118.2)",
+    "callsign": "Melbourne (Pingelly) 133.9* (118.2) Center",
+    "frequency": "119.6"
+  },
+  "YPOT": {
+    "name": "Melbourne (Port) 127.0* (134.0)",
+    "callsign": "Melbourne (Port) 127.0* (134.0) Center",
+    "frequency": ""
+  },
+  "YSCR": {
+    "name": "Melbourne (Cross) 135.8* (118.2)",
+    "callsign": "Melbourne (Cross) 135.8* (118.2) Center",
+    "frequency": ""
+  },
+  "YSDY": {
+    "name": "Brisbane (Straddy) 134.3* (134.2)",
+    "callsign": "Brisbane (Straddy) 134.3* (134.2) Center",
+    "frequency": ""
+  },
+  "YSNO": {
+    "name": "Melbourne (Snowy) 124.0* (125.0)",
+    "callsign": "Melbourne (Snowy) 124.0* (125.0) Center",
+    "frequency": ""
+  },
+  "YSTR": {
+    "name": "Brisbane (Sturt) 134.4* (125.7)",
+    "callsign": "Brisbane (Sturt) 134.4* (125.7) Center",
+    "frequency": ""
+  },
+  "YSWY": {
+    "name": "Brisbane (Swampy) 133.2* (125.9)",
+    "callsign": "Brisbane (Swampy) 133.2* (125.9) Center",
+    "frequency": ""
+  },
+  "YTBD": {
+    "name": "Melbourne (Tailem Bend) 123.05",
+    "callsign": "Melbourne (Tailem Bend) 123.05 Center",
+    "frequency": ""
+  },
+  "YTBP": {
+    "name": "Brisbane (Tabletop) 120.55* (120.15)",
+    "callsign": "Brisbane (Tabletop) 120.55* (120.15) Center",
+    "frequency": ""
+  },
+  "YTRS": {
+    "name": "Brisbane (Territory South) 133.2* (123.85)",
+    "callsign": "Brisbane (Territory South) 133.2* (123.85) Center",
+    "frequency": ""
+  },
+  "YTRT": {
+    "name": "Brisbane (Territory North) 123.85",
+    "callsign": "Brisbane (Territory North) 123.85 Center",
+    "frequency": ""
+  },
+  "YTSN": {
+    "name": "Brisbane Radio (Tasman) 124.65",
+    "callsign": "Brisbane Radio (Tasman) 124.65 Center",
+    "frequency": ""
+  },
+  "YWAR": {
+    "name": "Melbourne (Warburton) 124.9* (128.85)",
+    "callsign": "Melbourne (Warburton) 124.9* (128.85) Center",
+    "frequency": ""
+  },
+  "YWEG": {
+    "name": "Brisbane (Warrego) 132.45* (125.7)",
+    "callsign": "Brisbane (Warrego) 132.45* (125.7) Center",
+    "frequency": ""
+  },
+  "YWIL": {
+    "name": "Brisbane (Willis) 127.6* (120.15)",
+    "callsign": "Brisbane (Willis) 127.6* (120.15) Center",
+    "frequency": ""
+  },
+  "YWOL": {
+    "name": "Melbourne (Wollongong) 125.0",
+    "callsign": "Melbourne (Wollongong) 125.0 Center",
+    "frequency": ""
+  },
+  "YWON": {
+    "name": "Melbourne (Wonthaggi) 135.3* (122.6)",
+    "callsign": "Melbourne (Wonthaggi) 135.3* (122.6) Center",
+    "frequency": ""
+  },
+  "YWRA": {
+    "name": "Melbourne (Woomera) 132.9* (128.85)",
+    "callsign": "Melbourne (Woomera) 132.9* (128.85) Center",
+    "frequency": ""
+  },
+  "YYWE": {
+    "name": "Melbourne (Yarrowee) 134.325* (132.6)",
+    "callsign": "Melbourne (Yarrowee) 134.325* (132.6) Center",
+    "frequency": ""
+  },
+  "ZBAA": {
+    "name": "Beijing ACC - Beijing FIR - Beijing",
+    "callsign": "Beijing ACC - Beijing FIR - Beijing Radar",
+    "frequency": "125.9"
+  },
+  "ZBAA-E": {
+    "name": "Beijing ACC East Sector - Beijing FIR - Beijing",
+    "callsign": "Beijing ACC East Sector - Beijing FIR - Beijing Radar",
+    "frequency": ""
+  },
+  "ZBAA-N": {
+    "name": "Beijing ACC North High Sector - Beijing FIR - Beijing",
+    "callsign": "Beijing ACC North High Sector - Beijing FIR - Beijing Radar",
+    "frequency": ""
+  },
+  "ZBAA-S": {
+    "name": "Beijing ACC South High Sector - Beijing FIR - Beijing",
+    "callsign": "Beijing ACC South High Sector - Beijing FIR - Beijing Radar",
+    "frequency": ""
+  },
+  "ZBAA-W": {
+    "name": "Beijing ACC West Sector - Beijing FIR - Beijing",
+    "callsign": "Beijing ACC West Sector - Beijing FIR - Beijing Radar",
+    "frequency": ""
+  },
+  "ZBAA-SW": {
+    "name": "Beijing ACC Southwest Sector - Beijing FIR - Beijing",
+    "callsign": "Beijing ACC Southwest Sector - Beijing FIR - Beijing Radar",
+    "frequency": ""
+  },
+  "ZBHH": {
+    "name": "Hohhot ACC - Beijing FIR - Hohhot",
+    "callsign": "Hohhot ACC - Beijing FIR - Hohhot Radar",
+    "frequency": ""
+  },
+  "ZBPE": {
+    "name": "Beijing FIR - Beijing",
+    "callsign": "Beijing FIR - Beijing Radar",
+    "frequency": ""
+  },
+  "ZGGG": {
+    "name": "Guangzhou ACC - Guangzhou FIR - Guangzhou",
+    "callsign": "Guangzhou ACC - Guangzhou FIR - Guangzhou Radar",
+    "frequency": ""
+  },
+  "ZGHA": {
+    "name": "Changsha ACC - Guangzhou FIR - Changsha",
+    "callsign": "Changsha ACC - Guangzhou FIR - Changsha Radar",
+    "frequency": ""
+  },
+  "ZGNN": {
+    "name": "Nanning ACC - Guangzhou FIR - Nanning",
+    "callsign": "Nanning ACC - Guangzhou FIR - Nanning Radar",
+    "frequency": ""
+  },
+  "ZGZU": {
+    "name": "Guangzhou FIR - Guangzhou",
+    "callsign": "Guangzhou FIR - Guangzhou Radar",
+    "frequency": ""
+  },
+  "ZHCC": {
+    "name": "Zhengzhou ACC - Wuhan FIR - Zhengzhou",
+    "callsign": "Zhengzhou ACC - Wuhan FIR - Zhengzhou Radar",
+    "frequency": ""
+  },
+  "ZHHH": {
+    "name": "Wuhan ACC - Wuhan FIR - Wuhan",
+    "callsign": "Wuhan ACC - Wuhan FIR - Wuhan Radar",
+    "frequency": ""
+  },
+  "ZHWH": {
+    "name": "Wuhan FIR - Wuhan",
+    "callsign": "Wuhan FIR - Wuhan Radar",
+    "frequency": ""
+  },
+  "ZJSA": {
+    "name": "Sanya FIR - Sanya",
+    "callsign": "Sanya FIR - Sanya Radar",
+    "frequency": ""
+  },
+  "ZJSY-L": {
+    "name": "Sanya ACC Land Sector - Sanya FIR - Sanya",
+    "callsign": "Sanya ACC Land Sector - Sanya FIR - Sanya Radar",
+    "frequency": ""
+  },
+  "ZJSY-O": {
+    "name": "Sanya ACC Oceanic Sector - Sanya FIR - Sanya",
+    "callsign": "Sanya ACC Oceanic Sector - Sanya FIR - Sanya Radar",
+    "frequency": ""
+  },
+  "ZKKP": {
+    "name": "Pyongyang",
+    "callsign": "Pyongyang Radar",
+    "frequency": ""
+  },
+  "ZLHW": {
+    "name": "Lanzhou FIR - Lanzhou",
+    "callsign": "Lanzhou FIR - Lanzhou Radar",
+    "frequency": ""
+  },
+  "ZLLL": {
+    "name": "Lanzhou ACC - Lanzhou FIR - Lanzhou",
+    "callsign": "Lanzhou ACC - Lanzhou FIR - Lanzhou Radar",
+    "frequency": ""
+  },
+  "ZLXY": {
+    "name": "Xi'an ACC - Lanzhou FIR - Xi'an",
+    "callsign": "Xi'an ACC - Lanzhou FIR - Xi'an Radar",
+    "frequency": ""
+  },
+  "ZMUB": {
+    "name": "Ulaanbaatar FIR - Ulaanbaatar",
+    "callsign": "Ulaanbaatar FIR - Ulaanbaatar Radar",
+    "frequency": ""
+  },
+  "ZMUB-A": {
+    "name": "Ulaanbaatar ACC Altai Sector - Ulaanbaatar FIR - Ulaanbaatar",
+    "callsign": "Ulaanbaatar ACC Altai Sector - Ulaanbaatar FIR - Ulaanbaatar Radar",
+    "frequency": ""
+  },
+  "ZMUB-B": {
+    "name": "Ulaanbaatar ACC Bayan Sector - Ulaanbaatar FIR - Ulaanbaatar",
+    "callsign": "Ulaanbaatar ACC Bayan Sector - Ulaanbaatar FIR - Ulaanbaatar Radar",
+    "frequency": ""
+  },
+  "ZMUB-C": {
+    "name": "Ulaanbaatar ACC Central Sector - Ulaanbaatar FIR - Ulaanbaatar",
+    "callsign": "Ulaanbaatar ACC Central Sector - Ulaanbaatar FIR - Ulaanbaatar Radar",
+    "frequency": ""
+  },
+  "ZMUB-D": {
+    "name": "Ulaanbaatar ACC Dornod Sector - Ulaanbaatar FIR - Ulaanbaatar",
+    "callsign": "Ulaanbaatar ACC Dornod Sector - Ulaanbaatar FIR - Ulaanbaatar Radar",
+    "frequency": ""
+  },
+  "ZMUB-G": {
+    "name": "Ulaanbaatar ACC Gobi Sector - Ulaanbaatar FIR - Ulaanbaatar",
+    "callsign": "Ulaanbaatar ACC Gobi Sector - Ulaanbaatar FIR - Ulaanbaatar Radar",
+    "frequency": ""
+  },
+  "ZMUB-M": {
+    "name": "Ulaanbaatar ACC Muren Sector - Ulaanbaatar FIR - Ulaanbaatar",
+    "callsign": "Ulaanbaatar ACC Muren Sector - Ulaanbaatar FIR - Ulaanbaatar Radar",
+    "frequency": ""
+  },
+  "ZPKM": {
+    "name": "Kunming FIR - Kunming",
+    "callsign": "Kunming FIR - Kunming Radar",
+    "frequency": ""
+  },
+  "ZPPP": {
+    "name": "Kunming ACC - Kunming FIR - Kunming",
+    "callsign": "Kunming ACC - Kunming FIR - Kunming Radar",
+    "frequency": ""
+  },
+  "ZSAM": {
+    "name": "Xiamen ACC - Shanghai FIR - Xiamen",
+    "callsign": "Xiamen ACC - Shanghai FIR - Xiamen Radar",
+    "frequency": ""
+  },
+  "ZSCN": {
+    "name": "Nanchang ACC - Shanghai FIR - Nanchang",
+    "callsign": "Nanchang ACC - Shanghai FIR - Nanchang Radar",
+    "frequency": ""
+  },
+  "ZSHA": {
+    "name": "Shanghai FIR - Shanghai FIR - Shanghai",
+    "callsign": "Shanghai FIR - Shanghai FIR - Shanghai Radar",
+    "frequency": ""
+  },
+  "ZSJN": {
+    "name": "Jinan ACC - Shanghai FIR - Jinan",
+    "callsign": "Jinan ACC - Shanghai FIR - Jinan Radar",
+    "frequency": ""
+  },
+  "ZSOF": {
+    "name": "Hefei ACC - Shanghai FIR - Hefei",
+    "callsign": "Hefei ACC - Shanghai FIR - Hefei Radar",
+    "frequency": ""
+  },
+  "ZSQD": {
+    "name": "Qingdao ACC - Shanghai FIR - Qingdao",
+    "callsign": "Qingdao ACC - Shanghai FIR - Qingdao Radar",
+    "frequency": ""
+  },
+  "ZSSS": {
+    "name": "Shanghai ACC - Shanghai FIR - Shanghai",
+    "callsign": "Shanghai ACC - Shanghai FIR - Shanghai Radar",
+    "frequency": ""
+  },
+  "ZSSS-C": {
+    "name": "Shanghai ACC Central High Sector - Shanghai FIR - Shanghai",
+    "callsign": "Shanghai ACC Central High Sector - Shanghai FIR - Shanghai Radar",
+    "frequency": ""
+  },
+  "ZSSS-N": {
+    "name": "Shanghai ACC North High Sector - Shanghai FIR - Shanghai",
+    "callsign": "Shanghai ACC North High Sector - Shanghai FIR - Shanghai Radar",
+    "frequency": ""
+  },
+  "ZSSS-S": {
+    "name": "Shanghai ACC South High Sector - Shanghai FIR - Shanghai",
+    "callsign": "Shanghai ACC South High Sector - Shanghai FIR - Shanghai Radar",
+    "frequency": ""
+  },
+  "ZSSS-W": {
+    "name": "Shanghai ACC West High Sector - Shanghai FIR - Shanghai",
+    "callsign": "Shanghai ACC West High Sector - Shanghai FIR - Shanghai Radar",
+    "frequency": ""
+  },
+  "ZUGY": {
+    "name": "Guiyang ACC - Kunming FIR - Guiyang",
+    "callsign": "Guiyang ACC - Kunming FIR - Guiyang Radar",
+    "frequency": ""
+  },
+  "ZULS": {
+    "name": "Lhasa ACC - Kunming FIR - Lhasa",
+    "callsign": "Lhasa ACC - Kunming FIR - Lhasa Radar",
+    "frequency": ""
+  },
+  "ZUUU": {
+    "name": "Chengdu ACC - Kunming FIR - Chengdu",
+    "callsign": "Chengdu ACC - Kunming FIR - Chengdu Radar",
+    "frequency": ""
+  },
+  "ZWUQ": {
+    "name": "Urumqi FIR - Urumqi",
+    "callsign": "Urumqi FIR - Urumqi Radar",
+    "frequency": ""
+  },
+  "ZWWW-N": {
+    "name": "Urumqi ACC North Sector- Urumqi FIR - Urumqi",
+    "callsign": "Urumqi ACC North Sector- Urumqi FIR - Urumqi Radar",
+    "frequency": ""
+  },
+  "ZWWW-S": {
+    "name": "Urumqi ACC South Sector- Urumqi FIR - Urumqi",
+    "callsign": "Urumqi ACC South Sector- Urumqi FIR - Urumqi Radar",
+    "frequency": ""
+  },
+  "ZYHB": {
+    "name": "Harbin ACC - Shenyang FIR - Harbin",
+    "callsign": "Harbin ACC - Shenyang FIR - Harbin Radar",
+    "frequency": ""
+  },
+  "ZYSH": {
+    "name": "Shenyang FIR - Shenyang",
+    "callsign": "Shenyang FIR - Shenyang Radar",
+    "frequency": ""
+  },
+  "ZYTL": {
+    "name": "Dalian ACC - Shenyang FIR - Dalian",
+    "callsign": "Dalian ACC - Shenyang FIR - Dalian Radar",
+    "frequency": ""
+  },
+  "ZYTX": {
+    "name": "Shenyang ACC - Shenyang FIR - Shenyang",
+    "callsign": "Shenyang ACC - Shenyang FIR - Shenyang Radar",
+    "frequency": ""
+  }
+}

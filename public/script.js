@@ -417,8 +417,8 @@ function getBriefingValidSentences(item, forSpeech = false) {
                 let val = el ? el.value.trim() : '';
 
                 if (id === 'b-landing-type') {
-                    if (val === '3' || val === '') val = forSpeech ? 'ILS Cat 3' : 'ILS Cat. 3';
-                    else if (val === '2') val = forSpeech ? 'ILS Cat 2' : 'ILS Cat. 2';
+                    if (val === '3' || val === '') val = 'ILS 3';
+                    else if (val === '2') val = 'ILS';
                     else if (val === '1') val = 'RNAV';
                 }
 
@@ -1051,8 +1051,8 @@ function parseVariables(text, forSpeech = false) {
             let val = el ? el.value.trim() : '';
 
             if (id === 'b-landing-type') {
-                if (val === '3' || val === '') val = forSpeech ? 'ILS Cat 3' : 'ILS Cat. 3';
-                else if (val === '2') val = forSpeech ? 'ILS Cat 2' : 'ILS Cat. 2';
+                if (val === '3' || val === '') val = 'ILS 3';
+                else if (val === '2') val = 'ILS';
                 else if (val === '1') val = 'RNAV';
             }
 
