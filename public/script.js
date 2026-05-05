@@ -1245,7 +1245,7 @@ function init() {
         simplifyContainer.style.display = hasSimplify ? 'flex' : 'none';
     }
 
-    buildQuickNav(); loadBriefing(); renderPage(true);
+    buildQuickNav(); loadBriefing(); initMetarAutoSync(); renderPage(true);
 }
 
 function renderPage(isNewPage = false) {
@@ -2431,3 +2431,77 @@ if (SpeechRecognition) {
 init();
 
 window.addEventListener('resize', () => updateControls());
+
+// ========== Automated METAR Fetching ==========
+async function fetchMetarData(icao) {
+    if (!icao || icao.length !== 4) return null;
+    try {
+        const resp = await fetch(`https://metar.vatsim.net/metar.php?id=${icao.toUpperCase()}`);
+        const text = await resp.text();
+        if (!text || text.includes('not found') || text.length < 10) return null;
+        
+        const data = {};
+        
+        // Parse Wind: 27012KT or 27012G20KT
+        const windMatch = text.match(/(\d{3})(\d{2,3})(G\d{2,3})?KT/);
+        if (windMatch) {
+            data.wind = `${windMatch[1]}/${windMatch[2]}`;
+        }
+        
+        // Parse Temp/Dew Point: 18/12 or M02/M05
+        const tempMatch = text.match(/\b(M?\d{2})\/(M?\d{2})\b/);
+        if (tempMatch) {
+            data.temp = tempMatch[1].replace('M', '-');
+            data.dewpt = tempMatch[2].replace('M', '-');
+        }
+        
+        // Parse QNH: Q1013 or A2992
+        const qnhMatch = text.match(/\b([QA])(\d{4})\b/);
+        if (qnhMatch) {
+            data.qnh = qnhMatch[2];
+        }
+        
+        return data;
+    } catch (e) {
+        console.error('METAR Fetch Error:', e);
+        return null;
+    }
+}
+
+function initMetarAutoSync() {
+    const originInput = document.getElementById('b-origin');
+    const destInput = document.getElementById('b-dest');
+    
+    const sync = async (icao, prefix) => {
+        if (!icao || icao.length !== 4) return;
+        const data = await fetchMetarData(icao);
+        if (data) {
+            if (data.qnh) {
+                const el = document.getElementById(`b-${prefix}-qnh`);
+                if (el && !el.value) el.value = data.qnh;
+            }
+            if (data.temp) {
+                const el = document.getElementById(`b-${prefix}-temp`);
+                if (el && !el.value) el.value = data.temp;
+            }
+            if (data.dewpt) {
+                const el = document.getElementById(`b-${prefix}-dewpt`);
+                if (el && !el.value) el.value = data.dewpt;
+            }
+            if (data.wind) {
+                const el = document.getElementById(`b-${prefix}-wind`);
+                if (el && !el.value) el.value = data.wind;
+            }
+            saveBriefing();
+        }
+    };
+    
+    if (originInput) {
+        originInput.addEventListener('change', (e) => sync(e.target.value, 'dep'));
+        originInput.addEventListener('blur', (e) => sync(e.target.value, 'dep'));
+    }
+    if (destInput) {
+        destInput.addEventListener('change', (e) => sync(e.target.value, 'arr'));
+        destInput.addEventListener('blur', (e) => sync(e.target.value, 'arr'));
+    }
+}
