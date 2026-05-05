@@ -1616,7 +1616,7 @@ if (SpeechRecognition) {
         'DESCEND', 'APPROACH', 'LANDING', 'SHUTDOWN', 'SECURE', 'CLEAN',
         'TAKE-OFF', 'TAKE', 'PREFLIGHT', 'NAV', 'YAW', 'ENGINE', 'PUSHBACK',
         'LINE', 'CRUISE', 'DESCENT', 'CAB', 'UTIL', 'BUS', 'BARO', 'EFIS',
-        'TOGA', 'PACK', 'PACKS', 'LNAV', 'VNAV', 'SIDE'
+        'TOGA', 'PACK', 'PACKS', 'LNAV', 'VNAV', 'SIDE', 'RNAV'
     ]);
 
     function spellAbbreviations(text, skipSpelling = false) {
