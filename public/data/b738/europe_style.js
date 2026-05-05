@@ -414,7 +414,6 @@ const initialChecklistData = [
           "Our Decision Altitude is %minima% feet radio.",
           "In case of a Go-Around, we climb to %ga_alt% feet.",
           "Our Minimum Diversion Fuel is %reserve_fuel% kilograms.",
-          "If the crosswind is strong, I will be ready to disconnect the autopilot early.",
           "Approach briefing complete."
         ]
       },
