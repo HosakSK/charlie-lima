@@ -22,8 +22,9 @@ export function middleware(req: NextRequest) {
     // Ak to neni "www" a nejaka subdomena tam naozaj je
     if (subdomain && subdomain !== 'www') {
       if (subdomain === 'creator') {
-        // Specificky pripad pre creator - nacitame staticky creator.html
-        return NextResponse.rewrite(new URL('/creator.html', req.url));
+        const url = req.nextUrl.clone();
+        url.pathname = '/creator.html';
+        return NextResponse.rewrite(url);
       }
       
       // Prepise "a320.charlie-lima.eu/" na interny Next.js route "/a320"
