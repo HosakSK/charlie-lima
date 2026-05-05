@@ -1487,19 +1487,19 @@ button:active:not(:disabled) {
     border-radius: 6px !important;
     padding: 0 8px !important;
     height: 32px !important;
-    cursor: pointer;
+    border-radius: 6px;
+    width: 32px;
+    height: 28px; /* Matched to input height */
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    box-shadow: 0 2px 6px rgba(var(--color-accent-rgb), 0.2);
+    cursor: pointer;
+    transition: all 0.2s;
     flex-shrink: 0;
 }
 
 .simbrief-fetch-btn:hover {
     filter: brightness(1.1);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(var(--color-accent-rgb), 0.3);
 }
 
 .simbrief-fetch-btn.loading {
@@ -1515,6 +1515,7 @@ button:active:not(:disabled) {
     letter-spacing: 0.5px;
     padding: 0 6px !important;
     text-transform: uppercase;
+    color: var(--color-text) !important; /* Fix for night mode */
 }
 
 .brief-divider {
@@ -1529,11 +1530,11 @@ button:active:not(:disabled) {
     .brief-flight {
         flex-wrap: wrap !important;
         gap: 10px !important;
-        justify-content: flex-start !important;
+        justify-content: center !important; /* Center on mobile */
     }
     
     .simbrief-id-input {
-        flex: 1 1 100px;
+        flex: 1 1 140px;
         min-width: 115px;
     }
 

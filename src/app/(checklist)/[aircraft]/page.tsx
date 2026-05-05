@@ -176,6 +176,9 @@ function getOriginalHTML(aircraft: string): string {
             <button id="b-metar-sync" class="simbrief-fetch-btn" title="Sync METAR">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
             </button>
+            <button id="b-squawk-gen" class="simbrief-fetch-btn" title="Generate Squawk">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m18 14 3-3-3-3M6 10l-3 3 3 3"></path><path d="m5.6 13.1 1.4-1.9 1.4 1.9"></path><path d="M3 13h18M9 10h1l1 3 1-3h1"></path><path d="M15 10h1l1 3 1-3h1"></path></svg>
+            </button>
           </div>
         </div>
         <div class="brief-group-label accordion-label" id="label-dep">DEPARTURE <span class="accordion-icon">&#9660;</span></div>

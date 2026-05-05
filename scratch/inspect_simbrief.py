@@ -9,10 +9,7 @@ def print_keys(obj, prefix=''):
         if obj:
             print_keys(obj[0], f"{prefix}[]")
     else:
-        # Check if the value looks like a V-speed or performance data
-        val = str(obj).lower()
-        if any(x in prefix.lower() for x in ['v1', 'vr', 'v2', 'trim', 'flaps', 'takeoff', 'performance']):
-            print(f"{prefix}: {obj}")
+        print(f"{prefix}: {obj}")
 
 def try_load(filename):
     for enc in ['utf-8', 'utf-16', 'utf-16-le', 'utf-16-be', 'latin-1']:
@@ -24,7 +21,7 @@ def try_load(filename):
     return None
 
 data = try_load('simbrief_inspect.json')
-if data:
-    print_keys(data)
+if data and 'tlr' in data:
+    print_keys(data['tlr'], 'tlr')
 else:
-    print("Error: Could not load JSON with any common encoding.")
+    print("Error: TLR not found.")

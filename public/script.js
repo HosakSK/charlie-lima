@@ -1080,6 +1080,8 @@ if (simbriefFetchBtn && simbriefIdInput) {
 
                 // Map SimBrief data to our fields
                 const takeoff = data.tlr?.takeoff?.runway?.[0] || {};
+                const landing = data.tlr?.landing?.runway?.[0] || {};
+                const landingPerf = data.tlr?.landing?.distance_dry || {};
                 
                 const fields = {
                     'b-callsign': data.atc?.callsign,
@@ -1091,9 +1093,14 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-v1': fmt(data.vspeeds?.v1 || takeoff.speeds_v1),
                     'b-vr': fmt(data.vspeeds?.vr || takeoff.speeds_vr),
                     'b-v2': fmt(data.vspeeds?.v2 || takeoff.speeds_v2),
+                    'b-vref': fmt(landingPerf.speeds_vref),
+                    'b-ils-freq': landing.ils_frequency,
+                    'b-course': landing.magnetic_course,
                     'b-trim': data.takeoff?.trim,
                     'b-dep-flaps': data.takeoff?.flaps || takeoff.flap_setting,
+                    'b-arr-flaps': landing.flap_setting || '30',
                     'b-dep-assumed': data.takeoff?.flex || takeoff.flex_temperature,
+                    'b-dep-rwy-hdg': takeoff.magnetic_course,
                     'b-squawk': data.atc?.squawk,
                     'b-dep-qnh': fmt(data.weather?.origin?.qnh),
                     'b-arr-qnh': fmt(data.weather?.destination?.qnh),
@@ -1107,7 +1114,7 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-arr-rwy': data.destination?.plan_rwy,
                     'b-sid': data.general?.sid_ident || data.origin?.sid,
                     'b-star': data.general?.star_ident || data.destination?.star,
-                    'b-initial-alt': fmt(data.general?.initial_altitude),
+                    'b-initial-alt': '', // Leave empty per request
                     'b-init-alt': fmt(data.general?.cruise_altitude || data.general?.initial_altitude),
                     'b-dep-tl': fmt(data.origin?.trans_alt),
                     'b-arr-ta': fmt(data.destination?.trans_level ? parseInt(data.destination.trans_level)/10 : ''),
@@ -2504,8 +2511,16 @@ function initMetarAutoSync() {
     };
     
     if (originInput) {
-        originInput.addEventListener('change', (e) => sync(e.target.value, 'dep'));
-        originInput.addEventListener('blur', (e) => sync(e.target.value, 'dep'));
+        originInput.addEventListener('change', (e) => {
+            sync(e.target.value, 'dep');
+            updateInitAltPlaceholder(e.target.value);
+        });
+        originInput.addEventListener('blur', (e) => {
+            sync(e.target.value, 'dep');
+            updateInitAltPlaceholder(e.target.value);
+        });
+        // Initial load check
+        if (originInput.value) updateInitAltPlaceholder(originInput.value);
     }
     if (destInput) {
         destInput.addEventListener('change', (e) => sync(e.target.value, 'arr'));
@@ -2520,5 +2535,40 @@ function initMetarAutoSync() {
             if (o) await sync(o, 'dep');
             if (d) await sync(d, 'arr');
         });
+    }
+    
+    const squawkBtn = document.getElementById('b-squawk-gen');
+    if (squawkBtn) {
+        squawkBtn.addEventListener('click', () => {
+            const forbidden = [7000, 7500, 7600, 7700, 1200, 2000, 0];
+            let code = 0;
+            do {
+                // Generate 4-digit octal (each digit 0-7)
+                code = 0;
+                for (let i = 0; i < 4; i++) {
+                    code += Math.floor(Math.random() * 8) * Math.pow(10, i);
+                }
+            } while (forbidden.includes(code));
+            
+            const el = document.getElementById('b-squawk');
+            if (el) {
+                el.value = code.toString().padStart(4, '0');
+                saveBriefing();
+            }
+        });
+    }
+}
+
+async function updateInitAltPlaceholder(icao) {
+    if (!icao || icao.length !== 4) return;
+    try {
+        const res = await fetch(`/api/airports?icao=${icao}`);
+        const data = await res.json();
+        const el = document.getElementById('b-initial-alt');
+        if (el && data && data.initial_climb) {
+            el.placeholder = data.initial_climb;
+        }
+    } catch (e) {
+        console.error('Placeholder Update Error:', e);
     }
 }
