@@ -164,21 +164,21 @@ function getOriginalHTML(aircraft: string): string {
         
         <div class="brief-row brief-flight-row" style="margin-bottom: 12px; justify-content: flex-start;">
           <div class="brief-flight" style="gap: 6px; justify-content: flex-start; width: auto;">
-            <input type="text" id="b-simbrief-id" class="brief-input simbrief-id-input" placeholder="ID" maxlength="10">
-            <button id="b-simbrief-fetch" class="simbrief-fetch-btn" title="Sync SimBrief">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            </button>
-            <div class="brief-divider"></div>
             <input type="text" id="b-callsign" class="brief-input brief-short callsign-input" placeholder="RYR123" maxlength="8">
             <input type="text" id="b-origin" class="brief-input brief-short" placeholder="ICAO" maxlength="4">
             <span class="brief-arrow" style="margin: 0 2px;">&#10145;</span>
             <input type="text" id="b-dest" class="brief-input brief-short" placeholder="ICAO" maxlength="4">
+            <div class="brief-divider"></div>
+            <input type="text" id="b-simbrief-id" class="brief-input simbrief-id-input" placeholder="SIMBRIEF ID" maxlength="10">
+            <button id="b-simbrief-fetch" class="simbrief-fetch-btn" title="Sync SimBrief">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </button>
           </div>
         </div>
         <div class="brief-group-label accordion-label" id="label-dep">DEPARTURE <span class="accordion-icon">&#9660;</span></div>
         <div id="content-dep" class="brief-accordion">
           <div class="brief-row"><div class="brief-field"><label>ATIS</label><input type="text" id="b-dep-atis" class="brief-input brief-xs" maxlength="1" placeholder="A"></div><div class="brief-field"><label>QNH</label><input type="text" id="b-dep-qnh" class="brief-input brief-sm" maxlength="4" placeholder="1013"></div><div class="brief-field"><label>RWY</label><input type="text" id="b-dep-rwy" class="brief-input brief-xs2" maxlength="3" placeholder="36L"></div><div class="brief-field"><label>RWY HDG</label><input type="text" id="b-dep-rwy-hdg" class="brief-input brief-sm" maxlength="3" placeholder="358"></div><div class="brief-field brief-grow"><label>SID</label><input type="text" id="b-sid" class="brief-input" maxlength="9" placeholder="EVIVI1A"></div></div>
-          <div class="brief-row"><div class="brief-field"><label>INIT ALT</label><input type="text" id="b-init-alt" class="brief-input brief-med" maxlength="5" placeholder="5000"></div><div class="brief-field"><label>TA</label><input type="text" id="b-dep-tl" class="brief-input brief-sm" maxlength="5" placeholder="5000"></div><div class="brief-field"><label>SQUAWK</label><input type="text" id="b-squawk" class="brief-input brief-sm" maxlength="4" placeholder="2200"></div><div class="brief-field"><label>DEW PT</label><input type="text" id="b-dep-dewpt" class="brief-input brief-sm" maxlength="4" placeholder="12"></div><div class="brief-field"><label>TEMP</label><input type="text" id="b-dep-temp" class="brief-input brief-sm" maxlength="4" placeholder="18"></div><div class="brief-field"><label>WIND</label><input type="text" id="b-dep-wind" class="brief-input brief-med" maxlength="7" placeholder="270/12"></div><div class="brief-field"><label>TOTAL FUEL</label><input type="text" id="b-total-fuel" class="brief-input brief-med" maxlength="6" placeholder="15000"></div><div class="brief-field"><label>TRIP FUEL</label><input type="text" id="b-trip-fuel" class="brief-input brief-med" maxlength="6" placeholder="10000"></div><div class="brief-field"><label>RESERVE</label><input type="text" id="b-reserve-fuel" class="brief-input brief-med" maxlength="6" placeholder="3000"></div></div>
+          <div class="brief-row"><div class="brief-field"><label>CRUISE ALTITUDE</label><input type="text" id="b-init-alt" class="brief-input brief-med" maxlength="5" placeholder="33000"></div><div class="brief-field"><label>TA</label><input type="text" id="b-dep-tl" class="brief-input brief-sm" maxlength="5" placeholder="5000"></div><div class="brief-field"><label>SQUAWK</label><input type="text" id="b-squawk" class="brief-input brief-sm" maxlength="4" placeholder="2200"></div><div class="brief-field"><label>DEW PT</label><input type="text" id="b-dep-dewpt" class="brief-input brief-sm" maxlength="4" placeholder="12"></div><div class="brief-field"><label>TEMP</label><input type="text" id="b-dep-temp" class="brief-input brief-sm" maxlength="4" placeholder="18"></div><div class="brief-field"><label>WIND</label><input type="text" id="b-dep-wind" class="brief-input brief-med" maxlength="7" placeholder="270/12"></div><div class="brief-field"><label>TOTAL FUEL</label><input type="text" id="b-total-fuel" class="brief-input brief-med" maxlength="6" placeholder="15000"></div><div class="brief-field"><label>TRIP FUEL</label><input type="text" id="b-trip-fuel" class="brief-input brief-med" maxlength="6" placeholder="10000"></div><div class="brief-field"><label>RESERVE</label><input type="text" id="b-reserve-fuel" class="brief-input brief-med" maxlength="6" placeholder="3000"></div></div>
           <div class="brief-row"><div class="brief-field"><label>V1</label><input type="text" id="b-v1" class="brief-input brief-xs2" maxlength="3" placeholder="138"></div><div class="brief-field"><label>VR</label><input type="text" id="b-vr" class="brief-input brief-xs2" maxlength="3" placeholder="142"></div><div class="brief-field"><label>V2</label><input type="text" id="b-v2" class="brief-input brief-xs2" maxlength="3" placeholder="148"></div><div class="brief-field"><label>TRIM</label><input type="text" id="b-trim" class="brief-input brief-xs2" maxlength="3" placeholder="5.0"></div><div class="brief-field"><label>FLAPS</label><input type="text" id="b-dep-flaps" class="brief-input brief-xs2" maxlength="2" placeholder="5"></div><div class="brief-field"><label>ASS.T</label><input type="text" id="b-dep-assumed" class="brief-input brief-xs2" maxlength="3" placeholder="50"></div></div>
           <div class="brief-row"><div class="brief-field brief-fullwidth"><label>TAXI OUT</label><input type="text" id="b-taxi-out" class="brief-input" placeholder="e.g. A3 → B → RWY 36L"></div></div>
         </div>
@@ -238,7 +238,7 @@ function getOriginalHTML(aircraft: string): string {
     </div>
   </div>
   <div class="global-footer">
-    <span class="version-info">v3.2.1</span>
+    <span class="version-info">v3.2.2</span>
     <span class="sim-warning">For flight simulation use only.<br>Not for real-world flight.</span>
   </div>`;
 }

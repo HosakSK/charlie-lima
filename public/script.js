@@ -1076,9 +1076,9 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-callsign': data.atc?.callsign,
                     'b-origin': data.origin?.icao_code,
                     'b-dest': data.destination?.icao_code,
-                    'b-total-fuel': data.fuel?.plan_takeoff, // T/OFF FUEL as requested
-                    'b-trip-fuel': data.fuel?.plan_enroute,
-                    'b-reserve-fuel': data.fuel?.plan_reserve,
+                    'b-total-fuel': data.fuel?.plan_takeoff, // T/OFF FUEL
+                    'b-trip-fuel': data.fuel?.enroute_burn,
+                    'b-reserve-fuel': data.fuel?.reserve,
                     'b-v1': data.vspeeds?.v1,
                     'b-vr': data.vspeeds?.vr,
                     'b-v2': data.vspeeds?.v2,
@@ -1095,9 +1095,11 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-arr-dewpt': data.weather?.destination?.dewpoint,
                     'b-dep-rwy': data.origin?.plan_rwy,
                     'b-arr-rwy': data.destination?.plan_rwy,
-                    'b-sid': data.origin?.sid,
-                    'b-star': data.destination?.star,
+                    'b-sid': data.general?.sid_ident || data.origin?.sid,
+                    'b-star': data.general?.star_ident || data.destination?.star,
                     'b-init-alt': data.general?.initial_altitude,
+                    'b-dep-tl': data.origin?.trans_alt,
+                    'b-arr-ta': data.destination?.trans_level,
                     'b-taxi-out': data.origin?.taxi_out_route,
                     'b-taxi-in': data.destination?.taxi_in_route
                 };
