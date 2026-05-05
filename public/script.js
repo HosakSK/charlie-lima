@@ -1101,6 +1101,7 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-arr-flaps': landing.flap_setting || '30',
                     'b-dep-assumed': data.takeoff?.flex || takeoff.flex_temperature,
                     'b-dep-rwy-hdg': takeoff.magnetic_course,
+                    'b-autobrake': landingPerf.brake_setting?.replace('AUTOBRAKE ', '') || '',
                     'b-squawk': data.atc?.squawk,
                     'b-dep-qnh': fmt(data.weather?.origin?.qnh),
                     'b-arr-qnh': fmt(data.weather?.destination?.qnh),

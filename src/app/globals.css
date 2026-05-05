@@ -1515,7 +1515,13 @@ button:active:not(:disabled) {
     letter-spacing: 0.5px;
     padding: 0 6px !important;
     text-transform: uppercase;
-    color: var(--color-text) !important; /* Fix for night mode */
+    color: var(--color-text) !important;
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .simbrief-id-input {
+    color: var(--color-text) !important;
+    background-color: transparent !important;
 }
 
 .brief-divider {
