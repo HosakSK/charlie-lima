@@ -1070,29 +1070,65 @@ if (simbriefFetchBtn && simbriefIdInput) {
                 alert('SimBrief Error: ' + data.error);
             } else if (!data.atc || !data.atc.callsign) {
                  alert('No active flight plan found for this SimBrief ID.');
-            } else {
-                // Formatting helper to remove leading zeros (e.g. 06000 -> 6000)
+                window.simbriefData = data;
+                
                 const fmt = (val) => {
                     if (val === undefined || val === null) return '';
                     const s = String(val);
                     return s.replace(/^0+(?=\d)/, '');
                 };
 
-                // Map SimBrief data to our fields
-                const takeoff = data.tlr?.takeoff?.runway?.find(r => r.identifier === data.origin?.plan_rwy) || data.tlr?.takeoff?.runway?.[0] || {};
-                const landing = data.tlr?.landing?.runway?.find(r => r.identifier === data.destination?.plan_rwy) || data.tlr?.landing?.runway?.[0] || {};
-                const landingPerf = data.tlr?.landing?.distance_dry || {};
-                
+                const getMetarTemp = (metar) => {
+                    if (!metar) return null;
+                    const match = metar.match(/(M?\d{2})\/(M?\d{2})/);
+                    if (match) return match[1].replace('M', '-').replace(/^0+/, '');
+                    return null;
+                };
+
                 const mapAutobrake = (val) => {
                     if (!val) return '';
                     const v = val.toUpperCase();
+                    if (v.includes('MAX MAN')) return '3'; 
                     if (v.includes('MAX')) return 'MAX';
                     if (v.includes('MED')) return '3';
                     if (v.includes('MIN') || v.includes('LOW')) return '1';
                     const num = v.match(/\d+/);
                     return num ? num[0] : '';
                 };
+
+                const updateFromRwy = () => {
+                    const d = window.simbriefData;
+                    if (!d) return;
+                    
+                    const depRwy = document.getElementById('b-dep-rwy')?.value;
+                    const arrRwy = document.getElementById('b-arr-rwy')?.value;
+                    
+                    const takeoff = d.tlr?.takeoff?.runway?.find(r => r.identifier === depRwy) || d.tlr?.takeoff?.runway?.[0] || {};
+                    const landing = d.tlr?.landing?.runway?.find(r => r.identifier === arrRwy) || d.tlr?.landing?.runway?.[0] || {};
+                    const landingPerf = d.tlr?.landing?.distance_dry || {};
+
+                    const perfFields = {
+                        'b-v1': fmt(d.vspeeds?.v1 || takeoff.speeds_v1),
+                        'b-vr': fmt(d.vspeeds?.vr || takeoff.speeds_vr),
+                        'b-v2': fmt(d.vspeeds?.v2 || takeoff.speeds_v2),
+                        'b-vref': fmt(d.vspeeds?.vref || landingPerf.speeds_vref),
+                        'b-ils-freq': landing.ils_frequency,
+                        'b-course': landing.magnetic_course,
+                        'b-dep-rwy-hdg': takeoff.magnetic_course,
+                        'b-dep-flaps': d.takeoff?.flaps || takeoff.flap_setting,
+                        'b-arr-flaps': landing.flap_setting || '30',
+                        'b-dep-assumed': d.takeoff?.flex || takeoff.flex_temperature,
+                        'b-autobrake': mapAutobrake(landingPerf.brake_setting)
+                    };
+
+                    for (const [id, value] of Object.entries(perfFields)) {
+                        const el = document.getElementById(id);
+                        if (el && value) el.value = value;
+                    }
+                };
                 
+                window.updateBriefingFromRwy = updateFromRwy;
+
                 const fields = {
                     'b-callsign': data.atc?.callsign,
                     'b-origin': data.origin?.icao_code,
@@ -1100,23 +1136,12 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-total-fuel': fmt(data.fuel?.plan_takeoff),
                     'b-trip-fuel': fmt(data.fuel?.enroute_burn),
                     'b-reserve-fuel': fmt(data.fuel?.reserve),
-                    'b-v1': fmt(data.vspeeds?.v1 || takeoff.speeds_v1),
-                    'b-vr': fmt(data.vspeeds?.vr || takeoff.speeds_vr),
-                    'b-v2': fmt(data.vspeeds?.v2 || takeoff.speeds_v2),
-                    'b-vref': fmt(data.vspeeds?.vref || landingPerf.speeds_vref),
-                    'b-ils-freq': landing.ils_frequency,
-                    'b-course': landing.magnetic_course,
                     'b-trim': data.takeoff?.trim,
-                    'b-dep-flaps': data.takeoff?.flaps || takeoff.flap_setting,
-                    'b-arr-flaps': landing.flap_setting || '30',
-                    'b-dep-assumed': data.takeoff?.flex || takeoff.flex_temperature,
-                    'b-dep-rwy-hdg': takeoff.magnetic_course,
-                    'b-autobrake': mapAutobrake(landingPerf.brake_setting),
                     'b-squawk': data.atc?.squawk,
                     'b-dep-qnh': fmt(data.weather?.origin?.qnh),
                     'b-arr-qnh': fmt(data.weather?.destination?.qnh),
-                    'b-dep-temp': data.tlr?.takeoff?.conditions?.temperature || data.weather?.origin?.temp,
-                    'b-arr-temp': data.tlr?.landing?.conditions?.temperature || data.weather?.destination?.temp,
+                    'b-dep-temp': getMetarTemp(data.weather?.orig_metar) || data.tlr?.takeoff?.conditions?.temperature || data.weather?.origin?.temp,
+                    'b-arr-temp': getMetarTemp(data.weather?.dest_metar) || data.tlr?.landing?.conditions?.temperature || data.weather?.destination?.temp,
                     'b-dep-wind': data.weather?.origin?.wind_dir ? `${data.weather.origin.wind_dir}/${data.weather.origin.wind_spd}` : '',
                     'b-arr-wind': data.weather?.destination?.wind_dir ? `${data.weather.destination.wind_dir}/${data.weather.destination.wind_spd}` : '',
                     'b-dep-dewpt': data.weather?.origin?.dewpoint,
@@ -1125,7 +1150,7 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-arr-rwy': data.destination?.plan_rwy,
                     'b-sid': data.general?.sid_ident || data.origin?.sid,
                     'b-star': data.general?.star_ident || data.destination?.star,
-                    'b-initial-alt': '', // Leave empty per request
+                    'b-initial-alt': '', 
                     'b-init-alt': fmt(data.general?.cruise_altitude || data.general?.initial_altitude),
                     'b-dep-tl': fmt(data.origin?.trans_alt),
                     'b-arr-ta': fmt(data.destination?.trans_level ? parseInt(data.destination.trans_level)/10 : ''),
@@ -1136,10 +1161,10 @@ if (simbriefFetchBtn && simbriefIdInput) {
 
                 for (const [id, value] of Object.entries(fields)) {
                     const el = document.getElementById(id);
-                    if (el && value) {
-                        el.value = value;
-                    }
+                    if (el && value) el.value = value;
                 }
+                
+                updateFromRwy();
                 
                 saveBriefing();
                 // Trigger METAR sync automatically after SimBrief
@@ -2534,6 +2559,19 @@ function initMetarAutoSync() {
         // Initial load check
         if (originInput.value) updateInitAltPlaceholder(originInput.value);
     }
+    
+    // Add dynamic runway update listeners
+    ['b-dep-rwy', 'b-arr-rwy'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('change', () => {
+                if (window.updateBriefingFromRwy) window.updateBriefingFromRwy();
+            });
+            el.addEventListener('input', () => {
+                if (window.updateBriefingFromRwy) window.updateBriefingFromRwy();
+            });
+        }
+    });
     if (destInput) {
         destInput.addEventListener('change', (e) => sync(e.target.value, 'arr'));
         destInput.addEventListener('blur', (e) => sync(e.target.value, 'arr'));
