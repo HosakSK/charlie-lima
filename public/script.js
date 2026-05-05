@@ -417,7 +417,7 @@ function getBriefingValidSentences(item, forSpeech = false) {
                 let val = el ? el.value.trim() : '';
 
                 if (id === 'b-landing-type') {
-                    if (val === '3' || val === '') val = 'ILS 3';
+                    if (val === '3' || val === '') val = 'ILS cat.3';
                     else if (val === '2') val = 'ILS';
                     else if (val === '1') val = 'RNAV';
                 }
@@ -1051,7 +1051,7 @@ function parseVariables(text, forSpeech = false) {
             let val = el ? el.value.trim() : '';
 
             if (id === 'b-landing-type') {
-                if (val === '3' || val === '') val = 'ILS 3';
+                if (val === '3' || val === '') val = 'ILS cat.3';
                 else if (val === '2') val = 'ILS';
                 else if (val === '1') val = 'RNAV';
             }
@@ -1766,9 +1766,9 @@ if (SpeechRecognition) {
             if (!isContinuous) {
                 const doneUtterance = new SpeechSynthesisUtterance('Timer complete. We may continue.');
                 doneUtterance.lang = 'en-US'; doneUtterance.rate = (isMaleVoice ? 1.28 : 1.09); doneUtterance.voice = getSelectedVoice();
-                doneUtterance.onend = () => { 
+                doneUtterance.onend = () => {
                     isTimerActivePause = false;
-                    setTimeout(() => { speakCurrentItem(); }, 560); 
+                    setTimeout(() => { speakCurrentItem(); }, 560);
                 };
                 if (!isMuted) window.speechSynthesis.speak(doneUtterance);
                 else {
@@ -1874,16 +1874,16 @@ if (SpeechRecognition) {
             // === MID-PAGE TRANSITION LOGIC ===
             let transitionText = "";
             let nextItemIdxBackup = items.indexOf(nextItem);
-            
+
             if (!isReadCLOnly) {
                 let lastCheckedItem = null;
                 for (let i = nextItemIdxBackup - 1; i >= 0; i--) {
-                     if (items[i] && isItemVisible(items[i]) && items[i].checked) {
-                         lastCheckedItem = items[i];
-                         break;
-                     }
+                    if (items[i] && isItemVisible(items[i]) && items[i].checked) {
+                        lastCheckedItem = items[i];
+                        break;
+                    }
                 }
-                
+
                 if (lastCheckedItem) {
                     if (lastCheckedItem.type !== 'checklist item' && nextItem.type === 'checklist item') {
                         transitionText = `${checklistData[currentPageIndex].title} Checklist. `;
@@ -1901,7 +1901,7 @@ if (SpeechRecognition) {
             } else {
                 textToRead = `${nextItem.name}. ${getParsedAction(nextItem, true)}`;
             }
-            
+
             textToRead = transitionText + textToRead;
 
             if (activeTimerWarning && actionTimerInterval) {
@@ -1939,14 +1939,14 @@ if (SpeechRecognition) {
             utterance.onstart = () => { isSpeaking = true; };
             utterance.onend = () => {
                 if (window.currentSpeechSession !== thisSession) return;
-                
+
                 if (currentPlayingBriefingIndex === nextItemIdx) {
                     currentPlayingBriefingIndex = -1;
                     renderPage(false);
                     if (isListening && hasStartedReading) {
-                        setTimeout(() => { 
+                        setTimeout(() => {
                             if (window.currentSpeechSession === thisSession) {
-                                simulateCheckAction(); 
+                                simulateCheckAction();
                             }
                         }, 500);
                         return;
@@ -1976,7 +1976,7 @@ if (SpeechRecognition) {
             // === ALL items checked – page complete ===
             const page = checklistData[currentPageIndex];
             const pageTitle = page.title;
-            
+
             window.currentSpeechSession = (window.currentSpeechSession || 0) + 1;
             const thisSession = window.currentSpeechSession;
             const isLastPage = (currentPageIndex === checklistData.length - 1);
@@ -2015,7 +2015,7 @@ if (SpeechRecognition) {
                     completeText = spellAbbreviations(pageTitle, true) + " flow complete.";
                 }
             }
-            
+
             if (isLastPage) {
                 completeText += ' And we can go home.';
             }
@@ -2030,7 +2030,7 @@ if (SpeechRecognition) {
             utterance.onstart = () => { isSpeaking = true; };
             utterance.onend = () => {
                 if (window.currentSpeechSession !== thisSession) return;
-                
+
                 setTimeout(() => {
                     if (window.currentSpeechSession !== thisSession) return;
                     if (isTimerActivePause) return;
