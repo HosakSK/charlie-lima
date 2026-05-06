@@ -1120,8 +1120,7 @@ if (simbriefFetchBtn && simbriefIdInput) {
                         'b-dep-rwy-hdg': takeoff.magnetic_course,
                         'b-dep-flaps': d.takeoff?.flaps || takeoff.flap_setting,
                         'b-arr-flaps': landing.flap_setting || '30',
-                        'b-dep-assumed': d.takeoff?.flex || takeoff.flex_temperature,
-                        'b-autobrake': mapAutobrake(landingPerf.brake_setting)
+                        'b-dep-assumed': d.takeoff?.flex || takeoff.flex_temperature
                     };
 
                     for (const [id, value] of Object.entries(perfFields)) {
