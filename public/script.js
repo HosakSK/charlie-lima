@@ -2063,10 +2063,15 @@ if (SpeechRecognition) {
                 return upper.split('').join(' ');
             }
 
+            // Special case for single letters (like ATIS code A)
+            if (match.length === 1 && /^[A-Z]$/.test(match)) {
+                if (DONT_SPELL.has(match)) return match;
+                return NATO_ALPHABET[match] || match;
+            }
+
             // Only spell if the ORIGINAL match was all uppercase and at least 2 chars long
             if (/^[A-Z0-9]{2,}$/.test(match)) {
                 if (DONT_SPELL.has(match)) return match;
-
                 return match.split('').map(char => {
                     if (/[A-Z]/.test(char)) return NATO_ALPHABET[char];
                     return char;
