@@ -84,7 +84,6 @@ export default function AircraftChecklistPage() {
             await loadScript('/' + savedDs);
           } catch (e) {
             console.error('Failed to load dataset script:', savedDs, e);
-            // Fallback to a hardcoded default if even the saved one fails
             try {
                await loadScript(`/data/${aircraft}/europe_style.js`);
             } catch {
@@ -93,8 +92,20 @@ export default function AircraftChecklistPage() {
             }
           }
 
-          await loadScript('/lang.js');
-          await loadScript('/script.js');
+          // Try to load lang.js but don't crash if it's missing
+          try {
+            await loadScript('/lang.js');
+          } catch (e) {
+            console.warn('lang.js not found, skipping translations.');
+          }
+
+          // Final core script
+          try {
+            await loadScript('/script.js');
+          } catch (e) {
+            console.error('CRITICAL: Failed to load script.js', e);
+          }
+          
           setLoaded(true);
         } catch (e) {
           console.error('Core scripts load error:', e);
