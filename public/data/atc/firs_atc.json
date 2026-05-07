@@ -1,0 +1,7 @@
+{
+  "LZBB": { "name": "Bratislava Radar", "callsign": "Bratislava Radar", "frequency": "133.880" },
+  "EDGG": { "name": "Langen Radar", "callsign": "Langen Radar", "frequency": "129.875" },
+  "LKAA": { "name": "Prague Radar", "callsign": "Prague Radar", "frequency": "127.125" },
+  "KZNY": { "name": "New York Center", "callsign": "New York Center", "frequency": "127.300" },
+  "EGTT": { "name": "London Control", "callsign": "London Control", "frequency": "134.750" }
+}

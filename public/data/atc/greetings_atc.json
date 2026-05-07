@@ -1,0 +1,16 @@
+{
+  "countries": {
+    "SK": { "hello": "Ahoj" },
+    "CZ": { "hello": "Ahoj" },
+    "DE": { "hello": "Moin" },
+    "FR": { "hello": "Bonjour" },
+    "IT": { "hello": "Ciao" },
+    "ES": { "hello": "Hola" },
+    "GB": { "hello": "Hello" },
+    "US": { "hello": "Hello" }
+  },
+  "continents": {
+    "EU": { "hello": "Hello" },
+    "NA": { "hello": "Hello" }
+  }
+}

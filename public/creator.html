@@ -114,6 +114,7 @@
         .briefing-textarea { width: 100%; height: 100px; padding: 10px; border: 1px solid rgba(128,128,128,0.3); border-radius: 6px; background: var(--color-body-bg); color: var(--color-text); font-family: 'IBM Plex Mono', monospace; font-size: 13px; resize: vertical; line-height: 1.5; }
 
         .variables-box h3 { margin-top: 0; color: var(--color-accent); margin-bottom: 15px; font-size: 1.1rem; text-transform: uppercase; font-weight: 800;}
+        .var-group-title { font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--color-accent); margin: 15px 0 8px 4px; border-bottom: 1px solid rgba(var(--color-accent-rgb), 0.2); padding-bottom: 2px; letter-spacing: 1px; }
         .var-badge { display: inline-block; background: rgba(var(--color-accent-rgb), 0.1); color: var(--color-accent); border: 1px solid var(--color-accent); padding: 5px 8px; margin: 4px; border-radius: 6px; font-family: monospace; font-size: 12px; cursor: grab; user-select: none; font-weight: bold;}
         .var-badge:active { cursor: grabbing; }
 
@@ -220,7 +221,7 @@
     </div>
 
     <script>
-        const varsObj = {
+        const generalVars = {
             '%callsign%': 'Flight Callsign (e.g. RYR123)',
             '%origin%': 'Origin ICAO (e.g. LZIB)',
             '%dest%': 'Destination ICAO',
@@ -265,7 +266,10 @@
             '%autobrake%': 'Autobrake setting',
             '%taxi_in%': 'Taxi In Route',
             '%gate%': 'Arrival Gate',
-            '%notes%': 'Custom Notes',
+            '%notes%': 'Custom Notes'
+        };
+
+        const atcVars = {
             '%city_dep%': 'ATC Dep City',
             '%hello_dep%': 'ATC Dep Hello',
             '%delivery_dep%': 'ATC Delivery Dep',
@@ -291,15 +295,25 @@
 
         const varsContainer = document.getElementById('vars-container');
         if (varsContainer) {
-            Object.keys(varsObj).forEach(v => {
-                const span = document.createElement('span');
-                span.className = 'var-badge';
-                span.setAttribute('draggable', 'true');
-                span.title = varsObj[v];
-                span.textContent = v;
-                span.ondragstart = (e) => e.dataTransfer.setData('text/plain', v);
-                varsContainer.appendChild(span);
-            });
+            function renderVarGroup(title, obj) {
+                const header = document.createElement('div');
+                header.className = 'var-group-title';
+                header.textContent = title;
+                varsContainer.appendChild(header);
+
+                Object.keys(obj).forEach(v => {
+                    const span = document.createElement('span');
+                    span.className = 'var-badge';
+                    span.setAttribute('draggable', 'true');
+                    span.title = obj[v];
+                    span.textContent = v;
+                    span.ondragstart = (e) => e.dataTransfer.setData('text/plain', v);
+                    varsContainer.appendChild(span);
+                });
+            }
+
+            renderVarGroup('General Variables', generalVars);
+            renderVarGroup('Fake ATC Variables', atcVars);
         }
 
         let data = [];

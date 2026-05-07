@@ -1519,7 +1519,7 @@ function init() {
         simplifyContainer.style.display = hasSimplify ? 'flex' : 'none';
     }
 
-    buildQuickNav(); loadBriefing(); initMetarAutoSync(); renderPage(true);
+    buildQuickNav(); loadBriefing(); loadAtcData(); initMetarAutoSync(); renderPage(true);
 }
 
 function renderPage(isNewPage = false) {

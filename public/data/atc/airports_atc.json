@@ -1,0 +1,44 @@
+{
+  "LZIB": {
+    "name": "Bratislava M. R. Štefánik",
+    "city": "Bratislava",
+    "country": "SK",
+    "continent": "EU",
+    "fir": "LZBB",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Štefánik Delivery", "frequency": "120.900" },
+      { "type": "GND", "callsign": "Štefánik Ground", "frequency": "121.700" },
+      { "type": "TWR", "callsign": "Štefánik Tower", "frequency": "118.300" },
+      { "type": "APP", "role": "DEP", "callsign": "Bratislava Departure", "frequency": "124.300" },
+      { "type": "APP", "role": "ARR", "callsign": "Bratislava Arrival", "frequency": "120.900" }
+    ]
+  },
+  "EDDK": {
+    "name": "Cologne Bonn",
+    "city": "Cologne",
+    "country": "DE",
+    "continent": "EU",
+    "fir": "EDGG",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Cologne Delivery", "frequency": "121.855" },
+      { "type": "GND", "callsign": "Cologne Ground", "frequency": "121.730" },
+      { "type": "TWR", "callsign": "Cologne Tower", "frequency": "124.980" },
+      { "type": "APP", "role": "DEP", "callsign": "Langener Radar", "frequency": "121.225" },
+      { "type": "APP", "role": "ARR", "callsign": "Langener Radar", "frequency": "125.105" }
+    ]
+  },
+  "LKPR": {
+    "name": "Prague Ruzyně",
+    "city": "Prague",
+    "country": "CZ",
+    "continent": "EU",
+    "fir": "LKAA",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Prague Delivery", "frequency": "120.050" },
+      { "type": "GND", "callsign": "Prague Ground", "frequency": "121.905" },
+      { "type": "TWR", "callsign": "Prague Tower", "frequency": "118.105" },
+      { "type": "APP", "role": "DEP", "callsign": "Prague Departure", "frequency": "120.450" },
+      { "type": "APP", "role": "ARR", "callsign": "Prague Arrival", "frequency": "127.575" }
+    ]
+  }
+}

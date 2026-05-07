@@ -3,8 +3,7 @@ import type { NextRequest } from 'next/server';
 
 export const config = {
   matcher: [
-    // Vynechame API routes a staticke subory Next.js
-    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\..*).*)',
+    '/((?!api|_next|_static|_vercel|[\\w-]+\\.\\w+).*)',
   ],
 }
 
@@ -21,15 +20,16 @@ export function middleware(req: NextRequest) {
     
     // Ak to neni "www" a nejaka subdomena tam naozaj je
     if (subdomain && subdomain !== 'www') {
+      const url = req.nextUrl.clone();
+      
       if (subdomain === 'creator') {
-        const url = req.nextUrl.clone();
         url.pathname = '/creator.html';
         return NextResponse.rewrite(url);
       }
       
-      // Prepise "a320.charlie-lima.eu/" na interny Next.js route "/a320"
-      // Takze to pobezi cez src/app/(checklist)/[aircraft]/page.tsx
-      return NextResponse.rewrite(new URL(`/${subdomain}${req.nextUrl.pathname}`, req.url));
+      // Rewrite "a320.charlie-lima.eu/" to "/a320"
+      url.pathname = `/${subdomain}${req.nextUrl.pathname}`;
+      return NextResponse.rewrite(url);
     }
   }
 
