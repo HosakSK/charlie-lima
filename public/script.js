@@ -647,7 +647,7 @@ function getFakeAtcValidSentences(item, forSpeech = true) {
         ];
 
         atcVarNames.forEach(varName => {
-            const placeholder = \`%\${varName}%\`;
+            const placeholder = `%${varName}%`;
             if (sentence.toLowerCase().includes(placeholder.toLowerCase())) {
                 hasVar = true;
                 let val = atcVariables[varName] || '';
