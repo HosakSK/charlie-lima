@@ -1,5 +1,5 @@
-const checklistName = "Europe style list";
-const initialChecklistData = [
+window.checklistName = "Europe style list";
+window.initialChecklistData = [
   {
     "title": "ELECTRICAL POWER-UP",
     "turnaround": "yes",

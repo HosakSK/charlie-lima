@@ -1,5 +1,5 @@
-const checklistName = "US style (real procedures)";
-const initialChecklistData = [
+window.checklistName = "US style (real procedures)";
+window.initialChecklistData = [
   {
     "title": "ELECTRICAL POWER-UP",
     "items": [
