@@ -668,37 +668,6 @@ function getFakeAtcValidSentences(item, forSpeech = true) {
     return hasSentenceWithVar ? validSentences : [];
 }
 
-function getBriefingValidSentences(item, forSpeech = false) {
-    let validSentences = [];
-    for (let sentence of item.text) {
-        let hasVar = false;
-        let allVarsFilled = true;
-        let parsedSentence = sentence;
-
-        BRIEF_FIELDS.forEach(id => {
-            const varName = id.replace(/^b-/, '').replace(/-/g, '_');
-            const placeholder = `%${varName}%`;
-            if (sentence.toLowerCase().includes(placeholder.toLowerCase())) {
-                hasVar = true;
-                const el = document.getElementById(id);
-                let val = el ? el.value.trim() : '';
-                
-                if (id === 'b-callsign' && forSpeech) val = formatCallsign(val);
-                if ((id === 'b-dep-rwy' || id === 'b-arr-rwy') && forSpeech) val = formatRunway(val);
-                
-                if (!val) allVarsFilled = false;
-                else parsedSentence = parsedSentence.replace(new RegExp(placeholder, 'gi'), val);
-            }
-        });
-
-        if (hasVar) {
-            if (allVarsFilled) validSentences.push(parsedSentence);
-        } else {
-            validSentences.push(parsedSentence);
-        }
-    }
-    return validSentences;
-}
 
 
 function isItemVisible(item) {
@@ -1521,6 +1490,8 @@ function updateChecklistVariablesUI() {
         if (actionSpan && actionSpan.textContent !== displayAction) {
             actionSpan.textContent = displayAction;
         }
+    });
+}
 // ============================================================
 // CHECKLIST ENGINE
 // ============================================================
@@ -2951,5 +2922,4 @@ async function updateInitAltPlaceholder(icao) {
     } catch (e) {
         console.error('Placeholder Update Error:', e);
     }
-}
 }
