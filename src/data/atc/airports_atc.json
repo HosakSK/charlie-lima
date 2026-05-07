@@ -25722,13 +25722,7 @@
         "type": "GND",
         "role": "",
         "callsign": "Stefanik Ground",
-        "frequency": "120.905"
-      },
-      {
-        "type": "DEL",
-        "role": "",
-        "callsign": "Stefanik Ground",
-        "frequency": "120.905"
+        "frequency": "121.705"
       }
     ]
   },

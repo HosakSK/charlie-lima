@@ -33,8 +33,7 @@ EXPERT_OVERRIDES = {
     "LZIB": {"initial_climb": 5000, "ta": 10000, "freqs": [
         {"type": "APP", "role": "ARR", "callsign": "Stefanik Radar", "frequency": "134.930"},
         {"type": "TWR", "role": "", "callsign": "Stefanik Tower", "frequency": "118.305"},
-        {"type": "GND", "role": "", "callsign": "Stefanik Ground", "frequency": "120.905"},
-        {"type": "DEL", "role": "", "callsign": "Stefanik Ground", "frequency": "120.905"}
+        {"type": "GND", "role": "", "callsign": "Stefanik Ground", "frequency": "121.705"}
     ]},
     "LKPR": {"initial_climb": 5000, "ta": 5000, "freqs": [
         {"type": "DEL", "role": "", "callsign": "Ruzyne Delivery", "frequency": "120.055"},

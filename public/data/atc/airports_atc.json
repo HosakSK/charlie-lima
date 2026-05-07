@@ -6,7 +6,6 @@
     "continent": "EU",
     "fir": "LZBB",
     "frequencies": [
-      { "type": "DEL", "callsign": "Stefanik Delivery", "frequency": "120.900" },
       { "type": "GND", "callsign": "Stefanik Ground", "frequency": "121.700" },
       { "type": "TWR", "callsign": "Stefanik Tower", "frequency": "118.300" },
       { "type": "APP", "role": "DEP", "callsign": "Bratislava Departure", "frequency": "124.300" },

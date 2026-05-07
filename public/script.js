@@ -567,49 +567,70 @@ function updateAtcVariables() {
         const isRadarRegion = ['CZ', 'SK', 'DE', 'AT', 'HU'].includes(apt.country);
         const isCenterRegion = ['US', 'CA', 'AU'].includes(apt.country);
 
-        // Fallbacks
-        let del = getFreq('DEL');
-        let gnd = getFreq('GND');
-        let twr = getFreq('TWR');
-        let app = getFreq('APP', isDep ? 'DEP' : 'ARR');
+        // Fallback hierarchy logic (DEL -> GND -> TWR -> APP -> FIR)
+        const del = getFreq('DEL');
+        const gnd = getFreq('GND');
+        const twr = getFreq('TWR');
+        const app = getFreq('APP', isDep ? 'DEP' : 'ARR') || getFreq('APP');
         
         if (isDep) {
+            // 1. Clearance Delivery: DEL -> GND -> TWR -> APP
             if (del) setVar('delivery_dep', del.callsign, del.frequency);
             else if (gnd) setVar('delivery_dep', gnd.callsign, gnd.frequency);
             else if (twr) setVar('delivery_dep', twr.callsign, twr.frequency);
+            else if (app) setVar('delivery_dep', app.callsign, app.frequency);
             
+            // 2. Ground/Taxi: GND -> TWR -> APP
             if (gnd) setVar('ground_dep', gnd.callsign, gnd.frequency);
             else if (twr) setVar('ground_dep', twr.callsign, twr.frequency);
             else if (app) setVar('ground_dep', app.callsign, app.frequency);
             
+            // 3. Takeoff/Tower: TWR -> APP
             if (twr) setVar('tower_dep', twr.callsign, twr.frequency);
             else if (app) setVar('tower_dep', app.callsign, app.frequency);
             
-            if (app) setVar('approach_dep', isRadarRegion ? app.callsign.replace(/Approach/i, 'Radar') : app.callsign, app.frequency);
+            // 4. Departure/Radar: APP
+            if (app) {
+                let callsign = app.callsign;
+                if (isRadarRegion) callsign = callsign.replace(/Approach/i, 'Radar');
+                setVar('approach_dep', callsign, app.frequency);
+            }
         } else {
-            if (app) setVar('approach_arr', isRadarRegion ? app.callsign.replace(/Approach/i, 'Radar') : app.callsign, app.frequency);
-            else if (twr) setVar('approach_arr', twr.callsign, twr.frequency);
+            // Arrival hierarchy (FIR -> APP -> TWR -> GND)
+            // 1. Approach/Initial: APP -> TWR
+            if (app) {
+                let callsign = app.callsign;
+                if (isRadarRegion) callsign = callsign.replace(/Approach/i, 'Radar');
+                setVar('approach_arr', callsign, app.frequency);
+            } else if (twr) {
+                setVar('approach_arr', twr.callsign, twr.frequency);
+            }
             
+            // 2. Landing/Tower: TWR -> APP
             if (twr) setVar('tower_arr', twr.callsign, twr.frequency);
             else if (app) setVar('tower_arr', app.callsign, app.frequency);
             
+            // 3. Taxi: GND -> TWR
             if (gnd) setVar('ground_arr', gnd.callsign, gnd.frequency);
             else if (twr) setVar('ground_arr', twr.callsign, twr.frequency);
         }
 
-        // FIR logic
+        // FIR logic (Global Fallback)
         let firCode = apt.fir;
         if (firCode && atcData.firs[firCode]) {
             let fir = atcData.firs[firCode];
             let callsign = isCenterRegion ? fir.callsign.replace(/(Radar|Control)/i, 'Center') : fir.callsign;
+            
             if (isDep) {
                 setVar('fir_dep', callsign, fir.frequency);
+                // Hierarchy fill
                 if (!atcVariables['approach_dep']) setVar('approach_dep', callsign, fir.frequency);
                 if (!atcVariables['tower_dep']) setVar('tower_dep', callsign, fir.frequency);
                 if (!atcVariables['ground_dep']) setVar('ground_dep', callsign, fir.frequency);
                 if (!atcVariables['delivery_dep']) setVar('delivery_dep', callsign, fir.frequency);
             } else {
                 setVar('fir_arr', callsign, fir.frequency);
+                // Hierarchy fill
                 if (!atcVariables['approach_arr']) setVar('approach_arr', callsign, fir.frequency);
                 if (!atcVariables['tower_arr']) setVar('tower_arr', callsign, fir.frequency);
                 if (!atcVariables['ground_arr']) setVar('ground_arr', callsign, fir.frequency);
