@@ -1,43 +1,420 @@
 {
   "LZIB": {
-    "name": "Bratislava M. R. Stefanik",
+    "name": "M. R. Štefánik Airport",
     "city": "Bratislava",
     "country": "SK",
     "continent": "EU",
     "fir": "LZBB",
     "frequencies": [
-      { "type": "GND", "callsign": "Stefanik Ground", "frequency": "121.700" },
-      { "type": "TWR", "callsign": "Stefanik Tower", "frequency": "118.300" },
-      { "type": "APP", "role": "DEP", "callsign": "Bratislava Departure", "frequency": "124.300" },
-      { "type": "APP", "role": "ARR", "callsign": "Bratislava Arrival", "frequency": "120.900" }
+      { "type": "APP", "callsign": "Stefanik Radar", "frequency": "134.930" },
+      { "type": "TWR", "callsign": "Stefanik Tower", "frequency": "118.305" },
+      { "type": "GND", "callsign": "Stefanik Ground", "frequency": "121.705" }
     ]
   },
-  "EDDK": {
-    "name": "Cologne Bonn",
-    "city": "Cologne",
-    "country": "DE",
+  "LZKZ": {
+    "name": "Košice International Airport",
+    "city": "Kosice",
+    "country": "SK",
     "continent": "EU",
-    "fir": "EDGG",
+    "fir": "LZBB",
     "frequencies": [
-      { "type": "DEL", "callsign": "Cologne Delivery", "frequency": "121.855" },
-      { "type": "GND", "callsign": "Cologne Ground", "frequency": "121.730" },
-      { "type": "TWR", "callsign": "Cologne Tower", "frequency": "124.980" },
-      { "type": "APP", "role": "DEP", "callsign": "Langener Radar", "frequency": "121.225" },
-      { "type": "APP", "role": "ARR", "callsign": "Langener Radar", "frequency": "125.105" }
+      { "type": "APP", "callsign": "APP Radar", "frequency": "119.85" },
+      { "type": "TWR", "callsign": "TWR Tower", "frequency": "120.4" }
+    ]
+  },
+  "LZTT": {
+    "name": "Poprad-Tatry Airport",
+    "city": "Poprad",
+    "country": "SK",
+    "continent": "EU",
+    "fir": "LZBB",
+    "frequencies": [
+      { "type": "APP", "callsign": "APP Radar", "frequency": "121.35" },
+      { "type": "TWR", "callsign": "TWR Tower", "frequency": "121.35" }
+    ]
+  },
+  "LZSL": {
+    "name": "Sliač Airport",
+    "city": "Sliac",
+    "country": "SK",
+    "continent": "EU",
+    "fir": "LZBB",
+    "frequencies": [
+      { "type": "APP", "callsign": "SLIAC Radar", "frequency": "119.15" },
+      { "type": "TWR", "callsign": "SLIAC Tower", "frequency": "122.9" }
+    ]
+  },
+  "LZPP": {
+    "name": "Piešťany Airport",
+    "city": "Piestany",
+    "country": "SK",
+    "continent": "EU",
+    "fir": "LZBB",
+    "frequencies": [
+      { "type": "TWR", "callsign": "TWR Tower", "frequency": "118.575" }
     ]
   },
   "LKPR": {
-    "name": "Prague Ruzyně",
+    "name": "Václav Havel Airport Prague",
     "city": "Prague",
     "country": "CZ",
     "continent": "EU",
     "fir": "LKAA",
     "frequencies": [
-      { "type": "DEL", "callsign": "Prague Delivery", "frequency": "120.050" },
-      { "type": "GND", "callsign": "Prague Ground", "frequency": "121.905" },
-      { "type": "TWR", "callsign": "Prague Tower", "frequency": "118.105" },
-      { "type": "APP", "role": "DEP", "callsign": "Prague Departure", "frequency": "120.450" },
-      { "type": "APP", "role": "ARR", "callsign": "Prague Arrival", "frequency": "127.575" }
+      { "type": "DEL", "callsign": "Ruzyne Delivery", "frequency": "120.055" },
+      { "type": "GND", "callsign": "Ruzyne Ground", "frequency": "121.905" },
+      { "type": "TWR", "callsign": "Ruzyne Tower", "frequency": "118.105" },
+      { "type": "APP", "role": "DEP", "callsign": "Praha Radar", "frequency": "120.530" },
+      { "type": "APP", "role": "ARR", "callsign": "Praha Radar", "frequency": "127.580" }
+    ]
+  },
+  "LKMT": {
+    "name": "Leoš Janáček Airport Ostrava",
+    "city": "Mosnov",
+    "country": "CZ",
+    "continent": "EU",
+    "fir": "LKAA",
+    "frequencies": [
+      { "type": "APP", "callsign": "Leos Janacek Airport Ostrava Radar", "frequency": "118.375" },
+      { "type": "TWR", "callsign": "TWR Tower", "frequency": "120.805" }
+    ]
+  },
+  "LKTB": {
+    "name": "Brno-Tuřany Airport",
+    "city": "Brno",
+    "country": "CZ",
+    "continent": "EU",
+    "fir": "LKAA",
+    "frequencies": [
+      { "type": "APP", "callsign": "Brno Radar", "frequency": "127.35" },
+      { "type": "GND", "callsign": "Turany Ground", "frequency": "125.43" },
+      { "type": "TWR", "callsign": "Turany Tower", "frequency": "119.605" }
+    ]
+  },
+  "LKVO": {
+    "name": "Vodochody Airport",
+    "city": "Vodochody",
+    "country": "CZ",
+    "continent": "EU",
+    "fir": "LKAA",
+    "frequencies": [
+      { "type": "APP", "callsign": "Vodochody Airport Radar", "frequency": "127.48" },
+      { "type": "TWR", "callsign": "TWR Tower", "frequency": "133.08" }
+    ]
+  },
+  "LOWW": {
+    "name": "Vienna International Airport",
+    "city": "Vienna",
+    "country": "AT",
+    "continent": "EU",
+    "fir": "LOVV",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Wien Delivery", "frequency": "122.130" },
+      { "type": "GND", "callsign": "Wien Ground", "frequency": "121.730" },
+      { "type": "TWR", "callsign": "Wien Tower", "frequency": "119.405" },
+      { "type": "APP", "role": "ARR", "callsign": "Wien Director", "frequency": "123.805" }
+    ]
+  },
+  "LOWI": {
+    "name": "Innsbruck Airport",
+    "city": "Innsbruck",
+    "country": "AT",
+    "continent": "EU",
+    "fir": "LOVV",
+    "frequencies": [
+      { "type": "APP", "callsign": "APP Radar", "frequency": "119.275" },
+      { "type": "GND", "callsign": "Innsbruck Airport Ground", "frequency": "121.8" },
+      { "type": "TWR", "callsign": "TWR Tower", "frequency": "120.1" }
+    ]
+  },
+  "LOWG": {
+    "name": "Graz Airport",
+    "city": "Feldkirchen bei Graz",
+    "country": "AT",
+    "continent": "EU",
+    "fir": "LOVV",
+    "frequencies": [
+      { "type": "APP", "callsign": "APP Radar", "frequency": "119.3" },
+      { "type": "TWR", "callsign": "TWR Tower", "frequency": "118.2" }
+    ]
+  },
+  "LOWS": {
+    "name": "Salzburg Airport",
+    "city": "Salzburg",
+    "country": "AT",
+    "continent": "EU",
+    "fir": "LOVV",
+    "frequencies": [
+      { "type": "APP", "callsign": "APP Radar", "frequency": "123.725" },
+      { "type": "GND", "callsign": "GND Ground", "frequency": "121.75" },
+      { "type": "TWR", "callsign": "TWR Tower", "frequency": "118.1" }
+    ]
+  },
+  "EDDF": {
+    "name": "Frankfurt Main Airport",
+    "city": "Frankfurt am Main",
+    "country": "DE",
+    "continent": "EU",
+    "fir": "EDGG",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Frankfurt Delivery", "frequency": "122.035" },
+      { "type": "GND", "callsign": "Frankfurt Ground", "frequency": "121.805" },
+      { "type": "TWR", "callsign": "FRANKFURT Tower", "frequency": "119.905" },
+      { "type": "APP", "callsign": "LANGEN Radar", "frequency": "118.45" }
+    ]
+  },
+  "EDDM": {
+    "name": "Munich Airport",
+    "city": "Munich",
+    "country": "DE",
+    "continent": "EU",
+    "fir": "EDMM",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Muenchen Delivery", "frequency": "121.73" },
+      { "type": "GND", "callsign": "Muenchen Ground", "frequency": "121.83" },
+      { "type": "TWR", "callsign": "Muenchen North Tower", "frequency": "118.705" },
+      { "type": "APP", "callsign": "Munich Airport Radar", "frequency": "123.9" }
+    ]
+  },
+  "EDDK": {
+    "name": "Cologne Bonn Airport",
+    "city": "Koln (Cologne)",
+    "country": "DE",
+    "continent": "EU",
+    "fir": "EDGG",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Koeln Delivery", "frequency": "121.855" },
+      { "type": "GND", "callsign": "Koeln Ground", "frequency": "121.73" },
+      { "type": "TWR", "callsign": "Koeln Tower", "frequency": "124.98" },
+      { "type": "APP", "callsign": "LANGEN Radar", "frequency": "118.75" }
+    ]
+  },
+  "EDDL": {
+    "name": "Düsseldorf Airport",
+    "city": "Dusseldorf",
+    "country": "DE",
+    "continent": "EU",
+    "fir": "EDGG",
+    "frequencies": [
+      { "type": "DEL", "callsign": "CLNC DEL Delivery", "frequency": "121.775" },
+      { "type": "GND", "callsign": "Duesseldorf Ground", "frequency": "121.905" },
+      { "type": "TWR", "callsign": "Duesseldorf Tower", "frequency": "118.305" },
+      { "type": "APP", "callsign": "LANGEN Radar", "frequency": "128.55" }
+    ]
+  },
+  "EDDS": {
+    "name": "Stuttgart Airport",
+    "city": "Stuttgart",
+    "country": "DE",
+    "continent": "EU",
+    "fir": "EDGG",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Stuttgart Delivery", "frequency": "121.915" },
+      { "type": "GND", "callsign": "Stuttgart Ground", "frequency": "118.605" },
+      { "type": "TWR", "callsign": "Stuttgart Tower", "frequency": "118.805" },
+      { "type": "APP", "callsign": "Langen Radar", "frequency": "119.2" }
+    ]
+  },
+  "EDDH": {
+    "name": "Hamburg Helmut Schmidt Airport",
+    "city": "Hamburg",
+    "country": "DE",
+    "continent": "EU",
+    "fir": "EDWW",
+    "frequencies": [
+      { "type": "GND", "callsign": "Hamburg Ground", "frequency": "121.805" },
+      { "type": "TWR", "callsign": "Hamburg Tower", "frequency": "121.28" },
+      { "type": "APP", "callsign": "BREMEN Radar", "frequency": "134.25" }
+    ]
+  },
+  "EDDB": {
+    "name": "Berlin Brandenburg Airport",
+    "city": "Berlin",
+    "country": "DE",
+    "continent": "EU",
+    "fir": "EDBB",
+    "frequencies": [
+      { "type": "GND", "callsign": "Berlin Ground", "frequency": "129.505" },
+      { "type": "TWR", "callsign": "Berlin (Sud) Tower", "frequency": "118.805" }
+    ]
+  },
+  "EGLL": {
+    "name": "London Heathrow Airport",
+    "city": "London",
+    "country": "GB",
+    "continent": "EU",
+    "fir": "EGTT",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Heathrow Delivery", "frequency": "121.975" },
+      { "type": "GND", "callsign": "Heathrow Ground", "frequency": "121.7" },
+      { "type": "TWR", "callsign": "Heathrow Tower", "frequency": "118.5" },
+      { "type": "APP", "role": "ARR", "callsign": "Heathrow Director", "frequency": "119.725" }
+    ]
+  },
+  "EGKK": {
+    "name": "London Gatwick Airport",
+    "city": "Gatwick",
+    "country": "GB",
+    "continent": "EU",
+    "fir": "EGTT",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Gatwick Delivery", "frequency": "121.95" },
+      { "type": "GND", "callsign": "Gatwick Ground", "frequency": "121.8" },
+      { "type": "TWR", "callsign": "Gatwick Tower", "frequency": "124.225" },
+      { "type": "APP", "callsign": "Gatwick Director", "frequency": "118.95" }
+    ]
+  },
+  "EGSS": {
+    "name": "London Stansted Airport",
+    "city": "Stansted",
+    "country": "GB",
+    "continent": "EU",
+    "fir": "EGTT",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Stansted Delivery", "frequency": "121.725" },
+      { "type": "GND", "callsign": "Stansted Ground", "frequency": "121.725" },
+      { "type": "TWR", "callsign": "Stansted Tower", "frequency": "123.805" },
+      { "type": "APP", "callsign": "Stansted Director", "frequency": "120.625" }
+    ]
+  },
+  "EGCC": {
+    "name": "Manchester Airport",
+    "city": "Manchester",
+    "country": "GB",
+    "continent": "EU",
+    "fir": "EGCC",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Manchester Delivery", "frequency": "121.7" },
+      { "type": "GND", "callsign": "Manchester Ground", "frequency": "121.85" },
+      { "type": "TWR", "callsign": "Manchester Tower", "frequency": "118.625" },
+      { "type": "APP", "callsign": "Manchester Radar", "frequency": "118.575" }
+    ]
+  },
+  "EGPF": {
+    "name": "Glasgow Airport",
+    "city": "Glasgow",
+    "country": "GB",
+    "continent": "EU",
+    "fir": "EGPX",
+    "frequencies": [
+      { "type": "GND", "callsign": "GND Ground", "frequency": "121.705" },
+      { "type": "TWR", "callsign": "Glasgow Tower", "frequency": "118.805" },
+      { "type": "APP", "callsign": "APP Approach", "frequency": "119.105" }
+    ]
+  },
+  "EGPH": {
+    "name": "Edinburgh Airport",
+    "city": "Edinburgh",
+    "country": "GB",
+    "continent": "EU",
+    "fir": "EGPX",
+    "frequencies": [
+      { "type": "TWR", "callsign": "Edinburgh Tower", "frequency": "118.7" },
+      { "type": "APP", "callsign": "APP Approach", "frequency": "121.2" }
+    ]
+  },
+  "EBBR": {
+    "name": "Brussels Airport",
+    "city": "Brussels",
+    "country": "BE",
+    "continent": "EU",
+    "fir": "EBBU",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Brussels Delivery", "frequency": "121.775" },
+      { "type": "GND", "callsign": "Brussels Ground", "frequency": "121.8" },
+      { "type": "TWR", "callsign": "Brussels Tower", "frequency": "118.6" },
+      { "type": "APP", "callsign": "Brussels Arrival", "frequency": "118.25" }
+    ]
+  },
+  "EHAM": {
+    "name": "Amsterdam Airport Schiphol",
+    "city": "Amsterdam",
+    "country": "NL",
+    "continent": "EU",
+    "fir": "EHAA",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Schiphol Delivery", "frequency": "121.975" },
+      { "type": "GND", "callsign": "Schiphol Ground", "frequency": "121.7" },
+      { "type": "TWR", "callsign": "Schiphol Tower", "frequency": "119.225" },
+      { "type": "APP", "callsign": "Schiphol Approach", "frequency": "118.4" }
+    ]
+  },
+  "EPWA": {
+    "name": "Warsaw Chopin Airport",
+    "city": "Warsaw",
+    "country": "PL",
+    "continent": "EU",
+    "fir": "EPWW",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Warsaw Delivery", "frequency": "121.6" },
+      { "type": "GND", "callsign": "Warsaw Ground", "frequency": "121.9" },
+      { "type": "TWR", "callsign": "Warsaw Tower", "frequency": "118.3" },
+      { "type": "APP", "callsign": "Warsaw Approach", "frequency": "128.8" }
+    ]
+  },
+  "LFPG": {
+    "name": "Charles de Gaulle International Airport",
+    "city": "Paris",
+    "country": "FR",
+    "continent": "EU",
+    "fir": "LFFF",
+    "frequencies": [
+      { "type": "DEL", "callsign": "De Gaulle Delivery", "frequency": "121.725" },
+      { "type": "GND", "callsign": "De Gaulle Ground", "frequency": "121.8" },
+      { "type": "TWR", "callsign": "De Gaulle Tower", "frequency": "119.25" },
+      { "type": "APP", "callsign": "De Gaulle Approach", "frequency": "121.15" }
+    ]
+  },
+  "LSZH": {
+    "name": "Zurich Airport",
+    "city": "Zurich",
+    "country": "CH",
+    "continent": "EU",
+    "fir": "LSAS",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Zurich Delivery", "frequency": "121.9" },
+      { "type": "GND", "callsign": "Zurich Ground", "frequency": "121.8" },
+      { "type": "TWR", "callsign": "Zurich Tower", "frequency": "118.1" },
+      { "type": "APP", "callsign": "Zurich Arrival", "frequency": "118.0" }
+    ]
+  },
+  "LEMD": {
+    "name": "Adolfo Suárez Madrid–Barajas Airport",
+    "city": "Madrid",
+    "country": "ES",
+    "continent": "EU",
+    "fir": "LECM",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Madrid Delivery", "frequency": "121.75" },
+      { "type": "GND", "callsign": "Madrid Ground", "frequency": "121.7" },
+      { "type": "TWR", "callsign": "Madrid Tower", "frequency": "118.075" },
+      { "type": "APP", "callsign": "Madrid Approach", "frequency": "132.55" }
+    ]
+  },
+  "OMDB": {
+    "name": "Dubai International Airport",
+    "city": "Dubai",
+    "country": "AE",
+    "continent": "AS",
+    "fir": "OMAE",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Dubai Delivery", "frequency": "121.65" },
+      { "type": "GND", "callsign": "Dubai Ground", "frequency": "118.35" },
+      { "type": "TWR", "callsign": "Dubai Tower", "frequency": "118.75" },
+      { "type": "APP", "callsign": "Dubai Arrival", "frequency": "124.9" }
+    ]
+  },
+  "KJFK": {
+    "name": "John F. Kennedy International Airport",
+    "city": "New York",
+    "country": "US",
+    "continent": "NA",
+    "fir": "KZNY",
+    "frequencies": [
+      { "type": "DEL", "callsign": "Kennedy Delivery", "frequency": "135.05" },
+      { "type": "GND", "callsign": "Kennedy Ground", "frequency": "121.9" },
+      { "type": "TWR", "callsign": "Kennedy Tower", "frequency": "119.1" },
+      { "type": "APP", "callsign": "New York Approach", "frequency": "128.12" }
     ]
   }
 }

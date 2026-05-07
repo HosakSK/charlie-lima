@@ -530,10 +530,56 @@ function updateAtcVariables() {
     const origin = originEl ? originEl.value.trim().toUpperCase() : '';
     const dest = destEl ? destEl.value.trim().toUpperCase() : '';
 
+    // Pseudo-FIR mapping for missing airports (Global Fallback)
+    const PSEUDO_FIR = {
+        'LZ': 'LZBB', // Slovakia -> Bratislava
+        'LK': 'LKAA', // Czechia -> Praha
+        'LO': 'LOVV', // Austria -> Wien
+        'ED': 'EDGG', // Germany -> Langen
+        'ET': 'EDGG', // Germany Mil -> Langen
+        'EB': 'EBBU', // Belgium -> Brussels
+        'EL': 'EBBU', // Luxembourg -> Brussels
+        'EH': 'EHAA', // Netherlands -> Amsterdam
+        'EG': 'EGTT', // UK -> London
+        'LF': 'LFFF', // France -> Paris
+        'EP': 'EPWW', // Poland -> Warsaw
+        'LH': 'LHCC', // Hungary -> Budapest
+        'LE': 'LECB', // Spain -> Barcelona
+        'LP': 'LPPC', // Portugal -> Lisboa
+        'LI': 'LIMM', // Italy -> Milano
+        'LS': 'LSAS', // Switzerland -> Swiss
+        'LG': 'LGGG', // Greece -> Athinai
+        'LT': 'LTBB', // Turkey -> Istanbul
+        'ES': 'ESAA', // Sweden -> Stockholm
+        'EN': 'ENOR', // Norway -> Oslo
+        'EK': 'EKDK', // Denmark -> Kobenhavn
+        'EF': 'EFIN', // Finland -> Helsinki
+        'EY': 'EYVL', // Lithuania -> Vilnius
+        'EV': 'EVRR', // Latvia -> Riga
+        'EE': 'EETT', // Estonia -> Tallinn
+        'UK': 'UKBV', // Ukraine -> Kyiv
+        'KJ': 'KZNY', // USA East -> New York
+        'KL': 'KZLA', // USA West -> Los Angeles
+        'KO': 'KZAU', // USA Central -> Chicago
+        'OM': 'OMAE', // UAE -> Emirates
+    };
+
     const processAirport = (icao, isDep) => {
         if (!icao) return;
-        const apt = atcData.airports[icao];
-        if (!apt) return;
+        let apt = atcData.airports[icao];
+        
+        // If airport missing, create a skeleton
+        if (!apt) {
+            const prefix = icao.substring(0, 2);
+            apt = {
+                icao: icao,
+                name: icao,
+                city: icao,
+                country: '',
+                fir: PSEUDO_FIR[prefix] || '',
+                frequencies: []
+            };
+        }
         
         let cityVar = isDep ? 'city_dep' : 'city_arr';
         atcVariables[cityVar] = apt.city || apt.name || icao;
@@ -574,30 +620,24 @@ function updateAtcVariables() {
         const app = getFreq('APP', isDep ? 'DEP' : 'ARR') || getFreq('APP');
         
         if (isDep) {
-            // 1. Clearance Delivery: DEL -> GND -> TWR -> APP
             if (del) setVar('delivery_dep', del.callsign, del.frequency);
             else if (gnd) setVar('delivery_dep', gnd.callsign, gnd.frequency);
             else if (twr) setVar('delivery_dep', twr.callsign, twr.frequency);
             else if (app) setVar('delivery_dep', app.callsign, app.frequency);
             
-            // 2. Ground/Taxi: GND -> TWR -> APP
             if (gnd) setVar('ground_dep', gnd.callsign, gnd.frequency);
             else if (twr) setVar('ground_dep', twr.callsign, twr.frequency);
             else if (app) setVar('ground_dep', app.callsign, app.frequency);
             
-            // 3. Takeoff/Tower: TWR -> APP
             if (twr) setVar('tower_dep', twr.callsign, twr.frequency);
             else if (app) setVar('tower_dep', app.callsign, app.frequency);
             
-            // 4. Departure/Radar: APP
             if (app) {
                 let callsign = app.callsign;
                 if (isRadarRegion) callsign = callsign.replace(/Approach/i, 'Radar');
                 setVar('approach_dep', callsign, app.frequency);
             }
         } else {
-            // Arrival hierarchy (FIR -> APP -> TWR -> GND)
-            // 1. Approach/Initial: APP -> TWR
             if (app) {
                 let callsign = app.callsign;
                 if (isRadarRegion) callsign = callsign.replace(/Approach/i, 'Radar');
@@ -606,11 +646,9 @@ function updateAtcVariables() {
                 setVar('approach_arr', twr.callsign, twr.frequency);
             }
             
-            // 2. Landing/Tower: TWR -> APP
             if (twr) setVar('tower_arr', twr.callsign, twr.frequency);
             else if (app) setVar('tower_arr', app.callsign, app.frequency);
             
-            // 3. Taxi: GND -> TWR
             if (gnd) setVar('ground_arr', gnd.callsign, gnd.frequency);
             else if (twr) setVar('ground_arr', twr.callsign, twr.frequency);
         }
@@ -623,14 +661,12 @@ function updateAtcVariables() {
             
             if (isDep) {
                 setVar('fir_dep', callsign, fir.frequency);
-                // Hierarchy fill
                 if (!atcVariables['approach_dep']) setVar('approach_dep', callsign, fir.frequency);
                 if (!atcVariables['tower_dep']) setVar('tower_dep', callsign, fir.frequency);
                 if (!atcVariables['ground_dep']) setVar('ground_dep', callsign, fir.frequency);
                 if (!atcVariables['delivery_dep']) setVar('delivery_dep', callsign, fir.frequency);
             } else {
                 setVar('fir_arr', callsign, fir.frequency);
-                // Hierarchy fill
                 if (!atcVariables['approach_arr']) setVar('approach_arr', callsign, fir.frequency);
                 if (!atcVariables['tower_arr']) setVar('tower_arr', callsign, fir.frequency);
                 if (!atcVariables['ground_arr']) setVar('ground_arr', callsign, fir.frequency);
