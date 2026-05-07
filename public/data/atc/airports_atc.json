@@ -1,14 +1,14 @@
 {
   "LZIB": {
-    "name": "Bratislava M. R. Štefánik",
+    "name": "Bratislava M. R. Stefanik",
     "city": "Bratislava",
     "country": "SK",
     "continent": "EU",
     "fir": "LZBB",
     "frequencies": [
-      { "type": "DEL", "callsign": "Štefánik Delivery", "frequency": "120.900" },
-      { "type": "GND", "callsign": "Štefánik Ground", "frequency": "121.700" },
-      { "type": "TWR", "callsign": "Štefánik Tower", "frequency": "118.300" },
+      { "type": "DEL", "callsign": "Stefanik Delivery", "frequency": "120.900" },
+      { "type": "GND", "callsign": "Stefanik Ground", "frequency": "121.700" },
+      { "type": "TWR", "callsign": "Stefanik Tower", "frequency": "118.300" },
       { "type": "APP", "role": "DEP", "callsign": "Bratislava Departure", "frequency": "124.300" },
       { "type": "APP", "role": "ARR", "callsign": "Bratislava Arrival", "frequency": "120.900" }
     ]

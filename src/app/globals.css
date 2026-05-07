@@ -489,30 +489,35 @@ main { flex: 1; padding-bottom: 20px; overflow: hidden; }
     background: rgba(var(--color-background-rgb), 0.5);
 }
 
-/* ========== BRIEFING ITEM STYLES ========== */
-.briefing-item .item-text {
+/* ========== BRIEFING & ATC ITEM STYLES ========== */
+.briefing-item .item-text, .atc-item .item-text {
     display: block;
 }
-.briefing-item .item-name {
+.briefing-item .item-name, .atc-item .item-name {
     white-space: normal;
     line-height: 1.5;
     padding-right: 0;
 }
-.briefing-item .custom-checkbox {
+.atc-item .item-name {
+    font-style: italic;
+    color: var(--color-accent);
+    opacity: 0.9;
+}
+.briefing-item .custom-checkbox, .atc-item .custom-checkbox {
     background-color: transparent;
     border-color: var(--color-accent);
     color: var(--color-accent);
 }
-.briefing-item.checked .custom-checkbox {
+.briefing-item.checked .custom-checkbox, .atc-item.checked .custom-checkbox {
     background-color: #e53935;
     border-color: #e53935;
     color: #ffffff;
     transform: scale(0.95);
 }
-.briefing-item.checked .custom-checkbox::after {
+.briefing-item.checked .custom-checkbox::after, .atc-item.checked .custom-checkbox::after {
     content: none !important;
 }
-.briefing-item.checked .item-name {
+.briefing-item.checked .item-name, .atc-item.checked .item-name {
     text-decoration: none !important;
     opacity: 0.8;
     font-weight: 400 !important;

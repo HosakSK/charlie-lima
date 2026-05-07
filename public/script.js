@@ -1580,29 +1580,26 @@ function renderPage(isNewPage = false) {
         const isActive = (index === firstUnfinishedIdx);
         div.className = `checklist-item ${item.checked ? 'checked' : ''} ${isActive ? 'active' : ''}`;
         if (item.type === 'briefing') div.classList.add('briefing-item');
-        if (item.type === 'fake_atc') {
-            div.style.display = 'none';
-        }
+        if (item.type === 'fake_atc') div.classList.add('atc-item');
         div.setAttribute('data-index', index);
 
         // Disable click styling for visual-only items
         div.onclick = () => toggleCheck(index);
 
-        if (item.type === 'briefing') {
-            const validSentences = getBriefingValidSentences(item);
-            const briefingText = validSentences.join(' ');
+        if (item.type === 'briefing' || item.type === 'fake_atc') {
+            const validSentences = (item.type === 'briefing') ? getBriefingValidSentences(item) : getFakeAtcValidSentences(item, false);
+            const displayOutput = validSentences.join(' ').replace(/#(atc|pm)\s+/gi, ''); // Remove role tags from UI
 
             const svgPlay = `<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" style="margin-left: 2px;"><path d="M8 5v14l11-7z"/></svg>`;
             const svgStop = `<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M6 6h12v12H6z"/></svg>`;
             const isPlaying = (currentPlayingBriefingIndex === index);
 
-            // To maintain compatibility with manual checklist checking UI, we force the wrapper class
             const isCheckedVisual = item.checked || isPlaying;
-            div.className = `checklist-item ${isCheckedVisual ? 'checked' : ''} ${isActive ? 'active' : ''} briefing-item`;
+            div.className = `checklist-item ${isCheckedVisual ? 'checked' : ''} ${isActive ? 'active' : ''} ${item.type}-item`;
 
             const iconLabel = isPlaying ? svgStop : svgPlay;
 
-            div.innerHTML = `<div class="item-text" style="display:block;"><span class="item-name" style="white-space: normal; line-height: 1.5; padding-right: 0;">${briefingText}</span></div><div class="custom-checkbox">${iconLabel}</div>`;
+            div.innerHTML = `<div class="item-text" style="display:block;"><span class="item-name" style="white-space: normal; line-height: 1.5; padding-right: 0;">${displayOutput}</span></div><div class="custom-checkbox">${iconLabel}</div>`;
         } else {
             const displayName = parseVariables(item.name);
             const displayAction = getParsedAction(item, false);
@@ -2016,7 +2013,7 @@ if (SpeechRecognition) {
         'DESCEND', 'APPROACH', 'LANDING', 'SHUTDOWN', 'SECURE', 'CLEAN',
         'TAKE-OFF', 'TAKE', 'PREFLIGHT', 'NAV', 'YAW', 'ENGINE', 'PUSHBACK',
         'LINE', 'CRUISE', 'DESCENT', 'CAB', 'UTIL', 'BUS', 'BARO', 'EFIS',
-        'TOGA', 'PACK', 'PACKS', 'LNAV', 'VNAV', 'SIDE', 'RNAV'
+        'TOGA', 'PACK', 'PACKS', 'LNAV', 'VNAV', 'SIDE', 'RNAV', 'BRATISLAVA', 'PRAGUE', 'VIENNA', 'WARSAW', 'BUDAPEST'
     ]);
 
     function spellAbbreviations(text, skipSpelling = false) {
@@ -2058,7 +2055,8 @@ if (SpeechRecognition) {
                 return upper.split('').join(' ');
             }
 
-            if (/^[A-Z0-9]+$/.test(match) && /[A-Z]/.test(match)) {
+            // Only spell if the ORIGINAL match was all uppercase and at least 2 chars long
+            if (/^[A-Z0-9]{2,}$/.test(match)) {
                 if (DONT_SPELL.has(match)) return match;
 
                 return match.split('').map(char => {
