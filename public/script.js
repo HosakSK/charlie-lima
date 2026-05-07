@@ -2908,29 +2908,29 @@ function initMetarAutoSync() {
     const originInput = document.getElementById('b-origin');
     const destInput = document.getElementById('b-dest');
     
-    const sync = async (icao, prefix) => {
+    const sync = async (icao, prefix, force = false) => {
         if (!icao || icao.length !== 4) return;
         const data = await fetchMetarData(icao);
         if (data) {
             if (data.atis) {
                 const el = document.getElementById(`b-${prefix}-atis`);
-                if (el && !el.value) el.value = data.atis;
+                if (el && (force || !el.value)) el.value = data.atis;
             }
             if (data.qnh) {
                 const el = document.getElementById(`b-${prefix}-qnh`);
-                if (el && !el.value) el.value = data.qnh;
+                if (el && (force || !el.value)) el.value = data.qnh;
             }
             if (data.temp) {
                 const el = document.getElementById(`b-${prefix}-temp`);
-                if (el && !el.value) el.value = data.temp;
+                if (el && (force || !el.value)) el.value = data.temp;
             }
             if (data.dewpt) {
                 const el = document.getElementById(`b-${prefix}-dewpt`);
-                if (el && !el.value) el.value = data.dewpt;
+                if (el && (force || !el.value)) el.value = data.dewpt;
             }
             if (data.wind) {
                 const el = document.getElementById(`b-${prefix}-wind`);
-                if (el && !el.value) el.value = data.wind;
+                if (el && (force || !el.value)) el.value = data.wind;
             }
             saveBriefing();
         }
@@ -2971,8 +2971,8 @@ function initMetarAutoSync() {
         metarSyncBtn.addEventListener('click', async () => {
             const o = document.getElementById('b-origin')?.value;
             const d = document.getElementById('b-dest')?.value;
-            if (o) await sync(o, 'dep');
-            if (d) await sync(d, 'arr');
+            if (o) await sync(o, 'dep', true);
+            if (d) await sync(d, 'arr', true);
         });
     }
     
