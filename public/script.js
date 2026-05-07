@@ -623,7 +623,7 @@ function getFakeAtcValidSentences(item, forSpeech = true) {
         // Replace briefing fields first
         BRIEF_FIELDS.forEach(id => {
             const varName = id.replace(/^b-/, '').replace(/-/g, '_');
-            const placeholder = \`%\${varName}%\`;
+            const placeholder = `%${varName}%`;
             if (sentence.toLowerCase().includes(placeholder.toLowerCase())) {
                 hasVar = true;
                 const el = document.getElementById(id);
