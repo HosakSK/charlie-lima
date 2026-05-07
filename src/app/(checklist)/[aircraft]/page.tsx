@@ -78,6 +78,9 @@ export default function AircraftChecklistPage() {
             } catch { /* ignore */ }
           }
 
+          if (savedDs) {
+            savedDs = savedDs.replace(/ /g, '_');
+          }
           localStorage.setItem(`${aircraft}_dataset`, savedDs as string);
 
           try {
