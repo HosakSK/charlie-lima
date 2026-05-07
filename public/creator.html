@@ -1113,7 +1113,7 @@
                 s.items.forEach(i => delete i._editing);
             });
 
-            let jsContent = `const checklistName = "${currentChecklistName}";\nconst initialChecklistData = [\n`;
+            let jsContent = `window.checklistName = "${currentChecklistName}";\nwindow.initialChecklistData = [\n`;
             
             cleanData.forEach((section, sIdx) => {
                 let turnPart = section.turnaround === "yes" ? `\n    "turnaround": "yes",` : "";
@@ -1122,10 +1122,12 @@
                 section.items.forEach((item, iIdx) => {
                     let itemStr = "";
                     if (item.type === 'briefing' || item.type === 'fake_atc') {
+                        // Special multi-line formatting for complex items
                         let st = JSON.stringify(item, null, 2);
                         st = st.split('\n').map((line, idx) => idx === 0 ? line : '      ' + line).join('\n');
                         itemStr = `      ${st}`;
                     } else {
+                        // Standard single-line formatting for regular items
                         let props = Object.keys(item).map(k => {
                             return `"${k}": ${JSON.stringify(item[k])}`;
                         }).join(", ");
