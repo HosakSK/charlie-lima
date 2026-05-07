@@ -2952,3 +2952,4 @@ async function updateInitAltPlaceholder(icao) {
         console.error('Placeholder Update Error:', e);
     }
 }
+}
