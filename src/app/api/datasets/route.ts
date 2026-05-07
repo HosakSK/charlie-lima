@@ -13,7 +13,7 @@ export async function GET() {
 
   try {
     const aircraftDirs = fs.readdirSync(dataDir, { withFileTypes: true })
-      .filter(dirent => dirent.isDirectory())
+      .filter(dirent => dirent.isDirectory() && dirent.name !== 'atc')
       .map(dirent => dirent.name);
 
     for (const ac of aircraftDirs) {

@@ -340,7 +340,7 @@
                 const res = await fetch('/api/datasets');
                 apiData = await res.json();
                 
-                const aircrafts = Object.keys(apiData);
+                const aircrafts = Object.keys(apiData).filter(ac => ac !== 'atc');
                 if (aircrafts.length === 0) {
                     console.error("No aircraft found in API");
                     return;

@@ -82,11 +82,15 @@ export default function AircraftChecklistPage() {
 
           try {
             await loadScript('/' + savedDs);
-          } catch {
-            console.error('Failed to load dataset script:', savedDs);
-            // Make an empty dataset so script.js doesn't crash completely
-            window.initialChecklistData = [];
-            window.checklistName = "Missing Dataset";
+          } catch (e) {
+            console.error('Failed to load dataset script:', savedDs, e);
+            // Fallback to a hardcoded default if even the saved one fails
+            try {
+               await loadScript(`/data/${aircraft}/europe_style.js`);
+            } catch {
+               window.initialChecklistData = [];
+               window.checklistName = "Error Loading Dataset";
+            }
           }
 
           await loadScript('/lang.js');
