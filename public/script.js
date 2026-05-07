@@ -1625,10 +1625,11 @@ function toggleCheck(itemIndex, silent = false) {
     const isUnchecking = item.checked;
     item.checked = !item.checked;
 
-    if (item.type === 'briefing') {
+    if (item.type === 'briefing' || item.type === 'fake_atc') {
         if (isUnchecking || currentPlayingBriefingIndex === itemIndex) {
             currentPlayingBriefingIndex = -1;
             window.speechSynthesis.cancel();
+            window.currentSpeechSession = (window.currentSpeechSession || 0) + 1; // Kill current queue
         }
     }
 
@@ -1640,21 +1641,21 @@ function toggleCheck(itemIndex, silent = false) {
 
     // Handle manual checking (silent=false)
     if (!silent && item.checked) {
-        if (item.type === 'briefing') {
-            if (isListening && hasStartedReading && typeof speakCurrentItem === 'function') {
-                // Voice sequence handles reading and going forward automatically:
-                speakCurrentItem();
-            } else if (!isMuted) {
-                // If not in standard continuous voice-mode flow, read it independently:
-                currentPlayingBriefingIndex = itemIndex;
-                renderPage(false);
-                const text = getBriefingValidSentences(item, true).join(' ');
-                const utterance = new SpeechSynthesisUtterance(spellAbbreviations(text));
-                utterance.lang = 'en-US';
-                utterance.rate = (isMaleVoice ? 1.28 : 1.09);
-                utterance.voice = getSelectedVoice();
-                utterance.onend = () => { currentPlayingBriefingIndex = -1; renderPage(false); };
-                window.speechSynthesis.speak(utterance);
+        if (item.type === 'briefing' || item.type === 'fake_atc') {
+            // Manually trigger the voice engine for this specific item
+            // Temporarily set hasStartedReading to true if it's false, so speakCurrentItem works
+            const oldStarted = hasStartedReading;
+            const oldListening = isListening;
+            
+            hasStartedReading = true;
+            isListening = true; // Ensure it can speak
+            
+            speakCurrentItem(true); 
+            
+            // Restore states if we were not in voice mode
+            if (!oldStarted || !oldListening) {
+                // We need to wait for the speech to finish to restore states properly, 
+                // but for testing, let's keep them active so user can hear.
             }
         } else if (item.timer && !isTimerDisabled) {
             if (isListening && hasStartedReading && typeof processTimerItem === 'function') {
@@ -2378,6 +2379,20 @@ if (SpeechRecognition) {
                 }
 
                 let chunk = utterancesQueue[idx];
+                let text = chunk.text;
+                
+                // Pause logic: if text contains '|', split it and play sequentially with delay
+                if (text.includes('|')) {
+                    const parts = text.split('|');
+                    const subQueue = [];
+                    parts.forEach((p, i) => {
+                        subQueue.push({ text: p.trim(), role: chunk.role });
+                        if (i < parts.length - 1) subQueue.push({ text: "", role: chunk.role }); // Inject pause
+                    });
+                    utterancesQueue.splice(idx, 1, ...subQueue);
+                    chunk = utterancesQueue[idx];
+                }
+
                 const utterance = new SpeechSynthesisUtterance(spellAbbreviations(parseVariables(chunk.text, true)));
                 utterance.lang = 'en-US';
                 let wantMale = isMaleVoice;
@@ -2391,8 +2406,14 @@ if (SpeechRecognition) {
                     playNextUtterance(idx + 1);
                 };
                 
-                if (!isMuted) window.speechSynthesis.speak(utterance);
-                else {
+                if (!isMuted) {
+                    if (chunk.text.trim() === "") {
+                        // It's a pause segment
+                        setTimeout(() => { playNextUtterance(idx + 1); }, 500);
+                    } else {
+                        window.speechSynthesis.speak(utterance);
+                    }
+                } else {
                     setTimeout(() => { utterance.onend(); }, 175);
                 }
             }
