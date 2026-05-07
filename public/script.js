@@ -2768,7 +2768,6 @@ if (SpeechRecognition) {
             readCLOnlyChecklistPhaseActive = false;
             requestWakeLock();
             try { recognition.start(); } catch (e) { recognition.stop(); alert("Mic error: " + e.message); }
-            // Read CL Only: auto-start if current page has briefing
             if (isReadCLOnly) {
                 setTimeout(() => { readCLOnlyAutoStart(); }, 600);
             }
@@ -2789,12 +2788,9 @@ if (SpeechRecognition) {
             voiceStopBtn.innerHTML = '&#9658; Start';
             micBtn.classList.remove('active');
         } else {
-            micBtn.click(); // Start it
+            micBtn.click();
         }
     };
-
-
-
 } else {
     micBtn.style.display = 'none';
 }
