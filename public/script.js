@@ -4,6 +4,26 @@
 let checklistData = [];
 let currentPageIndex = 0;
 
+const NATO_ALPHABET = {
+    'A': 'Alpha', 'B': 'Bravo', 'C': 'Charlie', 'D': 'Delta', 'E': 'Echo',
+    'F': 'Foxtrot', 'G': 'Golf', 'H': 'Hotel', 'I': 'India', 'J': 'Juliett',
+    'K': 'Kilo', 'L': 'Lima', 'M': 'Mike', 'N': 'November', 'O': 'Oscar',
+    'P': 'Papa', 'Q': 'Quebec', 'R': 'Romeo', 'S': 'Sierra', 'T': 'Tango',
+    'U': 'Uniform', 'V': 'Victor', 'W': 'Whiskey', 'X': 'X-ray', 'Y': 'Yankee', 'Z': 'Zulu',
+    '9': 'Niner'
+};
+
+const CLASSIC_SPELL_EXCEPTIONS = new Set([
+    'V', 'V1', 'VR', 'V2', 'N1', 'N2', 'QNH', 'QHN',
+    'APU', 'APY', 'IRS', 'FMC', 'MCP', 'ILS', 'RTO',
+    'SID', 'VOR', 'LOC', 'RWY', 'FL', 'NM', 'MA',
+    'TA', 'RA', 'GND', 'STD', 'WX', 'REQ', 'TR',
+    'HDG', 'ALT', 'AC', 'DC', 'ELT', 'GPS', 'GLS', 'EEC',
+    'ATC', 'IDG', 'FPV', 'MTR', 'PFD', 'ND', 'RMI', 'GPU',
+    'GAU', 'CDU', 'FMA', 'OFP', 'ADI', 'SOP', 'AAE', 'VPT',
+    'GPWS', 'HZ', 'LE', 'PSEU', 'PSI', 'ADF', 'ISFD', 'IAS', 'SPD', 'AGL', 'PTH'
+]);
+
 // DOM – checklist
 const pageTitleElem = document.getElementById('page-title');
 const containerElem = document.getElementById('checklist-container');
@@ -1433,6 +1453,11 @@ function parseVariables(text, forSpeech = false) {
                 val = formatCallsign(val);
             }
 
+            if ((id === 'b-dep-atis' || id === 'b-arr-atis') && forSpeech && val.length === 1) {
+                const upper = val.toUpperCase();
+                if (NATO_ALPHABET[upper]) val = NATO_ALPHABET[upper];
+            }
+
             if ((id === 'b-dep-rwy' || id === 'b-arr-rwy') && forSpeech) {
                 val = formatRunway(val);
             }
@@ -1985,25 +2010,7 @@ if (SpeechRecognition) {
         return selectedVoice;
     }
 
-    const NATO_ALPHABET = {
-        'A': 'Alpha', 'B': 'Bravo', 'C': 'Charlie', 'D': 'Delta', 'E': 'Echo',
-        'F': 'Foxtrot', 'G': 'Golf', 'H': 'Hotel', 'I': 'India', 'J': 'Juliett',
-        'K': 'Kilo', 'L': 'Lima', 'M': 'Mike', 'N': 'November', 'O': 'Oscar',
-        'P': 'Papa', 'Q': 'Quebec', 'R': 'Romeo', 'S': 'Sierra', 'T': 'Tango',
-        'U': 'Uniform', 'V': 'Victor', 'W': 'Whiskey', 'X': 'X-ray', 'Y': 'Yankee', 'Z': 'Zulu',
-        '9': 'Niner'
-    };
-
-    const CLASSIC_SPELL_EXCEPTIONS = new Set([
-        'V', 'V1', 'VR', 'V2', 'N1', 'N2', 'QNH', 'QHN',
-        'APU', 'APY', 'IRS', 'FMC', 'MCP', 'ILS', 'RTO',
-        'SID', 'VOR', 'LOC', 'RWY', 'FL', 'NM', 'MA',
-        'TA', 'RA', 'GND', 'STD', 'WX', 'REQ', 'TR',
-        'HDG', 'ALT', 'AC', 'DC', 'ELT', 'GPS', 'GLS', 'EEC',
-        'ATC', 'IDG', 'FPV', 'MTR', 'PFD', 'ND', 'RMI', 'GPU',
-        'GAU', 'CDU', 'FMA', 'OFP', 'ADI', 'SOP', 'AAE', 'VPT',
-        'GPWS', 'HZ', 'LE', 'PSEU', 'PSI', 'ADF', 'ISFD', 'IAS', 'SPD', 'AGL', 'PTH'
-    ]);
+    // Moved out: NATO_ALPHABET and CLASSIC_SPELL_EXCEPTIONS are now global
 
     const DONT_SPELL = new Set([
         'START', 'STOP', 'GO', 'AND', 'OR', 'ON', 'OFF', 'UP', 'DOWN',
