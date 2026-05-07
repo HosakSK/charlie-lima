@@ -136,6 +136,7 @@ function getOriginalHTML(aircraft: string): string {
     <div class="toggle-group" id="top-read-cl-only-container"><span class="toggle-label">Read CL Only</span><label class="switch"><input type="checkbox" id="top-read-cl-only-toggle"><span class="slider round"></span></label></div>
     <div class="toggle-group" id="top-checklist-toggle-container" style="display:none;"><span class="toggle-label">Hide Flow</span><label class="switch"><input type="checkbox" id="top-checklist-only-toggle"><span class="slider round"></span></label></div>
     <div class="toggle-group" id="top-briefing-toggle-container"><span class="toggle-label">Show Briefing</span><label class="switch"><input type="checkbox" id="top-briefing-toggle"><span class="slider round"></span></label></div>
+    <div class="toggle-group" id="top-fake-atc-toggle-container"><span class="toggle-label">Fake ATC</span><label class="switch"><input type="checkbox" id="top-fake-atc-toggle"><span class="slider round"></span></label></div>
     <div class="toggle-group" id="top-hide-tests-container" style="display:none;"><span class="toggle-label">Hide Tests</span><label class="switch"><input type="checkbox" id="top-hide-tests-toggle"><span class="slider round"></span></label></div>
     <div class="toggle-group" id="top-simplify-container" style="display:none;"><span class="toggle-label">Simplify</span><label class="switch"><input type="checkbox" id="top-simplify-toggle"><span class="slider round"></span></label></div>
     <div class="toggle-group" style="margin-top:10px;width:100%;justify-content:center;border-top:1px dashed rgba(128,128,128,0.2);padding-top:20px;flex-direction:column;">
@@ -221,6 +222,15 @@ function getOriginalHTML(aircraft: string): string {
       <button id="briefing-info-close" class="header-btn" style="margin:auto;width:100px;">Got it</button>
     </div>
   </div>
+  <div id="fake-atc-info-overlay" class="help-overlay hidden">
+    <div class="help-panel" style="max-width:400px;text-align:center;">
+      <h2 class="help-title" style="margin-bottom:20px;">Fake ATC</h2>
+      <p style="margin:15px 0;font-size:1rem;line-height:1.5;">Fake ATC uses the Voice model to simulate radio communications based on your flight variables in the Notepad.</p>
+      <p style="font-size:0.9rem;color:#888;margin-bottom:25px;">Make sure to set Origin and Destination to hear dynamic frequencies and callsigns!</p>
+      <label style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px;cursor:pointer;font-size:0.9rem;"><input type="checkbox" id="fake-atc-info-dont-show"> Do not show again</label>
+      <button id="fake-atc-info-close" class="header-btn" style="margin:auto;width:100px;">Got it</button>
+    </div>
+  </div>
   <div class="app-container">
     <header>
       <h2 id="page-title">Loading...</h2>
@@ -244,7 +254,7 @@ function getOriginalHTML(aircraft: string): string {
     </div>
   </div>
   <div class="global-footer">
-    <span class="version-info">v3.2.14</span>
+    <span class="version-info">v3.3.0</span>
     <span class="sim-warning">For flight simulation use only.<br>Not for real-world flight.</span>
   </div>`;
 }

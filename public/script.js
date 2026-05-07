@@ -31,6 +31,10 @@ const resetSettingsBtn = document.getElementById('reset-settings-btn');
 const briefingInfoOverlay = document.getElementById('briefing-info-overlay');
 const briefingInfoClose = document.getElementById('briefing-info-close');
 const briefingInfoDontShow = document.getElementById('briefing-info-dont-show');
+const fakeAtcToggleBtn = document.getElementById('top-fake-atc-toggle');
+const fakeAtcInfoOverlay = document.getElementById('fake-atc-info-overlay');
+const fakeAtcInfoClose = document.getElementById('fake-atc-info-close');
+const fakeAtcInfoDontShow = document.getElementById('fake-atc-info-dont-show');
 
 // DOM – overlay & voice
 const fabBtn = document.getElementById('fab-btn');
@@ -239,6 +243,31 @@ if (briefingInfoClose) {
     };
 }
 
+let isFakeAtcEnabled = localStorage.getItem('b738_fake_atc_enabled') === 'true';
+if (fakeAtcToggleBtn) {
+    fakeAtcToggleBtn.checked = isFakeAtcEnabled;
+    fakeAtcToggleBtn.addEventListener('change', (e) => {
+        isFakeAtcEnabled = e.target.checked;
+        localStorage.setItem('b738_fake_atc_enabled', isFakeAtcEnabled.toString());
+        if (isFakeAtcEnabled) {
+            const popupSeen = localStorage.getItem('b738_fake_atc_popup_seen') === 'true';
+            if (!popupSeen && fakeAtcInfoOverlay) {
+                fakeAtcInfoOverlay.classList.remove('hidden');
+            }
+        }
+        renderPage(false);
+    });
+}
+
+if (fakeAtcInfoClose) {
+    fakeAtcInfoClose.onclick = () => {
+        if (fakeAtcInfoDontShow && fakeAtcInfoDontShow.checked) {
+            localStorage.setItem('b738_fake_atc_popup_seen', 'true');
+        }
+        fakeAtcInfoOverlay.classList.add('hidden');
+    };
+}
+
 if (resetSettingsBtn) {
     resetSettingsBtn.onclick = () => {
         if (confirm("Reset completely to defaults? This will erase all your settings including the help guide preferences.")) {
@@ -249,6 +278,8 @@ if (resetSettingsBtn) {
             localStorage.removeItem('b738_muted');
             localStorage.removeItem('b738_briefing_enabled');
             localStorage.removeItem('b738_briefing_popup_seen');
+            localStorage.removeItem('b738_fake_atc_enabled');
+            localStorage.removeItem('b738_fake_atc_popup_seen');
             localStorage.removeItem('b738_dataset');
             localStorage.removeItem('b738_read_cl_only');
             location.reload();
@@ -451,10 +482,200 @@ function getBriefingValidSentences(item, forSpeech = false) {
     return hasSentenceWithVar ? validSentences : [];
 }
 
+let atcData = { airports: null, firs: null, greetings: null };
+let atcVariables = {};
+
+async function loadAtcData() {
+    try {
+        const [airportsRes, firsRes, greetingsRes] = await Promise.all([
+            fetch('/data/atc/airports_atc.json'),
+            fetch('/data/atc/firs_atc.json'),
+            fetch('/data/atc/greetings_atc.json')
+        ]);
+        atcData.airports = await airportsRes.json();
+        atcData.firs = await firsRes.json();
+        atcData.greetings = await greetingsRes.json();
+        updateAtcVariables();
+    } catch (e) {
+        console.error('Failed to load ATC data:', e);
+    }
+}
+
+function updateAtcVariables() {
+    atcVariables = {};
+    if (!atcData.airports || !atcData.firs) return;
+    
+    const originEl = document.getElementById('b-origin');
+    const destEl = document.getElementById('b-dest');
+    const origin = originEl ? originEl.value.trim().toUpperCase() : '';
+    const dest = destEl ? destEl.value.trim().toUpperCase() : '';
+
+    const processAirport = (icao, isDep) => {
+        if (!icao) return;
+        const apt = atcData.airports[icao];
+        if (!apt) return;
+        
+        let cityVar = isDep ? 'city_dep' : 'city_arr';
+        atcVariables[cityVar] = apt.city || apt.name || icao;
+        
+        // Greetings
+        if (isDep && atcData.greetings) {
+            let country = apt.country;
+            let continent = apt.continent;
+            let hello = 'Hello';
+            if (country && atcData.greetings.countries && atcData.greetings.countries[country]) {
+                hello = atcData.greetings.countries[country].hello;
+            } else if (continent && atcData.greetings.continents && atcData.greetings.continents[continent]) {
+                hello = atcData.greetings.continents[continent].hello;
+            }
+            atcVariables['hello_dep'] = hello;
+        }
+
+        // Frequencies logic
+        const freqs = apt.frequencies || [];
+        const getFreq = (type, role) => {
+            let found = freqs.find(f => f.type === type && (!role || f.role === role || !f.role));
+            if (!found) found = freqs.find(f => f.type === type);
+            return found;
+        };
+
+        const setVar = (key, val, freqVal) => {
+            if (val) atcVariables[key] = val;
+            if (freqVal) atcVariables[key + '_freq'] = freqVal;
+        };
+
+        const isRadarRegion = ['CZ', 'SK', 'DE', 'AT', 'HU'].includes(apt.country);
+        const isCenterRegion = ['US', 'CA', 'AU'].includes(apt.country);
+
+        // Fallbacks
+        let del = getFreq('DEL');
+        let gnd = getFreq('GND');
+        let twr = getFreq('TWR');
+        let app = getFreq('APP', isDep ? 'DEP' : 'ARR');
+        
+        if (isDep) {
+            if (del) setVar('delivery_dep', del.callsign, del.frequency);
+            else if (gnd) setVar('delivery_dep', gnd.callsign, gnd.frequency);
+            else if (twr) setVar('delivery_dep', twr.callsign, twr.frequency);
+            
+            if (gnd) setVar('ground_dep', gnd.callsign, gnd.frequency);
+            else if (twr) setVar('ground_dep', twr.callsign, twr.frequency);
+            else if (app) setVar('ground_dep', app.callsign, app.frequency);
+            
+            if (twr) setVar('tower_dep', twr.callsign, twr.frequency);
+            else if (app) setVar('tower_dep', app.callsign, app.frequency);
+            
+            if (app) setVar('approach_dep', isRadarRegion ? app.callsign.replace(/Approach/i, 'Radar') : app.callsign, app.frequency);
+        } else {
+            if (app) setVar('approach_arr', isRadarRegion ? app.callsign.replace(/Approach/i, 'Radar') : app.callsign, app.frequency);
+            else if (twr) setVar('approach_arr', twr.callsign, twr.frequency);
+            
+            if (twr) setVar('tower_arr', twr.callsign, twr.frequency);
+            else if (app) setVar('tower_arr', app.callsign, app.frequency);
+            
+            if (gnd) setVar('ground_arr', gnd.callsign, gnd.frequency);
+            else if (twr) setVar('ground_arr', twr.callsign, twr.frequency);
+        }
+
+        // FIR logic
+        let firCode = apt.fir;
+        if (firCode && atcData.firs[firCode]) {
+            let fir = atcData.firs[firCode];
+            let callsign = isCenterRegion ? fir.callsign.replace(/(Radar|Control)/i, 'Center') : fir.callsign;
+            if (isDep) {
+                setVar('fir_dep', callsign, fir.frequency);
+                if (!atcVariables['approach_dep']) setVar('approach_dep', callsign, fir.frequency);
+                if (!atcVariables['tower_dep']) setVar('tower_dep', callsign, fir.frequency);
+                if (!atcVariables['ground_dep']) setVar('ground_dep', callsign, fir.frequency);
+                if (!atcVariables['delivery_dep']) setVar('delivery_dep', callsign, fir.frequency);
+            } else {
+                setVar('fir_arr', callsign, fir.frequency);
+                if (!atcVariables['approach_arr']) setVar('approach_arr', callsign, fir.frequency);
+                if (!atcVariables['tower_arr']) setVar('tower_arr', callsign, fir.frequency);
+                if (!atcVariables['ground_arr']) setVar('ground_arr', callsign, fir.frequency);
+            }
+        }
+    };
+
+    processAirport(origin, true);
+    processAirport(dest, false);
+}
+
+// Call on load
+loadAtcData();
+// Listen for changes on origin and dest
+document.addEventListener('input', (e) => {
+    if (e.target && (e.target.id === 'b-origin' || e.target.id === 'b-dest')) {
+        updateAtcVariables();
+    }
+});
+
+function getFakeAtcValidSentences(item, forSpeech = true) {
+    let validSentences = [];
+    let hasSentenceWithVar = false;
+    
+    // Make sure we have latest briefing fields too
+    for (let sentence of item.text) {
+        let hasVar = false;
+        let allVarsFilled = true;
+        let parsedSentence = sentence;
+
+        // Replace briefing fields first
+        BRIEF_FIELDS.forEach(id => {
+            const varName = id.replace(/^b-/, '').replace(/-/g, '_');
+            const placeholder = \`%\${varName}%\`;
+            if (sentence.toLowerCase().includes(placeholder.toLowerCase())) {
+                hasVar = true;
+                const el = document.getElementById(id);
+                let val = el ? el.value.trim() : '';
+                
+                if (id === 'b-callsign' && forSpeech) val = formatCallsign(val);
+                if ((id === 'b-dep-rwy' || id === 'b-arr-rwy') && forSpeech) val = formatRunway(val);
+                
+                if (!val) allVarsFilled = false;
+                else parsedSentence = parsedSentence.replace(new RegExp(placeholder, 'gi'), val);
+            }
+        });
+
+        // Replace ATC variables
+        const atcVarNames = [
+            'delivery_dep', 'ground_dep', 'tower_dep', 'approach_dep', 'fir_dep',
+            'delivery_dep_freq', 'ground_dep_freq', 'tower_dep_freq', 'approach_dep_freq', 'fir_dep_freq',
+            'fir_arr', 'approach_arr', 'tower_arr', 'ground_arr',
+            'fir_arr_freq', 'approach_arr_freq', 'tower_arr_freq', 'ground_arr_freq',
+            'city_dep', 'city_arr', 'hello_dep'
+        ];
+
+        atcVarNames.forEach(varName => {
+            const placeholder = \`%\${varName}%\`;
+            if (sentence.toLowerCase().includes(placeholder.toLowerCase())) {
+                hasVar = true;
+                let val = atcVariables[varName] || '';
+                if (!val) allVarsFilled = false;
+                else parsedSentence = parsedSentence.replace(new RegExp(placeholder, 'gi'), val);
+            }
+        });
+
+        if (hasVar) {
+            if (allVarsFilled) {
+                validSentences.push(parsedSentence);
+                hasSentenceWithVar = true;
+            }
+        } else {
+            validSentences.push(parsedSentence);
+        }
+    }
+    return hasSentenceWithVar ? validSentences : [];
+}
+
 function isItemVisible(item) {
     if (item.type === 'briefing') {
         if (!isBriefingEnabled) return false;
         return getBriefingValidSentences(item).length > 0;
+    }
+    if (item.type === 'fake_atc') {
+        if (!isFakeAtcEnabled) return false;
+        return getFakeAtcValidSentences(item).length > 0;
     }
     if (isChecklistOnly && item.type === 'flow') return false;
     if (item.landingtype) {
@@ -1345,6 +1566,9 @@ function renderPage(isNewPage = false) {
         const isActive = (index === firstUnfinishedIdx);
         div.className = `checklist-item ${item.checked ? 'checked' : ''} ${isActive ? 'active' : ''}`;
         if (item.type === 'briefing') div.classList.add('briefing-item');
+        if (item.type === 'fake_atc') {
+            div.style.display = 'none';
+        }
         div.setAttribute('data-index', index);
 
         // Disable click styling for visual-only items
@@ -1428,8 +1652,14 @@ function toggleCheck(itemIndex, silent = false) {
                 const isContinuous = item.timerContinuous === "yes";
                 startActionTimer(parseVariables(item.timerLabel || item.name), parseInt(item.timer), null, isContinuous, item.timerWarning);
             }
-        } else if (isListening && hasStartedReading && typeof speakCurrentItem === 'function') {
-            speakCurrentItem();
+        } else if (typeof speakCurrentItem === 'function') {
+            const nextItem = checklistData[currentPageIndex].items[itemIndex + 1];
+            if (isListening && hasStartedReading) {
+                speakCurrentItem();
+            } else if (isListening && nextItem && nextItem.type === 'fake_atc' && isFakeAtcEnabled) {
+                // Auto-trigger ATC reading even if not in full checklist voice-mode
+                speakCurrentItem(true);
+            }
         }
     }
 }
@@ -1682,59 +1912,65 @@ if (SpeechRecognition) {
     }
     window.speechSynthesis.getVoices(); // trigger load
 
-    function getSelectedVoice() {
-        const currentType = isMaleVoice ? "male" : "female";
-        if (cachedVoice && cachedVoiceType === currentType) return cachedVoice;
+    let cachedVoiceMale = null;
+    let cachedVoiceFemale = null;
+
+    function getSelectedVoice(overrideRole = null) {
+        let wantMale = isMaleVoice;
+        if (overrideRole === 'pm') wantMale = isMaleVoice;
+        else if (overrideRole === 'atc') wantMale = !isMaleVoice;
+
+        if (wantMale && cachedVoiceMale) return cachedVoiceMale;
+        if (!wantMale && cachedVoiceFemale) return cachedVoiceFemale;
 
         const voices = window.speechSynthesis.getVoices();
         if (!voices || voices.length === 0) return null;
 
-        // Normalize lang: Android uses en_GB with underscore, browsers use en-GB with hyphen
         const normLang = v => v.lang.toLowerCase().replace(/_/g, '-');
         const engVoices = voices.filter(v => normLang(v).startsWith('en'));
         const searchList = engVoices.length > 0 ? engVoices : voices;
 
-        // Keywords known to appear in male/female voice names across platforms
         const preferredFemale = ['samantha', 'google us english', 'zira', 'karen', 'moira', 'tessa', 'female', 'sfg', 'fis'];
         const preferredMale = [
             'google uk english male', 'daniel', 'en-gb-x-gbd', 'en-gb-x-gbm', 'en-gb-x',
             'david', 'mark', 'alex', 'male', 'rjs', 'iom', 'tpd', 'lee'
         ];
 
-        const preferred = isMaleVoice ? preferredMale : preferredFemale;
+        const preferred = wantMale ? preferredMale : preferredFemale;
+        let selectedVoice = null;
 
-        // Pass 1: match by name or voiceURI keywords (works on English-language devices)
         for (const name of preferred) {
             const voice = searchList.find(v =>
                 v.name.toLowerCase().includes(name) ||
                 (v.voiceURI && v.voiceURI.toLowerCase().includes(name))
             );
-            if (voice) { cachedVoice = voice; cachedVoiceType = currentType; return voice; }
+            if (voice) { selectedVoice = voice; break; }
         }
 
-        // Pass 2: match by normalized lang code (works regardless of device UI language)
-        // en-gb → typically male on Google TTS; en-us → typically female
-        if (isMaleVoice) {
-            const gbVoice = searchList.find(v => normLang(v).startsWith('en-gb'));
-            if (gbVoice) { cachedVoice = gbVoice; cachedVoiceType = currentType; return gbVoice; }
-            // en-au also tends to be male on some devices
-            const auVoice = searchList.find(v => normLang(v).startsWith('en-au'));
-            if (auVoice) { cachedVoice = auVoice; cachedVoiceType = currentType; return auVoice; }
-        } else {
-            const usVoice = searchList.find(v => normLang(v).startsWith('en-us'));
-            if (usVoice) { cachedVoice = usVoice; cachedVoiceType = currentType; return usVoice; }
+        if (!selectedVoice) {
+            if (wantMale) {
+                const gbVoice = searchList.find(v => normLang(v).startsWith('en-gb'));
+                if (gbVoice) selectedVoice = gbVoice;
+                else {
+                    const auVoice = searchList.find(v => normLang(v).startsWith('en-au'));
+                    if (auVoice) selectedVoice = auVoice;
+                }
+            } else {
+                const usVoice = searchList.find(v => normLang(v).startsWith('en-us'));
+                if (usVoice) selectedVoice = usVoice;
+            }
         }
 
-        // Pass 3: pick by position — Android typically lists female (en-US) first, male (en-GB) later
-        if (isMaleVoice && searchList.length > 1) {
-            // Pick the last English voice (usually furthest from the default en-US female)
-            const last = searchList[searchList.length - 1];
-            cachedVoice = last; cachedVoiceType = currentType; return last;
+        if (!selectedVoice && wantMale && searchList.length > 1) {
+            selectedVoice = searchList[searchList.length - 1];
         }
 
-        cachedVoice = searchList[0] || null;
-        cachedVoiceType = currentType;
-        return cachedVoice;
+        if (!selectedVoice) selectedVoice = searchList[0] || null;
+
+        if (wantMale) cachedVoiceMale = selectedVoice;
+        else cachedVoiceFemale = selectedVoice;
+
+        return selectedVoice;
     }
 
     const NATO_ALPHABET = {
@@ -1960,8 +2196,8 @@ if (SpeechRecognition) {
         }
     }
 
-    function speakCurrentItem() {
-        if (!isListening || !hasStartedReading) return;
+    function speakCurrentItem(force = false) {
+        if (!isListening || (!hasStartedReading && !force)) return;
         const items = checklistData[currentPageIndex].items;
         const nextItem = items.find(i => !i.checked && isItemVisible(i));
 
@@ -2043,16 +2279,35 @@ if (SpeechRecognition) {
                 }
             }
 
-            let textToRead = '';
+            let utterancesQueue = [];
+
             if (nextItem.type === 'briefing') {
                 currentPlayingBriefingIndex = nextItemIdxBackup;
                 renderPage(false);
-                textToRead = getBriefingValidSentences(nextItem, true).join(' ');
+                utterancesQueue.push({ text: getBriefingValidSentences(nextItem, true).join(' '), role: 'pm' });
+            } else if (nextItem.type === 'fake_atc') {
+                currentPlayingBriefingIndex = nextItemIdxBackup;
+                renderPage(false);
+                let sentences = getFakeAtcValidSentences(nextItem, true);
+                sentences.forEach(sentence => {
+                    let role = 'pm';
+                    let text = sentence;
+                    if (text.toLowerCase().startsWith('#atc')) {
+                        role = 'atc';
+                        text = text.substring(4).trim();
+                    } else if (text.toLowerCase().startsWith('#pm')) {
+                        role = 'pm';
+                        text = text.substring(3).trim();
+                    }
+                    utterancesQueue.push({ text: text, role: role });
+                });
             } else {
-                textToRead = `${nextItem.name}. ${getParsedAction(nextItem, true)}`;
+                utterancesQueue.push({ text: `${nextItem.name}. ${getParsedAction(nextItem, true)}`, role: 'pm' });
             }
 
-            textToRead = transitionText + textToRead;
+            if (transitionText && utterancesQueue.length > 0) {
+                utterancesQueue[0].text = transitionText + utterancesQueue[0].text;
+            }
 
             if (activeTimerWarning && actionTimerInterval) {
                 const searchTarget = parseVariables(activeTimerWarning).toLowerCase();
@@ -2076,53 +2331,73 @@ if (SpeechRecognition) {
                 }
             }
 
-            const utterance = new SpeechSynthesisUtterance(spellAbbreviations(parseVariables(textToRead, true)));
-            utterance.lang = 'en-US';
-            utterance.rate = (isMaleVoice ? 1.28 : 1.09);
-            utterance.voice = getSelectedVoice();
             isSpeaking = true; // Ochrana proti echa: nastavíme okamžite ešte pred prvou slabikou
             try { recognition.abort(); } catch (e) { } // Úplné fyzické odpojenie mikrofónu, kým čítame!
 
             window.currentSpeechSession = (window.currentSpeechSession || 0) + 1;
             const thisSession = window.currentSpeechSession;
 
-            utterance.onstart = () => { isSpeaking = true; };
-            utterance.onend = () => {
-                if (window.currentSpeechSession !== thisSession) return;
+            function playNextUtterance(idx) {
+                if (idx >= utterancesQueue.length) {
+                    if (window.currentSpeechSession !== thisSession) return;
 
-                if (currentPlayingBriefingIndex === nextItemIdx) {
-                    currentPlayingBriefingIndex = -1;
-                    renderPage(false);
-                    if (isListening && hasStartedReading) {
-                        setTimeout(() => {
-                            if (window.currentSpeechSession === thisSession) {
-                                simulateCheckAction();
-                            }
-                        }, 500);
-                        return;
+                    if (currentPlayingBriefingIndex === nextItemIdx) {
+                        currentPlayingBriefingIndex = -1;
+                        renderPage(false);
+                        if (isListening && hasStartedReading) {
+                            setTimeout(() => {
+                                if (window.currentSpeechSession === thisSession) {
+                                    simulateCheckAction();
+                                }
+                            }, 500);
+                            return;
+                        }
                     }
+                    // Znovu oživíme mikrofón
+                    setTimeout(() => {
+                        if (window.currentSpeechSession !== thisSession) return;
+                        if (isTimerActivePause) return;
+                        isSpeaking = false;
+                        if (isListening) {
+                            try { recognition.start(); } catch (e) { }
+                        }
+                    }, 175);
+                    return;
                 }
-                // Znovu oživíme mikrofón
-                setTimeout(() => {
+
+                let chunk = utterancesQueue[idx];
+                const utterance = new SpeechSynthesisUtterance(spellAbbreviations(parseVariables(chunk.text, true)));
+                utterance.lang = 'en-US';
+                let wantMale = isMaleVoice;
+                if (chunk.role === 'atc') wantMale = !isMaleVoice;
+                utterance.rate = (wantMale ? 1.28 : 1.09);
+                utterance.voice = getSelectedVoice(chunk.role);
+
+                utterance.onstart = () => { isSpeaking = true; };
+                utterance.onend = () => {
                     if (window.currentSpeechSession !== thisSession) return;
-                    if (isTimerActivePause) return;
-                    isSpeaking = false;
-                    if (isListening) {
-                        try { recognition.start(); } catch (e) { }
-                    }
-                }, 175);
-            };
-            if (!isMuted) window.speechSynthesis.speak(utterance);
-            else {
-                setTimeout(() => {
-                    if (window.currentSpeechSession !== thisSession) return;
-                    isSpeaking = false;
-                    if (isListening) {
-                        try { recognition.start(); } catch (e) { }
-                    }
-                }, 175);
+                    playNextUtterance(idx + 1);
+                };
+                
+                if (!isMuted) window.speechSynthesis.speak(utterance);
+                else {
+                    setTimeout(() => { utterance.onend(); }, 175);
+                }
             }
+
+            playNextUtterance(0);
         } else {
+            // If we were in a 'forced' state (e.g. manual click triggered ATC), 
+            // and there are no more items to read, or the next item is a regular checklist item
+            // while hasStartedReading is false, we should stop here.
+            if (!hasStartedReading) {
+                isSpeaking = false;
+                if (isListening) {
+                    try { recognition.start(); } catch (e) { }
+                }
+                return;
+            }
+
             // === ALL items checked – page complete ===
             const page = checklistData[currentPageIndex];
             const pageTitle = page.title;

@@ -265,7 +265,28 @@
             '%autobrake%': 'Autobrake setting',
             '%taxi_in%': 'Taxi In Route',
             '%gate%': 'Arrival Gate',
-            '%notes%': 'Custom Notes'
+            '%notes%': 'Custom Notes',
+            '%city_dep%': 'ATC Dep City',
+            '%hello_dep%': 'ATC Dep Hello',
+            '%delivery_dep%': 'ATC Delivery Dep',
+            '%delivery_dep_freq%': 'ATC Delivery Dep Freq',
+            '%ground_dep%': 'ATC Ground Dep',
+            '%ground_dep_freq%': 'ATC Ground Dep Freq',
+            '%tower_dep%': 'ATC Tower Dep',
+            '%tower_dep_freq%': 'ATC Tower Dep Freq',
+            '%approach_dep%': 'ATC Radar Dep',
+            '%approach_dep_freq%': 'ATC Radar Dep Freq',
+            '%fir_dep%': 'ATC Center Dep',
+            '%fir_dep_freq%': 'ATC Center Dep Freq',
+            '%city_arr%': 'ATC Arr City',
+            '%fir_arr%': 'ATC Center Arr',
+            '%fir_arr_freq%': 'ATC Center Arr Freq',
+            '%approach_arr%': 'ATC Radar Arr',
+            '%approach_arr_freq%': 'ATC Radar Arr Freq',
+            '%tower_arr%': 'ATC Tower Arr',
+            '%tower_arr_freq%': 'ATC Tower Arr Freq',
+            '%ground_arr%': 'ATC Ground Arr',
+            '%ground_arr_freq%': 'ATC Ground Arr Freq'
         };
 
         const varsContainer = document.getElementById('vars-container');
@@ -567,6 +588,7 @@
                                 <button class="add-btn" onclick="addNewItem(${sIndex}, 'flow')">+ Flow</button>
                                 <button class="add-btn" onclick="addNewItem(${sIndex}, 'checklist item')">+ Checklist</button>
                                 <button class="add-btn" onclick="addNewItem(${sIndex}, 'briefing')">+ Briefing</button>
+                                <button class="add-btn" onclick="addNewItem(${sIndex}, 'fake_atc')" style="background: #e67e22;">+ Fake ATC</button>
                             </div>
                         `;
                     }
@@ -618,7 +640,7 @@
                         if (st.includes('simplify')) isSimplify = true;
                     }
 
-                    const isChecklist = item.type !== 'flow' && item.type !== 'briefing';
+                    const isChecklist = item.type !== 'flow' && item.type !== 'briefing' && item.type !== 'fake_atc';
                     const markerHtml = isChecklist ? '<span class="checklist-marker">Checklist</span>' : '';
 
                     let html = '';
@@ -645,6 +667,7 @@
                                     <option value="flow" ${item.type==='flow'?'selected':''}>Flow</option>
                                     <option value="checklist item" ${isChecklist?'selected':''}>Checklist Item</option>
                                     <option value="briefing" ${item.type==='briefing'?'selected':''}>Briefing</option>
+                                    <option value="fake_atc" ${item.type==='fake_atc'?'selected':''}>Fake ATC</option>
                                 </select>
 
                                 <input class="text-input" type="text" value="${escapeHtml(item.name || '')}" onchange="updateProp(${sIndex}, ${iIndex}, 'name', this.value)" placeholder="Item Name / Title">
@@ -652,7 +675,7 @@
                         `;
                         
                         // Akcia
-                        if (item.type !== 'briefing') {
+                        if (item.type !== 'briefing' && item.type !== 'fake_atc') {
                             html += `<input class="action-input" type="text" value="${escapeHtml(item.action || '')}" onchange="updateProp(${sIndex}, ${iIndex}, 'action', this.value)" placeholder="Action">`;
                         }
                         
@@ -680,12 +703,13 @@
                             </div>
                         `;
                         
-                        if (item.type === 'briefing') {
+                        if (item.type === 'briefing' || item.type === 'fake_atc') {
                             const textContent = Array.isArray(item.text) ? escapeHtml(item.text.join('\n')) : '';
+                            const placeholder = item.type === 'fake_atc' ? 'Enter Fake ATC lines here starting with #pm or #atc...' : 'Enter briefing lines here...';
                             html += `
                                 <div class="briefing-row" style="position:relative;">
                                     <div style="position:absolute; top:12px; right:12px; cursor:help; font-size: 14px; z-index: 10; opacity: 0.8;" title="The entire row will only be displayed if all variables within it are filled out in the notepad. If no variables are filled out, the entire row will not be displayed.">❓</div>
-                                    <textarea class="briefing-textarea" onchange="updateBriefing(${sIndex}, ${iIndex}, this.value)" placeholder="Enter briefing lines here... Drag & drop variables here...">${textContent}</textarea>
+                                    <textarea class="briefing-textarea" onchange="updateBriefing(${sIndex}, ${iIndex}, this.value)" placeholder="${placeholder}">${textContent}</textarea>
                                 </div>
                             `;
                         }
@@ -707,7 +731,7 @@
                             </div>
                         `;
                         
-                        if (item.type === 'briefing') {
+                        if (item.type === 'briefing' || item.type === 'fake_atc') {
                             const textContent = Array.isArray(item.text) ? escapeHtml(item.text.join('\n')) : '';
                             if (textContent) {
                                 html += `
@@ -985,6 +1009,8 @@
             let newItem = { name: "New " + type, action: "", type: type, _editing: true };
             if (type === 'briefing') {
                 newItem.text = ["Sample briefing sentence..."];
+            } else if (type === 'fake_atc') {
+                newItem.text = ["#pm Sample ATC request...", "#atc Sample ATC response..."];
             }
             data[sIndex].items.push(newItem);
             render();
@@ -1000,8 +1026,8 @@
         window.updateType = function(sIndex, iIndex, val) {
             const item = data[sIndex].items[iIndex];
             item.type = val;
-            if (val === 'briefing' && !item.text) item.text = [];
-            else if (val !== 'briefing') delete item.text;
+            if ((val === 'briefing' || val === 'fake_atc') && !item.text) item.text = [];
+            else if (val !== 'briefing' && val !== 'fake_atc') delete item.text;
             render(); // update view immediately
         };
 
@@ -1081,7 +1107,7 @@
                 
                 section.items.forEach((item, iIdx) => {
                     let itemStr = "";
-                    if (item.type === 'briefing') {
+                    if (item.type === 'briefing' || item.type === 'fake_atc') {
                         let st = JSON.stringify(item, null, 2);
                         st = st.split('\n').map((line, idx) => idx === 0 ? line : '      ' + line).join('\n');
                         itemStr = `      ${st}`;
