@@ -22,6 +22,12 @@ export function middleware(req: NextRequest) {
     if (subdomain && subdomain !== 'www') {
       const url = req.nextUrl.clone();
       
+      // EXCLUDE static folders from rewrite
+      const path = url.pathname;
+      if (path.startsWith('/icons/') || path.startsWith('/data/') || path.startsWith('/audio/') || path.endsWith('.js') || path.endsWith('.css')) {
+        return NextResponse.next();
+      }
+      
       if (subdomain === 'creator') {
         url.pathname = '/creator.html';
         return NextResponse.rewrite(url);
