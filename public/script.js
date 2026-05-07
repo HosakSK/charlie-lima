@@ -1488,27 +1488,37 @@ function updateChecklistVariablesUI() {
         if (actionSpan && actionSpan.textContent !== displayAction) {
             actionSpan.textContent = displayAction;
         }
-    });
-}
-
 // ============================================================
 // CHECKLIST ENGINE
 // ============================================================
 function init() {
-    checklistData = initialChecklistData;
+    console.log("Initializing app...");
+    
+    // Check if initialChecklistData exists and has items
+    if (!window.initialChecklistData || !Array.isArray(window.initialChecklistData) || window.initialChecklistData.length === 0) {
+        console.warn("No checklist data found! Using emergency fallback.");
+        checklistData = [{
+            title: "Error Loading Data",
+            items: [{ name: "Please check your internet connection or dataset settings.", action: "RETRY", type: "checklist item" }]
+        }];
+    } else {
+        checklistData = initialChecklistData;
+    }
+    
     checklistData.forEach(p => p.items.forEach(i => { if (i.checked === undefined) i.checked = false; }));
 
     if (hasFlow()) {
-        checklistOnlyContainer.style.display = 'flex';
+        if (checklistOnlyContainer) checklistOnlyContainer.style.display = 'flex';
     } else {
-        checklistOnlyContainer.style.display = 'none';
-        isChecklistOnly = false;
+        if (checklistOnlyContainer) {
+            checklistOnlyContainer.style.display = 'none';
+            isChecklistOnly = false;
+        }
     }
 
-    // Dynamically show/hide Hide Tests toggle based on whether this dataset has test items
     const hideTestsContainer = document.getElementById('top-hide-tests-container');
     if (hideTestsContainer) {
-        const hasTests = checklistData.some(p => p.items.some(i => i.subtype === 'test'));
+        const hasTests = checklistData.some(p => p.items.some(i => i.type === 'test'));
         hideTestsContainer.style.display = hasTests ? 'flex' : 'none';
     }
 
