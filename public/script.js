@@ -1469,7 +1469,7 @@ function parseVariables(text, forSpeech = false) {
             }
         }
     });
-    return result;
+    return result.trim();
 }
 
 function getParsedAction(item, forSpeech = false) {
@@ -2405,7 +2405,7 @@ if (SpeechRecognition) {
                     chunk = utterancesQueue[idx];
                 }
 
-                const utterance = new SpeechSynthesisUtterance(spellAbbreviations(parseVariables(chunk.text, true)));
+                const utterance = new SpeechSynthesisUtterance(spellAbbreviations(parseVariables(chunk.text, true)).trim());
                 utterance.lang = 'en-US';
                 let wantMale = isMaleVoice;
                 if (chunk.role === 'atc') wantMale = !isMaleVoice;
