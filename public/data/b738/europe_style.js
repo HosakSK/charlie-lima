@@ -423,6 +423,16 @@ window.initialChecklistData = [
       { "name": "At positive rate of climb", "action": "Gear up", "type": "flow", "subtype": "simplify" },
       { "name": "Landing gear lever", "action": "Up", "type": "flow" },
       { "name": "Command A", "action": "Engage", "type": "flow" },
+      {
+        "name": "New fake_atc",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#pm %callsign% after airborne",
+          "#atc %callsign% climb to FL150",
+          "#pm climb to FL150 %callsign%"
+        ]
+      },
       { "name": "Autobrake selector", "action": "Off", "type": "flow" },
       { "name": "Landing gear lever", "action": "Off", "type": "flow" },
       { "name": "Runway Turnoff lights", "action": "Off", "type": "flow" },
@@ -430,7 +440,20 @@ window.initialChecklistData = [
       { "name": "Packs", "action": "Auto", "type": "checklist item" },
       { "name": "Landing gear", "action": "Up & off", "type": "checklist item" },
       { "name": "Flaps", "action": "Up, no lights", "type": "checklist item" },
-      { "name": "ATC | Departure", "action": "Receive", "type": "flow" }
+      { "name": "ATC | Departure", "action": "Receive", "type": "flow" },
+      {
+        "name": "Departure",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc %callsign% contact %delivery_dep% %delivery_dep_freq% %bye_dep%.",
+          "#pm %delivery_dep_freq% %callsign% %bye_dep%.",
+          "#pm  %delivery_dep%  %callsign% %hello_dep%, climb via %sid% to %initial_alt%",
+          "#atc %callsign% %delivery_dep% %hello_dep% identified",
+          "#atc climb to flight level %init_alt%",
+          "#pm climb to flight level %init_alt% %callsign%"
+        ]
+      }
     ]
   },
   {
@@ -444,7 +467,18 @@ window.initialChecklistData = [
       { "name": "Pressurisation", "action": "Check", "type": "flow", "subtype": "simplify" },
       { "name": "CDU", "action": "Climb page", "type": "flow", "subtype": "simplify" },
       { "name": "System annunciator panel", "action": "Recall", "type": "flow", "subtype": "simplify" },
-      { "name": "Duct pressure", "action": "18–60 psi", "type": "flow", "subtype": "simplify" }
+      { "name": "Duct pressure", "action": "18–60 psi", "type": "flow", "subtype": "simplify" },
+      {
+        "name": "New fake_atc",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc %callsign% contact %fir_dep%  %fir_dep_freq% %bye_dep%",
+          "#pm contact %fir_dep%  %fir_dep_freq% %bye_dep% %callsign%",
+          "#pm %fir_dep% %callsign% %hello_dep% climb to %init_alt%",
+          "#atc %callsign% %fir_dep% %hello_dep% identified"
+        ]
+      }
     ]
   },
   {
@@ -466,6 +500,17 @@ window.initialChecklistData = [
     "title": "DESCENT",
     "items": [
       { "name": "CDU DEP/ARR, LEGS, DES pages", "action": "Review", "type": "flow" },
+      {
+        "name": "Descent",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc %callsign% contact %fir_arr% %fir_arr_freq% %bye_dep%",
+          "#pm  contact %fir_arr_freq% %bye_dep% %callsign%",
+          "#pm %fir_arr% %callsign% %hello_arr% flight level %init_alt%",
+          "#atc %callsign% %fir_arr% %hello_arr% identified"
+        ]
+      },
       { "name": "ATIS %arr_atis%", "action": "Check", "type": "flow" },
       { "name": "Preselected BARO %arr_qnh%", "action": "Insert", "type": "flow" },
       { "name": "VREF %vref%", "action": "Set", "type": "flow" },
@@ -497,13 +542,50 @@ window.initialChecklistData = [
       { "name": "VREF ", "action": "%vref%", "type": "checklist item" },
       { "name": "Decision height", "action": " %minima%", "type": "checklist item" },
       { "name": "Approach briefing", "action": "Complete", "type": "checklist item" },
-      { "name": "ATC | Descent", "action": "Receive", "type": "flow" }
+      { "name": "ATC | Descent", "action": "Receive", "type": "flow" },
+      {
+        "name": "Descent",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc %callsign% when ready descent to %ga_alt%",
+          "#atc expect runway %arr_rwy% via %star%",
+          "#pm when ready descent to %ga_alt%",
+          "#pm runway %arr_rwy% via %star% %callsign%"
+        ]
+      }
     ]
   },
   {
     "title": "APPROACH",
     "items": [
       { "name": "ATC | Approach", "action": "Receive", "type": "flow" },
+      {
+        "name": "app",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc %callsign% contact %approach_arr% %approach_arr_freq% %bye_arr%",
+          "#pm  contact %approach_arr_freq% %bye_arr% %callsign%",
+          "#pm %approach_arr% %callsign% %hello_arr% descent to %ga_alt%",
+          "#atc %callsign% %fir_arr% %hello_arr% descent %ga_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established",
+          "#pm descent %ga_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established %callsign%"
+        ],
+        "landingtype": "2+3"
+      },
+      {
+        "name": "New fake_atc",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc %callsign% contact %approach_arr% %approach_arr_freq% %bye_arr%",
+          "#pm  contact %approach_arr_freq% %bye_arr% %callsign%",
+          "#pm %approach_arr% %callsign% %hello_arr% descent to %ga_alt%",
+          "#atc %callsign% %fir_arr% %hello_arr% descent %ga_alt%, cleared RNAV approach %arr_rwy% via %star%, report %ga_alt%",
+          "#pm descent %ga_alt%, cleared RNAV approach %arr_rwy% via %star%, report %ga_alt% %callsign%"
+        ],
+        "landingtype": "1"
+      },
       { "name": "Cabin crew announcement", "action": "Announcement for descent", "type": "flow" },
       { "name": "Landing lights", "action": "On", "type": "flow" },
       { "name": "Engine start switch", "action": "Set to continuous", "type": "flow" },
@@ -528,6 +610,34 @@ window.initialChecklistData = [
       { "name": "Flaps 5", "action": "Set at 12 NM", "type": "flow" },
       { "name": "MCP IAS/MACH Vref +30", "action": "Set", "type": "flow" },
       { "name": "Glideslope captured", "action": "Landing gear down", "landingtype": "3+2", "type": "flow" },
+      {
+        "name": "ils",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#pm %callsign% ILS established",
+          "#atc %callsign% contact tower on %tower_arr_freq% %bye_arr%",
+          "#pm contact tower on %tower_arr_freq% %bye_arr% %callsign%",
+          "#pm %tower_arr% %callsign% %hello_arr%  landing on runway %arr_rwy%",
+          "#atc %callsign% %tower_arr% %hello_arr% number 1",
+          "#pm number 1 %callsign%"
+        ],
+        "landingtype": "2+3"
+      },
+      {
+        "name": "New fake_atc",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#pm %callsign% at %ga_alt%",
+          "#atc %callsign% contact tower on %tower_arr_freq% %bye_arr%",
+          "#pm contact tower on %tower_arr_freq% %bye_arr% %callsign%",
+          "#pm %tower_arr% %callsign% %hello_arr%  landing on runway %arr_rwy%",
+          "#atc %callsign% %tower_arr% %hello_arr% number 1",
+          "#pm number 1 %callsign%"
+        ],
+        "landingtype": "1"
+      },
       { "name": "Landing gear", "action": "Down", "landingtype": "1", "type": "flow" },
       { "name": "Flaps", "action": "Set to 15", "type": "flow" },
       { "name": "MCP IAS/MACH Vref +20", "action": "Set", "type": "flow" },
@@ -539,6 +649,15 @@ window.initialChecklistData = [
       { "name": "APU", "action": "Start", "landingtype": "3", "type": "flow" },
       { "name": "At minimums – autopilot", "action": "Disengage", "type": "flow" },
       { "name": "ATC | Cleared to land", "action": "Receive", "type": "flow" },
+      {
+        "name": "New fake_atc",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc wind %arr_wind% runway %arr_rwy% cleared to land.",
+          "#pm runway %arr_rwy% cleared to land. %callsign%"
+        ]
+      },
       { "name": "Cabin secure", "action": "Check", "type": "checklist item" },
       { "name": "Engine start switches", "action": "Continuous", "type": "checklist item" },
       { "name": "Landing gear", "action": "Down and green", "type": "checklist item" },
@@ -563,6 +682,18 @@ window.initialChecklistData = [
       { "name": "Flaps", "action": "Retract", "type": "flow" },
       { "name": "Transponder", "action": "Set to altitude only", "type": "flow" },
       { "name": "ATC | Taxi instruction", "action": "Receive", "type": "flow" },
+      {
+        "name": "New fake_atc",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc %callsign% contact ground on %ground_arr_freq% %bye_arr%",
+          "#pm %ground_arr_freq% %bye_arr% %callsign%",
+          "#pm %ground_arr% %callsign% %hello_arr%",
+          "#atc %callsign% %ground_arr% %hello_arr% taxi to %gate% via %taxi_in%",
+          "#pm taxi to %gate% via %taxi_in% %callsign%"
+        ]
+      },
       { "name": "Standby ADI", "action": "Off", "type": "flow", "subtype": "simplify" }
     ]
   },
@@ -574,6 +705,15 @@ window.initialChecklistData = [
       { "name": "Taxi lights", "action": "Off", "type": "flow" },
       { "name": "Logo light", "action": "Off", "type": "flow" },
       { "name": "ATC | Close call", "action": "Perform", "type": "flow" },
+      {
+        "name": "New fake_atc",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#pm %callsign% is on the blocks, thank you for the ATC, %bye_arr%",
+          "#atc %callsign% %bye_arr%"
+        ]
+      },
       { "name": "APU gen.", "action": "On", "type": "flow" },
       { "name": "Isolation valve switch", "action": "Open", "type": "flow" },
       { "name": "APU bleed", "action": "On", "type": "flow" },
