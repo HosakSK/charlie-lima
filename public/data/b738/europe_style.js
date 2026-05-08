@@ -339,6 +339,21 @@ window.initialChecklistData = [
       { "name": "Dispatch clearance", "action": "Clear", "type": "checklist item" },
       { "name": "ATIS", "action": "TAXI", "type": "flow" },
       { "name": "ATC | Taxi", "action": "Receive", "type": "flow" },
+      {
+        "name": "Taxi",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "KLM1771, taxi holding point runway 24, S7, via B, enter B via A5.",
+          "Taxi holding point runway 24, S7, enter B via A5, KLM1771.",
+          "#pm %callsign% request taxi.",
+          "#atc %callsign% taxi holding point runway %dep_rwy%",
+          "#atc via %taxi_out%",
+          "#pm Taxi holding point runway %dep_rwy%",
+          "#pm via %taxi_out%",
+          "#pm %callsign%"
+        ]
+      },
       { "name": "Runway Turnoff lights", "action": "On", "type": "flow" },
       { "name": "Taxi lights", "action": "On", "type": "flow" }
     ]
@@ -370,6 +385,23 @@ window.initialChecklistData = [
       { "name": "Trim ", "action": "%trim%", "type": "checklist item" },
       { "name": "Departure Review", "action": "Completed", "type": "checklist item" },
       { "name": "Cabin secure", "action": "Check", "type": "checklist item" },
+      {
+        "name": "Takeoff",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "KLM1771, contact Tower on 119,225, %hello_dep%",
+          "#atc %callsign% contact Tower on %tower_dep_freq%",
+          "Contact Tower 119,225, KLM1771, bye bye!",
+          "switch to Tower",
+          "Schiphol Tower, good day, KLM1771, at S7, ready for departure.",
+          "Schiphol Tower: KLM1771, Schiphol Tower, good day, line up and wait runway 24, S7.",
+          "Line up and wait runway 24, S7, KLM1771.",
+          "Line up on the runway and wait",
+          "KLM1771, wind 220 degrees, 12 knots, runway 24, cleared for takeoff.",
+          "Cleared for takeoff runway 24, KLM1771."
+        ]
+      },
       { "name": "ATC | Line-up & Takeoff", "action": "Receive", "type": "flow" },
       { "name": "Radar", "action": "Set", "type": "flow" },
       { "name": "Transponder", "action": "Set to TA/RA", "type": "flow" },
