@@ -242,7 +242,7 @@ window.initialChecklistData = [
           "#atc %callsign%, QHN %dep_qnh%, information %dep_atis%",
           "#atc contact Ground %ground_dep_freq%",
           "#pm  QHN %dep_qnh%, information %dep_atis%",
-          "#pm contact Ground %ground_dep_freq% %callsign%. %bye_dep% |,",
+          "#pm contact Ground %ground_dep_freq% %callsign%. %bye_dep%.",
           "#pm %ground_dep% %hello_dep%, %callsign%, at stand %dep_gate% ready for pushback and startup",
           "#atc %callsign% , startup and pushback approved.",
           "#pm Startup and pushback approved, %callsign%"
@@ -368,9 +368,7 @@ window.initialChecklistData = [
           "Takeoff runway %dep_rwy%.",
           "Flaps %dep_flaps%.",
           "V-Speeds are set: V1 %v1%, Vr %vr%, V2 %v2%.",
-          "[IF Autothrottle]Autothrottle is Armed.[/IF]",
-          "[IF LNAV/VNAV]LNAV and VNAV armed.[/IF]",
-          "Initial altitude %init_alt% feet is set. ",
+          "Initial altitude %init_alt% feet is set.",
           "Departure Review complete."
         ]
       },
@@ -385,7 +383,7 @@ window.initialChecklistData = [
         "type": "fake_atc",
         "text": [
           "#atc %callsign% contact Tower on %tower_dep_freq% %bye_dep%",
-          "#pm Contact Tower on %tower_dep_freq% %bye_dep% |,",
+          "#pm Contact Tower on %tower_dep_freq% %bye_dep%.",
           "#pm %tower_dep% %hello_dep%, %callsign%",
           "#atc %callsign% report ready for departure",
           "#pm report ready for departure %callsign%"
@@ -403,7 +401,7 @@ window.initialChecklistData = [
         "text": [
           "#pm %callsign% at holding point runway %dep_rwy% ready for departure",
           "#atc %callsign% wind %dep_wind% runway %dep_rwy% cleared for lineup and takeoff.",
-          "#pm Cleared for takeoff %dep_rwy% %callsign%"
+          "#pm Cleared for takeoff runway %dep_rwy% %callsign%"
         ]
       },
       { "name": "Radar", "action": "Set", "type": "flow" },
