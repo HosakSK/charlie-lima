@@ -381,28 +381,33 @@ window.initialChecklistData = [
       { "name": "MCP auto throttle switch", "action": "Arm", "type": "flow" },
       { "name": "VNAV", "action": "Engage", "type": "flow" },
       { "name": "LNAV", "action": "Engage", "type": "flow" },
+      {
+        "name": "tower",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc %callsign% contact Tower on %tower_dep_freq% %bye_dep%",
+          "#pm Contact Tower on %tower_dep_freq% %bye_dep%",
+          "#pm %tower_dep% %hello_dep%, %callsign%",
+          "#atc %callsign% report ready for departure",
+          "#pm report ready for departure %callsign%"
+        ]
+      },
       { "name": "Flaps ", "action": "%dep_flaps%", "type": "checklist item" },
       { "name": "Trim ", "action": "%trim%", "type": "checklist item" },
       { "name": "Departure Review", "action": "Completed", "type": "checklist item" },
       { "name": "Cabin secure", "action": "Check", "type": "checklist item" },
+      { "name": "ATC | Line-up & Takeoff", "action": "Receive", "type": "flow" },
       {
         "name": "Takeoff",
         "action": "",
         "type": "fake_atc",
         "text": [
-          "KLM1771, contact Tower on 119,225, %hello_dep%",
-          "#atc %callsign% contact Tower on %tower_dep_freq%",
-          "Contact Tower 119,225, KLM1771, bye bye!",
-          "switch to Tower",
-          "Schiphol Tower, good day, KLM1771, at S7, ready for departure.",
-          "Schiphol Tower: KLM1771, Schiphol Tower, good day, line up and wait runway 24, S7.",
-          "Line up and wait runway 24, S7, KLM1771.",
-          "Line up on the runway and wait",
-          "KLM1771, wind 220 degrees, 12 knots, runway 24, cleared for takeoff.",
-          "Cleared for takeoff runway 24, KLM1771."
+          "#pm %callsign% at holding point runway %dep_rwy% ready for departure",
+          "#atc %callsign% wind %dep_wind% runway %dep_rwy% cleared for lineup and takeoff.",
+          "#pm Cleared for takeoff %dep_rwy% %callsign%"
         ]
       },
-      { "name": "ATC | Line-up & Takeoff", "action": "Receive", "type": "flow" },
       { "name": "Radar", "action": "Set", "type": "flow" },
       { "name": "Transponder", "action": "Set to TA/RA", "type": "flow" },
       { "name": "Landing lights", "action": "On", "type": "flow" },
