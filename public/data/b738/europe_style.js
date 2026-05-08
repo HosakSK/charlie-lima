@@ -242,7 +242,7 @@ window.initialChecklistData = [
           "#atc %callsign%, QHN %dep_qnh%, information %dep_atis%",
           "#atc contact Ground %ground_dep_freq%",
           "#pm  QHN %dep_qnh%, information %dep_atis%",
-          "#pm contact Ground %ground_dep_freq% %callsign%.",
+          "#pm contact Ground %ground_dep_freq% %callsign%. %bye_dep% |,",
           "#pm %ground_dep% %hello_dep%, %callsign%, at stand %dep_gate% ready for pushback and startup",
           "#atc %callsign% , startup and pushback approved.",
           "#pm Startup and pushback approved, %callsign%"
@@ -344,8 +344,6 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
-          "KLM1771, taxi holding point runway 24, S7, via B, enter B via A5.",
-          "Taxi holding point runway 24, S7, enter B via A5, KLM1771.",
           "#pm %callsign% request taxi.",
           "#atc %callsign% taxi holding point runway %dep_rwy%",
           "#atc via %taxi_out%",
@@ -387,7 +385,7 @@ window.initialChecklistData = [
         "type": "fake_atc",
         "text": [
           "#atc %callsign% contact Tower on %tower_dep_freq% %bye_dep%",
-          "#pm Contact Tower on %tower_dep_freq% %bye_dep%",
+          "#pm Contact Tower on %tower_dep_freq% %bye_dep% |,",
           "#pm %tower_dep% %hello_dep%, %callsign%",
           "#atc %callsign% report ready for departure",
           "#pm report ready for departure %callsign%"
