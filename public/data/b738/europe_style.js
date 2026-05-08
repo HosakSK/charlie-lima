@@ -233,6 +233,21 @@ window.initialChecklistData = [
       { "name": "Jetways / stairs", "action": "Remove", "type": "flow" },
       { "name": "GPU / GAU", "action": "Remove", "type": "flow" },
       { "name": "ATC | Pushback & startup", "action": "Receive", "type": "flow" },
+      {
+        "name": "Pushback & startup",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#pm %callsign% ready for pushback and startup.",
+          "#atc %callsign%, QHN %dep_qnh%, information %dep_atis%",
+          "#atc contact Ground %ground_dep_freq%",
+          "#pm  QHN %dep_qnh%, information %dep_atis%",
+          "#pm contact Ground %ground_dep_freq% %callsign%.",
+          "#pm %ground_dep% %hello_dep%, %callsign%, at stand %dep_gate% ready for pushback and startup",
+          "#atc %callsign% , startup and pushback approved.",
+          "#pm Startup and pushback approved, %callsign%"
+        ]
+      },
       { "name": "Anti-collision light switch", "action": "On", "type": "flow" },
       { "name": "Electric hydraulic switches", "action": "On", "type": "flow" },
       { "name": "Flight deck doors", "action": "Closed & locked", "type": "flow", "subtype": "simplify" },
