@@ -585,16 +585,27 @@ function updateAtcVariables() {
         atcVariables[cityVar] = apt.city || apt.name || icao;
         
         // Greetings
-        if (isDep && atcData.greetings) {
+        if (atcData.greetings) {
             let country = apt.country;
             let continent = apt.continent;
             let hello = 'Hello';
+            let bye = 'Goodbye';
+            
             if (country && atcData.greetings.countries && atcData.greetings.countries[country]) {
                 hello = atcData.greetings.countries[country].hello;
+                bye = atcData.greetings.countries[country].bye;
             } else if (continent && atcData.greetings.continents && atcData.greetings.continents[continent]) {
                 hello = atcData.greetings.continents[continent].hello;
+                bye = atcData.greetings.continents[continent].bye;
             }
-            atcVariables['hello_dep'] = hello;
+            
+            if (isDep) {
+                atcVariables['hello_dep'] = hello;
+                atcVariables['bye_dep'] = bye;
+            } else {
+                atcVariables['hello_arr'] = hello;
+                atcVariables['bye_arr'] = bye;
+            }
         }
 
         // Frequencies logic
@@ -720,7 +731,7 @@ function getFakeAtcValidSentences(item, forSpeech = true) {
             'delivery_dep_freq', 'ground_dep_freq', 'tower_dep_freq', 'approach_dep_freq', 'fir_dep_freq',
             'fir_arr', 'approach_arr', 'tower_arr', 'ground_arr',
             'fir_arr_freq', 'approach_arr_freq', 'tower_arr_freq', 'ground_arr_freq',
-            'city_dep', 'city_arr', 'hello_dep'
+            'city_dep', 'city_arr', 'hello_dep', 'hello_arr', 'bye_dep', 'bye_arr'
         ];
 
         atcVarNames.forEach(varName => {
