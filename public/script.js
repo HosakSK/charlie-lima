@@ -2348,26 +2348,34 @@ if (SpeechRecognition) {
                 if (readCLOnlyChecklistPhaseActive) {
                     readCLOnlyChecklistPhaseActive = false; // Reset so it only fires once
 
-                    const page = checklistData[currentPageIndex];
-                    const completeText = spellAbbreviations(page.title, true) + " Checklist completed.";
-                    const utterance = new SpeechSynthesisUtterance(completeText);
-                    utterance.lang = 'en-US';
-                    utterance.rate = (isMaleVoice ? 1.28 : 1.09);
-                    utterance.voice = getSelectedVoice();
-                    isSpeaking = true;
-                    try { recognition.abort(); } catch (e) { }
+                    // Only announce "Checklist completed" if the last checked visible item was actually a CL item.
+                    // If it was a fake_atc, skip the announcement (prevents false "completed" after ATC dialogue).
+                    const lastCheckedBeforeFlow = items.slice(0, nextItemIdx).reverse()
+                        .find(i => isItemVisible(i) && i.checked);
+                    const lastWasCL = lastCheckedBeforeFlow && lastCheckedBeforeFlow.type === 'checklist item';
 
-                    utterance.onstart = () => { isSpeaking = true; };
-                    utterance.onend = () => {
-                        isSpeaking = false;
-                        hasStartedReading = false;
-                        if (isListening) {
-                            try { recognition.start(); } catch (e) { }
-                        }
-                    };
-                    if (!isMuted) window.speechSynthesis.speak(utterance);
-                    else { utterance.onend(); }
-                    return;
+                    if (lastWasCL) {
+                        const page = checklistData[currentPageIndex];
+                        const completeText = spellAbbreviations(page.title, true) + " Checklist completed.";
+                        const utterance = new SpeechSynthesisUtterance(completeText);
+                        utterance.lang = 'en-US';
+                        utterance.rate = (isMaleVoice ? 1.28 : 1.09);
+                        utterance.voice = getSelectedVoice();
+                        isSpeaking = true;
+                        try { recognition.abort(); } catch (e) { }
+
+                        utterance.onstart = () => { isSpeaking = true; };
+                        utterance.onend = () => {
+                            isSpeaking = false;
+                            hasStartedReading = false;
+                            if (isListening) {
+                                try { recognition.start(); } catch (e) { }
+                            }
+                        };
+                        if (!isMuted) window.speechSynthesis.speak(utterance);
+                        else { utterance.onend(); }
+                        return;
+                    }
                 }
 
                 // Do not auto-check. Just pause the voice engine and let the user manually click through.
@@ -2616,6 +2624,7 @@ if (SpeechRecognition) {
                     if (window.currentSpeechSession !== thisSession) return;
                     if (isTimerActivePause) return;
                     isSpeaking = false;
+                    hasStartedReading = false; // Prevent TTS echo of "completed" from spuriously triggering simulateCheckAction
                     if (isListening) {
                         try { recognition.start(); } catch (e) { }
                     }
