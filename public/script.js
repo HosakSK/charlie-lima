@@ -1690,6 +1690,18 @@ function renderPage(isNewPage = false) {
                 validSentences.forEach(sentence => {
                     let role = 'pm';
                     let cleanSentence = sentence;
+                    
+                    if (sentence.toLowerCase().startsWith('#pause')) {
+                        if (currentBlock.length > 0) {
+                            htmlParts.push({ text: currentBlock.join(' '), role: currentBlockRole });
+                            currentBlock = [];
+                        }
+                        currentRole = null;
+                        // Pridáme prázdny blok, aby sa cez .join pridal extra margin (prázdny riadok)
+                        htmlParts.push({ text: '', role: 'pause' });
+                        return;
+                    }
+
                     if (sentence.toLowerCase().startsWith('#atc')) {
                         role = 'atc';
                         cleanSentence = sentence.substring(4).trim();
@@ -1706,14 +1718,17 @@ function renderPage(isNewPage = false) {
                     currentBlockRole = role;
                     currentBlock.push(cleanSentence);
                 });
+
                 if (currentBlock.length > 0) {
                     htmlParts.push({ text: currentBlock.join(' '), role: currentBlockRole });
                 }
-                displayOutput = htmlParts.map(part =>
-                    part.role === 'atc'
+                displayOutput = htmlParts.map(part => {
+                    if (part.role === 'pause') return ``;
+                    return part.role === 'atc'
                         ? `<span class="atc-voice-text">${part.text}</span>`
-                        : `<span>${part.text}</span>`
-                ).join('<div style="margin-top: 8px;"></div>');
+                        : `<span>${part.text}</span>`;
+                }).join('<div style="margin-top: 8px;"></div>');
+
             } else {
                 displayOutput = getBriefingValidSentences(item).join(' ');
             }
