@@ -1772,6 +1772,8 @@ function toggleCheck(itemIndex, silent = false) {
     // Handle manual checking (silent=false)
     if (!silent && item.checked) {
         if (item.type === 'briefing' || item.type === 'fake_atc') {
+            if (!isListening) return; // Ak je hlasový režim vypnutý, položku len zaškrtneme (stalo sa vyššie) a nepúšťame zvuk
+
             // Uncheck the item so speakCurrentItem finds it and reads it.
             // simulateCheckAction will check it automatically when finished.
             item.checked = false;
@@ -1779,15 +1781,13 @@ function toggleCheck(itemIndex, silent = false) {
             
             window.manualBriefingPlay = true;
 
-            const oldStarted = hasStartedReading;
-            const oldListening = isListening;
-            
             hasStartedReading = true;
             isListening = true; // Ensure it can speak
             
             speakCurrentItem(true); 
             return; // Stop further processing
-        } else if (item.timer && !isTimerDisabled) {
+        }
+ else if (item.timer && !isTimerDisabled) {
             if (isListening && hasStartedReading && typeof processTimerItem === 'function') {
                 processTimerItem(item);
             } else {
