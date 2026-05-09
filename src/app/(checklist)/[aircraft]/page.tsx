@@ -2,6 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'next/navigation';
+// ============================================================
+// APP VERSION – single source of truth: change only in package.json
+// ============================================================
+import pkg from '../../../../package.json';
+const APP_VERSION = pkg.version;
 
 interface Dataset {
   title: string;
@@ -104,7 +109,7 @@ export default function AircraftChecklistPage() {
 
           // Final core script
           try {
-            await loadScript('/script.js?v=3.3.7');
+            await loadScript(`/script.js?v=${APP_VERSION}`);
           } catch (e) {
             console.error('CRITICAL: Failed to load script.js', e);
           }
@@ -272,7 +277,7 @@ function getOriginalHTML(aircraft: string): string {
     </div>
   </div>
   <div class="global-footer">
-    <span class="version-info">v3.3.7</span>
+    <span class="version-info">v${APP_VERSION}</span>
     <span class="sim-warning">For flight simulation use only.<br>Not for real-world flight.</span>
   </div>`;
 }
