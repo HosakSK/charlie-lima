@@ -104,7 +104,7 @@ export default function AircraftChecklistPage() {
 
           // Final core script
           try {
-            await loadScript('/script.js');
+            await loadScript('/script.js?v=3.3.5');
           } catch (e) {
             console.error('CRITICAL: Failed to load script.js', e);
           }
@@ -272,7 +272,7 @@ function getOriginalHTML(aircraft: string): string {
     </div>
   </div>
   <div class="global-footer">
-    <span class="version-info">v3.3.4</span>
+    <span class="version-info">v3.3.5</span>
     <span class="sim-warning">For flight simulation use only.<br>Not for real-world flight.</span>
   </div>`;
 }
