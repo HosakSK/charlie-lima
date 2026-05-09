@@ -2447,6 +2447,10 @@ if (SpeechRecognition) {
                 sentences.forEach(sentence => {
                     let role = 'pm';
                     let text = sentence;
+                    if (text.toLowerCase().startsWith('#pause')) {
+                        utterancesQueue.push({ text: "", role: 'pm', duration: 2000 });
+                        return;
+                    }
                     if (text.toLowerCase().startsWith('#atc')) {
                         role = 'atc';
                         text = text.substring(4).trim();
@@ -2525,7 +2529,7 @@ if (SpeechRecognition) {
                     const subQueue = [];
                     parts.forEach((p, i) => {
                         subQueue.push({ text: p.trim(), role: chunk.role });
-                        if (i < parts.length - 1) subQueue.push({ text: "", role: chunk.role }); // Inject pause
+                        if (i < parts.length - 1) subQueue.push({ text: "", role: chunk.role, duration: 500 }); // Inject pause
                     });
                     utterancesQueue.splice(idx, 1, ...subQueue);
                     chunk = utterancesQueue[idx];
@@ -2547,7 +2551,7 @@ if (SpeechRecognition) {
                 if (!isMuted) {
                     if (chunk.text.trim() === "") {
                         // It's a pause segment
-                        setTimeout(() => { playNextUtterance(idx + 1); }, 500);
+                        setTimeout(() => { playNextUtterance(idx + 1); }, chunk.duration || 500);
                     } else {
                         window.speechSynthesis.speak(utterance);
                     }
