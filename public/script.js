@@ -1769,6 +1769,8 @@ function toggleCheck(itemIndex, silent = false) {
             // simulateCheckAction will check it automatically when finished.
             item.checked = false;
             renderPage(false);
+            
+            window.manualBriefingPlay = true;
 
             const oldStarted = hasStartedReading;
             const oldListening = isListening;
@@ -2249,6 +2251,17 @@ if (SpeechRecognition) {
             }, 1500);
 
             const activatedItem = items[nextItemIdx];
+            
+            if (window.manualBriefingPlay) {
+                window.manualBriefingPlay = false;
+                hasStartedReading = false;
+                isSpeaking = false;
+                if (isListening) {
+                    try { recognition.start(); } catch (e) { }
+                }
+                return;
+            }
+            
             if (activatedItem && activatedItem.timer && !isTimerDisabled) processTimerItem(activatedItem);
             else setTimeout(() => { speakCurrentItem(); }, 1120);
         } else {
@@ -2394,10 +2407,13 @@ if (SpeechRecognition) {
                 if (lastCheckedItem) {
                     const isNextCL = nextItem.type === 'checklist item';
                     const isLastCL = lastCheckedItem.type === 'checklist item';
+                    const isLastFlow = lastCheckedItem.type === 'flow';
+                    const isNextATC = nextItem.type === 'fake_atc';
+                    const isLastATC = lastCheckedItem.type === 'fake_atc';
                     
-                    if (!isLastCL && isNextCL) {
+                    if (isLastFlow && isNextCL) {
                         transitionText = `${checklistData[currentPageIndex].title} Checklist. `;
-                    } else if (isLastCL && !isNextCL) {
+                    } else if (isLastCL && !isNextCL && !isNextATC) {
                         transitionText = `${checklistData[currentPageIndex].title} Checklist complete. `;
                     }
                 }
