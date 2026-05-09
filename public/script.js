@@ -2766,7 +2766,7 @@ if (SpeechRecognition) {
         // UPOZORNENIE: Krátke slová (on, off, up, atď.) sú obalené v \b (word boundary), aby nám to nenašlo "on" uprostred slova "position" a nezarátalo dvakrát.
         const actionWordPattern = /(check|set|call|reset|start|steady|announcement|revoke|continuous|retract|auto|open|down|green|\bon\b|\boff\b|\bup\b|\barm\b|completed)/gi;
 
-        const stopWordPattern = /(stop|cancel)/gi;
+        // const stopWordPattern = /(stop|cancel)/gi;
         const repeatWordPattern = /(repeat|again)/gi;
 
         // 1. TRIGGER: Checklist start
@@ -2809,6 +2809,7 @@ if (SpeechRecognition) {
 
         if (!hasStartedReading) return;
 
+        /*
         // 2. STOP COMMAND NAV
         const stopMatches = transcript.match(stopWordPattern);
         const currentStopCount = stopMatches ? stopMatches.length : 0;
@@ -2818,6 +2819,7 @@ if (SpeechRecognition) {
             recognition.stop();
             return;
         }
+        */
 
 
 
