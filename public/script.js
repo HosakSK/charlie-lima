@@ -1765,8 +1765,11 @@ function toggleCheck(itemIndex, silent = false) {
     // Handle manual checking (silent=false)
     if (!silent && item.checked) {
         if (item.type === 'briefing' || item.type === 'fake_atc') {
-            // Manually trigger the voice engine for this specific item
-            // Temporarily set hasStartedReading to true if it's false, so speakCurrentItem works
+            // Uncheck the item so speakCurrentItem finds it and reads it.
+            // simulateCheckAction will check it automatically when finished.
+            item.checked = false;
+            renderPage(false);
+
             const oldStarted = hasStartedReading;
             const oldListening = isListening;
             
@@ -1774,12 +1777,7 @@ function toggleCheck(itemIndex, silent = false) {
             isListening = true; // Ensure it can speak
             
             speakCurrentItem(true); 
-            
-            // Restore states if we were not in voice mode
-            if (!oldStarted || !oldListening) {
-                // We need to wait for the speech to finish to restore states properly, 
-                // but for testing, let's keep them active so user can hear.
-            }
+            return; // Stop further processing
         } else if (item.timer && !isTimerDisabled) {
             if (isListening && hasStartedReading && typeof processTimerItem === 'function') {
                 processTimerItem(item);
@@ -2396,17 +2394,20 @@ if (SpeechRecognition) {
                 if (lastCheckedItem) {
                     const isNextCL = nextItem.type === 'checklist item';
                     const isLastCL = lastCheckedItem.type === 'checklist item';
-                    const isNextATC = nextItem.type === 'fake_atc';
                     
                     if (!isLastCL && isNextCL) {
                         transitionText = `${checklistData[currentPageIndex].title} Checklist. `;
-                    } else if (isLastCL && !isNextCL && !isNextATC) {
+                    } else if (isLastCL && !isNextCL) {
                         transitionText = `${checklistData[currentPageIndex].title} Checklist complete. `;
                     }
                 }
             }
 
             let utterancesQueue = [];
+
+            if (transitionText) {
+                utterancesQueue.push({ text: transitionText, role: 'pm' });
+            }
 
             if (nextItem.type === 'briefing') {
                 currentPlayingBriefingIndex = nextItemIdxBackup;
@@ -2430,10 +2431,6 @@ if (SpeechRecognition) {
                 });
             } else {
                 utterancesQueue.push({ text: `${nextItem.name}. ${getParsedAction(nextItem, true)}`, role: 'pm' });
-            }
-
-            if (transitionText && utterancesQueue.length > 0) {
-                utterancesQueue[0].text = transitionText + utterancesQueue[0].text;
             }
 
             if (activeTimerWarning && actionTimerInterval) {
