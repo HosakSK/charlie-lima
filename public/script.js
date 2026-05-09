@@ -1665,7 +1665,7 @@ function renderPage(isNewPage = false) {
             currentType = item.type;
             const subtitle = document.createElement('div');
             subtitle.className = 'checklist-subtitle';
-            subtitle.textContent = (item.type === 'flow') ? 'Flow' : (item.type === 'briefing' ? 'Briefing' : 'Checklist items');
+            subtitle.textContent = (item.type === 'flow') ? 'Flow' : (item.type === 'briefing' ? 'Briefing' : (item.type === 'fake_atc' ? 'ATC' : 'Checklist items'));
             containerElem.appendChild(subtitle);
         }
 
@@ -1680,8 +1680,38 @@ function renderPage(isNewPage = false) {
         div.onclick = () => toggleCheck(index);
 
         if (item.type === 'briefing' || item.type === 'fake_atc') {
-            const validSentences = (item.type === 'briefing') ? getBriefingValidSentences(item) : getFakeAtcValidSentences(item, false);
-            const displayOutput = validSentences.join(' ').replace(/#(atc|pm)\s+/gi, ''); // Remove role tags from UI
+            let displayOutput = '';
+            if (item.type === 'fake_atc') {
+                const validSentences = getFakeAtcValidSentences(item, false);
+                let currentRole = null;
+                let htmlParts = [];
+                let currentBlock = [];
+
+                validSentences.forEach(sentence => {
+                    let role = 'pm';
+                    let cleanSentence = sentence;
+                    if (sentence.toLowerCase().startsWith('#atc')) {
+                        role = 'atc';
+                        cleanSentence = sentence.substring(4).trim();
+                    } else if (sentence.toLowerCase().startsWith('#pm')) {
+                        role = 'pm';
+                        cleanSentence = sentence.substring(3).trim();
+                    }
+
+                    if (currentRole !== null && currentRole !== role) {
+                        htmlParts.push(currentBlock.join(' '));
+                        currentBlock = [];
+                    }
+                    currentRole = role;
+                    currentBlock.push(cleanSentence);
+                });
+                if (currentBlock.length > 0) {
+                    htmlParts.push(currentBlock.join(' '));
+                }
+                displayOutput = htmlParts.join('<div style="margin-top: 8px;"></div>');
+            } else {
+                displayOutput = getBriefingValidSentences(item).join(' ');
+            }
 
             const svgPlay = `<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" style="margin-left: 2px;"><path d="M8 5v14l11-7z"/></svg>`;
             const svgStop = `<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><path d="M6 6h12v12H6z"/></svg>`;
@@ -2364,9 +2394,13 @@ if (SpeechRecognition) {
                 }
 
                 if (lastCheckedItem) {
-                    if (lastCheckedItem.type !== 'checklist item' && nextItem.type === 'checklist item') {
+                    const isNextCL = nextItem.type === 'checklist item';
+                    const isLastCL = lastCheckedItem.type === 'checklist item';
+                    const isNextATC = nextItem.type === 'fake_atc';
+                    
+                    if (!isLastCL && isNextCL) {
                         transitionText = `${checklistData[currentPageIndex].title} Checklist. `;
-                    } else if (lastCheckedItem.type === 'checklist item' && nextItem.type !== 'checklist item') {
+                    } else if (isLastCL && !isNextCL && !isNextATC) {
                         transitionText = `${checklistData[currentPageIndex].title} Checklist complete. `;
                     }
                 }
@@ -2539,8 +2573,12 @@ if (SpeechRecognition) {
                 return;
             }
 
-            let completeText;
-            if (isReadCLOnly) {
+            let completeText = "";
+            let skipCompleteVoice = false;
+
+            if (lastItem && lastItem.type === 'fake_atc') {
+                skipCompleteVoice = true;
+            } else if (isReadCLOnly) {
                 completeText = spellAbbreviations(pageTitle, true) + " Checklist completed.";
             } else {
                 if (lastItem && lastItem.type === 'checklist item') {
@@ -2554,19 +2592,11 @@ if (SpeechRecognition) {
                 }
             }
 
-            if (isLastPage) {
+            if (!skipCompleteVoice && isLastPage) {
                 completeText += ' And we can go home.';
             }
-            const utterance = new SpeechSynthesisUtterance(completeText);
-            utterance.lang = 'en-US';
-            utterance.rate = (isMaleVoice ? 1.28 : 1.09);
-            utterance.voice = getSelectedVoice();
 
-            isSpeaking = true;
-            try { recognition.abort(); } catch (e) { }
-
-            utterance.onstart = () => { isSpeaking = true; };
-            utterance.onend = () => {
+            const finishPageLogic = () => {
                 if (window.currentSpeechSession !== thisSession) return;
 
                 setTimeout(() => {
@@ -2607,9 +2637,22 @@ if (SpeechRecognition) {
                     }
                 }
             };
-            if (!isMuted) window.speechSynthesis.speak(utterance);
-            else {
-                utterance.onend();
+
+            isSpeaking = true;
+            try { recognition.abort(); } catch (e) { }
+
+            if (!skipCompleteVoice && completeText) {
+                const utterance = new SpeechSynthesisUtterance(completeText);
+                utterance.lang = 'en-US';
+                utterance.rate = (isMaleVoice ? 1.28 : 1.09);
+                utterance.voice = getSelectedVoice();
+                utterance.onstart = () => { isSpeaking = true; };
+                utterance.onend = finishPageLogic;
+                
+                if (!isMuted) window.speechSynthesis.speak(utterance);
+                else utterance.onend();
+            } else {
+                finishPageLogic();
             }
         }
     }
