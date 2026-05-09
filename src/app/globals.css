@@ -523,6 +523,12 @@ main { flex: 1; padding-bottom: 20px; overflow: hidden; }
     font-weight: 400 !important;
 }
 
+/* ATC controller lines rendered in bold */
+.atc-voice-text {
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
 .checklist-item.checked {
     opacity: 0.5;
     background: transparent;

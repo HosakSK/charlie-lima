@@ -1686,6 +1686,7 @@ function renderPage(isNewPage = false) {
                 let currentRole = null;
                 let htmlParts = [];
                 let currentBlock = [];
+                let currentBlockRole = 'pm';
 
                 validSentences.forEach(sentence => {
                     let role = 'pm';
@@ -1699,16 +1700,21 @@ function renderPage(isNewPage = false) {
                     }
 
                     if (currentRole !== null && currentRole !== role) {
-                        htmlParts.push(currentBlock.join(' '));
+                        htmlParts.push({ text: currentBlock.join(' '), role: currentBlockRole });
                         currentBlock = [];
                     }
                     currentRole = role;
+                    currentBlockRole = role;
                     currentBlock.push(cleanSentence);
                 });
                 if (currentBlock.length > 0) {
-                    htmlParts.push(currentBlock.join(' '));
+                    htmlParts.push({ text: currentBlock.join(' '), role: currentBlockRole });
                 }
-                displayOutput = htmlParts.join('<div style="margin-top: 8px;"></div>');
+                displayOutput = htmlParts.map(part =>
+                    part.role === 'atc'
+                        ? `<span class="atc-voice-text">${part.text}</span>`
+                        : `<span>${part.text}</span>`
+                ).join('<div style="margin-top: 8px;"></div>');
             } else {
                 displayOutput = getBriefingValidSentences(item).join(' ');
             }
@@ -1718,7 +1724,9 @@ function renderPage(isNewPage = false) {
             const isPlaying = (currentPlayingBriefingIndex === index);
 
             const isCheckedVisual = item.checked || isPlaying;
-            div.className = `checklist-item ${isCheckedVisual ? 'checked' : ''} ${isActive ? 'active' : ''} ${item.type}-item`;
+            // Use correct CSS class name regardless of item.type value
+            const atcTypeClass = item.type === 'fake_atc' ? 'atc-item' : 'briefing-item';
+            div.className = `checklist-item ${isCheckedVisual ? 'checked' : ''} ${isActive ? 'active' : ''} ${atcTypeClass}`;
 
             const iconLabel = isPlaying ? svgStop : svgPlay;
 
@@ -1788,12 +1796,8 @@ function toggleCheck(itemIndex, silent = false) {
                 startActionTimer(parseVariables(item.timerLabel || item.name), parseInt(item.timer), null, isContinuous, item.timerWarning);
             }
         } else if (typeof speakCurrentItem === 'function') {
-            const nextItem = checklistData[currentPageIndex].items[itemIndex + 1];
             if (isListening && hasStartedReading) {
                 speakCurrentItem();
-            } else if (isListening && nextItem && nextItem.type === 'fake_atc' && isFakeAtcEnabled) {
-                // Auto-trigger ATC reading even if not in full checklist voice-mode
-                speakCurrentItem(true);
             }
         }
     }
