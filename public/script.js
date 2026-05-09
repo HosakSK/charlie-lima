@@ -2215,10 +2215,12 @@ if (SpeechRecognition) {
 
         // Chapter titles should NEVER be spelled out as NATO/abbreviations
         const firstVisibleItem = page.items.find(i => isItemVisible(i));
-        let titleSuffix = " Checklist.";
+        const hasCLItems = page.items.some(i => i.type === 'checklist item');
+        let titleSuffix = hasCLItems ? " Checklist." : ".";
         if (firstVisibleItem && firstVisibleItem.type !== 'checklist item' && !isReadCLOnly) {
             titleSuffix = ".";
         }
+
 
         const utterance = new SpeechSynthesisUtterance(spellAbbreviations(pageTitle, true) + titleSuffix);
         utterance.lang = 'en-US';
@@ -2345,9 +2347,10 @@ if (SpeechRecognition) {
             const nextItemIdx = items.indexOf(nextItem);
             autoScrollToItem(nextItemIdx);
 
-            // === READ CL ONLY: Flow/Briefing items - no voice, no mic reaction ===
-            if (isReadCLOnly && (nextItem.type === 'flow' || nextItem.type === 'briefing')) {
+            // === READ CL ONLY: Flow/Briefing/ATC items - no voice, no mic reaction ===
+            if (isReadCLOnly && (nextItem.type === 'flow' || nextItem.type === 'briefing' || nextItem.type === 'fake_atc')) {
                 // If we just finished a checklist phrase, announce "completed" before pausing!
+
                 if (readCLOnlyChecklistPhaseActive) {
                     readCLOnlyChecklistPhaseActive = false; // Reset so it only fires once
 
@@ -2424,9 +2427,10 @@ if (SpeechRecognition) {
                     
                     if (isLastFlow && isNextCL) {
                         transitionText = `${checklistData[currentPageIndex].title} Checklist. `;
-                    } else if (isLastCL && !isNextCL && !isNextATC) {
+                    } else if (isLastCL && !isNextCL) {
                         transitionText = `${checklistData[currentPageIndex].title} Checklist complete. `;
                     }
+
                 }
             }
 
