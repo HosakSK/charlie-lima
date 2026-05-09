@@ -315,4 +315,13 @@ The app is configured as a **Progressive Web App**:
 
 ---
 
+## 13. Master Instructions
+
+These are high-priority rules that MUST be followed for every code modification:
+
+1. **Version Bump before Push**: Always increment the application version by `0.0.1` (PATCH) in `package.json` before performing a `git push`, following the rules in `docs/versioning.md`.
+2. **Commit Naming**: The name (message) of the git commit must contain ONLY the version number (e.g., `git commit -m "3.3.10"`). No other description is allowed in the commit title.
+
+---
+
 *Last updated: 2026-05-09*
