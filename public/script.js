@@ -1016,8 +1016,8 @@ document.addEventListener('contextmenu', (e) => {
 
     if (isListening) {
         if (!hasStartedReading) {
-            // Read CL Only fix: If waiting on flow/briefing items or at the end of the page, right click just navigates or clicks
-            if (isReadCLOnly && (!nextItem || nextItem.type === 'flow' || nextItem.type === 'briefing')) {
+            // Read CL Only fix: If waiting on flow/briefing/atc items or at the end of the page, right click just navigates or clicks
+            if (isReadCLOnly && (!nextItem || nextItem.type === 'flow' || nextItem.type === 'briefing' || nextItem.type === 'fake_atc')) {
                 if (nextItemIdx !== -1) {
                     toggleCheck(nextItemIdx);
                     autoScrollToItem(nextItemIdx);
