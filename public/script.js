@@ -2353,7 +2353,7 @@ if (SpeechRecognition) {
             autoScrollToItem(nextItemIdx);
 
             // === READ CL ONLY: Flow/Briefing/ATC items - no voice, no mic reaction ===
-            if (isReadCLOnly && (nextItem.type === 'flow' || nextItem.type === 'briefing' || nextItem.type === 'fake_atc')) {
+            if (isReadCLOnly && !window.manualBriefingPlay && (nextItem.type === 'flow' || nextItem.type === 'briefing' || nextItem.type === 'fake_atc')) {
                 // If we just finished a checklist phrase, announce "completed" before pausing!
 
                 if (readCLOnlyChecklistPhaseActive) {
@@ -2789,7 +2789,7 @@ if (SpeechRecognition) {
                 // Ignore the microphone if user says 'checklist' but we are on flow/briefing items
                 const currentItems = checklistData[currentPageIndex].items;
                 const nextVisible = currentItems.find(i => !i.checked && isItemVisible(i));
-                if (nextVisible && (nextVisible.type === 'flow' || nextVisible.type === 'briefing')) {
+                if (nextVisible && (nextVisible.type === 'flow' || nextVisible.type === 'briefing' || nextVisible.type === 'fake_atc')) {
                     return;
                 }
                 readCLOnlyChecklistPhaseActive = true;
@@ -2815,8 +2815,8 @@ if (SpeechRecognition) {
         if (isReadCLOnly && hasStartedReading) {
             const currentItems = checklistData[currentPageIndex].items;
             const currentNextItem = currentItems.find(i => !i.checked && isItemVisible(i));
-            if (currentNextItem && currentNextItem.type === 'flow') {
-                return; // Ignore mic input for flow items
+            if (currentNextItem && (currentNextItem.type === 'flow' || currentNextItem.type === 'fake_atc')) {
+                return; // Ignore mic input for flow/atc items
             }
         }
 
