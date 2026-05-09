@@ -2216,11 +2216,16 @@ if (SpeechRecognition) {
         // Chapter titles should NEVER be spelled out as NATO/abbreviations
         const firstVisibleItem = page.items.find(i => isItemVisible(i));
         const hasCLItems = page.items.some(i => i.type === 'checklist item');
-        let titleSuffix = hasCLItems ? " Checklist." : ".";
+        
+        if (!hasCLItems) {
+            speakCurrentItem();
+            return;
+        }
+
+        let titleSuffix = " Checklist.";
         if (firstVisibleItem && firstVisibleItem.type !== 'checklist item' && !isReadCLOnly) {
             titleSuffix = ".";
         }
-
 
         const utterance = new SpeechSynthesisUtterance(spellAbbreviations(pageTitle, true) + titleSuffix);
         utterance.lang = 'en-US';
