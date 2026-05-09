@@ -57,4 +57,27 @@ When releasing a new update or bug fix, follow these steps:
 The changes will automatically propagate to the footer display and the script loading URL, forcing clients to reload the latest `script.js`.
 
 ---
+
+## Versioning Convention
+
+The version follows **semantic versioning** (`MAJOR.MINOR.PATCH`):
+
+| Segment | Example | When to change |
+|---|---|---|
+| `PATCH` | `3.3.7` → `3.3.8` | Bug fixes, small tweaks, minor additions |
+| `MINOR` | `3.3.7` → `3.4.0` | Significant new feature or larger refactor |
+| `MAJOR` | `3.3.7` → `4.0.0` | Breaking changes, complete rewrites |
+
+### Default Increment Rule
+
+> **Unless explicitly told otherwise, always increment only the PATCH segment by 1.**
+
+Examples of correct default increments:
+- `3.3.7` → `3.3.8`
+- `3.3.9` → `3.3.10`
+- `3.3.19` → `3.3.20`
+
+**Do not** bump MINOR or MAJOR unless the user specifically requests it (e.g. *"this is a minor version bump"* or *"increment minor version"*). Automatically jumping from `3.3.9` to `3.4.0` without instruction is incorrect.
+
+---
 *Last updated: 2026-05-09*
