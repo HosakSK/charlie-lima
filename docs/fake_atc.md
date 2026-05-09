@@ -243,6 +243,11 @@ The tags themselves are **never spoken** — they are stripped before the text i
 
 If no tag is present, the sentence defaults to the `pm` role.
 
+### The Pause Tag
+
+The `#pause` tag can be used on its own line to insert a natural delay (approx. 2 seconds) between dialogue exchanges. This is typically used to simulate the time it takes to change frequencies during a handover. 
+When the UI renders the dialogue block, the `#pause` tag is hidden and replaced with a blank line (paragraph break) for visual clarity.
+
 ### Voice Gender Logic
 
 ```
