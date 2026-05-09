@@ -1,5 +1,7 @@
 # Charlie-Lima — Technical Overview
 
+> **MASTER INSTRUCTION:** If any functionality, system, or logic described in the `docs/` folder is modified, the corresponding documentation **must** be updated immediately to reflect the real-world state of the application.
+
 > **Version:** see `package.json` → `"version"`  
 > **Live URL:** [charlie-lima.eu](https://charlie-lima.eu)  
 > **Repository:** GitHub → auto-deploy to Vercel  
@@ -79,6 +81,9 @@ The middleware intercepts every request, detects the subdomain from the `Host` h
 
 ```
 charlie-lima/
+├── .next/                   # Next.js build output (auto-generated)
+├── node_modules/            # Project dependencies (auto-generated)
+├── scratch/                 # Temporary AI scripts & experiments (not for production)
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx              # Root layout (fonts, metadata, PWA)
@@ -115,7 +120,8 @@ charlie-lima/
 ├── docs/
 │   ├── overview.md                 # ← this file
 │   ├── versioning.md               # Versioning system explained
-│   └── fake_atc_setup.md           # Fake ATC feature documentation
+│   ├── subdomain_routing.md        # Subdomain routing logic
+│   └── fake_atc.md                 # Fake ATC feature documentation
 ├── package.json                    # Version, dependencies, npm scripts
 ├── next.config.ts                  # Next.js configuration (minimal)
 └── tsconfig.json                   # TypeScript config
