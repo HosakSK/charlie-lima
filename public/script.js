@@ -2162,8 +2162,8 @@ if (SpeechRecognition) {
             .replace(/\bP6\b/gi, 'p 6')
             .replace(/\bP18\b/gi, 'p 18');
 
-        // Explicitly read decimal dots in numbers (e.g., trim 5.5 -> 5 dot 5)
-        text = text.replace(/(\d+)\.(\d+)/g, '$1 dot $2');
+        // Explicitly read decimal dots in numbers (e.g., freq 118.1 -> 118 decimal 1)
+        text = text.replace(/(\d+)\.(\d+)/g, '$1 decimal $2');
 
         if (skipSpelling) {
             // Still process numbers but skip NATO/Classic spell logic
