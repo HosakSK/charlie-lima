@@ -453,6 +453,10 @@ main { flex: 1; padding-bottom: 20px; overflow: hidden; }
     font-weight: 700;
     color: var(--color-accent);
 }
+.checklist-item.active.atc-item .item-name {
+    font-weight: 400; /* Pre ATC položky nepoužívame globálny bold, aby sme rozlíšili role */
+}
+
 .checklist-item.active .item-action {
     font-weight: 800;
 }
@@ -499,10 +503,13 @@ main { flex: 1; padding-bottom: 20px; overflow: hidden; }
     padding-right: 0;
 }
 .atc-item .item-name {
-    font-style: italic;
-    color: var(--color-accent);
-    opacity: 0.9;
+    white-space: normal;
+    line-height: 1.5;
+    padding-right: 0;
+    font-style: normal;
+    color: var(--color-text);
 }
+
 .briefing-item .custom-checkbox, .atc-item .custom-checkbox {
     background-color: transparent;
     border-color: var(--color-accent);
@@ -525,9 +532,11 @@ main { flex: 1; padding-bottom: 20px; overflow: hidden; }
 
 /* ATC controller lines rendered in bold */
 .atc-voice-text {
-    font-weight: 700;
-    letter-spacing: 0.2px;
+    font-weight: 800;
+    color: var(--color-accent);
+    font-style: italic;
 }
+
 
 .checklist-item.checked {
     opacity: 0.5;

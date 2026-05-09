@@ -1729,7 +1729,7 @@ function renderPage(isNewPage = false) {
 
             const iconLabel = isPlaying ? svgStop : svgPlay;
 
-            div.innerHTML = `<div class="item-text" style="display:block;"><span class="item-name" style="white-space: normal; line-height: 1.5; padding-right: 0;">${displayOutput}</span></div><div class="custom-checkbox">${iconLabel}</div>`;
+            div.innerHTML = `<div class="item-text" style="display:block;"><div class="item-name" style="white-space: normal; line-height: 1.5; padding-right: 0;">${displayOutput}</div></div><div class="custom-checkbox">${iconLabel}</div>`;
         } else {
             const displayName = parseVariables(item.name);
             const displayAction = getParsedAction(item, false);

@@ -379,10 +379,21 @@ main { flex: 1; padding-bottom: 20px; }
 }
 .checklist-item.active .item-name {
     font-weight: 700;
+    color: var(--color-accent);
+}
+.checklist-item.active.atc-item .item-name {
+    font-weight: 400; /* Pre ATC položky nepoužívame globálny bold, aby sme rozlíšili role */
 }
 .checklist-item.active .item-action {
-    font-weight: 700;
+    font-weight: 800;
 }
+
+.atc-voice-text {
+    font-weight: 800;
+    color: var(--color-accent);
+    font-style: italic;
+}
+
 
 .dots {
     flex: 1; border-bottom: 2px dotted rgba(var(--color-accent-rgb), 0.15); 
@@ -431,6 +442,33 @@ main { flex: 1; padding-bottom: 20px; }
     color: #ffffff;
     transform: scale(0.95);
 }
+
+.atc-item .item-text {
+    display: block;
+}
+.atc-item .item-name {
+    white-space: normal;
+    line-height: 1.5;
+    padding-right: 0;
+    font-style: normal;
+    color: var(--color-text);
+}
+.atc-item .custom-checkbox {
+    background-color: transparent;
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+.atc-item.checked .custom-checkbox {
+    background-color: #e53935;
+    border-color: #e53935;
+    color: #ffffff;
+    transform: scale(0.95);
+}
+.atc-item.checked .item-name {
+    text-decoration: none !important;
+    opacity: 0.8;
+}
+
 .briefing-item.checked .custom-checkbox::after {
     content: none !important;
 }
