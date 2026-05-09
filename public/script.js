@@ -692,11 +692,8 @@ function updateAtcVariables() {
 // Call on load
 loadAtcData();
 // Listen for changes on origin and dest
-document.addEventListener('input', (e) => {
-    if (e.target && (e.target.id === 'b-origin' || e.target.id === 'b-dest')) {
-        updateAtcVariables();
-    }
-});
+// Listen for changes on origin and dest removed - handled in saveBriefing()
+
 
 function getFakeAtcValidSentences(item, forSpeech = true) {
     let validSentences = [];
@@ -761,12 +758,12 @@ function getFakeAtcValidSentences(item, forSpeech = true) {
 function isItemVisible(item) {
     if (item.type === 'briefing') {
         if (!isBriefingEnabled) return false;
-        return getBriefingValidSentences(item).length > 0;
-    }
-    if (item.type === 'fake_atc') {
+        if (getBriefingValidSentences(item).length === 0) return false;
+    } else if (item.type === 'fake_atc') {
         if (!isFakeAtcEnabled) return false;
-        return getFakeAtcValidSentences(item).length > 0;
+        if (getFakeAtcValidSentences(item).length === 0) return false;
     }
+
     if (isChecklistOnly && item.type === 'flow') return false;
     if (item.landingtype) {
         const el = document.getElementById('b-landing-type');
@@ -1286,10 +1283,12 @@ function saveBriefing() {
     BRIEF_FIELDS.forEach(id => { const el = document.getElementById(id); if (el) data[id] = el.value; });
     localStorage.setItem(BRIEF_STORAGE_KEY, JSON.stringify(data));
     updateGlobalFlightInfo();
+    updateAtcVariables(); // Ensure ATC variables are fresh before rendering
     updateChecklistVariablesUI();
 
     // Automatically redraw the page to reflect potential briefing visibility changes
     renderPage(false);
+
 }
 
 briefClear.onclick = () => {

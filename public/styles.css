@@ -1357,3 +1357,24 @@ button {
 .custom-option { padding: 9px 12px; cursor: pointer; color: var(--color-text); font-weight: 600; font-size: calc(0.85rem + 2pt); background: transparent; transition: background 0.15s, color 0.15s; white-space: nowrap; }
 .custom-option:hover { background: var(--color-accent); color: #fff; }
 [data-theme='dark'] .custom-select-options { box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+/* Fix for Chrome/Edge autofill background */
+.brief-input:-webkit-autofill,
+.brief-input:-webkit-autofill:hover, 
+.brief-input:-webkit-autofill:focus,
+.brief-textarea:-webkit-autofill,
+.brief-textarea:-webkit-autofill:hover, 
+.brief-textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--color-text) !important;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+[data-theme="dark"] .brief-input:-webkit-autofill,
+[data-theme="dark"] .brief-input:-webkit-autofill:hover, 
+[data-theme="dark"] .brief-input:-webkit-autofill:focus,
+[data-theme="dark"] .brief-textarea:-webkit-autofill,
+[data-theme="dark"] .brief-textarea:-webkit-autofill:hover, 
+[data-theme="dark"] .brief-textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: #dbe1e2 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #242627 inset !important;
+}

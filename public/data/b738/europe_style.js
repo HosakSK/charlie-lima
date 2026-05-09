@@ -36,11 +36,11 @@ window.initialChecklistData = [
       { "name": "Engine hydraulic quantity", "action": ">76 %", "type": "flow", "subtype": "simplify" },
       { "name": "Oil quantity", "action": ">10.8 l", "type": "flow", "subtype": "simplify" },
       { "name": "Flight deck access switch", "action": "Off & guarded", "type": "flow", "subtype": "simplify" },
-      { "name": "Flight deck door access system", "action": "Test", "type": "flow", "subtype": ["test","simplify"] },
+      { "name": "Flight deck door access system", "action": "Test", "type": "flow", "subtype": ["test", "simplify"] },
       { "name": "Maintenance documents", "action": "Verify", "type": "flow", "subtype": "simplify", "ifturnaround": "skip" },
       { "name": "Emergency equipment", "action": "Verify", "type": "flow", "subtype": "simplify" },
       { "name": "ELT switch", "action": " Arm & guarded", "type": "flow", "subtype": "simplify" },
-      { "name": "LE devices panel", "action": "Test", "type": "flow", "subtype": ["test","simplify"] },
+      { "name": "LE devices panel", "action": "Test", "type": "flow", "subtype": ["test", "simplify"] },
       { "name": "PSEU light", "action": "Off", "type": "flow", "subtype": "simplify" },
       { "name": "GPS lights", "action": "Off", "type": "flow", "subtype": "simplify" },
       { "name": "ILS lights", "action": "Off", "type": "flow", "subtype": "simplify" },
@@ -77,7 +77,7 @@ window.initialChecklistData = [
       { "name": "Engine valve closed light", "action": "On", "type": "flow", "subtype": "simplify" },
       { "name": "Spare valve closed light", "action": "On", "type": "flow", "subtype": "simplify" },
       { "name": "Filter bypass light", "action": "Off", "type": "flow", "subtype": "simplify" },
-      { "name": "Cross feed valve dial", "action": "Test", "type": "flow", "subtype": ["test","simplify"] },
+      { "name": "Cross feed valve dial", "action": "Test", "type": "flow", "subtype": ["test", "simplify"] },
       { "name": "Left forward fuel pump", "action": "On", "type": "flow", "ifturnaround": "skip" },
       { "name": "Battery discharge light", "action": "Off", "type": "flow", "subtype": "simplify" },
       { "name": "TR unit light", "action": "Off", "type": "flow", "subtype": "simplify" },
@@ -154,7 +154,7 @@ window.initialChecklistData = [
       { "name": "Speed brake lever", "action": "Down", "type": "flow", "subtype": "simplify" },
       { "name": "Reverse thrust levers", "action": "Down", "type": "flow", "subtype": "simplify" },
       { "name": "Thrust levers", "action": "Idle", "type": "flow", "subtype": "simplify" },
-      { "name": "Auto-throttle disengage switches", "action": "Test", "type": "flow", "subtype": ["test","simplify"] },
+      { "name": "Auto-throttle disengage switches", "action": "Test", "type": "flow", "subtype": ["test", "simplify"] },
       { "name": "Engine start levers", "action": "Cutoff", "type": "flow", "subtype": "simplify" },
       { "name": "Stab trim cut-out switch", "action": "Normal", "type": "flow", "subtype": "simplify" },
       { "name": "Flap lever", "action": "Zero", "type": "flow", "subtype": "simplify" },
@@ -177,7 +177,6 @@ window.initialChecklistData = [
       { "name": "Flight instruments", "action": "Check heading & altimeter", "type": "checklist item" },
       { "name": "Parking brake", "action": "Set", "type": "checklist item" },
       { "name": "Engine start levers", "action": "Cutoff", "type": "checklist item" },
-      { "name": "ATC | Clearance", "action": "Receive", "type": "flow" },
       {
         "name": "ATC Clearance Audio",
         "action": "",
@@ -204,9 +203,10 @@ window.initialChecklistData = [
           "#pm %callsign%"
         ]
       },
+      { "name": "ATC | Clearance", "action": "Receive", "type": "flow" },
       { "name": "Transponder code %squawk%", "action": "Set", "type": "flow" },
       { "name": "Transponder set to altitude only", "action": "Set", "type": "flow" },
-      { "name": "Fire control panel", "action": "Test", "type": "flow", "subtype": ["test","simplify"] },
+      { "name": "Fire control panel", "action": "Test", "type": "flow", "subtype": ["test", "simplify"] },
       { "name": "APU", "action": "Start", "type": "flow", "timer": 120, "timerLabel": "APU stab.", "timerAnnouncement": "Timer set, waiting for APU stabilization.", "ifturnaround": "skip" },
       { "name": "APU fault lights", "action": "Off", "type": "flow", "subtype": "simplify", "ifturnaround": "skip" },
       { "name": "APU bleed air switch", "action": "On", "type": "flow", "ifturnaround": "skip" },
@@ -232,7 +232,6 @@ window.initialChecklistData = [
       { "name": "Exterior doors", "action": "Close", "type": "flow" },
       { "name": "Jetways / stairs", "action": "Remove", "type": "flow" },
       { "name": "GPU / GAU", "action": "Remove", "type": "flow" },
-      { "name": "ATC | Pushback & startup", "action": "Receive", "type": "flow" },
       {
         "name": "Pushback & startup",
         "action": "",
@@ -248,6 +247,7 @@ window.initialChecklistData = [
           "#pm Startup and pushback approved, %callsign%"
         ]
       },
+      { "name": "ATC | Pushback & startup", "action": "Receive", "type": "flow" },
       { "name": "Anti-collision light switch", "action": "On", "type": "flow" },
       { "name": "Electric hydraulic switches", "action": "On", "type": "flow" },
       { "name": "Flight deck doors", "action": "Closed & locked", "type": "flow", "subtype": "simplify" },
@@ -338,7 +338,6 @@ window.initialChecklistData = [
       { "name": "Ground equipment", "action": "Clear", "type": "checklist item" },
       { "name": "Dispatch clearance", "action": "Clear", "type": "checklist item" },
       { "name": "ATIS", "action": "TAXI", "type": "flow" },
-      { "name": "ATC | Taxi", "action": "Receive", "type": "flow" },
       {
         "name": "Taxi",
         "action": "",
@@ -352,6 +351,7 @@ window.initialChecklistData = [
           "#pm %callsign%"
         ]
       },
+      { "name": "ATC | Taxi", "action": "Receive", "type": "flow" },
       { "name": "Runway Turnoff lights", "action": "On", "type": "flow" },
       { "name": "Taxi lights", "action": "On", "type": "flow" }
     ]
@@ -393,7 +393,6 @@ window.initialChecklistData = [
       { "name": "Trim ", "action": "%trim%", "type": "checklist item" },
       { "name": "Departure Review", "action": "Completed", "type": "checklist item" },
       { "name": "Cabin secure", "action": "Check", "type": "checklist item" },
-      { "name": "ATC | Line-up & Takeoff", "action": "Receive", "type": "flow" },
       {
         "name": "Takeoff",
         "action": "",
@@ -404,6 +403,7 @@ window.initialChecklistData = [
           "#pm Cleared for takeoff runway %dep_rwy% %callsign%"
         ]
       },
+      { "name": "ATC | Line-up & Takeoff", "action": "Receive", "type": "flow" },
       { "name": "Radar", "action": "Set", "type": "flow" },
       { "name": "Transponder", "action": "Set to TA/RA", "type": "flow" },
       { "name": "Landing lights", "action": "On", "type": "flow" },
@@ -440,7 +440,6 @@ window.initialChecklistData = [
       { "name": "Packs", "action": "Auto", "type": "checklist item" },
       { "name": "Landing gear", "action": "Up & off", "type": "checklist item" },
       { "name": "Flaps", "action": "Up, no lights", "type": "checklist item" },
-      { "name": "ATC | Departure", "action": "Receive", "type": "flow" },
       {
         "name": "Departure",
         "action": "",
@@ -453,7 +452,8 @@ window.initialChecklistData = [
           "#atc climb to flight level %init_alt%",
           "#pm climb to flight level %init_alt% %callsign%"
         ]
-      }
+      },
+      { "name": "ATC | Departure", "action": "Receive", "type": "flow" }
     ]
   },
   {
@@ -499,7 +499,6 @@ window.initialChecklistData = [
   {
     "title": "DESCENT",
     "items": [
-      { "name": "CDU DEP/ARR, LEGS, DES pages", "action": "Review", "type": "flow" },
       {
         "name": "Descent",
         "action": "",
@@ -511,6 +510,7 @@ window.initialChecklistData = [
           "#atc %callsign% %fir_arr% %hello_arr% identified"
         ]
       },
+      { "name": "CDU DEP/ARR, LEGS, DES pages", "action": "Review", "type": "flow" },
       { "name": "ATIS %arr_atis%", "action": "Check", "type": "flow" },
       { "name": "Preselected BARO %arr_qnh%", "action": "Insert", "type": "flow" },
       { "name": "VREF %vref%", "action": "Set", "type": "flow" },
@@ -520,6 +520,7 @@ window.initialChecklistData = [
       { "name": "ILS altitude %ga_alt%", "action": "Check", "landingtype": "3+2", "type": "flow" },
       { "name": "Decision height %minima%", "action": "Set", "type": "flow" },
       { "name": "MCP bank angle selector", "action": "25°", "type": "flow" },
+      { "name": "Landing altitude", "action": "Set", "type": "checklist item" },
       {
         "name": "Approach briefing",
         "action": "",
@@ -536,13 +537,11 @@ window.initialChecklistData = [
           "Approach briefing complete."
         ]
       },
-      { "name": "Landing altitude", "action": "Set", "type": "checklist item" },
       { "name": "Recall", "action": "Check", "type": "checklist item" },
       { "name": "Autobrake ", "action": "%autobrake%", "type": "checklist item" },
       { "name": "VREF ", "action": "%vref%", "type": "checklist item" },
       { "name": "Decision height", "action": " %minima%", "type": "checklist item" },
       { "name": "Approach briefing", "action": "Complete", "type": "checklist item" },
-      { "name": "ATC | Descent", "action": "Receive", "type": "flow" },
       {
         "name": "Descent",
         "action": "",
@@ -553,13 +552,13 @@ window.initialChecklistData = [
           "#pm when ready descent to %ga_alt%",
           "#pm runway %arr_rwy% via %star% %callsign%"
         ]
-      }
+      },
+      { "name": "ATC | Descent", "action": "Receive", "type": "flow" }
     ]
   },
   {
     "title": "APPROACH",
     "items": [
-      { "name": "ATC | Approach", "action": "Receive", "type": "flow" },
       {
         "name": "app",
         "action": "",
@@ -586,6 +585,7 @@ window.initialChecklistData = [
         ],
         "landingtype": "1"
       },
+      { "name": "ATC | Approach", "action": "Receive", "type": "flow" },
       { "name": "Cabin crew announcement", "action": "Announcement for descent", "type": "flow" },
       { "name": "Landing lights", "action": "On", "type": "flow" },
       { "name": "Engine start switch", "action": "Set to continuous", "type": "flow" },
@@ -648,7 +648,6 @@ window.initialChecklistData = [
       { "name": "Go around altitude %ga_alt%", "action": "Set", "type": "flow" },
       { "name": "APU", "action": "Start", "landingtype": "3", "type": "flow" },
       { "name": "At minimums – autopilot", "action": "Disengage", "type": "flow" },
-      { "name": "ATC | Cleared to land", "action": "Receive", "type": "flow" },
       {
         "name": "New fake_atc",
         "action": "",
@@ -658,6 +657,7 @@ window.initialChecklistData = [
           "#pm runway %arr_rwy% cleared to land. %callsign%"
         ]
       },
+      { "name": "ATC | Cleared to land", "action": "Receive", "type": "flow" },
       { "name": "Cabin secure", "action": "Check", "type": "checklist item" },
       { "name": "Engine start switches", "action": "Continuous", "type": "checklist item" },
       { "name": "Landing gear", "action": "Down and green", "type": "checklist item" },
@@ -681,7 +681,6 @@ window.initialChecklistData = [
       { "name": "Speed brake", "action": "Down and detent", "type": "flow" },
       { "name": "Flaps", "action": "Retract", "type": "flow" },
       { "name": "Transponder", "action": "Set to altitude only", "type": "flow" },
-      { "name": "ATC | Taxi instruction", "action": "Receive", "type": "flow" },
       {
         "name": "New fake_atc",
         "action": "",
@@ -694,6 +693,7 @@ window.initialChecklistData = [
           "#pm taxi to %gate% via %taxi_in% %callsign%"
         ]
       },
+      { "name": "ATC | Taxi instruction", "action": "Receive", "type": "flow" },
       { "name": "Standby ADI", "action": "Off", "type": "flow", "subtype": "simplify" }
     ]
   },
@@ -704,7 +704,6 @@ window.initialChecklistData = [
       { "name": "Runway Turnoff Lights", "action": "Off", "type": "flow" },
       { "name": "Taxi lights", "action": "Off", "type": "flow" },
       { "name": "Logo light", "action": "Off", "type": "flow" },
-      { "name": "ATC | Close call", "action": "Perform", "type": "flow" },
       {
         "name": "New fake_atc",
         "action": "",
@@ -715,6 +714,7 @@ window.initialChecklistData = [
         ]
       },
       { "name": "APU gen.", "action": "On", "type": "flow" },
+      { "name": "ATC | Close call", "action": "Perform", "type": "flow" },
       { "name": "Isolation valve switch", "action": "Open", "type": "flow" },
       { "name": "APU bleed", "action": "On", "type": "flow" },
       { "name": "Engine bleed", "action": "Off", "type": "flow" },

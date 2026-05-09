@@ -121,7 +121,8 @@ charlie-lima/
 │   ├── overview.md                 # ← this file
 │   ├── versioning.md               # Versioning system explained
 │   ├── subdomain_routing.md        # Subdomain routing logic
-│   └── fake_atc.md                 # Fake ATC feature documentation
+│   ├── fake_atc.md                 # Fake ATC feature documentation
+│   └── next_steps.md               # Future roadmap (in Slovak)
 ├── package.json                    # Version, dependencies, npm scripts
 ├── next.config.ts                  # Next.js configuration (minimal)
 └── tsconfig.json                   # TypeScript config

@@ -1541,7 +1541,13 @@ button:active:not(:disabled) {
 /* Fix for Chrome/Edge autofill white background */
 .simbrief-id-input:-webkit-autofill,
 .simbrief-id-input:-webkit-autofill:hover, 
-.simbrief-id-input:-webkit-autofill:focus {
+.simbrief-id-input:-webkit-autofill:focus,
+.brief-input:-webkit-autofill,
+.brief-input:-webkit-autofill:hover, 
+.brief-input:-webkit-autofill:focus,
+.brief-textarea:-webkit-autofill,
+.brief-textarea:-webkit-autofill:hover, 
+.brief-textarea:-webkit-autofill:focus {
     -webkit-text-fill-color: var(--color-text) !important;
     -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
     transition: background-color 5000s ease-in-out 0s;
@@ -1549,10 +1555,17 @@ button:active:not(:disabled) {
 
 [data-theme="dark"] .simbrief-id-input:-webkit-autofill,
 [data-theme="dark"] .simbrief-id-input:-webkit-autofill:hover, 
-[data-theme="dark"] .simbrief-id-input:-webkit-autofill:focus {
+[data-theme="dark"] .simbrief-id-input:-webkit-autofill:focus,
+[data-theme="dark"] .brief-input:-webkit-autofill,
+[data-theme="dark"] .brief-input:-webkit-autofill:hover, 
+[data-theme="dark"] .brief-input:-webkit-autofill:focus,
+[data-theme="dark"] .brief-textarea:-webkit-autofill,
+[data-theme="dark"] .brief-textarea:-webkit-autofill:hover, 
+[data-theme="dark"] .brief-textarea:-webkit-autofill:focus {
     -webkit-text-fill-color: #dbe1e2 !important;
     -webkit-box-shadow: 0 0 0px 1000px #242627 inset !important;
 }
+
 
 .brief-divider {
     width: 1.5px;
