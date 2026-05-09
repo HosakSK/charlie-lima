@@ -238,9 +238,11 @@ window.initialChecklistData = [
         "type": "fake_atc",
         "text": [
           "#pm %callsign% ready for pushback and startup.",
-          "#atc %callsign%, QHN %dep_qnh%, information %dep_atis%",
+          "#atc %callsign%, QHN %dep_qnh%",
+          "#atc information %dep_atis%",
           "#atc contact Ground %ground_dep_freq%",
-          "#pm  QHN %dep_qnh%, information %dep_atis%",
+          "#pm QHN %dep_qnh%",
+          "#pm information %dep_atis%",
           "#pm contact Ground %ground_dep_freq% %callsign%. %bye_dep%.",
           "#pm %ground_dep% %hello_dep%, %callsign%, at stand %dep_gate% ready for pushback and startup",
           "#atc %callsign% , startup and pushback approved.",
