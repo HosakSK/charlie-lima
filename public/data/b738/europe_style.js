@@ -244,6 +244,7 @@ window.initialChecklistData = [
           "#pm QHN %dep_qnh%",
           "#pm information %dep_atis%",
           "#pm contact %ground_dep% %ground_dep_freq% %callsign%. %bye_dep%.",
+          "#pause 5",
           "#pm %ground_dep% %hello_dep%, %callsign%, at stand %dep_gate% ready for pushback and startup",
           "#atc %callsign% , startup and pushback approved.",
           "#pm Startup and pushback approved, %callsign%"
