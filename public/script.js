@@ -98,7 +98,7 @@ const BRIEF_FIELDS = [
     'b-v1', 'b-vr', 'b-v2', 'b-trim', 'b-taxi-out',
     'b-arr-atis', 'b-arr-qnh', 'b-arr-rwy', 'b-landing-type', 'b-arr-ta', 'b-star',
     'b-arr-dewpt', 'b-arr-temp', 'b-arr-wind',
-    'b-ils-freq', 'b-course', 'b-minima', 'b-ga-alt', 'b-vref', 'b-arr-flaps', 'b-autobrake',
+    'b-ils-freq', 'b-course', 'b-fap-alt', 'b-minima', 'b-ga-alt', 'b-vref', 'b-arr-flaps', 'b-autobrake',
     'b-taxi-in', 'b-gate', 'b-notes'
 ];
 const BRIEF_STORAGE_KEY = 'b738_briefing_v2';
@@ -647,7 +647,7 @@ async function updateAtcVariables() {
         let prefix = isDep ? 'dep' : 'arr';
         atcVariables['city_' + prefix] = toTitleCase(apt.city || apt.name || icao);
         
-        // Auto-Fill / Placeholders (TA / INIT ALT)
+        // Auto-Fill / Placeholders (TA / INIT ALT / FAP ALT / ILS)
         if (isDep) {
             // 1. Transition Altitude (Field: TA, ID: b-dep-tl)
             const taEl = document.getElementById('b-dep-tl');
@@ -680,6 +680,34 @@ async function updateAtcVariables() {
                     
                     initAltEl.value = "";
                     initAltEl.placeholder = regionPh;
+                }
+            }
+        } else {
+            // Arrival Auto-Fill (FAP ALT, ILS FREQ, COURSE)
+            const fapAltEl = document.getElementById('b-fap-alt');
+            const ilsFreqEl = document.getElementById('b-ils-freq');
+            const courseEl = document.getElementById('b-course');
+            
+            if (fapAltEl || ilsFreqEl || courseEl) {
+                const rwyEl = document.getElementById('b-arr-rwy');
+                const rwy = rwyEl ? rwyEl.value.toUpperCase().trim() : '';
+                if (rwy && newApt) {
+                    // Normalize runway for JSON keys (e.g. 4R -> 04R)
+                    let normRwy = rwy;
+                    if (/^\d[LR]?$/.test(rwy)) normRwy = "0" + rwy;
+
+                    if (fapAltEl) {
+                        const val = newApt[`RWY${normRwy}_ILS.ALT`];
+                        if (val && val !== '-') fapAltEl.value = val;
+                    }
+                    if (ilsFreqEl) {
+                        const val = newApt[`RWY_${normRwy}_ILS_FRQ`];
+                        if (val && val !== '-') ilsFreqEl.value = val;
+                    }
+                    if (courseEl) {
+                        const val = newApt[`RWY_${normRwy}_ILS_CRS`];
+                        if (val && val !== '-') courseEl.value = val;
+                    }
                 }
             }
         }
