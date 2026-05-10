@@ -8,6 +8,10 @@ This document describes the various user-adjustable settings and display modes a
 
 ### 1.1 Day/Night Mode (Theme)
 - **Description:** Toggles between a high-contrast light theme and a dark mode optimized for night flying.
+- **Function:** Toggles between light and dark UI.
+- **Persistence:** `b738_theme` (`dark` | `light`).
+- **Browser Integration:** Dynamically updates the HTML `meta[name="theme-color"]` tag to ensure the browser's address bar/UI matches the application's theme.
+- **Visuals:** Dark mode uses a custom HSL palette with a deep charcoal background and vibrant primary accents.
 - **Implementation:** Sets the `data-theme="dark"` attribute on the `<html>` element. CSS variables in `globals.css` and `styles.css` respond to this attribute.
 - **Persistence:** `localStorage` key `b738_theme` (`"dark"` or `"light"`).
 
@@ -95,6 +99,25 @@ This document describes the various user-adjustable settings and display modes a
 | Hide Tests | `b738_hide_tests` | `false` |
 | Briefing Enabled | `b738_briefing_enabled` | `false` |
 | Disable Timer | `b738_disable_timer` | `false` |
+
+### 2.2 Global Reset
+- **Button:** Found at the bottom of the top settings menu.
+- **Function:** Clears all Charlie-Lima related `localStorage` keys and reloads the page to factory defaults.
+
+---
+
+## 3. UI/UX Interactions
+
+### 3.1 Draggable Overlays
+Several UI components are not fixed and can be repositioned by the user:
+- **Briefing Notepad Overlay:** Can be dragged via the top handle.
+- **Action Timer:** Can be moved anywhere on the screen (retains position until refresh).
+- **Physics:** Draggable elements are constrained to the viewport to prevent disappearing off-screen.
+
+### 3.2 Responsive Notepad (Accordion)
+The Briefing Notepad includes logic for mobile optimization:
+- **Mobile View (≤ 700px):** Departure and Arrival sections operate in an **Accordion** mode. Opening one automatically collapses the other to maximize vertical space.
+- **Desktop View:** Both sections remain open by default.
 
 ---
 

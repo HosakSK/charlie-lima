@@ -25,6 +25,11 @@ Instead of traditional strict keyword matching, Charlie-Lima uses a **Robust Cou
 To begin reading a checklist, the user must say a phrase containing the word **"Checklist"** (or the common misinterpretation **"Craigslist"**). 
 - Once triggered, `hasStartedReading` becomes `true` and the engine begins sequential playback.
 
+### 2.2 Manual & UI Triggers
+Beyond voice activation, the engine can be controlled via:
+- **Global Right Click:** Performs a "Check" action on the next item. If the engine is currently speaking, it instantly stops all speech (`speechSynthesis.cancel()`).
+- **Checklist Title Click:** Clicking the header of a checklist phase (e.g., "BEFORE START") while in Voice Mode manually starts the reading process for that phase.
+
 ### 2.2 Command Recognition
 The system monitors the transcript for **Action Words**:
 - **Keywords:** `check`, `set`, `call`, `reset`, `start`, `steady`, `auto`, `open`, `down`, `green`, `on`, `off`, `up`, `arm`, `completed`.
@@ -44,7 +49,9 @@ The synthesis engine processes text through a custom formatter (`spellAbbreviati
 
 ### 3.1 Phonetic & Abbreviation Processing
 - **NATO Alphabet:** Single letters and known acronyms (e.g., `IRS`, `FMC`) are automatically converted to NATO phonetic spelling or character-by-character readout (e.g., `IRS` → "India Romeo Sierra").
+- **Acronym Exceptions:** The engine maintains a list of ~50+ aviation terms (`GPWS`, `ADI`, `FMA`, `ISFD`, etc.) that are specifically read **character-by-character** instead of using NATO phonetics to maintain realism.
 - **Exceptions:** Common aviation terms like `V1`, `V2`, `QNH`, `APU` are read character-by-character without phonetic conversion.
+- **Runway Pronunciation:** Logical identifiers like `04L` or `22R` are expanded to "zero four Left" or "two two Right" for natural speech.
 - **Numerical Formatting:** 
   - **Decimals:** Frequencies (e.g., `118.1`) are read with the word **"decimal"**.
   - **Digits:** Numbers with 2+ digits (altitudes, squawk codes) are read digit-by-digit (e.g., `100` → "one zero zero").
@@ -54,6 +61,11 @@ The synthesis engine processes text through a custom formatter (`spellAbbreviati
 The engine supports multiple speakers within a single item using role tags:
 - **`#pm` (Pilot):** Uses the user-selected voice gender.
 - **`#atc` (Controller):** Automatically switches to the **opposite gender** voice for realistic differentiation.
+
+### 3.3 Airline Telephony
+The engine includes a mapping of ICAO airline codes to their telephony callsigns.
+- **Mapping:** `RYR` → "Ryanair", `DLH` → "Lufthansa", `BAW` → "Speedbird", etc.
+- **Suffixes:** Alphanumeric suffixes (e.g., `RYR123`) are concatenated correctly (e.g., "Ryanair one two three").
 
 ---
 

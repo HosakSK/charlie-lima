@@ -108,7 +108,10 @@ These variables can be used in any checklist item or `fake_atc` block using the 
 
 ---
 
-## 7. Placeholder Auto-Fill Logic
+## 7. Placeholder Logic
+
+- **Row Visibility:** A briefing line containing a variable (e.g., `%v1%`) is **automatically hidden** if that variable is empty in the notepad.
+- **Conditional Tags `[IF ...]`:** Briefing lines can be wrapped in a conditional block: `[IF Item Name] text [/IF]`. The text will only appear if a checklist item with a matching name has been **checked off** by the user.
 
 When an airport is resolved, the engine automatically populates the **placeholders** in the Briefing UI if they are empty:
 
@@ -125,6 +128,13 @@ To improve the realism of voice synthesis, the engine includes a mapping of ICAO
 
 - **Mechanism:** When a callsign is spoken (in `fake_atc` or briefing), the engine checks the 3-letter prefix against a dictionary (e.g., `RYR` → `"Ryanair"`, `BAW` → `"Speedbird"`, `TVQ` → `"Smartwings"`).
 - **Fallback:** If no match is found, the callsign is spoken as-is or character-by-character if it contains numbers.
+
+#### 4.3 Advanced SimBrief Logic
+- **METAR Temperature Parsing:** When fetching SimBrief data, the engine uses a regex (`(M?\d{2})\/(M?\d{2})`) to extract temperature and dewpoint directly from the raw METAR string as a fallback for missing discrete fields.
+- **Autobrake Mapping:** Diverse SimBrief strings like `MAX MAN`, `MED`, or `LOW` are automatically mapped to Boeing standard settings (`1`, `2`, `3`, `MAX`).
+
+#### 4.4 Helper Utilities
+- **Squawk Generator:** A utility button in the notepad generates a random 4-digit octal squawk code (0-7), while explicitly excluding reserved aviation codes (`7000`, `7500`, `7600`, `7700`, `1200`, `2000`).
 
 ---
 
