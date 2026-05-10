@@ -4,7 +4,7 @@
 
 ## 🐞 Nahlásené chyby (Zadaj sem novú chybu)
 > **Poznámka pre používateľa:** Ak nájdeš chybu, vpiš ju sem pod tento riadok. Stačí uviesť krátky popis.
-- 
+- chyba v notepade vyska pociatocneho ils
 
 ---
 
