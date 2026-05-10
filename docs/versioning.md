@@ -1,83 +1,119 @@
-# Versioning System Documentation
+# Versioning System
 
-This document explains the centralized versioning system implemented in the Charlie-Lima (B738 Checklist) application.
-
-## Single Source of Truth
-The version of the application is defined in a single location:
-- **File**: `package.json`
-- **Field**: `"version"`
-
-```json
-{
-  "name": "charlie-lima",
-  "version": "3.3.7",
-  ...
-}
-```
-
-## How it Works
-
-The application dynamically imports this version string to ensure consistency across the entire platform.
-
-### 1. Import Mechanism
-The version is imported in the main checklist page component:
-- **File**: `src/app/(checklist)/[aircraft]/page.tsx`
-
-```typescript
-import pkg from '../../../../package.json';
-const APP_VERSION = pkg.version;
-```
-
-### 2. Implementation Points
-The `APP_VERSION` variable is used in two critical areas:
-
-#### A. Cache Busting for `script.js`
-To ensure users always receive the latest application logic without browser cache issues, the version is appended as a query parameter when loading the core script:
-```typescript
-await loadScript(`/script.js?v=${APP_VERSION}`);
-```
-
-#### B. UI Display (Footer)
-The version is displayed in the global footer of the application:
-```html
-<div class="global-footer">
-    <span class="version-info">v${APP_VERSION}</span>
-    ...
-</div>
-```
-
-## How to Update the Version
-When releasing a new update or bug fix, follow these steps:
-
-1. Open `package.json`.
-2. Increment the `"version"` number (e.g., from `3.3.7` to `3.3.8`).
-3. Save the file.
-4. Deploy/Push the changes.
-
-The changes will automatically propagate to the footer display and the script loading URL, forcing clients to reload the latest `script.js`.
+This document describes the versioning rules and how the application version propagates through the system.
 
 ---
 
-## Versioning Convention
+## 1. Single Source of Truth
 
-The version follows **semantic versioning** (`MAJOR.MINOR.PATCH`):
+The application version is defined in **one and only one location**:
 
-| Segment | Example | When to change |
+```
+package.json → "version": "3.3.48"
+```
+
+**There is no other version definition.** Every part of the system reads from `package.json`:
+- The React component (`page.tsx`) imports `pkg.version` at build time
+- `script.js` receives the version via the `?v=` query parameter (for cache busting)
+- The footer displays it as `v{version}` in the bottom-left corner of the UI
+
+---
+
+## 2. Version Format
+
+```
+MAJOR . MINOR . PATCH
+  3   .   3   .  48
+```
+
+| Segment | When to Increment | Frequency |
 |---|---|---|
-| `PATCH` | `3.3.7` → `3.3.8` | Bug fixes, small tweaks, minor additions |
-| `MINOR` | `3.3.7` → `3.4.0` | Significant new feature or larger refactor |
-| `MAJOR` | `3.3.7` → `4.0.0` | Breaking changes, complete rewrites |
+| **PATCH** | Every single `git push` to the `main` branch | Very often (sometimes daily) |
+| **MINOR** | New feature set or significant functionality addition | Infrequently |
+| **MAJOR** | Breaking architectural change or complete redesign | Rare |
 
-### Default Increment Rule
+### 2.1 The Golden Rule
 
-> **Unless explicitly told otherwise, always increment only the PATCH segment by 1.**
+> **1 push = 1 PATCH increment = 1 commit**
 
-Examples of correct default increments:
-- `3.3.7` → `3.3.8`
-- `3.3.9` → `3.3.10`
-- `3.3.19` → `3.3.20`
+This rule exists because of the cache-busting mechanism. The version number is appended as a query parameter to `script.js`:
 
-**Do not** bump MINOR or MAJOR unless the user specifically requests it (e.g. *"this is a minor version bump"* or *"increment minor version"*). Automatically jumping from `3.3.9` to `3.4.0` without instruction is incorrect.
+```html
+<script src="/script.js?v=3.3.48"></script>
+```
+
+If the version doesn't change, browsers may serve a stale cached copy of `script.js`, causing bugs where updated logic isn't reflected. **Every push must increment the PATCH version** to guarantee fresh script delivery.
 
 ---
-*Last updated: 2026-05-09*
+
+## 3. Version Propagation Flow
+
+```
+package.json  "version": "3.3.48"
+     ↓
+page.tsx      import pkg from '../../../../package.json'
+              const APP_VERSION = pkg.version    // → "3.3.48"
+     ↓
+HTML Shell    <script src="/script.js?v=3.3.48">   // Cache bust
+              <span class="version-info">v3.3.48</span>  // Footer display
+     ↓
+Browser       Fetches /script.js?v=3.3.48 → CDN serves fresh copy
+```
+
+---
+
+## 4. Git Commit Rules
+
+### 4.1 Commit Message Format
+
+The commit message must contain **ONLY the version number**:
+
+```bash
+# ✅ Correct
+git commit -m "3.3.49"
+
+# ❌ Wrong — no descriptions allowed
+git commit -m "3.3.49 - fixed voice bug"
+git commit -m "fix: voice recognition timeout"
+```
+
+This convention ensures a clean, scannable commit history where each commit is exactly one version bump.
+
+### 4.2 The Full Push Workflow
+
+```bash
+# 1. Make your code changes
+# 2. Bump the version in package.json (e.g., 3.3.48 → 3.3.49)
+# 3. If docs/ content was affected, update the relevant doc files
+# 4. Stage everything
+git add .
+# 5. Commit with version-only message
+git commit -m "3.3.49"
+# 6. Push to trigger auto-deploy
+git push
+```
+
+---
+
+## 5. What Happens If You Forget?
+
+| Scenario | Result |
+|---|---|
+| Push without version bump | Users may see stale `script.js` (old cached version from CDN) |
+| Push without editing `package.json` | The `?v=` parameter stays the same, browser serves old script |
+| Multiple changes in one push | Only one PATCH increment needed (all changes go out together) |
+| Hotfix after a push | Must increment PATCH again (new push = new version) |
+
+---
+
+## 6. Historical Context
+
+The versioning system was introduced to solve a specific problem:
+- `script.js` is a large file (~138 KB) that is loaded via a `<script>` tag with a `?v=` query parameter
+- CDNs (Vercel Edge) and browsers aggressively cache static files
+- Without a unique version in the URL, users could be stuck with outdated application logic for extended periods
+- By incrementing the version on every push, the query parameter changes, forcing a fresh fetch
+
+---
+
+*Last updated: 2026-05-10*

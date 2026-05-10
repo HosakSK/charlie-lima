@@ -1,146 +1,157 @@
 # Subdomain Routing
 
-This document describes how subdomain-based routing works in the Charlie-Lima application.
+This document describes the subdomain-based routing system implemented in `src/middleware.ts`.
 
 ---
 
-## 1. How It Works
+## 1. Purpose
 
-The application runs on the main domain `charlie-lima.eu`. Subdomains are handled by **Next.js Middleware** (`src/middleware.ts`), which runs on the server (Vercel Edge Network) before every request is processed.
+The routing middleware enables short, memorable URLs for direct aircraft access:
 
-The middleware reads the `Host` request header, extracts the subdomain, and internally **rewrites the URL path** without changing what the user sees in the browser address bar. This is a server-side rewrite, not a visible redirect.
+| Instead of... | Users can type... |
+|---|---|
+| `charlie-lima.eu/b738` | `b738.charlie-lima.eu` |
+| `charlie-lima.eu/creator` | `creator.charlie-lima.eu` |
 
-```
-Browser requests: b738.charlie-lima.eu/
-Middleware rewrites to: charlie-lima.eu/b738
-Next.js serves: /b738 (App Router route)
-Browser still shows: b738.charlie-lima.eu/
-```
+The system is **transparent** — the user sees the subdomain URL in the browser, but internally the request is rewritten to the appropriate Next.js route.
 
 ---
 
-## 2. Middleware Configuration
+## 2. Implementation
 
-**File:** `src/middleware.ts`
+The middleware lives in `src/middleware.ts` and runs on **every request** before the Next.js router processes it.
 
-### Matcher
+### 2.1 Detection Logic
 
-```ts
+```typescript
+const host = request.headers.get('host') || '';
+const subdomain = host.split('.')[0];
+```
+
+1. Extract the `Host` header from the incoming request
+2. Split on `.` and take the first segment as the potential subdomain
+3. If the subdomain is **not** one of the known "root" values (`charlie-lima`, `www`, `localhost`) → treat it as a valid aircraft/tool subdomain
+
+### 2.2 Static Asset Exclusion
+
+Before rewriting, the middleware checks if the request is for a static asset by testing the pathname against this pattern:
+
+```typescript
+const isStatic = /^\/(data|icons|audio|_next|api|favicon|manifest)\b|\.(?:js|css|svg|png|ico|wav|json|webmanifest)$/i
+```
+
+If the request matches → **no rewrite** (static assets are served directly).
+
+This is critical because without this check, requests like `b738.charlie-lima.eu/script.js` would be rewritten to `/b738/script.js`, which doesn't exist.
+
+### 2.3 Rewrite Rules
+
+| Subdomain | Rewrites to | Notes |
+|---|---|---|
+| `b738` | `/b738` | Dynamic route `(checklist)/[aircraft]` |
+| `a320` | `/a320` | Any future aircraft follows the same pattern |
+| `creator` | `/creator.html` | Special case — serves the static HTML file directly |
+| *(any other)* | `/{subdomain}` | Generic rewrite — any subdomain works if the route exists |
+
+### 2.4 Code
+
+```typescript
+import { NextRequest, NextResponse } from "next/server";
+
+export function middleware(request: NextRequest) {
+    const host = request.headers.get('host') || '';
+    const subdomain = host.split('.')[0];
+
+    const isStatic = /^\/(data|icons|audio|_next|api|favicon|manifest)\b|\.(?:js|css|svg|png|ico|wav|json|webmanifest)$/i;
+
+    if (
+        subdomain &&
+        subdomain !== 'charlie-lima' &&
+        subdomain !== 'www' &&
+        !subdomain.startsWith('localhost') &&
+        !isStatic.test(request.nextUrl.pathname) &&
+        request.nextUrl.pathname === '/'
+    ) {
+        if (subdomain === 'creator') {
+            const url = request.nextUrl.clone();
+            url.pathname = '/creator.html';
+            return NextResponse.rewrite(url);
+        }
+
+        const url = request.nextUrl.clone();
+        url.pathname = `/${subdomain}`;
+        return NextResponse.rewrite(url);
+    }
+
+    return NextResponse.next();
+}
+
 export const config = {
-  matcher: ['/((?!api|_next|_static|_vercel|[\\w-]+\\.\\w+).*)'],
+    matcher: ["/((?!_next/static|_next/image).*)"],
 };
 ```
 
-The middleware runs on **all paths except**:
-- `/api/*` — API routes (handled directly by Next.js)
-- `/_next/*` — Next.js internal assets (JS chunks, CSS)
-- `/_static/*`, `/_vercel/*` — Vercel internal paths
-- Any path ending with a file extension (e.g. `/script.js`, `/styles.css`, `/icons/logo.svg`)
+---
 
-### Processing Logic
+## 3. Matcher Configuration
 
-```ts
-// 1. Read the hostname (e.g. "b738.charlie-lima.eu")
-let hostname = req.headers.get('host') || '';
-hostname = hostname.split(':')[0]; // Strip any port number
+The `config.matcher` restricts which paths the middleware is invoked on:
 
-// 2. If hostname ends with ".charlie-lima.eu" → it has a subdomain
-if (hostname.endsWith(`.charlie-lima.eu`)) {
-  const subdomain = hostname.replace(`.charlie-lima.eu`, '');
-
-  // 3. Ignore "www" (www.charlie-lima.eu = main page)
-  if (subdomain && subdomain !== 'www') {
-
-    // 4. Special case: creator.charlie-lima.eu
-    if (subdomain === 'creator') {
-      url.pathname = '/creator.html';
-      return NextResponse.rewrite(url);
-    }
-
-    // 5. All other subdomains → /subdomain + original path
-    url.pathname = `/${subdomain}${req.nextUrl.pathname}`;
-    return NextResponse.rewrite(url);
-  }
-}
+```typescript
+matcher: ["/((?!_next/static|_next/image).*)"]
 ```
 
-### Static Files — Exception
+This negative lookahead excludes:
+- `/_next/static/` — Next.js compiled assets
+- `/_next/image/` — Next.js image optimization routes
 
-Static assets are excluded from the rewrite logic before anything else runs:
-
-```ts
-const path = url.pathname;
-if (
-  path.startsWith('/icons/') ||
-  path.startsWith('/data/') ||
-  path.startsWith('/audio/') ||
-  path.endsWith('.js') ||
-  path.endsWith('.css')
-) {
-  return NextResponse.next(); // Serve the file directly, no rewrite
-}
-```
-
-This is critical — `script.js`, `styles.css`, dataset files under `/data/`, etc. must be served as-is without any path manipulation.
+All other paths trigger the middleware (but may exit early via the static asset regex).
 
 ---
 
-## 3. Subdomain Overview
+## 4. Important Conditions
 
-| Browser URL | Rewrites to | Next.js Route | Description |
-|---|---|---|---|
-| `charlie-lima.eu` | — | `/(landing)/page.tsx` | Main page — aircraft list |
-| `www.charlie-lima.eu` | — | `/(landing)/page.tsx` | Alias for the main page |
-| `b738.charlie-lima.eu` | `/b738` | `/(checklist)/[aircraft]/page.tsx` | B738 checklist |
-| `b738.charlie-lima.eu/something` | `/b738/something` | — | Subdomain + path are combined |
-| `creator.charlie-lima.eu` | `/creator.html` | Static HTML file | Dataset Creator tool |
+The rewrite **only happens** when ALL of these conditions are true:
 
-> **Note:** If you add a new aircraft (e.g. `a320`), the subdomain `a320.charlie-lima.eu` will work automatically — the middleware rewrites it to `/a320`, which Next.js handles via the existing `[aircraft]` dynamic route.
+1. A valid subdomain is detected (not empty)
+2. The subdomain is not `charlie-lima`, `www`, or `localhost*`
+3. The request path is NOT a static asset (regex check)
+4. The request path is exactly `/` (root path)
 
----
+**Condition 4 is crucial:** The middleware only rewrites **root path** requests (`/`). This means `b738.charlie-lima.eu/some-path` is NOT rewritten — only `b738.charlie-lima.eu/` is rewritten to `/b738`.
 
-## 4. Why `creator` Is a Special Case
-
-`creator.charlie-lima.eu` is handled differently — it does not rewrite to `/creator` (which would go into the Next.js App Router), but directly to `/creator.html`.
-
-The file `public/creator.html` is a static HTML file served by Vercel from the `public/` directory. It is a self-contained application (not a Next.js component), so the rewrite must explicitly target the `.html` file.
-
-```ts
-if (subdomain === 'creator') {
-  url.pathname = '/creator.html';
-  return NextResponse.rewrite(url);
-}
-```
-
-> **Important:** If the rewrite targeted `/creator` (without `.html`), Next.js would look for `/(creator)/creator/page.tsx` — this route exists but serves different content, and the static tool would not be accessible.
+This prevents subdomain requests for nested paths from being incorrectly rewritten (e.g., `b738.charlie-lima.eu/api/datasets` works normally).
 
 ---
 
 ## 5. Local Development
 
-The middleware works identically in local development (`npm run dev`), but subdomains do not function automatically on `localhost`. When developing locally:
+During local development (`npm run dev`), subdomains are not naturally available. To test subdomain routing locally:
 
-- Access routes directly **without a subdomain**: `http://localhost:3000/b738`
-- The subdomain rewrite will not trigger because `localhost` does not end with `.charlie-lima.eu`
-- All routes work normally via their path equivalents
+1. **Modify the hosts file** (`/etc/hosts` or `C:\Windows\System32\drivers\etc\hosts`):
+   ```
+   127.0.0.1  b738.localhost
+   127.0.0.1  creator.localhost
+   ```
+
+2. **Access via:** `http://b738.localhost:3000/`
+
+The middleware checks `!subdomain.startsWith('localhost')` — so `b738.localhost` will be detected as subdomain `b738`, triggering the rewrite.
+
+> **Note:** `localhost:3000` (without subdomain) routes normally to the landing page.
 
 ---
 
 ## 6. Adding a New Subdomain
 
-### Automatic (new aircraft)
-Simply create a new folder at `public/data/{aircraft}/` containing at least one `.js` dataset file. The subdomain `{aircraft}.charlie-lima.eu` will work automatically with no middleware changes required.
+To add support for a new aircraft subdomain (e.g., `a320.charlie-lima.eu`):
 
-### Manual (special case)
-If you need a new subdomain with different behaviour than the standard aircraft checklist, add a condition to the middleware before the main rewrite logic:
+1. **Create the dataset directory:** `public/data/a320/` with at least one `.js` dataset file
+2. **That's it** — the middleware generically rewrites any subdomain to `/{subdomain}`, and the `(checklist)/[aircraft]` dynamic route catches it automatically
+3. The `/api/datasets` endpoint will discover the new aircraft directory on the next request
 
-```ts
-if (subdomain === 'my-new-subdomain') {
-  url.pathname = '/my-target-path';
-  return NextResponse.rewrite(url);
-}
-```
+No code changes are needed in the middleware — it handles any subdomain generically.
 
 ---
 
-*Last updated: 2026-05-09*
+*Last updated: 2026-05-10*
