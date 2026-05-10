@@ -1509,7 +1509,7 @@ if (simbriefFetchBtn && simbriefIdInput) {
                 
                 const fmt = (val) => {
                     if (val === undefined || val === null) return '';
-                    const s = String(val);
+                    const s = String(Array.isArray(val) ? val[0] : val);
                     return s.replace(/^0+(?=\d)/, '');
                 };
 
@@ -1589,7 +1589,7 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-sid': data.general?.sid_ident || data.origin?.sid,
                     'b-star': data.general?.star_ident || data.destination?.star,
                     'b-initial-alt': fmt(data.general?.initial_altitude && parseInt(data.general.initial_altitude) < 20000 ? data.general.initial_altitude : ''), 
-                    'b-init-alt': fmt(data.general?.cruise_altitude || data.params?.cruise || data.params?.cruise_altitude || (data.general?.cruise_fl ? parseInt(data.general.cruise_fl)*100 : '')),
+                    'b-init-alt': fmt(data.general?.cruise_altitude || data.general?.initial_altitude || data.params?.cruise || (data.general?.cruise_fl ? parseInt(data.general.cruise_fl)*100 : '')),
                     'b-ga-alt': fmt(data.general?.missed_approach_altitude || data.destination?.missed_approach_altitude || data.general?.missed_approach_alt || data.destination?.missed_approach_alt || ''),
                     'b-dep-tl': fmt(data.origin?.trans_alt),
                     'b-arr-ta': fmt(data.destination?.trans_level ? parseInt(data.destination.trans_level)/10 : ''),
