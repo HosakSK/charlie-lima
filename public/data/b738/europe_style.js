@@ -244,7 +244,6 @@ window.initialChecklistData = [
           "#pm QHN %dep_qnh%",
           "#pm information %dep_atis%",
           "#pm contact %ground_dep% %ground_dep_freq% %callsign%. %bye_dep%.",
-          "#pause 5",
           "#pm %ground_dep% %hello_dep%, %callsign%, at stand %dep_gate% ready for pushback and startup",
           "#atc %callsign% , startup and pushback approved.",
           "#pm Startup and pushback approved, %callsign%"
@@ -452,10 +451,10 @@ window.initialChecklistData = [
           "#atc %callsign% contact %approach_dep% %approach_dep_freq% %bye_dep%.",
           "#pm %approach_dep_freq% %callsign% %bye_dep%.",
           "#pause",
-          "#pm %approach_dep_dep%  %callsign% %hello_dep%",
+          "#pm %approach_dep%  %callsign% %hello_dep%",
           "#pm climb via %sid%",
           "#pm to %initial_alt%",
-          "#atc %callsign% %approach_dep_dep% %hello_dep% identified",
+          "#atc %callsign% %approach_dep% %hello_dep% identified",
           "#atc climb to flight level %init_alt%",
           "#pm climb to flight level %init_alt% %callsign%"
         ]
