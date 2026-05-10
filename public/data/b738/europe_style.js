@@ -244,6 +244,7 @@ window.initialChecklistData = [
           "#pm QHN %dep_qnh%",
           "#pm information %dep_atis%",
           "#pm contact %ground_dep% %ground_dep_freq% %callsign%. %bye_dep%.",
+          "#pause",
           "#pm %ground_dep% %hello_dep%, %callsign%, at stand %dep_gate% ready for pushback and startup",
           "#atc %callsign% , startup and pushback approved.",
           "#pm Startup and pushback approved, %callsign%"
@@ -432,8 +433,8 @@ window.initialChecklistData = [
         "type": "fake_atc",
         "text": [
           "#pm %callsign% after airborne",
-          "#atc %callsign% climb to FL150",
-          "#pm climb to FL150 %callsign%"
+          "#atc %callsign% climb to flight level 200",
+          "#pm climb to flight level 200 %callsign%"
         ]
       },
       { "name": "Autobrake selector", "action": "Off", "type": "flow" },
@@ -452,8 +453,8 @@ window.initialChecklistData = [
           "#pm %approach_dep_freq% %callsign% %bye_dep%.",
           "#pause",
           "#pm %approach_dep%  %callsign% %hello_dep%",
-          "#pm climb via %sid%",
-          "#pm to %initial_alt%",
+          "#pm climbing via %sid%",
+          "#pm to flight level 200",
           "#atc %callsign% %approach_dep% %hello_dep% identified",
           "#atc climb to flight level %init_alt%",
           "#pm climb to flight level %init_alt% %callsign%"
@@ -555,9 +556,9 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
-          "#atc %callsign% when ready descent to %ga_alt%",
+          "#atc %callsign% when ready descent to flight level 200",
           "#atc expect runway %arr_rwy% via %star%",
-          "#pm when ready descent to %ga_alt%",
+          "#pm when ready descent flight level 200",
           "#pm runway %arr_rwy% via %star% %callsign%"
         ]
       },
@@ -575,9 +576,9 @@ window.initialChecklistData = [
           "#atc %callsign% contact %approach_arr% %approach_arr_freq% %bye_arr%",
           "#pm  contact %approach_arr_freq% %bye_arr% %callsign%",
           "#pause",
-          "#pm %approach_arr% %callsign% %hello_arr% descent to %ga_alt%",
-          "#atc %callsign% %approach_arr% %hello_arr% descent %ga_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established",
-          "#pm descent %ga_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established %callsign%"
+          "#pm %approach_arr% %callsign% %hello_arr% descent to flight level 200",
+          "#atc %callsign% %approach_arr% %hello_arr% descent %fap_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established",
+          "#pm descent %fap_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established %callsign%"
         ],
         "landingtype": "2+3"
       },

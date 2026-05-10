@@ -50,6 +50,8 @@ window.HELP_TRANSLATIONS = {
             p1: 'Press the clipboard button (bottom right) to open the Flight Briefing pad. You can <strong>drag & drop</strong> it anywhere on the screen:',
             ul: [
                 'Jot down ATC clearances, ATIS, QNH, runways, and V-speeds.',
+                '<strong>Briefing Variables:</strong> %callsign%, %dep_rwy%, %sid%, %initial_alt%, %init_alt%, %fap_alt%, %minima%, %ga_alt%, %vref%, etc.',
+                '<strong>ATC Variables:</strong> %hello_dep%, %bye_dep%, %ground_dep%, %tower_dep_freq%, %approach_arr%, etc.',
                 '<strong>The app can also generate and read a text briefing, but you must fill out the notepad fields first for it to work.</strong>'
             ],
             p2: 'If you want to hide the notepad, simply close it or drag it out of the way.'
@@ -278,6 +280,8 @@ window.HELP_TRANSLATIONS = {
             p1: 'Stisknutím tlačítka schránky (vpravo dole) otevřete poznámkový blok. Můžete jej <strong>přetáhnout</strong> kamkoli na obrazovku:',
             ul: [
                 'Poznamenejte si povolení ATC, ATIS, QNH, vzletové dráhy a V rychlosti.',
+                '<strong>Proměnné (Briefing):</strong> %callsign%, %dep_rwy%, %sid%, %initial_alt%, %init_alt%, %fap_alt%, %minima%, %ga_alt%, %vref% atd.',
+                '<strong>Proměnné (ATC):</strong> %hello_dep%, %bye_dep%, %ground_dep%, %tower_dep_freq%, %approach_arr% atd.',
                 '<strong>Aplikace umí také vygenerovat a přečíst textový briefing, ale pro správnou funkci musíte nejprve vyplnit příslušná pole v bloku.</strong>'
             ],
             p2: 'Pokud chcete poznámkový blok skrýt, jednoduše jej zavřete nebo odtáhněte stranou.'
