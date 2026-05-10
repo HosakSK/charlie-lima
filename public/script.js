@@ -529,6 +529,11 @@ async function loadAtcData() {
     }
 }
 
+function toTitleCase(str) {
+    if (!str) return '';
+    return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+
 async function getNewDbAirport(icao) {
     if (!icao || icao.length < 2) return null;
     const prefix = icao.substring(0, 1).toUpperCase();
@@ -640,7 +645,7 @@ async function updateAtcVariables() {
         }
         
         let prefix = isDep ? 'dep' : 'arr';
-        atcVariables['city_' + prefix] = apt.city || apt.name || icao;
+        atcVariables['city_' + prefix] = toTitleCase(apt.city || apt.name || icao);
         
         // Auto-Fill Placeholders (TA / ILS)
         if (isDep) {
@@ -675,7 +680,23 @@ async function updateAtcVariables() {
             if (!fObj) return false;
             let callsign = fObj.callsign;
             const isRadarRegion = ['CZ', 'SK', 'DE', 'AT', 'HU'].includes(apt.country);
-            if (isRadarRegion && fObj.type === 'APP') callsign = callsign.replace(/Approach/i, 'Radar');
+            
+            // Format to Title Case
+            callsign = toTitleCase(callsign);
+            
+            // Append Role if missing
+            if (fObj.type === 'DEL' && !callsign.toLowerCase().includes('delivery')) callsign += ' Delivery';
+            if (fObj.type === 'GND' && !callsign.toLowerCase().includes('ground')) callsign += ' Ground';
+            if (fObj.type === 'TWR' && !callsign.toLowerCase().includes('tower')) callsign += ' Tower';
+            if (fObj.type === 'APP') {
+                const suffix = isRadarRegion ? 'Radar' : 'Approach';
+                if (!callsign.toLowerCase().includes('approach') && !callsign.toLowerCase().includes('radar')) {
+                    callsign += ' ' + suffix;
+                } else if (isRadarRegion) {
+                    callsign = callsign.replace(/Approach/i, 'Radar');
+                }
+            }
+
             atcVariables[key] = callsign;
             atcVariables[key + '_freq'] = fObj.frequency;
             return true;
@@ -709,7 +730,7 @@ async function updateAtcVariables() {
         }
         
         if (fir) {
-            let fCall = fir.CALLSIGN || fir.callsign;
+            let fCall = toTitleCase(fir.CALLSIGN || fir.callsign);
             let fFreq = fir.MAIN_FRQ || fir.frequency;
             if (fFreq === '-') fFreq = null;
             
