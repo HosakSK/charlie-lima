@@ -36,11 +36,11 @@ window.initialChecklistData = [
       { "name": "Engine hydraulic quantity", "action": ">76 %", "type": "flow", "subtype": "simplify" },
       { "name": "Oil quantity", "action": ">10.8 l", "type": "flow", "subtype": "simplify" },
       { "name": "Flight deck access switch", "action": "Off & guarded", "type": "flow", "subtype": "simplify" },
-      { "name": "Flight deck door access system", "action": "Test", "type": "flow", "subtype": ["test", "simplify"] },
+      { "name": "Flight deck door access system", "action": "Test", "type": "flow", "subtype": ["test","simplify"] },
       { "name": "Maintenance documents", "action": "Verify", "type": "flow", "subtype": "simplify", "ifturnaround": "skip" },
       { "name": "Emergency equipment", "action": "Verify", "type": "flow", "subtype": "simplify" },
       { "name": "ELT switch", "action": " Arm & guarded", "type": "flow", "subtype": "simplify" },
-      { "name": "LE devices panel", "action": "Test", "type": "flow", "subtype": ["test", "simplify"] },
+      { "name": "LE devices panel", "action": "Test", "type": "flow", "subtype": ["test","simplify"] },
       { "name": "PSEU light", "action": "Off", "type": "flow", "subtype": "simplify" },
       { "name": "GPS lights", "action": "Off", "type": "flow", "subtype": "simplify" },
       { "name": "ILS lights", "action": "Off", "type": "flow", "subtype": "simplify" },
@@ -77,7 +77,7 @@ window.initialChecklistData = [
       { "name": "Engine valve closed light", "action": "On", "type": "flow", "subtype": "simplify" },
       { "name": "Spare valve closed light", "action": "On", "type": "flow", "subtype": "simplify" },
       { "name": "Filter bypass light", "action": "Off", "type": "flow", "subtype": "simplify" },
-      { "name": "Cross feed valve dial", "action": "Test", "type": "flow", "subtype": ["test", "simplify"] },
+      { "name": "Cross feed valve dial", "action": "Test", "type": "flow", "subtype": ["test","simplify"] },
       { "name": "Left forward fuel pump", "action": "On", "type": "flow", "ifturnaround": "skip" },
       { "name": "Battery discharge light", "action": "Off", "type": "flow", "subtype": "simplify" },
       { "name": "TR unit light", "action": "Off", "type": "flow", "subtype": "simplify" },
@@ -154,7 +154,7 @@ window.initialChecklistData = [
       { "name": "Speed brake lever", "action": "Down", "type": "flow", "subtype": "simplify" },
       { "name": "Reverse thrust levers", "action": "Down", "type": "flow", "subtype": "simplify" },
       { "name": "Thrust levers", "action": "Idle", "type": "flow", "subtype": "simplify" },
-      { "name": "Auto-throttle disengage switches", "action": "Test", "type": "flow", "subtype": ["test", "simplify"] },
+      { "name": "Auto-throttle disengage switches", "action": "Test", "type": "flow", "subtype": ["test","simplify"] },
       { "name": "Engine start levers", "action": "Cutoff", "type": "flow", "subtype": "simplify" },
       { "name": "Stab trim cut-out switch", "action": "Normal", "type": "flow", "subtype": "simplify" },
       { "name": "Flap lever", "action": "Zero", "type": "flow", "subtype": "simplify" },
@@ -206,7 +206,7 @@ window.initialChecklistData = [
       { "name": "ATC | Clearance", "action": "Receive", "type": "flow" },
       { "name": "Transponder code %squawk%", "action": "Set", "type": "flow" },
       { "name": "Transponder set to altitude only", "action": "Set", "type": "flow" },
-      { "name": "Fire control panel", "action": "Test", "type": "flow", "subtype": ["test", "simplify"] },
+      { "name": "Fire control panel", "action": "Test", "type": "flow", "subtype": ["test","simplify"] },
       { "name": "APU", "action": "Start", "type": "flow", "timer": 120, "timerLabel": "APU stab.", "timerAnnouncement": "Timer set, waiting for APU stabilization.", "ifturnaround": "skip" },
       { "name": "APU fault lights", "action": "Off", "type": "flow", "subtype": "simplify", "ifturnaround": "skip" },
       { "name": "APU bleed air switch", "action": "On", "type": "flow", "ifturnaround": "skip" },
@@ -240,13 +240,11 @@ window.initialChecklistData = [
           "#pm %callsign% ready for pushback and startup.",
           "#atc %callsign%, QHN %dep_qnh%",
           "#atc information %dep_atis%",
-          "#atc contact Ground %ground_dep_freq%",
+          "#atc contact %ground_dep% %ground_dep_freq%",
           "#pm QHN %dep_qnh%",
           "#pm information %dep_atis%",
-          "#pm contact Ground %ground_dep_freq% %callsign%. %bye_dep%.",
-          "#pause",
-          "#pm %ground_dep% %hello_dep%, %callsign% ready for pushback and startup",
-          "#pm from stand %dep_gate%",
+          "#pm contact %ground_dep% %ground_dep_freq% %callsign%. %bye_dep%.",
+          "#pm %ground_dep% %hello_dep%, %callsign%, at stand %dep_gate% ready for pushback and startup",
           "#atc %callsign% , startup and pushback approved.",
           "#pm Startup and pushback approved, %callsign%"
         ]
@@ -386,9 +384,8 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
-          "#atc %callsign% contact Tower on %tower_dep_freq% %bye_dep%",
-          "#pm Contact Tower on %tower_dep_freq% %bye_dep%.",
-          "#pause",
+          "#atc %callsign% contact %tower_dep% on %tower_dep_freq% %bye_dep%",
+          "#pm Contact %tower_dep% on %tower_dep_freq% %bye_dep%.",
           "#pm %tower_dep% %hello_dep%, %callsign%",
           "#atc %callsign% report ready for departure",
           "#pm report ready for departure %callsign%"
@@ -452,8 +449,9 @@ window.initialChecklistData = [
         "text": [
           "#atc %callsign% contact %delivery_dep% %delivery_dep_freq% %bye_dep%.",
           "#pm %delivery_dep_freq% %callsign% %bye_dep%.",
-          "#pause",
-          "#pm  %delivery_dep%  %callsign% %hello_dep%, climb via %sid% to %initial_alt%",
+          "#pm  %delivery_dep%  %callsign% %hello_dep%",
+          "#pm climb via %sid%",
+          "#pm to %initial_alt%",
           "#atc %callsign% %delivery_dep% %hello_dep% identified",
           "#atc climb to flight level %init_alt%",
           "#pm climb to flight level %init_alt% %callsign%"
@@ -481,7 +479,6 @@ window.initialChecklistData = [
         "text": [
           "#atc %callsign% contact %fir_dep%  %fir_dep_freq% %bye_dep%",
           "#pm contact %fir_dep%  %fir_dep_freq% %bye_dep% %callsign%",
-          "#pause",
           "#pm %fir_dep% %callsign% %hello_dep% climb to %init_alt%",
           "#atc %callsign% %fir_dep% %hello_dep% identified"
         ]
@@ -512,8 +509,7 @@ window.initialChecklistData = [
         "type": "fake_atc",
         "text": [
           "#atc %callsign% contact %fir_arr% %fir_arr_freq% %bye_dep%",
-          "#pm  contact %fir_arr_freq% %bye_dep% %callsign%",
-          "#pause",
+          "#pm contact %fir_arr_freq% %bye_dep% %callsign%",
           "#pm %fir_arr% %callsign% %hello_arr% flight level %init_alt%",
           "#atc %callsign% %fir_arr% %hello_arr% identified"
         ]
@@ -574,7 +570,6 @@ window.initialChecklistData = [
         "text": [
           "#atc %callsign% contact %approach_arr% %approach_arr_freq% %bye_arr%",
           "#pm  contact %approach_arr_freq% %bye_arr% %callsign%",
-          "#pause",
           "#pm %approach_arr% %callsign% %hello_arr% descent to %ga_alt%",
           "#atc %callsign% %fir_arr% %hello_arr% descent %ga_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established",
           "#pm descent %ga_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established %callsign%"
@@ -588,7 +583,6 @@ window.initialChecklistData = [
         "text": [
           "#atc %callsign% contact %approach_arr% %approach_arr_freq% %bye_arr%",
           "#pm  contact %approach_arr_freq% %bye_arr% %callsign%",
-          "#pause",
           "#pm %approach_arr% %callsign% %hello_arr% descent to %ga_alt%",
           "#atc %callsign% %fir_arr% %hello_arr% descent %ga_alt%, cleared RNAV approach %arr_rwy% via %star%, report %ga_alt%",
           "#pm descent %ga_alt%, cleared RNAV approach %arr_rwy% via %star%, report %ga_alt% %callsign%"
@@ -628,7 +622,6 @@ window.initialChecklistData = [
           "#pm %callsign% ILS established",
           "#atc %callsign% contact tower on %tower_arr_freq% %bye_arr%",
           "#pm contact tower on %tower_arr_freq% %bye_arr% %callsign%",
-          "#pause",
           "#pm %tower_arr% %callsign% %hello_arr%  landing on runway %arr_rwy%",
           "#atc %callsign% %tower_arr% %hello_arr% number 1",
           "#pm number 1 %callsign%"
@@ -643,7 +636,6 @@ window.initialChecklistData = [
           "#pm %callsign% at %ga_alt%",
           "#atc %callsign% contact tower on %tower_arr_freq% %bye_arr%",
           "#pm contact tower on %tower_arr_freq% %bye_arr% %callsign%",
-          "#pause",
           "#pm %tower_arr% %callsign% %hello_arr%  landing on runway %arr_rwy%",
           "#atc %callsign% %tower_arr% %hello_arr% number 1",
           "#pm number 1 %callsign%"
@@ -700,7 +692,6 @@ window.initialChecklistData = [
         "text": [
           "#atc %callsign% contact ground on %ground_arr_freq% %bye_arr%",
           "#pm %ground_arr_freq% %bye_arr% %callsign%",
-          "#pause",
           "#pm %ground_arr% %callsign% %hello_arr%",
           "#atc %callsign% %ground_arr% %hello_arr% taxi to %gate% via %taxi_in%",
           "#pm taxi to %gate% via %taxi_in% %callsign%"
