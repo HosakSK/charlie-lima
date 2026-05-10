@@ -651,7 +651,7 @@ async function updateAtcVariables() {
         if (isDep) {
             // 1. Transition Altitude (Field: TA, ID: b-dep-tl)
             const taEl = document.getElementById('b-dep-tl');
-            if (taEl && apt.ta) {
+            if (taEl && apt.ta && taEl.value === "") {
                 taEl.value = apt.ta;
             }
 
@@ -669,7 +669,7 @@ async function updateAtcVariables() {
                 }
 
                 if (preciseAlt && preciseAlt !== '-') {
-                    initAltEl.value = preciseAlt;
+                    if (initAltEl.value === "") initAltEl.value = preciseAlt;
                     initAltEl.placeholder = "5000"; // fallback placeholder
                 } else {
                     // Region-based placeholder logic
@@ -678,7 +678,6 @@ async function updateAtcVariables() {
                     if (icaoU.startsWith('K')) regionPh = "18000";
                     else if (icaoU.startsWith('P') && (icaoU.startsWith('PH') || icaoU.startsWith('PA'))) regionPh = "18000";
                     
-                    initAltEl.value = "";
                     initAltEl.placeholder = regionPh;
                 }
             }
@@ -696,15 +695,15 @@ async function updateAtcVariables() {
                     let normRwy = rwy;
                     if (/^\d[LR]?$/.test(rwy)) normRwy = "0" + rwy;
 
-                    if (fapAltEl) {
+                    if (fapAltEl && fapAltEl.value === "") {
                         const val = newApt[`RWY${normRwy}_ILS.ALT`];
                         if (val && val !== '-') fapAltEl.value = val;
                     }
-                    if (ilsFreqEl) {
+                    if (ilsFreqEl && ilsFreqEl.value === "") {
                         const val = newApt[`RWY_${normRwy}_ILS_FRQ`];
                         if (val && val !== '-') ilsFreqEl.value = val;
                     }
-                    if (courseEl) {
+                    if (courseEl && courseEl.value === "") {
                         const val = newApt[`RWY_${normRwy}_ILS_CRS`];
                         if (val && val !== '-') courseEl.value = val;
                     }
