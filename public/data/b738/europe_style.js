@@ -628,6 +628,7 @@ window.initialChecklistData = [
           "#pm %callsign% ILS established",
           "#atc %callsign% contact tower on %tower_arr_freq% %bye_arr%",
           "#pm contact tower on %tower_arr_freq% %bye_arr% %callsign%",
+          "#pause",
           "#pm %tower_arr% %callsign% %hello_arr%  landing on runway %arr_rwy%",
           "#atc %callsign% %tower_arr% %hello_arr% number 1",
           "#pm number 1 %callsign%"
