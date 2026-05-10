@@ -1,6 +1,6 @@
 {
   "name": "charlie-lima",
-  "version": "3.3.32",
+  "version": "3.3.33",
   "private": true,
   "scripts": {
     "dev": "next dev",

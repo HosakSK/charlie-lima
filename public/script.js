@@ -647,12 +647,41 @@ async function updateAtcVariables() {
         let prefix = isDep ? 'dep' : 'arr';
         atcVariables['city_' + prefix] = toTitleCase(apt.city || apt.name || icao);
         
-        // Auto-Fill Placeholders (TA / ILS)
+        // Auto-Fill / Placeholders (TA / INIT ALT)
         if (isDep) {
-            const taEl = document.getElementById('b-ta');
-            if (taEl && apt.ta) taEl.placeholder = apt.ta;
+            // 1. Transition Altitude (Field: TA, ID: b-dep-tl)
+            const taEl = document.getElementById('b-dep-tl');
+            if (taEl && apt.ta) {
+                taEl.value = apt.ta;
+            }
+
+            // 2. Initial Altitude (Field: INIT ALT, ID: b-initial-alt)
             const initAltEl = document.getElementById('b-initial-alt');
-            if (initAltEl && newApt && newApt.TA) initAltEl.placeholder = newApt.TA; // Often same
+            if (initAltEl) {
+                const rwyEl = document.getElementById('b-dep-rwy');
+                const rwy = rwyEl ? rwyEl.value.toUpperCase().trim() : '';
+                const cleanRwy = rwy.replace(/^0+/, ''); // e.g. 04R -> 4R
+
+                let preciseAlt = null;
+                if (newApt) {
+                    // Try Runway-specific first, then general
+                    preciseAlt = newApt[`RWY_${cleanRwy}_INIT_CLIMB`] || newApt.INIT_CLIMB;
+                }
+
+                if (preciseAlt && preciseAlt !== '-') {
+                    initAltEl.value = preciseAlt;
+                    initAltEl.placeholder = "5000"; // fallback placeholder
+                } else {
+                    // Region-based placeholder logic
+                    let regionPh = "5000";
+                    const icaoU = icao.toUpperCase();
+                    if (icaoU.startsWith('K')) regionPh = "18000";
+                    else if (icaoU.startsWith('P') && (icaoU.startsWith('PH') || icaoU.startsWith('PA'))) regionPh = "18000";
+                    
+                    initAltEl.value = "";
+                    initAltEl.placeholder = regionPh;
+                }
+            }
         }
 
         // Greetings
@@ -1529,8 +1558,8 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-arr-rwy': data.destination?.plan_rwy,
                     'b-sid': data.general?.sid_ident || data.origin?.sid,
                     'b-star': data.general?.star_ident || data.destination?.star,
-                    'b-initial-alt': '', 
-                    'b-init-alt': fmt(data.general?.cruise_altitude || data.general?.initial_altitude),
+                    'b-initial-alt': fmt(data.general?.initial_altitude && parseInt(data.general.initial_altitude) < 20000 ? data.general.initial_altitude : ''), 
+                    'b-init-alt': fmt(data.general?.cruise_altitude),
                     'b-dep-tl': fmt(data.origin?.trans_alt),
                     'b-arr-ta': fmt(data.destination?.trans_level ? parseInt(data.destination.trans_level)/10 : ''),
                     'b-taxi-out': data.origin?.taxi_out_route,
