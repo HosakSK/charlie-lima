@@ -386,6 +386,7 @@ window.initialChecklistData = [
         "text": [
           "#atc %callsign% contact %tower_dep% on %tower_dep_freq% %bye_dep%",
           "#pm Contact %tower_dep% on %tower_dep_freq% %bye_dep%.",
+          "#pause",
           "#pm %tower_dep% %hello_dep%, %callsign%",
           "#atc %callsign% report ready for departure",
           "#pm report ready for departure %callsign%"
@@ -447,12 +448,13 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
-          "#atc %callsign% contact %delivery_dep% %delivery_dep_freq% %bye_dep%.",
-          "#pm %delivery_dep_freq% %callsign% %bye_dep%.",
-          "#pm  %delivery_dep%  %callsign% %hello_dep%",
+          "#atc %callsign% contact %approach_dep% %approach_dep_freq% %bye_dep%.",
+          "#pm %approach_dep_freq% %callsign% %bye_dep%.",
+          "#pause",
+          "#pm %approach_dep_dep%  %callsign% %hello_dep%",
           "#pm climb via %sid%",
           "#pm to %initial_alt%",
-          "#atc %callsign% %delivery_dep% %hello_dep% identified",
+          "#atc %callsign% %approach_dep_dep% %hello_dep% identified",
           "#atc climb to flight level %init_alt%",
           "#pm climb to flight level %init_alt% %callsign%"
         ]
@@ -479,6 +481,7 @@ window.initialChecklistData = [
         "text": [
           "#atc %callsign% contact %fir_dep%  %fir_dep_freq% %bye_dep%",
           "#pm contact %fir_dep%  %fir_dep_freq% %bye_dep% %callsign%",
+          "#pause",
           "#pm %fir_dep% %callsign% %hello_dep% climb to %init_alt%",
           "#atc %callsign% %fir_dep% %hello_dep% identified"
         ]
@@ -510,6 +513,7 @@ window.initialChecklistData = [
         "text": [
           "#atc %callsign% contact %fir_arr% %fir_arr_freq% %bye_dep%",
           "#pm contact %fir_arr_freq% %bye_dep% %callsign%",
+          "#pause",
           "#pm %fir_arr% %callsign% %hello_arr% flight level %init_alt%",
           "#atc %callsign% %fir_arr% %hello_arr% identified"
         ]
@@ -570,8 +574,9 @@ window.initialChecklistData = [
         "text": [
           "#atc %callsign% contact %approach_arr% %approach_arr_freq% %bye_arr%",
           "#pm  contact %approach_arr_freq% %bye_arr% %callsign%",
+          "#pause",
           "#pm %approach_arr% %callsign% %hello_arr% descent to %ga_alt%",
-          "#atc %callsign% %fir_arr% %hello_arr% descent %ga_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established",
+          "#atc %callsign% %approach_arr% %hello_arr% descent %ga_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established",
           "#pm descent %ga_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established %callsign%"
         ],
         "landingtype": "2+3"
