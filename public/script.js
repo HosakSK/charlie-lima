@@ -1588,7 +1588,12 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-sid': data.general?.sid_ident || data.origin?.sid,
                     'b-star': data.general?.star_ident || data.destination?.star,
                     'b-initial-alt': fmt(data.general?.initial_altitude && parseInt(data.general.initial_altitude) < 20000 ? data.general.initial_altitude : ''), 
-                    'b-init-alt': fmt(data.general?.cruise_altitude || data.general?.initial_altitude || data.params?.cruise || (data.general?.cruise_fl ? parseInt(data.general.cruise_fl)*100 : '')),
+                    'b-init-alt': (() => {
+                        const raw = data.general?.cruise_altitude || data.general?.initial_altitude || data.params?.cruise || (data.general?.cruise_fl ? parseInt(data.general.cruise_fl)*100 : '');
+                        const v = fmt(raw);
+                        if (v && parseInt(v) > 500) return Math.floor(parseInt(v) / 100).toString();
+                        return v;
+                    })(),
                     'b-ga-alt': fmt(data.general?.missed_approach_altitude || data.destination?.missed_approach_altitude || data.general?.missed_approach_alt || data.destination?.missed_approach_alt || ''),
                     'b-dep-tl': fmt(data.origin?.trans_alt),
                     'b-arr-ta': fmt(data.destination?.trans_level ? parseInt(data.destination.trans_level)/10 : ''),
@@ -1655,6 +1660,10 @@ function parseVariables(text, forSpeech = false) {
 
             if ((id === 'b-dep-rwy' || id === 'b-arr-rwy') && forSpeech) {
                 val = formatRunway(val);
+            }
+
+            if (id === 'b-init-alt' && forSpeech && val.length === 3) {
+                val = "flight level " + val;
             }
 
             if (val) {
