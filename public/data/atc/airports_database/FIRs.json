@@ -1,4 +1,4 @@
-﻿{
+{
     "KZOB":  {
                  "ICAO":  "KZOB",
                  "NAME":  "Cleveland",
@@ -651,7 +651,7 @@
                  "ICAO":  "PHZH",
                  "NAME":  "Honolulu",
                  "CALLSIGN":  "HONOLULU RADAR",
-                 "MAIN_FRQ":  "-"
+                 "MAIN_FRQ":  "126.50"
              },
     "TJZS":  {
                  "ICAO":  "TJZS",
