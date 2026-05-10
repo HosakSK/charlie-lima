@@ -67,6 +67,7 @@ For arrival-side variables (`_arr`), the hierarchy flows "downwards" from the ai
 - **Ground:** `GND` → `TWR` → `APP_ARR` → `APP_DEP` → `FIR`
 
 *Note: If a specific Arrival controller is missing, the system checks for a Departure controller (`APP_DEP`) before falling back to the FIR.*
+*Note: FIR (Center) serves as the ultimate fallback for ALL positions if no local frequency is found in the database.*
 
 ---
 
@@ -111,8 +112,19 @@ These variables can be used in any checklist item or `fake_atc` block using the 
 
 When an airport is resolved, the engine automatically populates the **placeholders** in the Briefing UI if they are empty:
 
-- **Transition Altitude (TA):** If `TA` exists in the database, it is set as the placeholder for the `b-ta` and `b-initial-alt` fields.
-- **ILS Data:** The database contains `RWY_ILS_FRQ` and `RWY_ILS_CRS` for specific runways. This data is stored in the airport object and can be used for automatic frequency/course suggestion when a runway is selected.
+- **Transition Altitude (TA):** If `TA` exists in the database, it is set as the placeholder for the `b-dep-tl` and `b-initial-alt` fields.
+- **Initial Altitude (INIT ALT):** The engine first looks for runway-specific initial climb data (`RWY_xx_INIT_CLIMB`). If missing, it uses a regional default (e.g., `18,000ft` for North American `K` prefixes).
+- **FAP Altitude:** Fetched from the `RWY_xx_ILS.ALT` field for the selected arrival runway.
+- **ILS Data:** The database contains `RWY_ILS_FRQ` and `RWY_ILS_CRS` for specific runways. This data is used for automatic frequency/course suggestion when a runway is selected.
+
+---
+
+## 8. Airline Callsign Mapping
+
+To improve the realism of voice synthesis, the engine includes a mapping of ICAO airline prefixes to their spoken telephony callsigns.
+
+- **Mechanism:** When a callsign is spoken (in `fake_atc` or briefing), the engine checks the 3-letter prefix against a dictionary (e.g., `RYR` → `"Ryanair"`, `BAW` → `"Speedbird"`, `TVQ` → `"Smartwings"`).
+- **Fallback:** If no match is found, the callsign is spoken as-is or character-by-character if it contains numbers.
 
 ---
 

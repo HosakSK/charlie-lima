@@ -122,6 +122,7 @@ charlie-lima/
 │   ├── subdomain_routing.md        # Subdomain routing logic
 │   ├── fake_atc.md                 # Fake ATC feature documentation
 │   ├── briefing_atc_engine.md      # ★ Briefing & ATC Engine technical details
+│   ├── settings_features.md        # User settings and functional toggles
 │   └── next_steps.md               # Future roadmap (in Slovak)
 ├── package.json                    # Version, dependencies, npm scripts
 ├── next.config.ts                  # Next.js configuration (minimal)
