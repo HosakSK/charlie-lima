@@ -529,7 +529,6 @@ window.initialChecklistData = [
       { "name": "ILS altitude %ga_alt%", "action": "Check", "landingtype": "3+2", "type": "flow" },
       { "name": "Decision height %minima%", "action": "Set", "type": "flow" },
       { "name": "MCP bank angle selector", "action": "25°", "type": "flow" },
-      { "name": "Landing altitude", "action": "Set", "type": "checklist item" },
       {
         "name": "Approach briefing",
         "action": "",
@@ -546,6 +545,7 @@ window.initialChecklistData = [
           "Approach briefing complete."
         ]
       },
+      { "name": "Landing altitude", "action": "Set", "type": "checklist item" },
       { "name": "Recall", "action": "Check", "type": "checklist item" },
       { "name": "Autobrake ", "action": "%autobrake%", "type": "checklist item" },
       { "name": "VREF ", "action": "%vref%", "type": "checklist item" },
@@ -724,8 +724,8 @@ window.initialChecklistData = [
           "#atc %callsign% %bye_arr%"
         ]
       },
-      { "name": "APU gen.", "action": "On", "type": "flow" },
       { "name": "ATC | Close call", "action": "Perform", "type": "flow" },
+      { "name": "APU gen.", "action": "On", "type": "flow" },
       { "name": "Isolation valve switch", "action": "Open", "type": "flow" },
       { "name": "APU bleed", "action": "On", "type": "flow" },
       { "name": "Engine bleed", "action": "Off", "type": "flow" },
