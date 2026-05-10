@@ -1587,8 +1587,8 @@ if (simbriefFetchBtn && simbriefIdInput) {
                     'b-sid': data.general?.sid_ident || data.origin?.sid,
                     'b-star': data.general?.star_ident || data.destination?.star,
                     'b-initial-alt': fmt(data.general?.initial_altitude && parseInt(data.general.initial_altitude) < 20000 ? data.general.initial_altitude : ''), 
-                    'b-init-alt': fmt(data.general?.cruise_altitude),
-                    'b-ga-alt': fmt(data.general?.missed_approach_altitude),
+                    'b-init-alt': fmt(data.general?.cruise_altitude || (data.general?.cruise_fl ? parseInt(data.general.cruise_fl)*100 : '')),
+                    'b-ga-alt': fmt(data.general?.missed_approach_altitude || data.destination?.missed_approach_altitude || ''),
                     'b-dep-tl': fmt(data.origin?.trans_alt),
                     'b-arr-ta': fmt(data.destination?.trans_level ? parseInt(data.destination.trans_level)/10 : ''),
                     'b-taxi-out': data.origin?.taxi_out_route,
@@ -1598,7 +1598,9 @@ if (simbriefFetchBtn && simbriefIdInput) {
 
                 for (const [id, value] of Object.entries(fields)) {
                     const el = document.getElementById(id);
-                    if (el && value) el.value = value;
+                    if (el && value !== undefined && value !== null && value !== '') {
+                        el.value = value;
+                    }
                 }
                 
                 updateFromRwy();
