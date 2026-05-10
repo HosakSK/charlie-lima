@@ -94,7 +94,6 @@ charlie-lima/
 │   │   ├── (creator)/creator/      # Dataset Creator route
 │   │   └── api/                    # Next.js API Routes (server-side)
 │   │       ├── datasets/route.ts   # Lists available checklist datasets
-│   │       ├── airports/route.ts   # Airport ATC frequency lookup
 │   │       ├── simbrief/route.ts   # SimBrief API proxy
 │   │       └── atis/route.ts       # VATSIM ATIS proxy
 │   ├── data/
@@ -122,6 +121,7 @@ charlie-lima/
 │   ├── versioning.md               # Versioning system explained
 │   ├── subdomain_routing.md        # Subdomain routing logic
 │   ├── fake_atc.md                 # Fake ATC feature documentation
+│   ├── briefing_atc_engine.md      # ★ Briefing & ATC Engine technical details
 │   └── next_steps.md               # Future roadmap (in Slovak)
 ├── package.json                    # Version, dependencies, npm scripts
 ├── next.config.ts                  # Next.js configuration (minimal)
@@ -160,7 +160,6 @@ All API routes are server-side Next.js Route Handlers in `src/app/api/`:
 | Route | Method | Purpose |
 |---|---|---|
 | `/api/datasets` | GET | Scans `public/data/` for aircraft subdirectories and their `.js` dataset files |
-| `/api/airports?icao=XXXX` | GET | Returns ATC frequencies for a given ICAO airport code from `airports_atc.json` |
 | `/api/simbrief?userid=...` | GET | Proxies request to SimBrief API (`xml.fetcher.php`) and returns JSON |
 | `/api/atis?icao=XXXX` | GET | Fetches live VATSIM data and extracts ATIS for the given airport |
 
@@ -255,12 +254,12 @@ All user preferences are stored in `localStorage`:
 - For `fake_atc` items, the ATC voice uses the **opposite gender** from the pilot voice for realism
 - Manual pause can be inserted in text using `|` character in the dataset
 
-### 8.5 Flight Briefing
-- A floating draggable panel with fields for departure/arrival data
-- All fields auto-save to `localStorage` on every keystroke
-- Data is referenced by checklist items using `%variable%` placeholders
-- **SimBrief sync** (`/api/simbrief`) auto-fills most fields from an active flight plan
-- **METAR sync** (`/api/atis`) fetches live VATSIM ATIS code and weather
+### 8.5 Flight Briefing & ATC Engine
+- A floating draggable panel with fields for departure/arrival data.
+- Data is resolved from a multi-layered hierarchy (SimBrief, Live METAR, Regional JSONs, FIR).
+- **Smart Loading:** Regional database files are loaded on-demand based on ICAO prefix.
+- **Proximity Fallback:** Frequencies are resolved using a logical chain (e.g., DEL → GND → TWR).
+- For full technical details, see [Briefing & ATC Engine](briefing_atc_engine.md).
 
 ### 8.6 Fake ATC Engine
 - Loaded via `loadAtcData()` which fetches three JSON files in parallel

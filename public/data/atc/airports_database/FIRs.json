@@ -1,0 +1,1664 @@
+﻿{
+    "KZOB":  {
+                 "ICAO":  "KZOB",
+                 "NAME":  "Cleveland",
+                 "CALLSIGN":  "CLEVELAND",
+                 "MAIN_FRQ":  "132.25"
+             },
+    "UKDV":  {
+                 "ICAO":  "UKDV",
+                 "NAME":  "Dnipro",
+                 "CALLSIGN":  "DNIPRO RADAR",
+                 "MAIN_FRQ":  "119.40"
+             },
+    "SAMF":  {
+                 "ICAO":  "SAMF",
+                 "NAME":  "Mendoza",
+                 "CALLSIGN":  "MENDOZA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UCFO":  {
+                 "ICAO":  "UCFO",
+                 "NAME":  "Osh",
+                 "CALLSIGN":  "OSH RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VLVT":  {
+                 "ICAO":  "VLVT",
+                 "NAME":  "Vientiane",
+                 "CALLSIGN":  "VIENTIANE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LFEE":  {
+                 "ICAO":  "LFEE",
+                 "NAME":  "Reims",
+                 "CALLSIGN":  "REIMS RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SBAO":  {
+                 "ICAO":  "SBAO",
+                 "NAME":  "Atlantico (Completo) - Atlantico",
+                 "CALLSIGN":  "ATLANTICO (COMPLETO) - ATLANTICO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "EHAA":  {
+                 "ICAO":  "EHAA",
+                 "NAME":  "Amsterdam (Up to FL245)",
+                 "CALLSIGN":  "AMSTERDAM (UP TO FL245) RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LGGG":  {
+                 "ICAO":  "LGGG",
+                 "NAME":  "Athinai ACC (Above FL325) - Athinai",
+                 "CALLSIGN":  "ATHINAI ACC (ABOVE FL325) - ATHINAI RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "MMID":  {
+                 "ICAO":  "MMID",
+                 "NAME":  "Merida",
+                 "CALLSIGN":  "MERIDA CONTROL",
+                 "MAIN_FRQ":  "128.30"
+             },
+    "ESMM":  {
+                 "ICAO":  "ESMM",
+                 "NAME":  "Malmo ACC - Sweden",
+                 "CALLSIGN":  "MALMO ACC - SWEDEN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "MMTY":  {
+                 "ICAO":  "MMTY",
+                 "NAME":  "Monterrey",
+                 "CALLSIGN":  "MONTERREY CONTROL",
+                 "MAIN_FRQ":  "125.42"
+             },
+    "LIMM":  {
+                 "ICAO":  "LIMM",
+                 "NAME":  "Milano",
+                 "CALLSIGN":  "MILANO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "CZEG":  {
+                 "ICAO":  "CZEG",
+                 "NAME":  "Edmonton",
+                 "CALLSIGN":  "EDMONTON CENTRE",
+                 "MAIN_FRQ":  "134.02"
+             },
+    "LIRR":  {
+                 "ICAO":  "LIRR",
+                 "NAME":  "Roma",
+                 "CALLSIGN":  "ROMA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZLC":  {
+                 "ICAO":  "KZLC",
+                 "NAME":  "Salt Lake",
+                 "CALLSIGN":  "SALT LAKE CITY",
+                 "MAIN_FRQ":  "132.42"
+             },
+    "ESOS":  {
+                 "ICAO":  "ESOS",
+                 "NAME":  "Stockholm ACC - Sweden",
+                 "CALLSIGN":  "STOCKHOLM ACC - SWEDEN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SEFG":  {
+                 "ICAO":  "SEFG",
+                 "NAME":  "Guayaquil",
+                 "CALLSIGN":  "GUAYAQUIL",
+                 "MAIN_FRQ":  "123.90"
+             },
+    "KZNY":  {
+                 "ICAO":  "KZNY",
+                 "NAME":  "New York",
+                 "CALLSIGN":  "NEW YORK",
+                 "MAIN_FRQ":  "133.35"
+             },
+    "EDMM":  {
+                 "ICAO":  "EDMM",
+                 "NAME":  "Muenchen",
+                 "CALLSIGN":  "MUENCHEN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "OKAC":  {
+                 "ICAO":  "OKAC",
+                 "NAME":  "Kuwait",
+                 "CALLSIGN":  "KUWAIT RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "EFIN":  {
+                 "ICAO":  "EFIN",
+                 "NAME":  "Helsinki",
+                 "CALLSIGN":  "HELSINKI CONTROL",
+                 "MAIN_FRQ":  "126.30"
+             },
+    "UKOV":  {
+                 "ICAO":  "UKOV",
+                 "NAME":  "Odesa",
+                 "CALLSIGN":  "ODESA RADAR",
+                 "MAIN_FRQ":  "128.52"
+             },
+    "EDGG":  {
+                 "ICAO":  "EDGG",
+                 "NAME":  "Langen",
+                 "CALLSIGN":  "LANGEN RADAR",
+                 "MAIN_FRQ":  "129.36"
+             },
+    "UGGG":  {
+                 "ICAO":  "UGGG",
+                 "NAME":  "Tbilisi",
+                 "CALLSIGN":  "TBILISI RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "NFFJ":  {
+                 "ICAO":  "NFFJ",
+                 "NAME":  "Nadi",
+                 "CALLSIGN":  "NADI",
+                 "MAIN_FRQ":  "126.70"
+             },
+    "UATT":  {
+                 "ICAO":  "UATT",
+                 "NAME":  "Aktobe",
+                 "CALLSIGN":  "AKTOBE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "FLFI":  {
+                 "ICAO":  "FLFI",
+                 "NAME":  "Lusaka",
+                 "CALLSIGN":  "LUSAKA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "EKDK":  {
+                 "ICAO":  "EKDK",
+                 "NAME":  "Kobenhavn",
+                 "CALLSIGN":  "KOBENHAVN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "ULLL":  {
+                 "ICAO":  "ULLL",
+                 "NAME":  "Sankt-Peterburg ACC - Peterburg",
+                 "CALLSIGN":  "SANKT-PETERBURG ACC - PETERBURG RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "FMMM":  {
+                 "ICAO":  "FMMM",
+                 "NAME":  "Antananarivo",
+                 "CALLSIGN":  "ANTANANARIVO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "PGZU":  {
+                 "ICAO":  "PGZU",
+                 "NAME":  "Guam",
+                 "CALLSIGN":  "GUAM",
+                 "MAIN_FRQ":  "120.50"
+             },
+    "ZJSA":  {
+                 "ICAO":  "ZJSA",
+                 "NAME":  "Sanya FIR - Sanya",
+                 "CALLSIGN":  "SANYA FIR - SANYA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VTBB":  {
+                 "ICAO":  "VTBB",
+                 "NAME":  "Bangkok ACC - Bangkok",
+                 "CALLSIGN":  "BANGKOK ACC - BANGKOK RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "FNAN":  {
+                 "ICAO":  "FNAN",
+                 "NAME":  "Luanda",
+                 "CALLSIGN":  "LUANDA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SLLF":  {
+                 "ICAO":  "SLLF",
+                 "NAME":  "La Paz",
+                 "CALLSIGN":  "LA PAZ",
+                 "MAIN_FRQ":  "128.20"
+             },
+    "SMPM":  {
+                 "ICAO":  "SMPM",
+                 "NAME":  "Paramaribo",
+                 "CALLSIGN":  "PARAMARIBO",
+                 "MAIN_FRQ":  "123.90"
+             },
+    "UHHH":  {
+                 "ICAO":  "UHHH",
+                 "NAME":  "Khabarovsk",
+                 "CALLSIGN":  "KHABAROVSK RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "RKDA":  {
+                 "ICAO":  "RKDA",
+                 "NAME":  "Daegu ACC - Incheon",
+                 "CALLSIGN":  "DAEGU ACC - INCHEON RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "NZCK":  {
+                 "ICAO":  "NZCK",
+                 "NAME":  "Christchurch (Kaikoura)",
+                 "CALLSIGN":  "CHRISTCHURCH (KAIKOURA) RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "DIII":  {
+                 "ICAO":  "DIII",
+                 "NAME":  "Abidjan",
+                 "CALLSIGN":  "ABIDJAN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LFFF":  {
+                 "ICAO":  "LFFF",
+                 "NAME":  "Paris",
+                 "CALLSIGN":  "PARIS CONTROL",
+                 "MAIN_FRQ":  "118.72"
+             },
+    "LJLA":  {
+                 "ICAO":  "LJLA",
+                 "NAME":  "Ljubljana",
+                 "CALLSIGN":  "LJUBLJANA RADAR",
+                 "MAIN_FRQ":  "132.48"
+             },
+    "SGFA":  {
+                 "ICAO":  "SGFA",
+                 "NAME":  "Asuncion",
+                 "CALLSIGN":  "ASUNCION RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UKLV":  {
+                 "ICAO":  "UKLV",
+                 "NAME":  "Lviv",
+                 "CALLSIGN":  "LVIV RADAR",
+                 "MAIN_FRQ":  "120.52"
+             },
+    "DGAC":  {
+                 "ICAO":  "DGAC",
+                 "NAME":  "Accra",
+                 "CALLSIGN":  "ACCRA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UACN":  {
+                 "ICAO":  "UACN",
+                 "NAME":  "Astana",
+                 "CALLSIGN":  "ASTANA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "EVRR":  {
+                 "ICAO":  "EVRR",
+                 "NAME":  "Riga",
+                 "CALLSIGN":  "RIGA CONTROL",
+                 "MAIN_FRQ":  "133.20"
+             },
+    "SBRE":  {
+                 "ICAO":  "SBRE",
+                 "NAME":  "Recife (Completo) - Recife",
+                 "CALLSIGN":  "RECIFE (COMPLETO) - RECIFE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LTAA":  {
+                 "ICAO":  "LTAA",
+                 "NAME":  "Ankara",
+                 "CALLSIGN":  "ANKARA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "ZYSH":  {
+                 "ICAO":  "ZYSH",
+                 "NAME":  "Shenyang FIR - Shenyang",
+                 "CALLSIGN":  "SHENYANG FIR - SHENYANG RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LAAA":  {
+                 "ICAO":  "LAAA",
+                 "NAME":  "Tirana",
+                 "CALLSIGN":  "TIRANA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "ZWUQ":  {
+                 "ICAO":  "ZWUQ",
+                 "NAME":  "Urumqi FIR - Urumqi",
+                 "CALLSIGN":  "URUMQI FIR - URUMQI RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "GLRB":  {
+                 "ICAO":  "GLRB",
+                 "NAME":  "Roberts",
+                 "CALLSIGN":  "ROBERTS RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "OIIX":  {
+                 "ICAO":  "OIIX",
+                 "NAME":  "Tehran",
+                 "CALLSIGN":  "TEHRAN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VNSM":  {
+                 "ICAO":  "VNSM",
+                 "NAME":  "Kathmandu",
+                 "CALLSIGN":  "KATHMANDU RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "OSTT":  {
+                 "ICAO":  "OSTT",
+                 "NAME":  "Damascus",
+                 "CALLSIGN":  "DAMASCUS CONTROL",
+                 "MAIN_FRQ":  "120.00"
+             },
+    "HAAA":  {
+                 "ICAO":  "HAAA",
+                 "NAME":  "Addis Ababa",
+                 "CALLSIGN":  "ADDIS ABABA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SKEC":  {
+                 "ICAO":  "SKEC",
+                 "NAME":  "Barranquilla",
+                 "CALLSIGN":  "BARRANQUILLA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "CZYZ":  {
+                 "ICAO":  "CZYZ",
+                 "NAME":  "Toronto",
+                 "CALLSIGN":  "TORONTO CENTRE",
+                 "MAIN_FRQ":  "135.50"
+             },
+    "YGUN":  {
+                 "ICAO":  "YGUN",
+                 "NAME":  "Melbourne (Gundagai) 133.15",
+                 "CALLSIGN":  "MELBOURNE (GUNDAGAI) 133.15 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "OMAE":  {
+                 "ICAO":  "OMAE",
+                 "NAME":  "U.A.E",
+                 "CALLSIGN":  "U.A.E RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZJX":  {
+                 "ICAO":  "KZJX",
+                 "NAME":  "Jacksonville",
+                 "CALLSIGN":  "JACKSONVILLE",
+                 "MAIN_FRQ":  "126.75"
+             },
+    "ZMUB":  {
+                 "ICAO":  "ZMUB",
+                 "NAME":  "Ulaanbaatar FIR - Ulaanbaatar",
+                 "CALLSIGN":  "ULAANBAATAR FIR - ULAANBAATAR RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UIII":  {
+                 "ICAO":  "UIII",
+                 "NAME":  "Irkutsk",
+                 "CALLSIGN":  "IRKUTSK RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "ENOS":  {
+                 "ICAO":  "ENOS",
+                 "NAME":  "Oslo ACC - Polaris",
+                 "CALLSIGN":  "OSLO ACC - POLARIS RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UNKL":  {
+                 "ICAO":  "UNKL",
+                 "NAME":  "Krasnoyarsk",
+                 "CALLSIGN":  "KRASNOYARSK RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LFRR":  {
+                 "ICAO":  "LFRR",
+                 "NAME":  "Brest",
+                 "CALLSIGN":  "BREST RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "OLBB":  {
+                 "ICAO":  "OLBB",
+                 "NAME":  "Beirut",
+                 "CALLSIGN":  "BEIRUT RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SBBS":  {
+                 "ICAO":  "SBBS",
+                 "NAME":  "Brasilia (Completo) - Brasilia",
+                 "CALLSIGN":  "BRASILIA (COMPLETO) - BRASILIA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LOVV":  {
+                 "ICAO":  "LOVV",
+                 "NAME":  "Wien",
+                 "CALLSIGN":  "WIEN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "HECC":  {
+                 "ICAO":  "HECC",
+                 "NAME":  "Cairo",
+                 "CALLSIGN":  "CAIRO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "AYPM":  {
+                 "ICAO":  "AYPM",
+                 "NAME":  "Port Moresby",
+                 "CALLSIGN":  "PORT MORESBY RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "CZQM":  {
+                 "ICAO":  "CZQM",
+                 "NAME":  "Moncton",
+                 "CALLSIGN":  "MONCTON CENTRE",
+                 "MAIN_FRQ":  "123.70"
+             },
+    "UAII":  {
+                 "ICAO":  "UAII",
+                 "NAME":  "Shymkent",
+                 "CALLSIGN":  "SHYMKENT RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "EISN":  {
+                 "ICAO":  "EISN",
+                 "NAME":  "Shannon ACC - Shannon",
+                 "CALLSIGN":  "SHANNON ACC - SHANNON RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "YOLW":  {
+                 "ICAO":  "YOLW",
+                 "NAME":  "Melbourne (Onslow) 134.0",
+                 "CALLSIGN":  "MELBOURNE (ONSLOW) 134.0 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "OPLR":  {
+                 "ICAO":  "OPLR",
+                 "NAME":  "Lahore",
+                 "CALLSIGN":  "LAHORE CONTROL",
+                 "MAIN_FRQ":  "127.50"
+             },
+    "ZKKP":  {
+                 "ICAO":  "ZKKP",
+                 "NAME":  "Pyongyang",
+                 "CALLSIGN":  "PYONGYANG RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "RCAA":  {
+                 "ICAO":  "RCAA",
+                 "NAME":  "Taipei",
+                 "CALLSIGN":  "TAIPEI",
+                 "MAIN_FRQ":  "126.70"
+             },
+    "DNKK":  {
+                 "ICAO":  "DNKK",
+                 "NAME":  "Kano",
+                 "CALLSIGN":  "KANO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "ZSHA":  {
+                 "ICAO":  "ZSHA",
+                 "NAME":  "Shanghai FIR - Shanghai FIR - Shanghai",
+                 "CALLSIGN":  "SHANGHAI FIR - SHANGHAI FIR - SHANGHAI RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "CZUL":  {
+                 "ICAO":  "CZUL",
+                 "NAME":  "Montreal",
+                 "CALLSIGN":  "MONTREAL",
+                 "MAIN_FRQ":  "134.97"
+             },
+    "FAJA":  {
+                 "ICAO":  "FAJA",
+                 "NAME":  "Johannesburg ACC (Bandbox) - Johannesburg",
+                 "CALLSIGN":  "JOHANNESBURG ACC (BANDBOX) - JOHANNESBURG RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LFBB":  {
+                 "ICAO":  "LFBB",
+                 "NAME":  "Bordeaux",
+                 "CALLSIGN":  "BORDEAUX CONTROL",
+                 "MAIN_FRQ":  "127.67"
+             },
+    "SCFZ":  {
+                 "ICAO":  "SCFZ",
+                 "NAME":  "Antofagasta",
+                 "CALLSIGN":  "ANTOFAGASTA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "USSV":  {
+                 "ICAO":  "USSV",
+                 "NAME":  "Yekaterinburg ACC - Ural",
+                 "CALLSIGN":  "YEKATERINBURG ACC - URAL RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LQSB":  {
+                 "ICAO":  "LQSB",
+                 "NAME":  "Sarajevo",
+                 "CALLSIGN":  "SARAJEVO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LRBB":  {
+                 "ICAO":  "LRBB",
+                 "NAME":  "Bucuresti ACC (KONEL) - Bucharest",
+                 "CALLSIGN":  "BUCURESTI ACC (KONEL) - BUCHAREST RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "EPWW":  {
+                 "ICAO":  "EPWW",
+                 "NAME":  "Warszawa High",
+                 "CALLSIGN":  "WARSZAWA HIGH RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UDDD":  {
+                 "ICAO":  "UDDD",
+                 "NAME":  "Yerevan",
+                 "CALLSIGN":  "YEREVAN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LZBB":  {
+                 "ICAO":  "LZBB",
+                 "NAME":  "Bratislava",
+                 "CALLSIGN":  "BRATISLAVA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LECM":  {
+                 "ICAO":  "LECM",
+                 "NAME":  "Madrid",
+                 "CALLSIGN":  "MADRID RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "FQBE":  {
+                 "ICAO":  "FQBE",
+                 "NAME":  "Beira",
+                 "CALLSIGN":  "BEIRA",
+                 "MAIN_FRQ":  "127.70"
+             },
+    "UZSD":  {
+                 "ICAO":  "UZSD",
+                 "NAME":  "Samarkand",
+                 "CALLSIGN":  "SAMARKAND RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LWSS":  {
+                 "ICAO":  "LWSS",
+                 "NAME":  "Skopje",
+                 "CALLSIGN":  "SKOPJE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "YIND":  {
+                 "ICAO":  "YIND",
+                 "NAME":  "Brisbane Radio (Indian) 129.25",
+                 "CALLSIGN":  "BRISBANE RADIO (INDIAN) 129.25 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "NZZO":  {
+                 "ICAO":  "NZZO",
+                 "NAME":  "Auckland Radio - Tasman",
+                 "CALLSIGN":  "AUCKLAND RADIO - TASMAN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZSE":  {
+                 "ICAO":  "KZSE",
+                 "NAME":  "Seattle",
+                 "CALLSIGN":  "SEATTLE",
+                 "MAIN_FRQ":  "126.10"
+             },
+    "HHAA":  {
+                 "ICAO":  "HHAA",
+                 "NAME":  "Asmara",
+                 "CALLSIGN":  "ASMARA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "CZQX":  {
+                 "ICAO":  "CZQX",
+                 "NAME":  "Gander",
+                 "CALLSIGN":  "GANDER CENTRE",
+                 "MAIN_FRQ":  "134.90"
+             },
+    "UEEE":  {
+                 "ICAO":  "UEEE",
+                 "NAME":  "Yakutsk",
+                 "CALLSIGN":  "YAKUTSK RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "MMZT":  {
+                 "ICAO":  "MMZT",
+                 "NAME":  "Mazatlan",
+                 "CALLSIGN":  "MAZATLAN CONTROL",
+                 "MAIN_FRQ":  "124.20"
+             },
+    "SCTZ":  {
+                 "ICAO":  "SCTZ",
+                 "NAME":  "Puerto Montt",
+                 "CALLSIGN":  "PUERTO MONTT",
+                 "MAIN_FRQ":  "120.10"
+             },
+    "KZID":  {
+                 "ICAO":  "KZID",
+                 "NAME":  "Indianapolis",
+                 "CALLSIGN":  "INDIANAPOLIS",
+                 "MAIN_FRQ":  "124.45"
+             },
+    "FSSS":  {
+                 "ICAO":  "FSSS",
+                 "NAME":  "Seychelles",
+                 "CALLSIGN":  "SEYCHELLES RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LBSR":  {
+                 "ICAO":  "LBSR",
+                 "NAME":  "Sofia",
+                 "CALLSIGN":  "SOFIA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "NSFA":  {
+                 "ICAO":  "NSFA",
+                 "NAME":  "Faleolo",
+                 "CALLSIGN":  "FALEOLO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "PHZH":  {
+                 "ICAO":  "PHZH",
+                 "NAME":  "Honolulu",
+                 "CALLSIGN":  "HONOLULU RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "TJZS":  {
+                 "ICAO":  "TJZS",
+                 "NAME":  "San Juan",
+                 "CALLSIGN":  "SAN JUAN OCEANIC",
+                 "MAIN_FRQ":  "128.65"
+             },
+    "LIPP":  {
+                 "ICAO":  "LIPP",
+                 "NAME":  "Padova",
+                 "CALLSIGN":  "PADOVA RADAR",
+                 "MAIN_FRQ":  "120.72"
+             },
+    "OJAC":  {
+                 "ICAO":  "OJAC",
+                 "NAME":  "Amman",
+                 "CALLSIGN":  "AMMAN",
+                 "MAIN_FRQ":  "128.50"
+             },
+    "LFMM":  {
+                 "ICAO":  "LFMM",
+                 "NAME":  "Marseille",
+                 "CALLSIGN":  "MARSEILLE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "RJTG":  {
+                 "ICAO":  "RJTG",
+                 "NAME":  "Tokyo ACC - Tokyo",
+                 "CALLSIGN":  "TOKYO ACC - TOKYO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "ZPKM":  {
+                 "ICAO":  "ZPKM",
+                 "NAME":  "Kunming FIR - Kunming",
+                 "CALLSIGN":  "KUNMING FIR - KUNMING RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UBBA":  {
+                 "ICAO":  "UBBA",
+                 "NAME":  "Baku",
+                 "CALLSIGN":  "BAKU RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SACF":  {
+                 "ICAO":  "SACF",
+                 "NAME":  "Cordoba",
+                 "CALLSIGN":  "CORDOBA",
+                 "MAIN_FRQ":  "125.10"
+             },
+    "WSJC":  {
+                 "ICAO":  "WSJC",
+                 "NAME":  "Singapore",
+                 "CALLSIGN":  "SINGAPORE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "EGTT":  {
+                 "ICAO":  "EGTT",
+                 "NAME":  "London",
+                 "CALLSIGN":  "LONDON CONTROL",
+                 "MAIN_FRQ":  "126.08"
+             },
+    "FTTT":  {
+                 "ICAO":  "FTTT",
+                 "NAME":  "N\u0027Djamena",
+                 "CALLSIGN":  "N\u0027DJAMENA",
+                 "MAIN_FRQ":  "120.50"
+             },
+    "OEJD":  {
+                 "ICAO":  "OEJD",
+                 "NAME":  "Jeddah",
+                 "CALLSIGN":  "JEDDAH RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SBCW":  {
+                 "ICAO":  "SBCW",
+                 "NAME":  "Curitiba (Completo) - Curitiba",
+                 "CALLSIGN":  "CURITIBA (COMPLETO) - CURITIBA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZMA":  {
+                 "ICAO":  "KZMA",
+                 "NAME":  "Miami",
+                 "CALLSIGN":  "MIAMI",
+                 "MAIN_FRQ":  "132.45"
+             },
+    "HTDC":  {
+                 "ICAO":  "HTDC",
+                 "NAME":  "Dar-Es-Salaam",
+                 "CALLSIGN":  "DAR-ES-SALAAM RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UTAT":  {
+                 "ICAO":  "UTAT",
+                 "NAME":  "Dashoguz",
+                 "CALLSIGN":  "DASHOGUZ RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VRMF":  {
+                 "ICAO":  "VRMF",
+                 "NAME":  "Male",
+                 "CALLSIGN":  "MALE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LLLL":  {
+                 "ICAO":  "LLLL",
+                 "NAME":  "Tel Aviv",
+                 "CALLSIGN":  "TEL AVIV CTL/EAST",
+                 "MAIN_FRQ":  "121.40"
+             },
+    "ZGZU":  {
+                 "ICAO":  "ZGZU",
+                 "NAME":  "Guangzhou FIR - Guangzhou",
+                 "CALLSIGN":  "GUANGZHOU FIR - GUANGZHOU RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LCCC":  {
+                 "ICAO":  "LCCC",
+                 "NAME":  "Nicosia",
+                 "CALLSIGN":  "NICOSIA RADAR",
+                 "MAIN_FRQ":  "125.50"
+             },
+    "YISA":  {
+                 "ICAO":  "YISA",
+                 "NAME":  "Brisbane (Isa) 125.7",
+                 "CALLSIGN":  "BRISBANE (ISA) 125.7 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "PAZA":  {
+                 "ICAO":  "PAZA",
+                 "NAME":  "Anchorage",
+                 "CALLSIGN":  "ANCHORAGE",
+                 "MAIN_FRQ":  "128.10"
+             },
+    "WBFC":  {
+                 "ICAO":  "WBFC",
+                 "NAME":  "Kota Kinabalu",
+                 "CALLSIGN":  "KOTA KINABALU RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UZTR":  {
+                 "ICAO":  "UZTR",
+                 "NAME":  "Tashkent",
+                 "CALLSIGN":  "TASHKENT RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VOMF":  {
+                 "ICAO":  "VOMF",
+                 "NAME":  "Chennai",
+                 "CALLSIGN":  "CHENNAI RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "GVSC":  {
+                 "ICAO":  "GVSC",
+                 "NAME":  "Sal Oceanic",
+                 "CALLSIGN":  "SAL OCEANIC RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZFW":  {
+                 "ICAO":  "KZFW",
+                 "NAME":  "Fort Worth",
+                 "CALLSIGN":  "FORT WORTH RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UMMV":  {
+                 "ICAO":  "UMMV",
+                 "NAME":  "Minsk",
+                 "CALLSIGN":  "MINSK RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UAAA":  {
+                 "ICAO":  "UAAA",
+                 "NAME":  "Almaty",
+                 "CALLSIGN":  "ALMATY CONTROL",
+                 "MAIN_FRQ":  "129.00"
+             },
+    "BIRD":  {
+                 "ICAO":  "BIRD",
+                 "NAME":  "Reykjavik",
+                 "CALLSIGN":  "REYKJAVIK CONTROL",
+                 "MAIN_FRQ":  "119.70"
+             },
+    "VECF":  {
+                 "ICAO":  "VECF",
+                 "NAME":  "Kolkata",
+                 "CALLSIGN":  "KOLKATA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VABF":  {
+                 "ICAO":  "VABF",
+                 "NAME":  "Mumbai",
+                 "CALLSIGN":  "MUMBAI RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "DAAA":  {
+                 "ICAO":  "DAAA",
+                 "NAME":  "Algiers",
+                 "CALLSIGN":  "ALGIERS RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "ZLHW":  {
+                 "ICAO":  "ZLHW",
+                 "NAME":  "Lanzhou FIR - Lanzhou",
+                 "CALLSIGN":  "LANZHOU FIR - LANZHOU RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VGFR":  {
+                 "ICAO":  "VGFR",
+                 "NAME":  "Dhaka",
+                 "CALLSIGN":  "DHAKA CONTROL UPPER/DHAKA",
+                 "MAIN_FRQ":  "125.70"
+             },
+    "KZBW":  {
+                 "ICAO":  "KZBW",
+                 "NAME":  "Boston",
+                 "CALLSIGN":  "BOSTON",
+                 "MAIN_FRQ":  "124.75"
+             },
+    "YWOL":  {
+                 "ICAO":  "YWOL",
+                 "NAME":  "Melbourne (Wollongong) 125.0",
+                 "CALLSIGN":  "MELBOURNE (WOLLONGONG) 125.0 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UMKK":  {
+                 "ICAO":  "UMKK",
+                 "NAME":  "Kaliningrad",
+                 "CALLSIGN":  "KALININGRAD RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UUWV":  {
+                 "ICAO":  "UUWV",
+                 "NAME":  "Moscow",
+                 "CALLSIGN":  "MOSCOW RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZKC":  {
+                 "ICAO":  "KZKC",
+                 "NAME":  "Kansas City",
+                 "CALLSIGN":  "KANSAS CITY",
+                 "MAIN_FRQ":  "126.22"
+             },
+    "EETT":  {
+                 "ICAO":  "EETT",
+                 "NAME":  "Tallinn",
+                 "CALLSIGN":  "TALLINN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZAB":  {
+                 "ICAO":  "KZAB",
+                 "NAME":  "Albuquerque",
+                 "CALLSIGN":  "ALBUQUERQUE",
+                 "MAIN_FRQ":  "133.65"
+             },
+    "TNCF":  {
+                 "ICAO":  "TNCF",
+                 "NAME":  "CuraĂ§ao",
+                 "CALLSIGN":  "CURAĂ§AO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SAVF":  {
+                 "ICAO":  "SAVF",
+                 "NAME":  "Comodoro Rivadavia",
+                 "CALLSIGN":  "COMODORO RIVADAVIA",
+                 "MAIN_FRQ":  "125.50"
+             },
+    "NTTC":  {
+                 "ICAO":  "NTTC",
+                 "NAME":  "Tahiti",
+                 "CALLSIGN":  "TAHITI CONTROL",
+                 "MAIN_FRQ":  "133.50"
+             },
+    "UCFM":  {
+                 "ICAO":  "UCFM",
+                 "NAME":  "Bishkek",
+                 "CALLSIGN":  "BISHKEK RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "HSSS":  {
+                 "ICAO":  "HSSS",
+                 "NAME":  "Khartoum",
+                 "CALLSIGN":  "KHARTOUM RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "FZZA":  {
+                 "ICAO":  "FZZA",
+                 "NAME":  "Kinshasa",
+                 "CALLSIGN":  "KINSHASA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LYBA":  {
+                 "ICAO":  "LYBA",
+                 "NAME":  "Beograd",
+                 "CALLSIGN":  "BEOGRAD RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "FWLL":  {
+                 "ICAO":  "FWLL",
+                 "NAME":  "Lilongwe",
+                 "CALLSIGN":  "LILONGWE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "WAAF":  {
+                 "ICAO":  "WAAF",
+                 "NAME":  "Ujung Pandang",
+                 "CALLSIGN":  "UJUNG PANDANG RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "WMFC":  {
+                 "ICAO":  "WMFC",
+                 "NAME":  "Kuala Lumpur",
+                 "CALLSIGN":  "KUALA LUMPUR RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "HJJJ":  {
+                 "ICAO":  "HJJJ",
+                 "NAME":  "Juba (Up to FL245)",
+                 "CALLSIGN":  "JUBA (UP TO FL245) RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "URRV":  {
+                 "ICAO":  "URRV",
+                 "NAME":  "Rostov",
+                 "CALLSIGN":  "ROSTOV RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "YINL":  {
+                 "ICAO":  "YINL",
+                 "NAME":  "Brisbane (Inverell) 134.2",
+                 "CALLSIGN":  "BRISBANE (INVERELL) 134.2 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VVHM":  {
+                 "ICAO":  "VVHM",
+                 "NAME":  "Ho Chi Minh",
+                 "CALLSIGN":  "HO CHI MINH CONTROL",
+                 "MAIN_FRQ":  "120.10"
+             },
+    "DRRR":  {
+                 "ICAO":  "DRRR",
+                 "NAME":  "Niamey",
+                 "CALLSIGN":  "NIAMEY CONTROL",
+                 "MAIN_FRQ":  "126.10"
+             },
+    "UKFV":  {
+                 "ICAO":  "UKFV",
+                 "NAME":  "Simferopol",
+                 "CALLSIGN":  "SIMFEROPOL RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZAU":  {
+                 "ICAO":  "KZAU",
+                 "NAME":  "Chicago",
+                 "CALLSIGN":  "CHICAGO",
+                 "MAIN_FRQ":  "132.27"
+             },
+    "ORBB":  {
+                 "ICAO":  "ORBB",
+                 "NAME":  "Baghdad",
+                 "CALLSIGN":  "BAGHDAD RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "NZAA":  {
+                 "ICAO":  "NZAA",
+                 "NAME":  "Auckland (Raglan)",
+                 "CALLSIGN":  "AUCKLAND CONTROL",
+                 "MAIN_FRQ":  "120.50"
+             },
+    "OYSC":  {
+                 "ICAO":  "OYSC",
+                 "NAME":  "Sanaa",
+                 "CALLSIGN":  "SANAA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UTAV":  {
+                 "ICAO":  "UTAV",
+                 "NAME":  "Turkmenabat",
+                 "CALLSIGN":  "TURKMENABAT RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "OOMM":  {
+                 "ICAO":  "OOMM",
+                 "NAME":  "Muscat",
+                 "CALLSIGN":  "MUSCAT",
+                 "MAIN_FRQ":  "123.95"
+             },
+    "GMMM":  {
+                 "ICAO":  "GMMM",
+                 "NAME":  "Casablanca",
+                 "CALLSIGN":  "CASABLANCA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SARR":  {
+                 "ICAO":  "SARR",
+                 "NAME":  "Resistencia",
+                 "CALLSIGN":  "RESISTENCIA",
+                 "MAIN_FRQ":  "125.75"
+             },
+    "FVHF":  {
+                 "ICAO":  "FVHF",
+                 "NAME":  "Harare",
+                 "CALLSIGN":  "HARARE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "HLLL":  {
+                 "ICAO":  "HLLL",
+                 "NAME":  "Tripoli",
+                 "CALLSIGN":  "TRIPOLI RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "USTV":  {
+                 "ICAO":  "USTV",
+                 "NAME":  "Tyumen ACC - Tyumen",
+                 "CALLSIGN":  "TYUMEN ACC - TYUMEN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "OAKX":  {
+                 "ICAO":  "OAKX",
+                 "NAME":  "Kabul",
+                 "CALLSIGN":  "KABUL RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "YHUO":  {
+                 "ICAO":  "YHUO",
+                 "NAME":  "Melbourne (Huon) 122.6",
+                 "CALLSIGN":  "MELBOURNE (HUON) 122.6 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UNNT":  {
+                 "ICAO":  "UNNT",
+                 "NAME":  "Novosibirsk",
+                 "CALLSIGN":  "NOVOSIBIRSK RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZMP":  {
+                 "ICAO":  "KZMP",
+                 "NAME":  "Minneapolis",
+                 "CALLSIGN":  "MINNEAPOLIS",
+                 "MAIN_FRQ":  "120.90"
+             },
+    "WIIF":  {
+                 "ICAO":  "WIIF",
+                 "NAME":  "Jakarta",
+                 "CALLSIGN":  "JAKARTA OCEANIC",
+                 "MAIN_FRQ":  "3.47"
+             },
+    "LTBB":  {
+                 "ICAO":  "LTBB",
+                 "NAME":  "Istanbul",
+                 "CALLSIGN":  "ISTANBUL RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "RJBG":  {
+                 "ICAO":  "RJBG",
+                 "NAME":  "Kobe ACC - Kobe",
+                 "CALLSIGN":  "KOBE ACC - KOBE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "EYVL":  {
+                 "ICAO":  "EYVL",
+                 "NAME":  "Vilnius",
+                 "CALLSIGN":  "VILNIUS RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "NTTT":  {
+                 "ICAO":  "NTTT",
+                 "NAME":  "Tahiti Radio",
+                 "CALLSIGN":  "TAHITI RADIO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "CZWG":  {
+                 "ICAO":  "CZWG",
+                 "NAME":  "Winnipeg",
+                 "CALLSIGN":  "WINNIPEG CENTRE",
+                 "MAIN_FRQ":  "126.40"
+             },
+    "LPPO":  {
+                 "ICAO":  "LPPO",
+                 "NAME":  "Santa Maria",
+                 "CALLSIGN":  "SANTA MARIA RADAR",
+                 "MAIN_FRQ":  "132.15"
+             },
+    "EBBU":  {
+                 "ICAO":  "EBBU",
+                 "NAME":  "Brussels",
+                 "CALLSIGN":  "BRUSSELS RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "EDWW":  {
+                 "ICAO":  "EDWW",
+                 "NAME":  "Bremen",
+                 "CALLSIGN":  "BREMEN RADAR",
+                 "MAIN_FRQ":  "119.63"
+             },
+    "UWWW":  {
+                 "ICAO":  "UWWW",
+                 "NAME":  "Samara",
+                 "CALLSIGN":  "SAMARA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "YARL":  {
+                 "ICAO":  "YARL",
+                 "NAME":  "Brisbane (Armidale) 130.9",
+                 "CALLSIGN":  "BRISBANE (ARMIDALE) 130.9 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "MUFH":  {
+                 "ICAO":  "MUFH",
+                 "NAME":  "Havana",
+                 "CALLSIGN":  "HAVANA",
+                 "MAIN_FRQ":  "133.70"
+             },
+    "OBBB":  {
+                 "ICAO":  "OBBB",
+                 "NAME":  "Bahrain",
+                 "CALLSIGN":  "BAHRAIN EAST HIGH",
+                 "MAIN_FRQ":  "132.12"
+             },
+    "MTEG":  {
+                 "ICAO":  "MTEG",
+                 "NAME":  "Port-Au-Prince",
+                 "CALLSIGN":  "PORT-AU-PRINCE",
+                 "MAIN_FRQ":  "124.50"
+             },
+    "ENSV":  {
+                 "ICAO":  "ENSV",
+                 "NAME":  "Stavanger ACC - Polaris",
+                 "CALLSIGN":  "STAVANGER ACC - POLARIS RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "YKPL":  {
+                 "ICAO":  "YKPL",
+                 "NAME":  "Brisbane (Keppel) 125.9",
+                 "CALLSIGN":  "BRISBANE (KEPPEL) 125.9 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LECS":  {
+                 "ICAO":  "LECS",
+                 "NAME":  "Sevilla",
+                 "CALLSIGN":  "SEVILLA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LMMM":  {
+                 "ICAO":  "LMMM",
+                 "NAME":  "Malta",
+                 "CALLSIGN":  "MALTA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SPIM":  {
+                 "ICAO":  "SPIM",
+                 "NAME":  "Lima",
+                 "CALLSIGN":  "LIMA",
+                 "MAIN_FRQ":  "124.30"
+             },
+    "FAJO":  {
+                 "ICAO":  "FAJO",
+                 "NAME":  "Johannesburg Oceanic",
+                 "CALLSIGN":  "JOHANNESBURG OCEANIC RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "FBGR":  {
+                 "ICAO":  "FBGR",
+                 "NAME":  "Gaborone",
+                 "CALLSIGN":  "GABORONE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "HKNA":  {
+                 "ICAO":  "HKNA",
+                 "NAME":  "Nairobi",
+                 "CALLSIGN":  "NAIROBI RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "MMEX":  {
+                 "ICAO":  "MMEX",
+                 "NAME":  "Mexico",
+                 "CALLSIGN":  "MEXICO CONTROL",
+                 "MAIN_FRQ":  "123.90"
+             },
+    "YKEN":  {
+                 "ICAO":  "YKEN",
+                 "NAME":  "Brisbane (Kennedy) 120.15",
+                 "CALLSIGN":  "BRISBANE (KENNEDY) 120.15 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SOOO":  {
+                 "ICAO":  "SOOO",
+                 "NAME":  "Cayenne",
+                 "CALLSIGN":  "CAYENNE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UTDD":  {
+                 "ICAO":  "UTDD",
+                 "NAME":  "Dushanbe",
+                 "CALLSIGN":  "DUSHANBE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZHU":  {
+                 "ICAO":  "KZHU",
+                 "NAME":  "Houston",
+                 "CALLSIGN":  "HOUSTON",
+                 "MAIN_FRQ":  "125.17"
+             },
+    "RKRR":  {
+                 "ICAO":  "RKRR",
+                 "NAME":  "Incheon ACC - Incheon",
+                 "CALLSIGN":  "INCHEON ACC - INCHEON RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VHHK":  {
+                 "ICAO":  "VHHK",
+                 "NAME":  "Hong Kong",
+                 "CALLSIGN":  "HONG KONG RADAR",
+                 "MAIN_FRQ":  "123.95"
+             },
+    "GCCC":  {
+                 "ICAO":  "GCCC",
+                 "NAME":  "Canarias",
+                 "CALLSIGN":  "CANARIAS RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UHMM":  {
+                 "ICAO":  "UHMM",
+                 "NAME":  "Magadan",
+                 "CALLSIGN":  "MAGADAN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VIDF":  {
+                 "ICAO":  "VIDF",
+                 "NAME":  "Delhi",
+                 "CALLSIGN":  "DELHI RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "ENOB":  {
+                 "ICAO":  "ENOB",
+                 "NAME":  "Bodo Oceanic",
+                 "CALLSIGN":  "BODO OCEANIC RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "NZOH":  {
+                 "ICAO":  "NZOH",
+                 "NAME":  "Ohakea",
+                 "CALLSIGN":  "OHAKEA CONTROL",
+                 "MAIN_FRQ":  "126.70"
+             },
+    "ENBD":  {
+                 "ICAO":  "ENBD",
+                 "NAME":  "Bodo ACC - Polaris",
+                 "CALLSIGN":  "BODO ACC - POLARIS RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VCCF":  {
+                 "ICAO":  "VCCF",
+                 "NAME":  "Colombo",
+                 "CALLSIGN":  "COLOMBO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SCIZ":  {
+                 "ICAO":  "SCIZ",
+                 "NAME":  "Pascua",
+                 "CALLSIGN":  "PASCUA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "OPKR":  {
+                 "ICAO":  "OPKR",
+                 "NAME":  "Karachi",
+                 "CALLSIGN":  "KARACHI RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "HCSM":  {
+                 "ICAO":  "HCSM",
+                 "NAME":  "Mogadishu",
+                 "CALLSIGN":  "MOGADISHU RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SVZM":  {
+                 "ICAO":  "SVZM",
+                 "NAME":  "Maiquetia",
+                 "CALLSIGN":  "MAIQUETIA",
+                 "MAIN_FRQ":  "127.95"
+             },
+    "KZAK":  {
+                 "ICAO":  "KZAK",
+                 "NAME":  "Oakland Oceanic",
+                 "CALLSIGN":  "OAKLAND OCEANIC RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "FCCC":  {
+                 "ICAO":  "FCCC",
+                 "NAME":  "Brazzaville",
+                 "CALLSIGN":  "BRAZZAVILLE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "UTAA":  {
+                 "ICAO":  "UTAA",
+                 "NAME":  "Ashgabat",
+                 "CALLSIGN":  "ASHGABAT RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SKED":  {
+                 "ICAO":  "SKED",
+                 "NAME":  "Bogota",
+                 "CALLSIGN":  "BOGOTA",
+                 "MAIN_FRQ":  "128.60"
+             },
+    "MPZL":  {
+                 "ICAO":  "MPZL",
+                 "NAME":  "Panama",
+                 "CALLSIGN":  "PANAMA",
+                 "MAIN_FRQ":  "125.50"
+             },
+    "ZBPE":  {
+                 "ICAO":  "ZBPE",
+                 "NAME":  "Beijing FIR - Beijing",
+                 "CALLSIGN":  "BEIJING FIR - BEIJING RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LKAA":  {
+                 "ICAO":  "LKAA",
+                 "NAME":  "Praha",
+                 "CALLSIGN":  "PRAHA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LPPC":  {
+                 "ICAO":  "LPPC",
+                 "NAME":  "Lisboa",
+                 "CALLSIGN":  "LISBOA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VDPF":  {
+                 "ICAO":  "VDPF",
+                 "NAME":  "Phnom Penh",
+                 "CALLSIGN":  "PHNOM PENH RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "NZCM":  {
+                 "ICAO":  "NZCM",
+                 "NAME":  "McMurdo (Mac)",
+                 "CALLSIGN":  "MCMURDO (MAC) RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "SCCZ":  {
+                 "ICAO":  "SCCZ",
+                 "NAME":  "Punta Arenas",
+                 "CALLSIGN":  "PUNTA ARENAS",
+                 "MAIN_FRQ":  "123.90"
+             },
+    "CZVR":  {
+                 "ICAO":  "CZVR",
+                 "NAME":  "Vancouver",
+                 "CALLSIGN":  "VANCOUVER CENTRE",
+                 "MAIN_FRQ":  "134.20"
+             },
+    "UTAK":  {
+                 "ICAO":  "UTAK",
+                 "NAME":  "Turkmenbashi",
+                 "CALLSIGN":  "TURKMENBASHI RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "EGPX":  {
+                 "ICAO":  "EGPX",
+                 "NAME":  "Scottish",
+                 "CALLSIGN":  "SCOTTISH CONTROL",
+                 "MAIN_FRQ":  "128.06"
+             },
+    "SBAZ":  {
+                 "ICAO":  "SBAZ",
+                 "NAME":  "Amazonico (Completo) - Amazonico",
+                 "CALLSIGN":  "AMAZONICO (COMPLETO) - AMAZONICO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "FYWF":  {
+                 "ICAO":  "FYWF",
+                 "NAME":  "Windhoek",
+                 "CALLSIGN":  "WINDHOEK RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZOA":  {
+                 "ICAO":  "KZOA",
+                 "NAME":  "Oakland",
+                 "CALLSIGN":  "OAKLAND",
+                 "MAIN_FRQ":  "127.80"
+             },
+    "LIBB":  {
+                 "ICAO":  "LIBB",
+                 "NAME":  "Brindisi",
+                 "CALLSIGN":  "BRINDISI RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "FACA":  {
+                 "ICAO":  "FACA",
+                 "NAME":  "Cape Town (Bandbox) - Cape Town",
+                 "CALLSIGN":  "CAPE TOWN (BANDBOX) - CAPE TOWN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VYYF":  {
+                 "ICAO":  "VYYF",
+                 "NAME":  "Yangon",
+                 "CALLSIGN":  "YANGON RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "MKJK":  {
+                 "ICAO":  "MKJK",
+                 "NAME":  "Kingston",
+                 "CALLSIGN":  "KINGSTON RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "ZHWH":  {
+                 "ICAO":  "ZHWH",
+                 "NAME":  "Wuhan FIR - Wuhan",
+                 "CALLSIGN":  "WUHAN FIR - WUHAN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LHCC":  {
+                 "ICAO":  "LHCC",
+                 "NAME":  "Budapest",
+                 "CALLSIGN":  "BUDAPEST RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "MDCS":  {
+                 "ICAO":  "MDCS",
+                 "NAME":  "Santo Domingo",
+                 "CALLSIGN":  "SANTO DOMINGO",
+                 "MAIN_FRQ":  "124.30"
+             },
+    "SUEO":  {
+                 "ICAO":  "SUEO",
+                 "NAME":  "Montevideo",
+                 "CALLSIGN":  "MONTEVIDEO",
+                 "MAIN_FRQ":  "126.30"
+             },
+    "SCEZ":  {
+                 "ICAO":  "SCEZ",
+                 "NAME":  "Santiago",
+                 "CALLSIGN":  "SANTIAGO",
+                 "MAIN_FRQ":  "126.30"
+             },
+    "SAEF":  {
+                 "ICAO":  "SAEF",
+                 "NAME":  "Ezeiza",
+                 "CALLSIGN":  "EZEIZA",
+                 "MAIN_FRQ":  "124.10"
+             },
+    "HUEC":  {
+                 "ICAO":  "HUEC",
+                 "NAME":  "Entebbe",
+                 "CALLSIGN":  "ENTEBBE RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "YHYD":  {
+                 "ICAO":  "YHYD",
+                 "NAME":  "Melbourne (Hyden) 118.2",
+                 "CALLSIGN":  "MELBOURNE (HYDEN) 118.2 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "BGGL":  {
+                 "ICAO":  "BGGL",
+                 "NAME":  "Nuuk",
+                 "CALLSIGN":  "NUUK RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "RJDG":  {
+                 "ICAO":  "RJDG",
+                 "NAME":  "Fukuoka ACC - Fukuoka",
+                 "CALLSIGN":  "FUKUOKA ACC - FUKUOKA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "TTZP":  {
+                 "ICAO":  "TTZP",
+                 "NAME":  "Piarco",
+                 "CALLSIGN":  "PIARCO RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LECB":  {
+                 "ICAO":  "LECB",
+                 "NAME":  "Barcelona",
+                 "CALLSIGN":  "BARCELONA RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "VVHN":  {
+                 "ICAO":  "VVHN",
+                 "NAME":  "Ha Noi",
+                 "CALLSIGN":  "HA NOI",
+                 "MAIN_FRQ":  "132.92"
+             },
+    "DTTC":  {
+                 "ICAO":  "DTTC",
+                 "NAME":  "Tunis",
+                 "CALLSIGN":  "TUNIS RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "YTBD":  {
+                 "ICAO":  "YTBD",
+                 "NAME":  "Melbourne (Tailem Bend) 123.05",
+                 "CALLSIGN":  "MELBOURNE (TAILEM BEND) 123.05 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZME":  {
+                 "ICAO":  "KZME",
+                 "NAME":  "Memphis",
+                 "CALLSIGN":  "MEMPHIS",
+                 "MAIN_FRQ":  "128.15"
+             },
+    "KZTL":  {
+                 "ICAO":  "KZTL",
+                 "NAME":  "Atlanta",
+                 "CALLSIGN":  "ATLANTA",
+                 "MAIN_FRQ":  "132.25"
+             },
+    "KZLA":  {
+                 "ICAO":  "KZLA",
+                 "NAME":  "Los Angeles",
+                 "CALLSIGN":  "LOS ANGELES",
+                 "MAIN_FRQ":  "124.85"
+             },
+    "NFFF":  {
+                 "ICAO":  "NFFF",
+                 "NAME":  "Nadi Oceanic",
+                 "CALLSIGN":  "NADI OCEANIC RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LSAS":  {
+                 "ICAO":  "LSAS",
+                 "NAME":  "Swiss Radar - Switzerland",
+                 "CALLSIGN":  "SWISS RADAR - SWITZERLAND RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "YTRT":  {
+                 "ICAO":  "YTRT",
+                 "NAME":  "Brisbane (Territory North) 123.85",
+                 "CALLSIGN":  "BRISBANE (TERRITORY NORTH) 123.85 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "GOOO":  {
+                 "ICAO":  "GOOO",
+                 "NAME":  "Dakar",
+                 "CALLSIGN":  "DAKAR RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "YBLA":  {
+                 "ICAO":  "YBLA",
+                 "NAME":  "Melbourne (Benalla) 132.2",
+                 "CALLSIGN":  "MELBOURNE (BENALLA) 132.2 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "LDZO":  {
+                 "ICAO":  "LDZO",
+                 "NAME":  "Zagreb",
+                 "CALLSIGN":  "ZAGREB CONTROL/RADAR",
+                 "MAIN_FRQ":  "132.12"
+             },
+    "RPHI":  {
+                 "ICAO":  "RPHI",
+                 "NAME":  "Manila",
+                 "CALLSIGN":  "MANILA",
+                 "MAIN_FRQ":  "118.90"
+             },
+    "UKBV":  {
+                 "ICAO":  "UKBV",
+                 "NAME":  "Kyiv",
+                 "CALLSIGN":  "KYIV RADAR",
+                 "MAIN_FRQ":  "122.77"
+             },
+    "SYGC":  {
+                 "ICAO":  "SYGC",
+                 "NAME":  "Georgetown",
+                 "CALLSIGN":  "GEORGETOWN RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "FIMM":  {
+                 "ICAO":  "FIMM",
+                 "NAME":  "Mauritius",
+                 "CALLSIGN":  "MAURITIUS CENTRE",
+                 "MAIN_FRQ":  "129.30"
+             },
+    "KZDV":  {
+                 "ICAO":  "KZDV",
+                 "NAME":  "Denver",
+                 "CALLSIGN":  "DENVER",
+                 "MAIN_FRQ":  "132.70"
+             },
+    "YASP":  {
+                 "ICAO":  "YASP",
+                 "NAME":  "Melbourne (Alice Springs) 128.85",
+                 "CALLSIGN":  "MELBOURNE (ALICE SPRINGS) 128.85 RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "EGYP":  {
+                 "ICAO":  "EGYP",
+                 "NAME":  "Mount Pleasant (Monte Agradable)",
+                 "CALLSIGN":  "MOUNT PLEASANT (MONTE AGRADABLE) RADAR",
+                 "MAIN_FRQ":  "-"
+             },
+    "KZDC":  {
+                 "ICAO":  "KZDC",
+                 "NAME":  "Washington",
+                 "CALLSIGN":  "WASHINGTON",
+                 "MAIN_FRQ":  "128.60"
+             },
+    "MHCC":  {
+                 "ICAO":  "MHCC",
+                 "NAME":  "Cenamer",
+                 "CALLSIGN":  "CENAMER",
+                 "MAIN_FRQ":  "123.90"
+             },
+    "LUUU":  {
+                 "ICAO":  "LUUU",
+                 "NAME":  "Chisinau",
+                 "CALLSIGN":  "CHISINAU RADAR",
+                 "MAIN_FRQ":  "-"
+             }
+}

@@ -22,21 +22,34 @@ Fake ATC is toggled via the **Settings panel** (gear icon in the top bar) using 
 
 ---
 
-## 3. Data Sources
+## 3. Data Sources & Hierarchy
 
-The Fake ATC system loads three JSON files at startup (via `loadAtcData()` in `script.js`):
+The Fake ATC system uses a multi-layered data hierarchy to resolve frequencies and callsigns. It loads data client-side at runtime (via `loadAtcData()` and `getNewDbAirport()` in `script.js`):
 
-| File | Location | Purpose |
-|---|---|---|
-| `airports_atc.json` | `public/data/atc/` | Airport ATC frequencies and callsigns |
-| `firs_atc.json` | `public/data/atc/` | FIR (Flight Information Region) fallback frequencies |
-| `greetings_atc.json` | `public/data/atc/` | Country/continent greeting and farewell phrases |
+| Priority | Source | Location / Method | Purpose |
+|---|---|---|---|
+| 1 | **SimBrief** | `/api/simbrief` | Live flight plan data (highest priority) |
+| 2 | **New Database** | `public/data/atc/airports_database/` | High-fidelity regional JSON files |
+| 3 | **Old Database** | `public/data/atc/airports_atc.json` | Legacy fallback for missing airports |
+| 4 | **FIR Database** | `public/data/atc/airports_database/FIRs.json` | Standardized FIR callsigns & frequencies |
+| 5 | **Greetings** | `public/data/atc/greetings_atc.json` | Localized phrases (Hello/Goodbye) |
 
-All three files are fetched client-side at runtime with `Promise.all()`. If any fetch fails, the ATC variable system will be empty and fake ATC items that require variables will simply not render.
+For a detailed technical breakdown of how these sources are merged and the specific fallback logic for each ATC role, see [Briefing & ATC Engine](briefing_atc_engine.md).
 
 ---
 
-## 4. Airport Data Format (`airports_atc.json`)
+## 4. Regional Databases (`airports_database/`)
+
+Instead of loading one massive global file, the application uses **smart loading** based on the ICAO prefix:
+
+- `E`, `L` (most) → `Europe.json`
+- `K, C`, `PA` → `North_America.json`
+- `S, M, T` → `South_Latin_America.json`
+- `F, D, G, H` → `Africa.json`
+- `O, V, Z, U`, `LC, LL, LT` → `Middle_East.json`
+- `R, Y, N, A, P` (most) → `Pacific_Australia.json`
+
+Each file contains detailed entries with separate frequencies for Arrival/Departure controllers, Transition Altitudes (TA), and ILS data.
 
 Each entry is keyed by ICAO code:
 
@@ -99,47 +112,15 @@ Greetings are stored without diacritics so that TTS engines pronounce them with 
 
 ---
 
-## 7. ATC Variable Resolution (`updateAtcVariables()`)
+## 7. ATC Variable Resolution
 
-When the origin or destination ICAO field changes in the Flight Briefing notepad, `updateAtcVariables()` is called. It processes both the departure and arrival airport and populates the `atcVariables` object.
+When the origin or destination ICAO field changes, `updateAtcVariables()` is called. This function is now **asynchronous** and performs the following logic:
 
-### 7.1 Frequency Fallback Chain
+1. **Loads the relevant regional JSON** if not already cached.
+2. **Attempts to resolve frequencies** using a proximity-based fallback chain.
+3. **Populates placeholders** (like Transition Altitude) in the Briefing UI.
 
-The system always tries to resolve each ATC role from the best available source, falling back through the hierarchy if a position is missing:
-
-**Departure side** (`_dep` variables):
-
-| Variable | Primary source | Fallback chain |
-|---|---|---|
-| `delivery_dep` | DEL | → GND → TWR → APP → FIR |
-| `ground_dep` | GND | → TWR → APP → FIR |
-| `tower_dep` | TWR | → APP → FIR |
-| `approach_dep` | APP (role: DEP) or APP | → FIR |
-| `fir_dep` | FIR entry for `apt.fir` | — |
-
-**Arrival side** (`_arr` variables):
-
-| Variable | Primary source | Fallback chain |
-|---|---|---|
-| `approach_arr` | APP (role: ARR) or APP | → TWR → FIR |
-| `tower_arr` | TWR | → APP → FIR |
-| `ground_arr` | GND | → TWR → FIR |
-| `fir_arr` | FIR entry for `apt.fir` | — |
-
-If FIR data is available, it additionally fills any departure-side variables that remain empty after the local airport frequency lookup.
-
-Each variable also gets a corresponding `_freq` variant:
-- `ground_dep` → callsign (e.g. `"Stefanik Ground"`)
-- `ground_dep_freq` → frequency (e.g. `"121.705"`)
-
-### 7.2 Regional Naming Rules
-
-- **CZ, SK, DE, AT, HU** — The word "Approach" in an APP callsign is automatically replaced with "Radar" (e.g. `"Praha Approach"` → `"Praha Radar"`).
-- **US, CA, AU** — The word "Radar" or "Control" in a FIR callsign is automatically replaced with "Center".
-
-### 7.3 Unknown Airport Fallback (Pseudo-FIR)
-
-If the entered ICAO code is not found in `airports_atc.json`, the system creates a minimal skeleton airport object. It attempts to determine the FIR from the first two letters of the ICAO code using a built-in prefix-to-FIR mapping (`PSEUDO_FIR`):
+For the exact fallback order (e.g., `DEL → GND → TWR → APP → FIR`), refer to the [Briefing & ATC Engine](briefing_atc_engine.md) documentation.
 
 ```js
 'LZ' → 'LZBB'  // Slovakia → Bratislava

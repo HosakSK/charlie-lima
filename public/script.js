@@ -502,26 +502,78 @@ function getBriefingValidSentences(item, forSpeech = false) {
     return hasSentenceWithVar ? validSentences : [];
 }
 
-let atcData = { airports: null, firs: null, greetings: null };
+let atcData = { 
+    airports: null, 
+    firs: null, 
+    greetings: null,
+    newDb: {}, // Cache for continent-based JSONs
+    firDb: null // Cache for FIRs.json
+};
 let atcVariables = {};
 
 async function loadAtcData() {
     try {
-        const [airportsRes, firsRes, greetingsRes] = await Promise.all([
+        const [airportsRes, firsRes, greetingsRes, firDbRes] = await Promise.all([
             fetch('/data/atc/airports_atc.json'),
             fetch('/data/atc/firs_atc.json'),
-            fetch('/data/atc/greetings_atc.json')
+            fetch('/data/atc/greetings_atc.json'),
+            fetch('/data/atc/airports_database/FIRs.json')
         ]);
         atcData.airports = await airportsRes.json();
         atcData.firs = await firsRes.json();
         atcData.greetings = await greetingsRes.json();
-        updateAtcVariables();
+        atcData.firDb = await firDbRes.json();
+        await updateAtcVariables();
     } catch (e) {
         console.error('Failed to load ATC data:', e);
     }
 }
 
-function updateAtcVariables() {
+async function getNewDbAirport(icao) {
+    if (!icao || icao.length < 2) return null;
+    const prefix = icao.substring(0, 1).toUpperCase();
+    const prefix2 = icao.substring(0, 2).toUpperCase();
+    
+    let fileName = "";
+    if (prefix === 'E') fileName = "Europe.json";
+    else if (prefix === 'L') {
+        if (['LC', 'LL', 'LT'].includes(prefix2)) fileName = "Middle_East.json";
+        else fileName = "Europe.json";
+    }
+    else if (prefix === 'K' || prefix === 'C' || prefix2 === 'PA') fileName = "North_America.json";
+    else if (prefix === 'S' || prefix === 'M' || prefix === 'T') fileName = "South_Latin_America.json";
+    else if (prefix === 'F' || prefix === 'D' || prefix === 'G' || prefix === 'H') fileName = "Africa.json";
+    else if (prefix === 'O' || prefix === 'V' || prefix === 'Z' || prefix === 'U') fileName = "Middle_East.json";
+    else if (prefix === 'R' || prefix === 'Y' || prefix === 'N' || prefix === 'A' || prefix === 'P') {
+        if (prefix2 === 'PA') fileName = "North_America.json";
+        else fileName = "Pacific_Australia.json";
+    }
+    
+    if (!fileName) return null;
+    
+    if (!atcData.newDb[fileName]) {
+        try {
+            const res = await fetch(`/data/atc/airports_database/${fileName}`);
+            if (res.ok) {
+                const data = await res.json();
+                // Index by ICAO for fast lookup
+                const indexed = {};
+                data.forEach(apt => { indexed[apt.CODE_ICAO] = apt; });
+                atcData.newDb[fileName] = indexed;
+            } else {
+                atcData.newDb[fileName] = {}; // Mark as failed to avoid re-fetch
+            }
+        } catch (e) {
+            console.error(`Failed to load ${fileName}:`, e);
+            atcData.newDb[fileName] = {};
+            return null;
+        }
+    }
+    
+    return atcData.newDb[fileName][icao] || null;
+}
+
+async function updateAtcVariables() {
     atcVariables = {};
     if (!atcData.airports || !atcData.firs) return;
     
@@ -530,163 +582,157 @@ function updateAtcVariables() {
     const origin = originEl ? originEl.value.trim().toUpperCase() : '';
     const dest = destEl ? destEl.value.trim().toUpperCase() : '';
 
-    // Pseudo-FIR mapping for missing airports (Global Fallback)
-    const PSEUDO_FIR = {
-        'LZ': 'LZBB', // Slovakia -> Bratislava
-        'LK': 'LKAA', // Czechia -> Praha
-        'LO': 'LOVV', // Austria -> Wien
-        'ED': 'EDGG', // Germany -> Langen
-        'ET': 'EDGG', // Germany Mil -> Langen
-        'EB': 'EBBU', // Belgium -> Brussels
-        'EL': 'EBBU', // Luxembourg -> Brussels
-        'EH': 'EHAA', // Netherlands -> Amsterdam
-        'EG': 'EGTT', // UK -> London
-        'LF': 'LFFF', // France -> Paris
-        'EP': 'EPWW', // Poland -> Warsaw
-        'LH': 'LHCC', // Hungary -> Budapest
-        'LE': 'LECB', // Spain -> Barcelona
-        'LP': 'LPPC', // Portugal -> Lisboa
-        'LI': 'LIMM', // Italy -> Milano
-        'LS': 'LSAS', // Switzerland -> Swiss
-        'LG': 'LGGG', // Greece -> Athinai
-        'LT': 'LTBB', // Turkey -> Istanbul
-        'ES': 'ESAA', // Sweden -> Stockholm
-        'EN': 'ENOR', // Norway -> Oslo
-        'EK': 'EKDK', // Denmark -> Kobenhavn
-        'EF': 'EFIN', // Finland -> Helsinki
-        'EY': 'EYVL', // Lithuania -> Vilnius
-        'EV': 'EVRR', // Latvia -> Riga
-        'EE': 'EETT', // Estonia -> Tallinn
-        'UK': 'UKBV', // Ukraine -> Kyiv
-        'KJ': 'KZNY', // USA East -> New York
-        'KL': 'KZLA', // USA West -> Los Angeles
-        'KO': 'KZAU', // USA Central -> Chicago
-        'OM': 'OMAE', // UAE -> Emirates
-    };
-
-    const processAirport = (icao, isDep) => {
+    const processAirport = async (icao, isDep) => {
         if (!icao) return;
-        let apt = atcData.airports[icao];
         
-        // If airport missing, create a skeleton
-        if (!apt) {
-            const prefix = icao.substring(0, 2);
+        // --- DATA SOURCE PRIORITY ---
+        // 1. SimBrief (handled via b- fields in script, but let's get base data first)
+        // 2. New DB (airports_database)
+        const newApt = await getNewDbAirport(icao);
+        // 3. Old DB (airports_atc.json)
+        const oldApt = atcData.airports[icao];
+        
+        let apt = null;
+        if (newApt) {
+            // Map new format to internal format
+            apt = {
+                icao: icao,
+                name: newApt.CITY || icao,
+                city: newApt.CITY || icao,
+                country: newApt.COUNTRY_CODE || '',
+                continent: '', // Continent logic handled in getNewDbAirport
+                fir: newApt.FIR_ICAO || '',
+                ta: newApt.TA !== '-' ? newApt.TA : null,
+                frequencies: []
+            };
+            if (newApt.DEL_FRQ !== '-') apt.frequencies.push({ type: 'DEL', callsign: newApt.DEL || newApt.CALLSIGN, frequency: newApt.DEL_FRQ });
+            if (newApt.GND_FRQ !== '-') apt.frequencies.push({ type: 'GND', callsign: newApt.GND || newApt.CALLSIGN, frequency: newApt.GND_FRQ });
+            if (newApt.TWR_FRQ !== '-') apt.frequencies.push({ type: 'TWR', callsign: newApt.TWR || newApt.CALLSIGN, frequency: newApt.TWR_FRQ });
+            if (newApt.APP_DEP_FRQ !== '-') apt.frequencies.push({ type: 'APP', role: 'DEP', callsign: newApt.APP_DEP || newApt.CALLSIGN, frequency: newApt.APP_DEP_FRQ });
+            if (newApt.APP_ARR_FRQ !== '-') apt.frequencies.push({ type: 'APP', role: 'ARR', callsign: newApt.APP_ARR || newApt.CALLSIGN, frequency: newApt.APP_ARR_FRQ });
+            
+            // ILS Data for Auto-Fill (Optional future use, but let's save for now)
+            apt.ils = {};
+            for (let i = 0; i < 40; i++) {
+                let rwy = i.toString().padStart(2, '0');
+                ['L','R','C'].forEach(s => {
+                    let key = `RWY${rwy}${s}_ILS_FRQ`;
+                    if (newApt[key] && newApt[key] !== '-') {
+                        apt.ils[rwy+s] = { freq: newApt[key], crs: newApt[`RWY${rwy}${s}_ILS_CRS`] };
+                    }
+                });
+                if (newApt[`RWY${rwy}_ILS_FRQ`] && newApt[`RWY${rwy}_ILS_FRQ`] !== '-') {
+                    apt.ils[rwy] = { freq: newApt[`RWY${rwy}_ILS_FRQ`], crs: newApt[`RWY${rwy}_ILS_CRS`] };
+                }
+            }
+        } else if (oldApt) {
+            apt = oldApt;
+        } else {
+            // 4. Universal Fallback
             apt = {
                 icao: icao,
                 name: icao,
                 city: icao,
                 country: '',
-                fir: PSEUDO_FIR[prefix] || '',
+                fir: '',
                 frequencies: []
             };
         }
         
-        let cityVar = isDep ? 'city_dep' : 'city_arr';
-        atcVariables[cityVar] = apt.city || apt.name || icao;
+        let prefix = isDep ? 'dep' : 'arr';
+        atcVariables['city_' + prefix] = apt.city || apt.name || icao;
         
+        // Auto-Fill Placeholders (TA / ILS)
+        if (isDep) {
+            const taEl = document.getElementById('b-ta');
+            if (taEl && apt.ta) taEl.placeholder = apt.ta;
+            const initAltEl = document.getElementById('b-initial-alt');
+            if (initAltEl && newApt && newApt.TA) initAltEl.placeholder = newApt.TA; // Often same
+        }
+
         // Greetings
         if (atcData.greetings) {
             let country = apt.country;
-            let continent = apt.continent;
             let hello = 'Hello';
             let bye = 'Goodbye';
-            
             if (country && atcData.greetings.countries && atcData.greetings.countries[country]) {
                 hello = atcData.greetings.countries[country].hello;
                 bye = atcData.greetings.countries[country].bye;
-            } else if (continent && atcData.greetings.continents && atcData.greetings.continents[continent]) {
-                hello = atcData.greetings.continents[continent].hello;
-                bye = atcData.greetings.continents[continent].bye;
             }
-            
-            if (isDep) {
-                atcVariables['hello_dep'] = hello;
-                atcVariables['bye_dep'] = bye;
-            } else {
-                atcVariables['hello_arr'] = hello;
-                atcVariables['bye_arr'] = bye;
-            }
+            atcVariables['hello_' + prefix] = hello;
+            atcVariables['bye_' + prefix] = bye;
         }
 
-        // Frequencies logic
+        // --- FREQUENCY FALLBACK LOGIC ---
         const freqs = apt.frequencies || [];
-        const getFreq = (type, role) => {
-            let found = freqs.find(f => f.type === type && (!role || f.role === role || !f.role));
-            if (!found) found = freqs.find(f => f.type === type);
-            return found;
+        const getF = (type, role) => {
+            let f = freqs.find(x => x.type === type && (role ? x.role === role : true));
+            if (!f && role) f = freqs.find(x => x.type === type); // Try without role
+            return f;
         };
 
-        const setVar = (key, val, freqVal) => {
-            if (val) atcVariables[key] = val;
-            if (freqVal) atcVariables[key + '_freq'] = freqVal;
+        const setV = (key, fObj) => {
+            if (!fObj) return false;
+            let callsign = fObj.callsign;
+            const isRadarRegion = ['CZ', 'SK', 'DE', 'AT', 'HU'].includes(apt.country);
+            if (isRadarRegion && fObj.type === 'APP') callsign = callsign.replace(/Approach/i, 'Radar');
+            atcVariables[key] = callsign;
+            atcVariables[key + '_freq'] = fObj.frequency;
+            return true;
         };
 
-        const isRadarRegion = ['CZ', 'SK', 'DE', 'AT', 'HU'].includes(apt.country);
-        const isCenterRegion = ['US', 'CA', 'AU'].includes(apt.country);
+        const del = getF('DEL');
+        const gnd = getF('GND');
+        const twr = getF('TWR');
+        const app_dep = getF('APP', 'DEP') || getF('APP');
+        const app_arr = getF('APP', 'ARR') || getF('APP');
 
-        // Fallback hierarchy logic (DEL -> GND -> TWR -> APP -> FIR)
-        const del = getFreq('DEL');
-        const gnd = getFreq('GND');
-        const twr = getFreq('TWR');
-        const app = getFreq('APP', isDep ? 'DEP' : 'ARR') || getFreq('APP');
-        
         if (isDep) {
-            if (del) setVar('delivery_dep', del.callsign, del.frequency);
-            else if (gnd) setVar('delivery_dep', gnd.callsign, gnd.frequency);
-            else if (twr) setVar('delivery_dep', twr.callsign, twr.frequency);
-            else if (app) setVar('delivery_dep', app.callsign, app.frequency);
-            
-            if (gnd) setVar('ground_dep', gnd.callsign, gnd.frequency);
-            else if (twr) setVar('ground_dep', twr.callsign, twr.frequency);
-            else if (app) setVar('ground_dep', app.callsign, app.frequency);
-            
-            if (twr) setVar('tower_dep', twr.callsign, twr.frequency);
-            else if (app) setVar('tower_dep', app.callsign, app.frequency);
-            
-            if (app) {
-                let callsign = app.callsign;
-                if (isRadarRegion) callsign = callsign.replace(/Approach/i, 'Radar');
-                setVar('approach_dep', callsign, app.frequency);
-            }
+            // DEP Hierarchy: DEL -> GND -> TWR -> APP_DEP -> APP_ARR -> FIR
+            setV('delivery_dep', del || gnd || twr || app_dep || app_arr);
+            setV('ground_dep', gnd || twr || app_dep || app_arr);
+            setV('tower_dep', twr || app_dep || app_arr);
+            setV('approach_dep', app_dep || app_arr);
         } else {
-            if (app) {
-                let callsign = app.callsign;
-                if (isRadarRegion) callsign = callsign.replace(/Approach/i, 'Radar');
-                setVar('approach_arr', callsign, app.frequency);
-            } else if (twr) {
-                setVar('approach_arr', twr.callsign, twr.frequency);
-            }
-            
-            if (twr) setVar('tower_arr', twr.callsign, twr.frequency);
-            else if (app) setVar('tower_arr', app.callsign, app.frequency);
-            
-            if (gnd) setVar('ground_arr', gnd.callsign, gnd.frequency);
-            else if (twr) setVar('ground_arr', twr.callsign, twr.frequency);
+            // ARR Hierarchy: APP_ARR -> APP_DEP -> TWR -> GND -> FIR
+            setV('approach_arr', app_arr || app_dep);
+            setV('tower_arr', twr || app_arr || app_dep);
+            setV('ground_arr', gnd || twr || app_arr || app_dep);
         }
 
-        // FIR logic (Global Fallback)
+        // FIR / CENTER Fallback
         let firCode = apt.fir;
-        if (firCode && atcData.firs[firCode]) {
-            let fir = atcData.firs[firCode];
-            let callsign = isCenterRegion ? fir.callsign.replace(/(Radar|Control)/i, 'Center') : fir.callsign;
+        let fir = null;
+        if (firCode) {
+            // Priority: new firDb -> old atcData.firs
+            fir = (atcData.firDb && atcData.firDb[firCode]) || atcData.firs[firCode];
+        }
+        
+        if (fir) {
+            let fCall = fir.CALLSIGN || fir.callsign;
+            let fFreq = fir.MAIN_FRQ || fir.frequency;
+            if (fFreq === '-') fFreq = null;
             
-            if (isDep) {
-                setVar('fir_dep', callsign, fir.frequency);
-                if (!atcVariables['approach_dep']) setVar('approach_dep', callsign, fir.frequency);
-                if (!atcVariables['tower_dep']) setVar('tower_dep', callsign, fir.frequency);
-                if (!atcVariables['ground_dep']) setVar('ground_dep', callsign, fir.frequency);
-                if (!atcVariables['delivery_dep']) setVar('delivery_dep', callsign, fir.frequency);
-            } else {
-                setVar('fir_arr', callsign, fir.frequency);
-                if (!atcVariables['approach_arr']) setVar('approach_arr', callsign, fir.frequency);
-                if (!atcVariables['tower_arr']) setVar('tower_arr', callsign, fir.frequency);
-                if (!atcVariables['ground_arr']) setVar('ground_arr', callsign, fir.frequency);
-            }
+            const isCenterRegion = ['US', 'CA', 'AU'].includes(apt.country);
+            if (isCenterRegion) fCall = fCall.replace(/(Radar|Control)/i, 'Center');
+
+            const firObj = { type: 'FIR', callsign: fCall, frequency: fFreq };
+            
+            setV('fir_' + prefix, firObj);
+            // Final safety fallbacks
+            if (!atcVariables['delivery_dep'] && isDep) setV('delivery_dep', firObj);
+            if (!atcVariables['ground_dep'] && isDep) setV('ground_dep', firObj);
+            if (!atcVariables['tower_dep'] && isDep) setV('tower_dep', firObj);
+            if (!atcVariables['approach_dep'] && isDep) setV('approach_dep', firObj);
+            
+            if (!atcVariables['approach_arr'] && !isDep) setV('approach_arr', firObj);
+            if (!atcVariables['tower_arr'] && !isDep) setV('tower_arr', firObj);
+            if (!atcVariables['ground_arr'] && !isDep) setV('ground_arr', firObj);
         }
     };
 
-    processAirport(origin, true);
-    processAirport(dest, false);
+    await processAirport(origin, true);
+    await processAirport(dest, false);
 }
 
 // Call on load
@@ -1278,12 +1324,12 @@ function loadBriefing() {
     if (lInputEl) setTimeout(() => lInputEl.dispatchEvent(new Event('input')), 50);
 }
 
-function saveBriefing() {
+async function saveBriefing() {
     const data = {};
     BRIEF_FIELDS.forEach(id => { const el = document.getElementById(id); if (el) data[id] = el.value; });
     localStorage.setItem(BRIEF_STORAGE_KEY, JSON.stringify(data));
     updateGlobalFlightInfo();
-    updateAtcVariables(); // Ensure ATC variables are fresh before rendering
+    await updateAtcVariables(); // Ensure ATC variables are fresh before rendering
     updateChecklistVariablesUI();
 
     // Automatically redraw the page to reflect potential briefing visibility changes
@@ -3048,14 +3094,10 @@ function initMetarAutoSync() {
     if (originInput) {
         originInput.addEventListener('change', (e) => {
             sync(e.target.value, 'dep');
-            updateInitAltPlaceholder(e.target.value);
         });
         originInput.addEventListener('blur', (e) => {
             sync(e.target.value, 'dep');
-            updateInitAltPlaceholder(e.target.value);
         });
-        // Initial load check
-        if (originInput.value) updateInitAltPlaceholder(originInput.value);
     }
     
     // Add dynamic runway update listeners
@@ -3107,16 +3149,3 @@ function initMetarAutoSync() {
     }
 }
 
-async function updateInitAltPlaceholder(icao) {
-    if (!icao || icao.length !== 4) return;
-    try {
-        const res = await fetch(`/api/airports?icao=${icao}`);
-        const data = await res.json();
-        const el = document.getElementById('b-initial-alt');
-        if (el && data && data.initial_climb) {
-            el.placeholder = data.initial_climb;
-        }
-    } catch (e) {
-        console.error('Placeholder Update Error:', e);
-    }
-}
