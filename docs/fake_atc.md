@@ -358,7 +358,22 @@ A sentence is only included if **all** variables within it are resolved. This me
 - If `%dep_gate%` is empty in the briefing, any sentence containing `%dep_gate%` will be silently skipped.
 - This allows graceful degradation — incomplete flight data just removes those specific calls from the dialogue, without breaking anything.
 
-### 11.5 Conditional Flags
+### 11.5 Conditional Blocks (Fallbacks)
+
+You can use conditional `[IF]` blocks to hide portions of the communication if a fallback occurs (e.g., if Delivery falls back to Ground, preventing a redundant handoff from Ground to Ground).
+
+**Syntax:**
+```json
+"[IF %delivery_dep% != %ground_dep%]",
+"#atc contact %ground_dep% %ground_dep_freq%",
+"[ENDIF]"
+```
+- The `[IF %var1% != %var2%]` block evaluates if the two variables are different.
+- If they are the same (due to a fallback where both variables resolve to the exact same station callsign), all sentences between `[IF]` and `[ENDIF]` are completely ignored.
+- You can also use `==` if needed: `[IF %var1% == %var2%]`.
+- This works flawlessly across multi-level fallbacks (e.g. DEL -> GND -> TWR -> APP -> FIR).
+
+### 11.6 Conditional Flags
 
 `fake_atc` items support the same flags as other items:
 - `"landingtype": "2+3"` — only visible for ILS approaches

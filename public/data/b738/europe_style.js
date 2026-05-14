@@ -240,12 +240,16 @@ window.initialChecklistData = [
           "#pm %callsign% ready for pushback and startup.",
           "#atc %callsign%, QHN %dep_qnh%",
           "#atc information %dep_atis%",
+          "[IF %delivery_dep% != %ground_dep%]",
           "#atc contact %ground_dep% %ground_dep_freq%",
+          "[ENDIF]",
           "#pm QHN %dep_qnh%",
           "#pm information %dep_atis%",
+          "[IF %delivery_dep% != %ground_dep%]",
           "#pm contact %ground_dep% %ground_dep_freq% %callsign%. %bye_dep%.",
           "#pause",
           "#pm %ground_dep% %hello_dep%, %callsign%, at stand %dep_gate% ready for pushback and startup",
+          "[ENDIF]",
           "#atc %callsign% , startup and pushback approved.",
           "#pm Startup and pushback approved, %callsign%"
         ]
@@ -385,10 +389,12 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
+          "[IF %ground_dep% != %tower_dep%]",
           "#atc %callsign% contact %tower_dep% on %tower_dep_freq% %bye_dep%",
           "#pm Contact %tower_dep% on %tower_dep_freq% %bye_dep%.",
           "#pause",
           "#pm %tower_dep% %hello_dep%, %callsign%",
+          "[ENDIF]",
           "#atc %callsign% report ready for departure",
           "#pm report ready for departure %callsign%"
         ]
@@ -449,10 +455,12 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
+          "[IF %tower_dep% != %approach_dep%]",
           "#atc %callsign% contact %approach_dep% %approach_dep_freq% %bye_dep%.",
           "#pm %approach_dep_freq% %callsign% %bye_dep%.",
           "#pause",
           "#pm %approach_dep%  %callsign% %hello_dep%",
+          "[ENDIF]",
           "#pm climbing via %sid%",
           "#pm to flight level 200",
           "#atc %callsign% %approach_dep% %hello_dep% identified",
@@ -480,10 +488,12 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
+          "[IF %approach_dep% != %fir_dep%]",
           "#atc %callsign% contact %fir_dep%  %fir_dep_freq% %bye_dep%",
           "#pm contact %fir_dep%  %fir_dep_freq% %bye_dep% %callsign%",
           "#pause",
           "#pm %fir_dep% %callsign% %hello_dep% climb to %init_alt%",
+          "[ENDIF]",
           "#atc %callsign% %fir_dep% %hello_dep% identified"
         ]
       }
@@ -512,10 +522,12 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
+          "[IF %fir_dep% != %fir_arr%]",
           "#atc %callsign% contact %fir_arr% %fir_arr_freq% %bye_dep%",
           "#pm contact %fir_arr_freq% %bye_dep% %callsign%",
           "#pause",
           "#pm %fir_arr% %callsign% %hello_arr% flight level %init_alt%",
+          "[ENDIF]",
           "#atc %callsign% %fir_arr% %hello_arr% identified"
         ]
       },
@@ -573,10 +585,12 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
+          "[IF %fir_arr% != %approach_arr%]",
           "#atc %callsign% contact %approach_arr% %approach_arr_freq% %bye_arr%",
           "#pm  contact %approach_arr_freq% %bye_arr% %callsign%",
           "#pause",
           "#pm %approach_arr% %callsign% %hello_arr% descent to flight level 200",
+          "[ENDIF]",
           "#atc %callsign% %approach_arr% %hello_arr% descent %fap_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established",
           "#pm descent %fap_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established %callsign%"
         ],
@@ -587,8 +601,10 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
+          "[IF %fir_arr% != %approach_arr%]",
           "#atc %callsign% contact %approach_arr% %approach_arr_freq% %bye_arr%",
           "#pm  contact %approach_arr_freq% %bye_arr% %callsign%",
+          "[ENDIF]",
           "#pm %approach_arr% %callsign% %hello_arr% descent to %ga_alt%",
           "#atc %callsign% %fir_arr% %hello_arr% descent %ga_alt%, cleared RNAV approach %arr_rwy% via %star%, report %ga_alt%",
           "#pm descent %ga_alt%, cleared RNAV approach %arr_rwy% via %star%, report %ga_alt% %callsign%"
@@ -626,10 +642,12 @@ window.initialChecklistData = [
         "type": "fake_atc",
         "text": [
           "#pm %callsign% ILS established",
+          "[IF %approach_arr% != %tower_arr%]",
           "#atc %callsign% contact tower on %tower_arr_freq% %bye_arr%",
           "#pm contact tower on %tower_arr_freq% %bye_arr% %callsign%",
           "#pause",
           "#pm %tower_arr% %callsign% %hello_arr%  landing on runway %arr_rwy%",
+          "[ENDIF]",
           "#atc %callsign% %tower_arr% %hello_arr% number 1",
           "#pm number 1 %callsign%"
         ],
@@ -641,9 +659,11 @@ window.initialChecklistData = [
         "type": "fake_atc",
         "text": [
           "#pm %callsign% at %ga_alt%",
+          "[IF %approach_arr% != %tower_arr%]",
           "#atc %callsign% contact tower on %tower_arr_freq% %bye_arr%",
           "#pm contact tower on %tower_arr_freq% %bye_arr% %callsign%",
           "#pm %tower_arr% %callsign% %hello_arr%  landing on runway %arr_rwy%",
+          "[ENDIF]",
           "#atc %callsign% %tower_arr% %hello_arr% number 1",
           "#pm number 1 %callsign%"
         ],
@@ -697,9 +717,11 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
+          "[IF %tower_arr% != %ground_arr%]",
           "#atc %callsign% contact ground on %ground_arr_freq% %bye_arr%",
           "#pm %ground_arr_freq% %bye_arr% %callsign%",
           "#pm %ground_arr% %callsign% %hello_arr%",
+          "[ENDIF]",
           "#atc %callsign% %ground_arr% %hello_arr% taxi to %gate% via %taxi_in%",
           "#pm taxi to %gate% via %taxi_in% %callsign%"
         ]

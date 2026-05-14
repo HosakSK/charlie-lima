@@ -821,9 +821,33 @@ loadAtcData();
 function getFakeAtcValidSentences(item, forSpeech = true) {
     let validSentences = [];
     let hasSentenceWithVar = false;
+    let skipBlock = false;
     
     // Make sure we have latest briefing fields too
     for (let sentence of item.text) {
+        // Evaluate IF statements
+        const ifMatch = sentence.match(/^\[IF\s+%([a-zA-Z0-9_]+)%\s*(==|!=)\s*%([a-zA-Z0-9_]+)%\]/i);
+        if (ifMatch) {
+            const var1 = atcVariables[ifMatch[1]] || '';
+            const op = ifMatch[2];
+            const var2 = atcVariables[ifMatch[3]] || '';
+            
+            let isTrue = false;
+            if (op === '==') isTrue = (var1 === var2);
+            if (op === '!=') isTrue = (var1 !== var2);
+            
+            skipBlock = !isTrue;
+            continue;
+        }
+        
+        const endifMatch = sentence.match(/^\[ENDIF\]/i);
+        if (endifMatch) {
+            skipBlock = false;
+            continue;
+        }
+        
+        if (skipBlock) continue;
+
         let hasVar = false;
         let allVarsFilled = true;
         let parsedSentence = sentence;
