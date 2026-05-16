@@ -63,7 +63,7 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
-          "#atc ATIS %city_dep% information %dep_atis%.",
+          "#atc Automatic terminal information service %city_dep% information %dep_atis%.",
           "#atc Temperature %dep_temp%. Dewpoint %dep_dewpt%.",
           "#atc Wind %dep_wind%.",
           "#atc QHN %dep_qnh%.",
@@ -377,7 +377,7 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
-          "#atc ATIS %city_dep% information %dep_atis%.",
+          "#atc Automatic terminal information service %city_dep% information %dep_atis%.",
           "#atc Temperature %dep_temp%. Dewpoint %dep_dewpt%.",
           "#atc Wind %dep_wind%.",
           "#atc QHN %dep_qnh%.",
@@ -564,7 +564,7 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
-          "#atc ATIS %city_arr% information %arr_atis%.",
+          "#atc Automatic terminal information service %city_arr% information %arr_atis%.",
           "#atc Temperature %arr_temp%. Dewpoint %arr_dewpt%.",
           "#atc Wind %arr_wind%.",
           "#atc QHN %arr_qnh%.",
