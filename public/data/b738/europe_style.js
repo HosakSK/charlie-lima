@@ -577,7 +577,7 @@ window.initialChecklistData = [
       { "name": "Autobrake %autobrake%", "action": "Set", "type": "flow" },
       { "name": "ILS frequency %ils_freq%", "action": "Set", "landingtype": "3+2", "type": "flow" },
       { "name": "ILS course %course%", "action": "Set", "landingtype": "3+2", "type": "flow" },
-      { "name": "ILS altitude %ga_alt%", "action": "Check", "landingtype": "3+2", "type": "flow" },
+      { "name": "ILS altitude %fap_alt%", "action": "Check", "landingtype": "3+2", "type": "flow" },
       { "name": "Decision height %minima%", "action": "Set", "type": "flow" },
       { "name": "MCP bank angle selector", "action": "25°", "type": "flow" },
       {
