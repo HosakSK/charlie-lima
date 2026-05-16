@@ -717,7 +717,6 @@ window.initialChecklistData = [
       { "name": "Flaps %arr_flaps% & speed %vref%", "action": "Set for landing", "type": "flow" },
       { "name": "Go around altitude %ga_alt%", "action": "Set", "type": "flow" },
       { "name": "APU", "action": "Start", "landingtype": "3", "type": "flow" },
-      { "name": "At minimums – autopilot", "action": "Disengage", "type": "flow" },
       {
         "name": "New fake_atc",
         "action": "",
@@ -732,7 +731,8 @@ window.initialChecklistData = [
       { "name": "Engine start switches", "action": "Continuous", "type": "checklist item" },
       { "name": "Landing gear", "action": "Down and green", "type": "checklist item" },
       { "name": "Speedbrake", "action": "Arm and green", "type": "checklist item" },
-      { "name": "Flaps ", "action": "%arr_flaps%", "type": "checklist item" }
+      { "name": "Flaps ", "action": "%arr_flaps%", "type": "checklist item" },
+      { "name": "At minimums – autopilot", "action": "Disengage", "type": "flow", "subtype": "simplify" }
     ]
   },
   {
