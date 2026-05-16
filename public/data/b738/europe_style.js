@@ -58,6 +58,19 @@ window.initialChecklistData = [
       { "name": "Manual gear ext access door", "action": "Locked", "type": "flow", "subtype": "simplify" },
       { "name": "Parking brake", "action": "Set", "type": "flow" },
       { "name": "ATIS", "action": "Receive", "type": "flow" },
+      {
+        "name": "New fake_atc",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc ATIS %city_dep% information %dep_atis%.",
+          "#atc Temperature %dep_temp%. Dewpoint %dep_dewpt%.",
+          "#atc Wind %dep_wind%.",
+          "#atc QHN %dep_qnh%.",
+          "#atc Departure runway %dep_rwy%.",
+          "#atc Advise you have information %dep_atis%."
+        ]
+      },
       { "name": "Exterior inspection", "action": "Check", "type": "flow", "subtype": "simplify" }
     ]
   },
@@ -359,6 +372,19 @@ window.initialChecklistData = [
         ]
       },
       { "name": "ATC | Taxi", "action": "Receive", "type": "flow" },
+      {
+        "name": "New fake_atc",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc ATIS %city_dep% information %dep_atis%.",
+          "#atc Temperature %dep_temp%. Dewpoint %dep_dewpt%.",
+          "#atc Wind %dep_wind%.",
+          "#atc QHN %dep_qnh%.",
+          "#atc Departure runway %dep_rwy%.",
+          "#atc Advise you have information %dep_atis%."
+        ]
+      },
       { "name": "Runway Turnoff lights", "action": "On", "type": "flow" },
       { "name": "Taxi lights", "action": "On", "type": "flow" }
     ]
@@ -532,7 +558,20 @@ window.initialChecklistData = [
         ]
       },
       { "name": "CDU DEP/ARR, LEGS, DES pages", "action": "Review", "type": "flow" },
-      { "name": "ATIS %arr_atis%", "action": "Check", "type": "flow" },
+      { "name": "ATC | ATIS", "action": "Check", "type": "flow" },
+      {
+        "name": "New fake_atc",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc ATIS %city_arr% information %arr_atis%.",
+          "#atc Temperature %arr_temp%. Dewpoint %arr_dewpt%.",
+          "#atc Wind %arr_wind%.",
+          "#atc QHN %arr_qnh%.",
+          "#atc Arrival runway %arr_rwy%.",
+          "#atc Advise you have information %arr_atis%."
+        ]
+      },
       { "name": "Preselected BARO %arr_qnh%", "action": "Insert", "type": "flow" },
       { "name": "VREF %vref%", "action": "Set", "type": "flow" },
       { "name": "Autobrake %autobrake%", "action": "Set", "type": "flow" },
