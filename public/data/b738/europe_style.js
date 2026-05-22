@@ -57,7 +57,6 @@ window.initialChecklistData = [
       { "name": "Circuit breakers P6 & P18", "action": "Check", "type": "flow", "subtype": "simplify" },
       { "name": "Manual gear ext access door", "action": "Locked", "type": "flow", "subtype": "simplify" },
       { "name": "Parking brake", "action": "Set", "type": "flow" },
-      { "name": "ATIS", "action": "Receive", "type": "flow" },
       {
         "name": "New fake_atc",
         "action": "",
@@ -71,6 +70,7 @@ window.initialChecklistData = [
           "#atc Advise you have information %dep_atis%."
         ]
       },
+      { "name": "ATIS", "action": "Receive", "type": "flow" },
       { "name": "Exterior inspection", "action": "Check", "type": "flow", "subtype": "simplify" }
     ]
   },
@@ -142,7 +142,7 @@ window.initialChecklistData = [
       { "name": "MCP V2 %v2%", "action": "Set", "type": "flow" },
       { "name": "MCP HDG %dep_rwy_hdg%", "action": "Set", "type": "flow" },
       { "name": "MCP bank angle selector", "action": "25°", "type": "flow" },
-      { "name": "MCP init. ALT %init_alt%", "action": "Set", "type": "flow" },
+      { "name": "MCP init. ALT %initial_alt%", "action": "Set", "type": "flow" },
       { "name": "MCP autopilot disengage bar", "action": "Up", "type": "flow" },
       { "name": "Oxygen mask panel", "action": "Test", "type": "flow", "subtype": "test", "ifturnaround": "skip" },
       { "name": "Clock", "action": "Check", "type": "flow", "subtype": "simplify" },
@@ -245,6 +245,42 @@ window.initialChecklistData = [
       { "name": "Exterior doors", "action": "Close", "type": "flow" },
       { "name": "Jetways / stairs", "action": "Remove", "type": "flow" },
       { "name": "GPU / GAU", "action": "Remove", "type": "flow" },
+      { "name": "Anti-collision light switch", "action": "On", "type": "flow" },
+      { "name": "Electric hydraulic switches", "action": "On", "type": "flow" },
+      { "name": "Flight deck doors", "action": "Closed & locked", "type": "flow", "subtype": "simplify" },
+      { "name": "Brake pressure", "action": ">2800 psi", "type": "flow", "subtype": "simplify" },
+      {
+        "name": "Before taxi and takeoff briefing",
+        "action": "",
+        "type": "briefing",
+        "text": [
+          "Taxi and takeoff briefing.",
+          "Today our callsign is %callsign% and we are flying from %origin% to %dest%.",
+          "Assumed Temperature %dep_assumed% degrees and QNH is %dep_qnh%.",
+          "Taxi will be via %taxi_out%.",
+          "This will be a left seat takeoff from runway %dep_rwy%.",
+          "V-speeds are calculated: V1 %v1%, VR %vr%, V2 %v2%.",
+          "We are using Flaps %dep_flaps%.",
+          "Wind on the runway is %dep_wind%.",
+          "We are cleared via the %sid% departure.",
+          "Initial altitude is %initial_alt%.",
+          "In case of malfunction before V1, I will call STOP or GO.",
+          "After V1, we continue, engine out procedure is straight ahead.",
+          "Taxi and takeoff briefing complete."
+        ]
+      },
+      { "name": "Fuel pumps", "action": "On", "type": "checklist item" },
+      { "name": "Fuel", "action": "%total_fuel%", "type": "checklist item" },
+      { "name": "Passenger signs", "action": "On", "type": "checklist item" },
+      { "name": "Windows", "action": "Closed", "type": "checklist item", "subtype": "simplify" },
+      { "name": "Flight deck door", "action": "Closed and locked", "type": "checklist item" },
+      { "name": "HDG ", "action": "%dep_rwy_hdg% ", "type": "checklist item" },
+      { "name": " ALT ", "action": "%initial_alt%", "type": "checklist item" },
+      { "name": "V2", "action": " %v2%", "type": "checklist item" },
+      { "name": "FMC", "action": "Set", "type": "checklist item" },
+      { "name": "Anti-collision lights", "action": "On", "type": "checklist item" },
+      { "name": "Taxi and takeoff briefing", "action": "Completed", "type": "checklist item" },
+      { "name": "Rudder and aileron trim", "action": "Free and 0", "type": "checklist item" },
       {
         "name": "Pushback & startup",
         "action": "",
@@ -267,43 +303,7 @@ window.initialChecklistData = [
           "#pm Startup and pushback approved, %callsign%"
         ]
       },
-      { "name": "ATC | Pushback & startup", "action": "Receive", "type": "flow" },
-      { "name": "Anti-collision light switch", "action": "On", "type": "flow" },
-      { "name": "Electric hydraulic switches", "action": "On", "type": "flow" },
-      { "name": "Flight deck doors", "action": "Closed & locked", "type": "flow", "subtype": "simplify" },
-      { "name": "Brake pressure", "action": ">2800 psi", "type": "flow", "subtype": "simplify" },
-      {
-        "name": "Before taxi and takeoff briefing",
-        "action": "",
-        "type": "briefing",
-        "text": [
-          "Taxi and takeoff briefing.",
-          "Today our callsign is %callsign% and we are flying from %origin% to %dest%.",
-          "Assumed Temperature %dep_assumed% degrees and QNH is %dep_qnh%.",
-          "Taxi will be via %taxi_out%.",
-          "This will be a left seat takeoff from runway %dep_rwy%.",
-          "V-speeds are calculated: V1 %v1%, VR %vr%, V2 %v2%.",
-          "We are using Flaps %dep_flaps%.",
-          "Wind on the runway is %dep_wind%.",
-          "We are cleared via the %sid% departure.",
-          "Initial altitude is %init_alt%.",
-          "In case of malfunction before V1, I will call STOP or GO.",
-          "After V1, we continue, engine out procedure is straight ahead.",
-          "Taxi and takeoff briefing complete."
-        ]
-      },
-      { "name": "Fuel pumps", "action": "On", "type": "checklist item" },
-      { "name": "Fuel", "action": "%total_fuel%", "type": "checklist item" },
-      { "name": "Passenger signs", "action": "On", "type": "checklist item" },
-      { "name": "Windows", "action": "Closed", "type": "checklist item", "subtype": "simplify" },
-      { "name": "Flight deck door", "action": "Closed and locked", "type": "checklist item" },
-      { "name": "HDG ", "action": "%dep_rwy_hdg% ", "type": "checklist item" },
-      { "name": " ALT ", "action": "%init_alt%", "type": "checklist item" },
-      { "name": "V2", "action": " %v2%", "type": "checklist item" },
-      { "name": "FMC", "action": "Set", "type": "checklist item" },
-      { "name": "Anti-collision lights", "action": "On", "type": "checklist item" },
-      { "name": "Taxi and takeoff briefing", "action": "Completed", "type": "checklist item" },
-      { "name": "Rudder and aileron trim", "action": "Free and 0", "type": "checklist item" }
+      { "name": "ATC | Pushback & startup", "action": "Receive", "type": "flow" }
     ]
   },
   {
@@ -357,6 +357,19 @@ window.initialChecklistData = [
       { "name": "Flight controls", "action": "Check", "type": "checklist item" },
       { "name": "Ground equipment", "action": "Clear", "type": "checklist item" },
       { "name": "Dispatch clearance", "action": "Clear", "type": "checklist item" },
+      {
+        "name": "New fake_atc",
+        "action": "",
+        "type": "fake_atc",
+        "text": [
+          "#atc Automatic terminal information service %city_dep% information %dep_atis%.",
+          "#atc Temperature %dep_temp%. Dewpoint %dep_dewpt%.",
+          "#atc Wind %dep_wind%.",
+          "#atc QHN %dep_qnh%.",
+          "#atc Departure runway %dep_rwy%.",
+          "#atc Advise you have information %dep_atis%."
+        ]
+      },
       { "name": "ATIS", "action": "TAXI", "type": "flow" },
       {
         "name": "Taxi",
@@ -372,19 +385,6 @@ window.initialChecklistData = [
         ]
       },
       { "name": "ATC | Taxi", "action": "Receive", "type": "flow" },
-      {
-        "name": "New fake_atc",
-        "action": "",
-        "type": "fake_atc",
-        "text": [
-          "#atc Automatic terminal information service %city_dep% information %dep_atis%.",
-          "#atc Temperature %dep_temp%. Dewpoint %dep_dewpt%.",
-          "#atc Wind %dep_wind%.",
-          "#atc QHN %dep_qnh%.",
-          "#atc Departure runway %dep_rwy%.",
-          "#atc Advise you have information %dep_atis%."
-        ]
-      },
       { "name": "Runway Turnoff lights", "action": "On", "type": "flow" },
       { "name": "Taxi lights", "action": "On", "type": "flow" }
     ]
@@ -401,7 +401,7 @@ window.initialChecklistData = [
           "Takeoff runway %dep_rwy%.",
           "Flaps %dep_flaps%.",
           "V-Speeds are set: V1 %v1%, Vr %vr%, V2 %v2%.",
-          "Initial altitude %init_alt% feet is set.",
+          "Initial altitude %initial_alt% feet is set.",
           "Departure Review complete."
         ]
       },
@@ -580,22 +580,6 @@ window.initialChecklistData = [
       { "name": "ILS altitude %fap_alt%", "action": "Check", "landingtype": "3+2", "type": "flow" },
       { "name": "Decision height %minima%", "action": "Set", "type": "flow" },
       { "name": "MCP bank angle selector", "action": "25°", "type": "flow" },
-      {
-        "name": "Approach briefing",
-        "action": "",
-        "type": "briefing",
-        "text": [
-          "Approach briefing.",
-          "We will fly the %landing_type% approach to runway %arr_rwy%.",
-          "Current ATIS is %arr_atis%, wind is %arr_wind%.",
-          "We plan a Flaps %arr_flaps% landing, Vref is %vref% knots.",
-          "Autobrake is set to %autobrake%.",
-          "Our Decision Altitude is %minima% feet radio.",
-          "In case of a Go-Around, we climb to %ga_alt% feet.",
-          "Our Minimum Diversion Fuel is %reserve_fuel% kilograms.",
-          "Approach briefing complete."
-        ]
-      },
       { "name": "Landing altitude", "action": "Set", "type": "checklist item" },
       { "name": "Recall", "action": "Check", "type": "checklist item" },
       { "name": "Autobrake ", "action": "%autobrake%", "type": "checklist item" },
@@ -613,7 +597,23 @@ window.initialChecklistData = [
           "#pm runway %arr_rwy% via %star% %callsign%"
         ]
       },
-      { "name": "ATC | Descent", "action": "Receive", "type": "flow" }
+      { "name": "ATC | Descent", "action": "Receive", "type": "flow" },
+      {
+        "name": "Approach briefing",
+        "action": "",
+        "type": "briefing",
+        "text": [
+          "Approach briefing.",
+          "We will fly the %landing_type% approach to runway %arr_rwy%.",
+          "Current ATIS is %arr_atis%, wind is %arr_wind%.",
+          "We plan a Flaps %arr_flaps% landing, Vref is %vref% knots.",
+          "Autobrake is set to %autobrake%.",
+          "Our Decision Altitude is %minima% feet radio.",
+          "In case of a Go-Around, we climb to %ga_alt% feet.",
+          "Our Minimum Diversion Fuel is %reserve_fuel% kilograms.",
+          "Approach briefing complete."
+        ]
+      }
     ]
   },
   {
@@ -644,9 +644,9 @@ window.initialChecklistData = [
           "#atc %callsign% contact %approach_arr% %approach_arr_freq% %bye_arr%",
           "#pm  contact %approach_arr_freq% %bye_arr% %callsign%",
           "[ENDIF]",
-          "#pm %approach_arr% %callsign% %hello_arr% descent to %ga_alt%",
-          "#atc %callsign% %fir_arr% %hello_arr% descent %ga_alt%, cleared RNAV approach %arr_rwy% via %star%, report %ga_alt%",
-          "#pm descent %ga_alt%, cleared RNAV approach %arr_rwy% via %star%, report %ga_alt% %callsign%"
+          "#pm %approach_arr% %callsign% %hello_arr% descent to %fap_alt%",
+          "#atc %callsign% %fir_arr% %hello_arr% descent %_alt%, cleared RNAV approach %arr_rwy% via %star%, report %fap_alt%",
+          "#pm descent %fap_alt%, cleared RNAV approach %arr_rwy% via %star%, report %fap_alt% %callsign%"
         ],
         "landingtype": "1"
       },
@@ -697,7 +697,7 @@ window.initialChecklistData = [
         "action": "",
         "type": "fake_atc",
         "text": [
-          "#pm %callsign% at %ga_alt%",
+          "#pm %callsign% at %fap_alt%",
           "[IF %approach_arr% != %tower_arr%]",
           "#atc %callsign% contact tower on %tower_arr_freq% %bye_arr%",
           "#pm contact tower on %tower_arr_freq% %bye_arr% %callsign%",
@@ -731,7 +731,7 @@ window.initialChecklistData = [
       { "name": "Engine start switches", "action": "Continuous", "type": "checklist item" },
       { "name": "Landing gear", "action": "Down and green", "type": "checklist item" },
       { "name": "Speedbrake", "action": "Arm and green", "type": "checklist item" },
-      { "name": "Flaps ", "action": "%arr_flaps%", "type": "checklist item" },
+      { "name": "Flaps %arr_flaps%", "action": " Set and green", "type": "checklist item" },
       { "name": "At minimums – autopilot", "action": "Disengage", "type": "flow", "subtype": "simplify" }
     ]
   },
