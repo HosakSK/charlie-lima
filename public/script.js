@@ -883,6 +883,16 @@ function getFakeAtcValidSentences(item, forSpeech = true) {
             if (sentence.toLowerCase().includes(placeholder.toLowerCase())) {
                 hasVar = true;
                 let val = atcVariables[varName] || '';
+                
+                // Fallback for missing ATC names (represented as "-")
+                if (val === '-' && !varName.endsWith('_freq')) {
+                    if (varName.endsWith('_dep')) {
+                        val = atcVariables['city_dep'] || '';
+                    } else if (varName.endsWith('_arr')) {
+                        val = atcVariables['city_arr'] || '';
+                    }
+                }
+
                 if (!val) allVarsFilled = false;
                 else parsedSentence = parsedSentence.replace(new RegExp(placeholder, 'gi'), val);
             }
