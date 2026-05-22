@@ -396,7 +396,7 @@ function hasFlow() {
 
 const AIRLINE_CALLSIGNS = {
     'RYR': 'Ryanair', 'DLH': 'Lufthansa', 'AFR': 'Air France', 'BAW': 'Speedbird', 'BA': 'Speedbird',
-    'EZY': 'EasyJet', 'WZZ': 'Wizz Air', 'KLM': 'K L M', 'TVQ': 'Smartwings', 'AUA': 'Austrian',
+    'EZY': 'EasyJet', 'WZZ': 'Wizz Air', 'KLM': 'Kilo Lima Mike', 'TVQ': 'Smartwings', 'AUA': 'Austrian',
     'SWR': 'Swiss', 'EXS': 'Channex', 'FIN': 'Finnair', 'IBE': 'Iberia', 'EIN': 'Shamrock',
     'SAS': 'Scandinavian', 'TAP': 'Air Portugal', 'PGT': 'Sunturk', 'BTI': 'Air Baltic',
     'LOT': 'LOT', 'CSA': 'CSA', 'VLG': 'Vueling', 'THY': 'Turkish Airlines', 'BEE': 'Jersey',
@@ -2341,9 +2341,9 @@ if (SpeechRecognition) {
             }
 
             // Special case for single letters (like ATIS code A)
-            if (match.length === 1 && /^[A-Z]$/.test(match)) {
-                if (DONT_SPELL.has(match)) return match;
-                return NATO_ALPHABET[match] || match;
+            if (match.length === 1 && /^[a-zA-Z]$/.test(match)) {
+                if (DONT_SPELL.has(upper)) return match;
+                return NATO_ALPHABET[upper] || match;
             }
 
             // Only spell if the ORIGINAL match was all uppercase and at least 2 chars long
