@@ -396,10 +396,10 @@ function hasFlow() {
 
 const AIRLINE_CALLSIGNS = {
     'RYR': 'Ryanair', 'DLH': 'Lufthansa', 'AFR': 'Air France', 'BAW': 'Speedbird', 'BA': 'Speedbird',
-    'EZY': 'EasyJet', 'WZZ': 'Wizz Air', 'KLM': 'Kilo Lima Mike', 'TVQ': 'Smartwings', 'AUA': 'Austrian',
+    'EZY': 'EasyJet', 'WZZ': 'Wizz Air', 'KLM': 'KejEleM', 'TVQ': 'Smartwings', 'AUA': 'Austrian',
     'SWR': 'Swiss', 'EXS': 'Channex', 'FIN': 'Finnair', 'IBE': 'Iberia', 'EIN': 'Shamrock',
     'SAS': 'Scandinavian', 'TAP': 'Air Portugal', 'PGT': 'Sunturk', 'BTI': 'Air Baltic',
-    'LOT': 'LOT', 'CSA': 'CSA', 'VLG': 'Vueling', 'THY': 'Turkish Airlines', 'BEE': 'Jersey',
+    'LOT': 'Lot', 'CSA': 'Csa', 'VLG': 'Vueling', 'THY': 'Turkish Airlines', 'BEE': 'Jersey',
     'SXS': 'SunExpress', 'NAX': 'Norwegian', 'AEA': 'Europa', 'AZA': 'Alitalia', 'CTN': 'Croatia',
     'ROT': 'Tarom', 'AEE': 'Aegean', 'AAL': 'American', 'DAL': 'Delta', 'UAL': 'United',
     'SWA': 'Southwest', 'JBU': 'JetBlue', 'NKS': 'Spirit', 'ASA': 'Alaska', 'ACA': 'Air Canada',
@@ -2300,6 +2300,17 @@ if (SpeechRecognition) {
         'LINE', 'CRUISE', 'DESCENT', 'CAB', 'UTIL', 'BUS', 'BARO', 'EFIS',
         'TOGA', 'PACK', 'PACKS', 'LNAV', 'VNAV', 'SIDE', 'RNAV', 'BRATISLAVA', 'PRAGUE', 'VIENNA', 'WARSAW', 'BUDAPEST'
     ]);
+
+    // Dynamically add callsign words to DONT_SPELL
+    for (const key in AIRLINE_CALLSIGNS) {
+        const callsign = AIRLINE_CALLSIGNS[key];
+        callsign.split(/\s+/).forEach(word => {
+            const cleanWord = word.replace(/[^a-zA-Z0-9]/g, '').toUpperCase();
+            if (cleanWord.length >= 2) {
+                DONT_SPELL.add(cleanWord);
+            }
+        });
+    }
 
     function spellAbbreviations(text, skipSpelling = false) {
         // Special phrase handling
