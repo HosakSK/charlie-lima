@@ -85,7 +85,7 @@ const actionTimerTime = document.getElementById('action-timer-time');
 const actionTimerLabel = document.getElementById('action-timer-label');
 
 // AUDIO VOLUMES
-if (audioClick) { audioClick.volume = 0.1; console.log("AudioClick initialized at 10%"); }
+if (audioClick) { audioClick.volume = 0.1; }
 
 let isMuted = localStorage.getItem('b738_muted') === 'true';
 
@@ -1588,8 +1588,6 @@ if (simbriefFetchBtn && simbriefIdInput) {
                 
                 window.updateBriefingFromRwy = updateFromRwy;
 
-                console.log('SimBrief Data for Debug:', data);
-
                 const fields = {
                     'b-callsign': data.atc?.callsign,
                     'b-origin': data.origin?.icao_code,
@@ -1749,8 +1747,6 @@ function updateChecklistVariablesUI() {
 // CHECKLIST ENGINE
 // ============================================================
 function init() {
-    console.log("Initializing app...");
-    
     // Check if initialChecklistData exists and has items
     if (!window.initialChecklistData || !Array.isArray(window.initialChecklistData) || window.initialChecklistData.length === 0) {
         console.warn("No checklist data found! Using emergency fallback.");

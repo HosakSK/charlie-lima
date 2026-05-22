@@ -94,10 +94,10 @@ Numbers with decimal points are read with the word "decimal":
 - `121.5` → "121 decimal 5"
 
 #### Phase 3: NATO Alphabet & Character Spelling
-- **Single uppercase letters** (A–Z) are converted to NATO phonetic alphabet (e.g., `A` → "Alpha", `B` → "Bravo")
+- **Single letters** (A–Z, case-insensitive) are converted to NATO phonetic alphabet (e.g., `A` or `a` → "Alpha", `C` or `c` → "Charlie"). This handles standalone notations like taxiways.
 - **Known acronyms** (`CLASSIC_SPELL_EXCEPTIONS`: ~50+ terms like `IRS`, `FMC`, `GPWS`, `ADI`, `ISFD`, etc.) are read **character-by-character** without NATO conversion (e.g., `IRS` → "I R S")
 - **All-uppercase words** (2+ characters) that aren't in the exception or exclusion list are NATO-spelled (e.g., `ILS` → "India Lima Sierra")
-- **Excluded words** (`DONT_SPELL`: ~80+ terms like `CHECK`, `SET`, `TAXI`, `APPROACH`, etc.) are read naturally without any spelling
+- **Excluded words** (`DONT_SPELL`: ~80+ terms like `CHECK`, `SET`, `TAXI`, `APPROACH`, etc., **plus all airline callsigns dynamically loaded from the database**) are read naturally without any spelling
 
 #### Phase 4: Number Formatting
 - Numbers with 2+ digits are read **digit-by-digit** (e.g., `148` → "1 4 8")

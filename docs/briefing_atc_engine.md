@@ -283,7 +283,7 @@ The text will only appear if a checklist item with a matching name has been **ch
 
 To improve the realism of voice synthesis, the engine includes a mapping of ~50 ICAO airline prefixes to their spoken telephony callsigns.
 
-- **Mechanism:** When a callsign is spoken (in `fake_atc` or briefing), the engine checks the alphabetic prefix against the `AIRLINE_CALLSIGNS` dictionary.
+- **Mechanism:** When a callsign is spoken (in `fake_atc` or briefing), the engine checks the alphabetic prefix against the `AIRLINE_CALLSIGNS` dictionary. Furthermore, all words from this dictionary are dynamically added to the `DONT_SPELL` exception set on load, ensuring that they are never spelled out using the NATO alphabet.
 - **Examples:** `RYR` → "Ryanair", `BAW` → "Speedbird", `TVQ` → "Smartwings", `UAE` → "Emirates", `QTR` → "Qatari"
 - **Suffixes:** The numeric suffix is preserved and appended (e.g., `RYR123` → "Ryanair 123")
 - **Fallback:** If no match is found, the callsign is used as-is.
