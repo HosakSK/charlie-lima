@@ -486,11 +486,11 @@ window.initialChecklistData = [
           "#pm %approach_dep_freq% %callsign% %bye_dep%.",
           "#pause",
           "#pm %approach_dep%  %callsign% %hello_dep%",
-          "[ENDIF]",
           "#pm climbing via %sid%",
           "#pm to flight level 200",
-          "#atc %callsign% %approach_dep% %hello_dep% identified",
-          "#atc climb to flight level %init_alt%",
+          "#atc %approach_dep% %hello_dep% identified",
+          "[ENDIF]",
+          "#atc %callsign% climb to flight level %init_alt%",
           "#pm climb to flight level %init_alt% %callsign%"
         ]
       },
@@ -519,8 +519,8 @@ window.initialChecklistData = [
           "#pm contact %fir_dep%  %fir_dep_freq% %bye_dep% %callsign%",
           "#pause",
           "#pm %fir_dep% %callsign% %hello_dep% climb to %init_alt%",
-          "[ENDIF]",
-          "#atc %callsign% %fir_dep% %hello_dep% identified"
+          "#atc %callsign% %fir_dep% %hello_dep% identified",
+          "[ENDIF]"
         ]
       }
     ]
@@ -553,8 +553,8 @@ window.initialChecklistData = [
           "#pm contact %fir_arr_freq% %bye_dep% %callsign%",
           "#pause",
           "#pm %fir_arr% %callsign% %hello_arr% flight level %init_alt%",
-          "[ENDIF]",
-          "#atc %callsign% %fir_arr% %hello_arr% identified"
+          "#atc %callsign% %fir_arr% %hello_arr% identified",
+          "[ENDIF]"
         ]
       },
       { "name": "CDU DEP/ARR, LEGS, DES pages", "action": "Review", "type": "flow" },
@@ -629,8 +629,9 @@ window.initialChecklistData = [
           "#pm  contact %approach_arr_freq% %bye_arr% %callsign%",
           "#pause",
           "#pm %approach_arr% %callsign% %hello_arr% descent to flight level 200",
+          "#atc %approach_arr% %hello_arr%",
           "[ENDIF]",
-          "#atc %callsign% %approach_arr% %hello_arr% descent %fap_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established",
+          "#atc %callsign% descent %fap_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established",
           "#pm descent %fap_alt%, cleared ILS approach %arr_rwy% via %star%, report ILS established %callsign%"
         ],
         "landingtype": "2+3"
@@ -702,8 +703,9 @@ window.initialChecklistData = [
           "#atc %callsign% contact tower on %tower_arr_freq% %bye_arr%",
           "#pm contact tower on %tower_arr_freq% %bye_arr% %callsign%",
           "#pm %tower_arr% %callsign% %hello_arr%  landing on runway %arr_rwy%",
+          "#atc %tower_arr% %hello_arr%",
           "[ENDIF]",
-          "#atc %callsign% %tower_arr% %hello_arr% number 1",
+          "#atc %callsign% number 1",
           "#pm number 1 %callsign%"
         ],
         "landingtype": "1"
@@ -760,8 +762,10 @@ window.initialChecklistData = [
           "#atc %callsign% contact ground on %ground_arr_freq% %bye_arr%",
           "#pm %ground_arr_freq% %bye_arr% %callsign%",
           "#pm %ground_arr% %callsign% %hello_arr%",
+          "#atc %ground_arr% %hello_arr%",
           "[ENDIF]",
-          "#atc %callsign% %ground_arr% %hello_arr% taxi to %gate% via %taxi_in%",
+          "#atc %callsign%  taxi to %gate%",
+          "#atc via %taxi_in%",
           "#pm taxi to %gate% via %taxi_in% %callsign%"
         ]
       },
