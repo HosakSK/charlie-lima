@@ -1781,14 +1781,18 @@ function init() {
 
     const hideTestsContainer = document.getElementById('top-hide-tests-container');
     if (hideTestsContainer) {
-        const hasTests = checklistData.some(p => p.items.some(i => i.type === 'test'));
+        const hasTests = checklistData.some(p => p.items.some(i => {
+            if (i.subtype === 'test' || (Array.isArray(i.subtype) && i.subtype.includes('test'))) return true;
+            const act = (i.action || '').toLowerCase();
+            return ['test', 'verify'].some(t => act === t || act.startsWith(t + ' '));
+        }));
         hideTestsContainer.style.display = hasTests ? 'flex' : 'none';
     }
 
     // Dynamically show/hide Simplify toggle based on whether this dataset has simplify items
     const simplifyContainer = document.getElementById('top-simplify-container');
     if (simplifyContainer) {
-        const hasSimplify = checklistData.some(p => p.items.some(i => i.subtype === 'simplify'));
+        const hasSimplify = checklistData.some(p => p.items.some(i => i.subtype === 'simplify' || (Array.isArray(i.subtype) && i.subtype.includes('simplify'))));
         simplifyContainer.style.display = hasSimplify ? 'flex' : 'none';
     }
 

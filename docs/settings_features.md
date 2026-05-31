@@ -109,7 +109,7 @@ This document describes the various user-adjustable settings and display modes a
 | **Toggle Label** | "Simplify" |
 | **Persistence** | `b738_simplify` (`"true"` \| `"false"`) |
 | **Default** | `false` |
-| **Visibility** | Only shown if the dataset contains items with `subtype: "simplify"` |
+| **Visibility** | Only shown if the dataset contains items with `subtype: "simplify"` (or an array containing it) |
 
 - **Implementation:** `isItemVisible()` returns `false` for items with `subtype: "simplify"` (or arrays containing `"simplify"`).
 
@@ -120,7 +120,7 @@ This document describes the various user-adjustable settings and display modes a
 | **Toggle Label** | "Hide Tests" |
 | **Persistence** | `b738_hide_tests` (`"true"` \| `"false"`) |
 | **Default** | `false` |
-| **Visibility** | Only shown if the dataset contains items with `type: "test"` |
+| **Visibility** | Only shown if the dataset contains test items (determined by `subtype: "test"` or `action` starting with "test/verify") |
 
 - **Implementation:**
   - Filters by `subtype: "test"` (or arrays containing `"test"`).
