@@ -580,12 +580,6 @@ window.initialChecklistData = [
       { "name": "ILS altitude %fap_alt%", "action": "Check", "landingtype": "3+2", "type": "flow" },
       { "name": "Decision height %minima%", "action": "Set", "type": "flow" },
       { "name": "MCP bank angle selector", "action": "25°", "type": "flow" },
-      { "name": "Landing altitude", "action": "Set", "type": "checklist item" },
-      { "name": "Recall", "action": "Check", "type": "checklist item" },
-      { "name": "Autobrake ", "action": "%autobrake%", "type": "checklist item" },
-      { "name": "VREF ", "action": "%vref%", "type": "checklist item" },
-      { "name": "Decision height", "action": " %minima%", "type": "checklist item" },
-      { "name": "Approach briefing", "action": "Complete", "type": "checklist item" },
       {
         "name": "Descent",
         "action": "",
@@ -613,7 +607,13 @@ window.initialChecklistData = [
           "Our Minimum Diversion Fuel is %reserve_fuel% kilograms.",
           "Approach briefing complete."
         ]
-      }
+      },
+      { "name": "Landing altitude", "action": "Set", "type": "checklist item" },
+      { "name": "Recall", "action": "Check", "type": "checklist item" },
+      { "name": "Autobrake ", "action": "%autobrake%", "type": "checklist item" },
+      { "name": "VREF ", "action": "%vref%", "type": "checklist item" },
+      { "name": "Decision height", "action": " %minima%", "type": "checklist item" },
+      { "name": "Approach briefing", "action": "Complete", "type": "checklist item" }
     ]
   },
   {
