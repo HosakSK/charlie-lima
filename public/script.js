@@ -610,11 +610,12 @@ async function updateAtcVariables() {
                 ta: newApt.TA !== '-' ? newApt.TA : null,
                 frequencies: []
             };
-            if (newApt.DEL_FRQ !== '-') apt.frequencies.push({ type: 'DEL', callsign: newApt.DEL || newApt.CALLSIGN, frequency: newApt.DEL_FRQ });
-            if (newApt.GND_FRQ !== '-') apt.frequencies.push({ type: 'GND', callsign: newApt.GND || newApt.CALLSIGN, frequency: newApt.GND_FRQ });
-            if (newApt.TWR_FRQ !== '-') apt.frequencies.push({ type: 'TWR', callsign: newApt.TWR || newApt.CALLSIGN, frequency: newApt.TWR_FRQ });
-            if (newApt.APP_DEP_FRQ !== '-') apt.frequencies.push({ type: 'APP', role: 'DEP', callsign: newApt.APP_DEP || newApt.CALLSIGN, frequency: newApt.APP_DEP_FRQ });
-            if (newApt.APP_ARR_FRQ !== '-') apt.frequencies.push({ type: 'APP', role: 'ARR', callsign: newApt.APP_ARR || newApt.CALLSIGN, frequency: newApt.APP_ARR_FRQ });
+            const getCS = (val) => (val && val !== '-') ? val : newApt.CALLSIGN;
+            if (newApt.DEL_FRQ !== '-') apt.frequencies.push({ type: 'DEL', callsign: getCS(newApt.DEL), frequency: newApt.DEL_FRQ });
+            if (newApt.GND_FRQ !== '-') apt.frequencies.push({ type: 'GND', callsign: getCS(newApt.GND), frequency: newApt.GND_FRQ });
+            if (newApt.TWR_FRQ !== '-') apt.frequencies.push({ type: 'TWR', callsign: getCS(newApt.TWR), frequency: newApt.TWR_FRQ });
+            if (newApt.APP_DEP_FRQ !== '-') apt.frequencies.push({ type: 'APP', role: 'DEP', callsign: getCS(newApt.APP_DEP), frequency: newApt.APP_DEP_FRQ });
+            if (newApt.APP_ARR_FRQ !== '-') apt.frequencies.push({ type: 'APP', role: 'ARR', callsign: getCS(newApt.APP_ARR), frequency: newApt.APP_ARR_FRQ });
             
             // ILS Data for Auto-Fill (Optional future use, but let's save for now)
             apt.ils = {};
