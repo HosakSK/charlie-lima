@@ -563,12 +563,99 @@ function closeFlightModal() {
 
 async function fetchRouteData(from, to) {
   try {
-    const res = await fetch(`/api/flight-route?from=${from}&to=${to}`);
-    if (!res.ok) return { route: 'DCT', distance: null, waypoints: [] };
-    return await res.json();
-  } catch (e) {
-    console.error('Error fetching route:', e);
-    return { route: 'DCT', distance: null, waypoints: [] };
+    // 1. Search plans directly from browser to use user's clean IP
+    const searchUrl = `https://api.flightplandatabase.com/search/plans?fromICAO=${from}&toICAO=${to}&limit=10`;
+    const searchRes = await fetch(searchUrl, {
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!searchRes.ok) {
+      throw new Error(`FPD search failed: ${searchRes.status}`);
+    }
+
+    const plans = await searchRes.json();
+    if (!Array.isArray(plans) || plans.length === 0) {
+      return { route: 'DCT', distance: null, waypoints: [], source: null };
+    }
+
+    // 2. Sort by popularity descending
+    plans.sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0));
+    const bestPlan = plans[0];
+
+    // 3. Fetch plan details
+    const planRes = await fetch(`https://api.flightplandatabase.com/plan/${bestPlan.id}`, {
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!planRes.ok) {
+      throw new Error(`FPD plan fetch failed: ${planRes.status}`);
+    }
+
+    const planData = await planRes.json();
+    const nodes = planData.route?.nodes || [];
+
+    const waypoints = nodes.map(node => ({
+      ident: node.ident,
+      type: node.type,
+      lat: node.lat,
+      lon: node.lon,
+      alt: node.alt,
+      via: node.via?.ident ?? null,
+      viaType: node.via?.type ?? null,
+    }));
+
+    // Build route string from nodes, excluding DEP/ARR airports
+    const innerNodes = nodes.filter(n => n.type !== 'APT');
+    let routeString = planData.routeString || '';
+    if (!routeString && innerNodes.length > 0) {
+      const parts = [];
+      for (const node of innerNodes) {
+        if (node.via) parts.push(node.via.ident);
+        parts.push(node.ident);
+      }
+      routeString = parts.filter((v, i, a) => i === 0 || v !== a[i - 1]).join(' ');
+    }
+
+    // Clean up routeString to remove departure and arrival if they are at the ends
+    const words = routeString.trim().split(/\s+/);
+    if (words[0] === from) words.shift();
+    if (words[words.length - 1] === to) words.pop();
+    const routeClean = words.join(' ');
+
+    // Extract cruise altitude
+    const notes = planData.notes || '';
+    const altMatch = notes.match(/Cruise Altitude:\s*(\d+)ft/);
+    const cruiseAlt = altMatch ? parseInt(altMatch[1]) : (bestPlan.maxAltitude ?? null);
+
+    // Build airways summary
+    const airways = [...new Set(
+      nodes
+        .filter(n => n.via?.type?.startsWith('AWY'))
+        .map(n => n.via.ident)
+    )].slice(0, 6);
+
+    return {
+      route: routeClean || 'DCT',
+      distance: Math.round(planData.distance ?? bestPlan.distance ?? 0),
+      waypoints,
+      cruiseAltitude: cruiseAlt,
+      waypointCount: innerNodes.length,
+      airways,
+      source: {
+        name: 'Flight Plan Database',
+        url: `https://flightplandatabase.com/plan/${bestPlan.id}`,
+        popularity: bestPlan.popularity ?? 0,
+        cycle: planData.cycle?.ident ?? null,
+        username: planData.user?.username ?? null,
+      }
+    };
+  } catch (err) {
+    console.warn('Direct browser fetch failed (trying server proxy):', err);
+    try {
+      const res = await fetch(`/api/flight-route?from=${from}&to=${to}`);
+      if (res.ok) return await res.json();
+    } catch (proxyErr) {
+      console.error('Server proxy also failed:', proxyErr);
+    }
+    return { route: 'DCT', distance: null, waypoints: [], source: null };
   }
 }
 
