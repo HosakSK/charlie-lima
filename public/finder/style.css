@@ -345,16 +345,15 @@ input[type="range"] {
 
 /* Results Count in Sidebar */
 .results-count-container {
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--panel-border);
+  margin-top: 1rem;
+  padding-top: 0.5rem;
   text-align: center;
 }
 
 #results-count {
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--accent-blue);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--text-muted);
 }
 
 .flights-grid {
