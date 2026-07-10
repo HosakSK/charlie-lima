@@ -9,7 +9,9 @@
     "flight_number": "FR 2854",
     "callsign": "RYR2854",
     "departure_time": "21:55",
+    "departure_time_utc": "19:55",
     "arrival_time": "23:37",
+    "arrival_time_utc": "21:37",
     "duration_minutes": 102,
     "days_of_operation": [
       1,
@@ -32,7 +34,9 @@
     "flight_number": "FR 34",
     "callsign": "RYR129U",
     "departure_time": "21:00",
-    "arrival_time": "23:21",
+    "departure_time_utc": "20:00",
+    "arrival_time": "00:21",
+    "arrival_time_utc": "22:21",
     "duration_minutes": 141,
     "days_of_operation": [
       1,
@@ -55,7 +59,9 @@
     "flight_number": "FR 5041",
     "callsign": "RYR74RM",
     "departure_time": "07:55",
-    "arrival_time": "10:14",
+    "departure_time_utc": "06:55",
+    "arrival_time": "11:14",
+    "arrival_time_utc": "09:14",
     "duration_minutes": 139,
     "days_of_operation": [
       1,
@@ -77,7 +83,9 @@
     "flight_number": "FR 6642",
     "callsign": "RYR4TT",
     "departure_time": "19:15",
-    "arrival_time": "21:48",
+    "departure_time_utc": "18:15",
+    "arrival_time": "22:48",
+    "arrival_time_utc": "20:48",
     "duration_minutes": 153,
     "days_of_operation": [
       1,
@@ -100,7 +108,9 @@
     "flight_number": "FR 63",
     "callsign": "RYR10PA",
     "departure_time": "17:15",
-    "arrival_time": "19:20",
+    "departure_time_utc": "16:15",
+    "arrival_time": "20:20",
+    "arrival_time_utc": "18:20",
     "duration_minutes": 125,
     "days_of_operation": [
       2,
@@ -126,7 +136,9 @@
     "flight_number": "FR 2314",
     "callsign": "RYR7QX",
     "departure_time": "19:45",
-    "arrival_time": "21:50",
+    "departure_time_utc": "18:45",
+    "arrival_time": "22:50",
+    "arrival_time_utc": "20:50",
     "duration_minutes": 125,
     "days_of_operation": [
       2
@@ -147,7 +159,9 @@
     "flight_number": "FR 1870",
     "callsign": "RYR68QL",
     "departure_time": "16:50",
+    "departure_time_utc": "14:50",
     "arrival_time": "18:29",
+    "arrival_time_utc": "16:29",
     "duration_minutes": 99,
     "days_of_operation": [
       1,
@@ -171,7 +185,9 @@
     "flight_number": "FR 4228",
     "callsign": "RYR4228",
     "departure_time": "08:20",
-    "arrival_time": "11:00",
+    "departure_time_utc": "07:20",
+    "arrival_time": "12:00",
+    "arrival_time_utc": "10:00",
     "duration_minutes": 160,
     "days_of_operation": [
       6
@@ -192,7 +208,9 @@
     "flight_number": "FR 4224",
     "callsign": "RYR9JV",
     "departure_time": "19:10",
-    "arrival_time": "21:50",
+    "departure_time_utc": "18:10",
+    "arrival_time": "22:50",
+    "arrival_time_utc": "20:50",
     "duration_minutes": 160,
     "days_of_operation": [
       2,
@@ -216,7 +234,9 @@
     "flight_number": "FR 6592",
     "callsign": "RYR9SP",
     "departure_time": "11:30",
+    "departure_time_utc": "09:30",
     "arrival_time": "12:52",
+    "arrival_time_utc": "10:52",
     "duration_minutes": 82,
     "days_of_operation": [
       3,
@@ -238,7 +258,9 @@
     "flight_number": "FR 6827",
     "callsign": "RYR6827",
     "departure_time": "15:10",
+    "departure_time_utc": "13:10",
     "arrival_time": "16:32",
+    "arrival_time_utc": "14:32",
     "duration_minutes": 82,
     "days_of_operation": [
       1,
@@ -260,7 +282,9 @@
     "flight_number": "FR 3640",
     "callsign": "RYR33KN",
     "departure_time": "17:00",
+    "departure_time_utc": "15:00",
     "arrival_time": "18:10",
+    "arrival_time_utc": "16:10",
     "duration_minutes": 70,
     "days_of_operation": [
       1,
@@ -287,7 +311,9 @@
     "flight_number": "FR 4220",
     "callsign": "RYR4DJ",
     "departure_time": "07:10",
-    "arrival_time": "11:54",
+    "departure_time_utc": "06:10",
+    "arrival_time": "12:54",
+    "arrival_time_utc": "10:54",
     "duration_minutes": 284,
     "days_of_operation": [
       5
@@ -308,7 +334,9 @@
     "flight_number": "FR 3638",
     "callsign": "RYR3638",
     "departure_time": "10:20",
+    "departure_time_utc": "08:20",
     "arrival_time": "11:48",
+    "arrival_time_utc": "09:48",
     "duration_minutes": 88,
     "days_of_operation": [
       1,
@@ -332,7 +360,9 @@
     "flight_number": "FR 3705",
     "callsign": "RYR3BX",
     "departure_time": "14:30",
-    "arrival_time": "16:16",
+    "departure_time_utc": "11:30",
+    "arrival_time": "15:16",
+    "arrival_time_utc": "13:16",
     "duration_minutes": 106,
     "days_of_operation": [
       2,
@@ -355,7 +385,9 @@
     "flight_number": "FR 3329",
     "callsign": "RYR5UT",
     "departure_time": "06:10",
-    "arrival_time": "09:06",
+    "departure_time_utc": "03:10",
+    "arrival_time": "08:06",
+    "arrival_time_utc": "06:06",
     "duration_minutes": 176,
     "days_of_operation": [
       1,
@@ -378,7 +410,9 @@
     "flight_number": "FR 6825",
     "callsign": "RYR6UL",
     "departure_time": "05:55",
+    "departure_time_utc": "03:55",
     "arrival_time": "07:00",
+    "arrival_time_utc": "05:00",
     "duration_minutes": 65,
     "days_of_operation": [
       1,
@@ -402,7 +436,9 @@
     "flight_number": "FR 5698",
     "callsign": "RYR18LB",
     "departure_time": "21:05",
+    "departure_time_utc": "19:05",
     "arrival_time": "23:50",
+    "arrival_time_utc": "21:50",
     "duration_minutes": 165,
     "days_of_operation": [
       1,
@@ -426,7 +462,9 @@
     "flight_number": "FR 5718",
     "callsign": "RYR45ER",
     "departure_time": "19:30",
+    "departure_time_utc": "17:30",
     "arrival_time": "21:46",
+    "arrival_time_utc": "19:46",
     "duration_minutes": 136,
     "days_of_operation": [
       1,
@@ -452,7 +490,9 @@
     "flight_number": "FR 6523",
     "callsign": "RYR31NN",
     "departure_time": "22:05",
+    "departure_time_utc": "20:05",
     "arrival_time": "00:21",
+    "arrival_time_utc": "22:21",
     "duration_minutes": 136,
     "days_of_operation": [
       7
@@ -473,7 +513,9 @@
     "flight_number": "FR 6689",
     "callsign": "RYR11WA",
     "departure_time": "10:35",
+    "departure_time_utc": "08:35",
     "arrival_time": "13:48",
+    "arrival_time_utc": "11:48",
     "duration_minutes": 193,
     "days_of_operation": [
       2
@@ -494,7 +536,9 @@
     "flight_number": "FR 5775",
     "callsign": "RYR40KU",
     "departure_time": "16:30",
+    "departure_time_utc": "14:30",
     "arrival_time": "19:43",
+    "arrival_time_utc": "17:43",
     "duration_minutes": 193,
     "days_of_operation": [
       1,
@@ -517,7 +561,9 @@
     "flight_number": "FR 9511",
     "callsign": "RYR6UN",
     "departure_time": "12:30",
+    "departure_time_utc": "10:30",
     "arrival_time": "14:52",
+    "arrival_time_utc": "12:52",
     "duration_minutes": 142,
     "days_of_operation": [
       2,
@@ -540,7 +586,9 @@
     "flight_number": "FR 5888",
     "callsign": "RYR11UT",
     "departure_time": "12:20",
-    "arrival_time": "14:24",
+    "departure_time_utc": "09:20",
+    "arrival_time": "13:24",
+    "arrival_time_utc": "11:24",
     "duration_minutes": 124,
     "days_of_operation": [
       2,
@@ -563,7 +611,9 @@
     "flight_number": "FR 1744",
     "callsign": "RYR1744",
     "departure_time": "00:25",
-    "arrival_time": "02:08",
+    "departure_time_utc": "21:25",
+    "arrival_time": "01:08",
+    "arrival_time_utc": "23:08",
     "duration_minutes": 103,
     "days_of_operation": [
       2,
@@ -586,7 +636,9 @@
     "flight_number": "FR 1783",
     "callsign": "RYR1783",
     "departure_time": "15:05",
-    "arrival_time": "16:48",
+    "departure_time_utc": "12:05",
+    "arrival_time": "15:48",
+    "arrival_time_utc": "13:48",
     "duration_minutes": 103,
     "days_of_operation": [
       3
@@ -607,7 +659,9 @@
     "flight_number": "FR 6829",
     "callsign": "RYR3HP",
     "departure_time": "10:30",
-    "arrival_time": "12:23",
+    "departure_time_utc": "07:30",
+    "arrival_time": "11:23",
+    "arrival_time_utc": "09:23",
     "duration_minutes": 113,
     "days_of_operation": [
       1,
@@ -631,7 +685,9 @@
     "flight_number": "FR 2170",
     "callsign": "RYR773T",
     "departure_time": "21:10",
-    "arrival_time": "22:52",
+    "departure_time_utc": "18:10",
+    "arrival_time": "21:52",
+    "arrival_time_utc": "19:52",
     "duration_minutes": 102,
     "days_of_operation": [
       3,
@@ -653,7 +709,9 @@
     "flight_number": "FR 9628",
     "callsign": "RYR9628",
     "departure_time": "18:10",
+    "departure_time_utc": "16:10",
     "arrival_time": "19:38",
+    "arrival_time_utc": "17:38",
     "duration_minutes": 88,
     "days_of_operation": [
       7
@@ -674,7 +732,9 @@
     "flight_number": "FR 6830",
     "callsign": "RYR71QD",
     "departure_time": "23:30",
+    "departure_time_utc": "21:30",
     "arrival_time": "00:58",
+    "arrival_time_utc": "22:58",
     "duration_minutes": 88,
     "days_of_operation": [
       3,
@@ -696,7 +756,9 @@
     "flight_number": "FR 5760",
     "callsign": "RYR8HK",
     "departure_time": "08:40",
+    "departure_time_utc": "06:40",
     "arrival_time": "10:27",
+    "arrival_time_utc": "08:27",
     "duration_minutes": 107,
     "days_of_operation": [
       3,
@@ -719,7 +781,9 @@
     "flight_number": "FR 5802",
     "callsign": "RYR646J",
     "departure_time": "20:15",
+    "departure_time_utc": "18:15",
     "arrival_time": "22:12",
+    "arrival_time_utc": "20:12",
     "duration_minutes": 117,
     "days_of_operation": [
       2,
@@ -744,7 +808,9 @@
     "flight_number": "FR 7155",
     "callsign": "RYR88WF",
     "departure_time": "15:35",
+    "departure_time_utc": "13:35",
     "arrival_time": "17:35",
+    "arrival_time_utc": "15:35",
     "duration_minutes": 120,
     "days_of_operation": [
       2,
@@ -766,7 +832,9 @@
     "flight_number": "FR 6398",
     "callsign": "RYR53VV",
     "departure_time": "15:25",
+    "departure_time_utc": "13:25",
     "arrival_time": "17:17",
+    "arrival_time_utc": "15:17",
     "duration_minutes": 112,
     "days_of_operation": [
       1,
@@ -791,7 +859,9 @@
     "flight_number": "FR 8226",
     "callsign": "RYR285J",
     "departure_time": "18:45",
+    "departure_time_utc": "16:45",
     "arrival_time": "20:37",
+    "arrival_time_utc": "18:37",
     "duration_minutes": 112,
     "days_of_operation": [
       2,
@@ -813,7 +883,9 @@
     "flight_number": "FR 5734",
     "callsign": "RYR84SX",
     "departure_time": "14:10",
+    "departure_time_utc": "12:10",
     "arrival_time": "15:32",
+    "arrival_time_utc": "13:32",
     "duration_minutes": 82,
     "days_of_operation": [
       1,
@@ -840,7 +912,9 @@
     "flight_number": "FR 4226",
     "callsign": "RYR2ZA",
     "departure_time": "11:25",
+    "departure_time_utc": "09:25",
     "arrival_time": "12:54",
+    "arrival_time_utc": "10:54",
     "duration_minutes": 89,
     "days_of_operation": [
       1,
@@ -867,7 +941,9 @@
     "flight_number": "FR 5758",
     "callsign": "RYR84JW",
     "departure_time": "19:05",
+    "departure_time_utc": "17:05",
     "arrival_time": "20:38",
+    "arrival_time_utc": "18:38",
     "duration_minutes": 93,
     "days_of_operation": [
       2,
@@ -891,7 +967,9 @@
     "flight_number": "FR 9851",
     "callsign": "RYR37UN",
     "departure_time": "06:00",
+    "departure_time_utc": "04:00",
     "arrival_time": "07:24",
+    "arrival_time_utc": "05:24",
     "duration_minutes": 84,
     "days_of_operation": [
       1,
@@ -913,7 +991,9 @@
     "flight_number": "FR 7110",
     "callsign": "RYR8BH",
     "departure_time": "17:55",
+    "departure_time_utc": "15:55",
     "arrival_time": "20:09",
+    "arrival_time_utc": "18:09",
     "duration_minutes": 134,
     "days_of_operation": [
       2
@@ -934,7 +1014,9 @@
     "flight_number": "FR 1528",
     "callsign": "RYR6ZR",
     "departure_time": "19:55",
+    "departure_time_utc": "17:55",
     "arrival_time": "22:09",
+    "arrival_time_utc": "20:09",
     "duration_minutes": 134,
     "days_of_operation": [
       1,
@@ -957,7 +1039,9 @@
     "flight_number": "FR 7144",
     "callsign": "RYR87FG",
     "departure_time": "22:05",
-    "arrival_time": "00:33",
+    "departure_time_utc": "19:05",
+    "arrival_time": "23:33",
+    "arrival_time_utc": "21:33",
     "duration_minutes": 148,
     "days_of_operation": [
       1,
@@ -979,7 +1063,9 @@
     "flight_number": "FR 4227",
     "callsign": "RYR4227",
     "departure_time": "05:50",
-    "arrival_time": "08:30",
+    "departure_time_utc": "03:50",
+    "arrival_time": "07:30",
+    "arrival_time_utc": "06:30",
     "duration_minutes": 160,
     "days_of_operation": [
       6
@@ -1000,7 +1086,9 @@
     "flight_number": "FR 5042",
     "callsign": "RYR56NF",
     "departure_time": "06:05",
-    "arrival_time": "08:24",
+    "departure_time_utc": "04:05",
+    "arrival_time": "07:24",
+    "arrival_time_utc": "06:24",
     "duration_minutes": 139,
     "days_of_operation": [
       1,
@@ -1022,7 +1110,9 @@
     "flight_number": "FR 5761",
     "callsign": "RYR7EV",
     "departure_time": "06:10",
+    "departure_time_utc": "04:10",
     "arrival_time": "07:57",
+    "arrival_time_utc": "05:57",
     "duration_minutes": 107,
     "days_of_operation": [
       3,
@@ -1045,7 +1135,9 @@
     "flight_number": "FR 6690",
     "callsign": "RYR75BJ",
     "departure_time": "06:25",
+    "departure_time_utc": "04:25",
     "arrival_time": "09:38",
+    "arrival_time_utc": "07:38",
     "duration_minutes": 193,
     "days_of_operation": [
       2
@@ -1066,7 +1158,9 @@
     "flight_number": "FR 6828",
     "callsign": "RYR4YP",
     "departure_time": "07:10",
-    "arrival_time": "09:03",
+    "departure_time_utc": "05:10",
+    "arrival_time": "10:03",
+    "arrival_time_utc": "07:03",
     "duration_minutes": 113,
     "days_of_operation": [
       1,
@@ -1090,7 +1184,9 @@
     "flight_number": "FR 9850",
     "callsign": "RYR98",
     "departure_time": "08:05",
+    "departure_time_utc": "06:05",
     "arrival_time": "09:29",
+    "arrival_time_utc": "07:29",
     "duration_minutes": 84,
     "days_of_operation": [
       1,
@@ -1112,7 +1208,9 @@
     "flight_number": "FR 5889",
     "callsign": "",
     "departure_time": "08:35",
-    "arrival_time": "10:39",
+    "departure_time_utc": "06:35",
+    "arrival_time": "11:39",
+    "arrival_time_utc": "08:39",
     "duration_minutes": 124,
     "days_of_operation": [
       2,
@@ -1135,7 +1233,9 @@
     "flight_number": "FR 3328",
     "callsign": "RYR7LN",
     "departure_time": "08:40",
-    "arrival_time": "11:36",
+    "departure_time_utc": "06:40",
+    "arrival_time": "12:36",
+    "arrival_time_utc": "09:36",
     "duration_minutes": 176,
     "days_of_operation": [
       1,
@@ -1158,7 +1258,9 @@
     "flight_number": "FR 6643",
     "callsign": "RYR79RN",
     "departure_time": "09:45",
-    "arrival_time": "12:18",
+    "departure_time_utc": "07:45",
+    "arrival_time": "11:18",
+    "arrival_time_utc": "10:18",
     "duration_minutes": 153,
     "days_of_operation": [
       1,
@@ -1181,7 +1283,9 @@
     "flight_number": "FR 3706",
     "callsign": "RYR3706",
     "departure_time": "11:20",
-    "arrival_time": "13:06",
+    "departure_time_utc": "09:20",
+    "arrival_time": "14:06",
+    "arrival_time_utc": "11:06",
     "duration_minutes": 106,
     "days_of_operation": [
       2,
@@ -1204,7 +1308,9 @@
     "flight_number": "FR 1782",
     "callsign": "RYR1782",
     "departure_time": "11:35",
-    "arrival_time": "13:18",
+    "departure_time_utc": "09:35",
+    "arrival_time": "14:18",
+    "arrival_time_utc": "11:18",
     "duration_minutes": 103,
     "days_of_operation": [
       3
@@ -1225,7 +1331,9 @@
     "flight_number": "FR 5733",
     "callsign": "RYR38MM",
     "departure_time": "12:00",
+    "departure_time_utc": "10:00",
     "arrival_time": "13:22",
+    "arrival_time_utc": "11:22",
     "duration_minutes": 82,
     "days_of_operation": [
       1,
@@ -1252,7 +1360,9 @@
     "flight_number": "FR 3637",
     "callsign": "RYR252D",
     "departure_time": "12:25",
+    "departure_time_utc": "10:25",
     "arrival_time": "13:53",
+    "arrival_time_utc": "11:53",
     "duration_minutes": 88,
     "days_of_operation": [
       1,
@@ -1276,7 +1386,9 @@
     "flight_number": "FR 6399",
     "callsign": "RYR68KK",
     "departure_time": "13:00",
+    "departure_time_utc": "11:00",
     "arrival_time": "14:52",
+    "arrival_time_utc": "12:52",
     "duration_minutes": 112,
     "days_of_operation": [
       1,
@@ -1301,7 +1413,9 @@
     "flight_number": "FR 4219",
     "callsign": "RYR4MR",
     "departure_time": "13:15",
-    "arrival_time": "17:59",
+    "departure_time_utc": "11:15",
+    "arrival_time": "16:59",
+    "arrival_time_utc": "15:59",
     "duration_minutes": 284,
     "days_of_operation": [
       5
@@ -1322,7 +1436,9 @@
     "flight_number": "FR 6593",
     "callsign": "RYR3LX",
     "departure_time": "13:20",
+    "departure_time_utc": "11:20",
     "arrival_time": "14:42",
+    "arrival_time_utc": "12:42",
     "duration_minutes": 82,
     "days_of_operation": [
       3,
@@ -1344,7 +1460,9 @@
     "flight_number": "FR 4225",
     "callsign": "RYR1AE",
     "departure_time": "13:25",
+    "departure_time_utc": "11:25",
     "arrival_time": "14:54",
+    "arrival_time_utc": "12:54",
     "duration_minutes": 89,
     "days_of_operation": [
       1,
@@ -1371,7 +1489,9 @@
     "flight_number": "FR 9512",
     "callsign": "RYR49RT",
     "departure_time": "14:00",
+    "departure_time_utc": "12:00",
     "arrival_time": "16:22",
+    "arrival_time_utc": "14:22",
     "duration_minutes": 142,
     "days_of_operation": [
       2,
@@ -1394,7 +1514,9 @@
     "flight_number": "FR 1871",
     "callsign": "RYR56TE",
     "departure_time": "14:35",
+    "departure_time_utc": "12:35",
     "arrival_time": "16:14",
+    "arrival_time_utc": "14:14",
     "duration_minutes": 99,
     "days_of_operation": [
       1,
@@ -1418,7 +1540,9 @@
     "flight_number": "FR 3639",
     "callsign": "RYR9HZ",
     "departure_time": "15:10",
+    "departure_time_utc": "13:10",
     "arrival_time": "16:20",
+    "arrival_time_utc": "14:20",
     "duration_minutes": 70,
     "days_of_operation": [
       1,
@@ -1445,7 +1569,9 @@
     "flight_number": "FR 9627",
     "callsign": "RYR21AW",
     "departure_time": "16:10",
+    "departure_time_utc": "14:10",
     "arrival_time": "17:38",
+    "arrival_time_utc": "15:38",
     "duration_minutes": 88,
     "days_of_operation": [
       7
@@ -1466,7 +1592,9 @@
     "flight_number": "FR 8227",
     "callsign": "RYR8227",
     "departure_time": "16:10",
+    "departure_time_utc": "14:10",
     "arrival_time": "18:02",
+    "arrival_time_utc": "16:02",
     "duration_minutes": 112,
     "days_of_operation": [
       2,
@@ -1488,7 +1616,9 @@
     "flight_number": "FR 5759",
     "callsign": "RYR48AP",
     "departure_time": "16:30",
+    "departure_time_utc": "14:30",
     "arrival_time": "18:03",
+    "arrival_time_utc": "16:03",
     "duration_minutes": 93,
     "days_of_operation": [
       2,
@@ -1512,7 +1642,9 @@
     "flight_number": "FR 6826",
     "callsign": "RYR6826",
     "departure_time": "17:00",
+    "departure_time_utc": "15:00",
     "arrival_time": "18:22",
+    "arrival_time_utc": "16:22",
     "duration_minutes": 82,
     "days_of_operation": [
       1,
@@ -1534,7 +1666,9 @@
     "flight_number": "FR 5699",
     "callsign": "RYR19SV",
     "departure_time": "17:25",
+    "departure_time_utc": "15:25",
     "arrival_time": "20:10",
+    "arrival_time_utc": "18:10",
     "duration_minutes": 165,
     "days_of_operation": [
       1,
@@ -1558,7 +1692,9 @@
     "flight_number": "FR 7143",
     "callsign": "RYR7143",
     "departure_time": "18:00",
-    "arrival_time": "20:28",
+    "departure_time_utc": "16:00",
+    "arrival_time": "21:28",
+    "arrival_time_utc": "18:28",
     "duration_minutes": 148,
     "days_of_operation": [
       1,
@@ -1580,7 +1716,9 @@
     "flight_number": "FR 7154",
     "callsign": "RYR66WD",
     "departure_time": "18:00",
+    "departure_time_utc": "16:00",
     "arrival_time": "20:00",
+    "arrival_time_utc": "18:00",
     "duration_minutes": 120,
     "days_of_operation": [
       2,
@@ -1602,7 +1740,9 @@
     "flight_number": "FR 6524",
     "callsign": "RYR60VY",
     "departure_time": "18:55",
+    "departure_time_utc": "16:55",
     "arrival_time": "21:11",
+    "arrival_time_utc": "19:11",
     "duration_minutes": 136,
     "days_of_operation": [
       7
@@ -1623,7 +1763,9 @@
     "flight_number": "FR 35",
     "callsign": "RYR81KJ",
     "departure_time": "19:00",
-    "arrival_time": "21:21",
+    "departure_time_utc": "17:00",
+    "arrival_time": "20:21",
+    "arrival_time_utc": "19:21",
     "duration_minutes": 141,
     "days_of_operation": [
       1,
@@ -1646,7 +1788,9 @@
     "flight_number": "FR 2853",
     "callsign": "RYR10AD",
     "departure_time": "19:40",
+    "departure_time_utc": "17:40",
     "arrival_time": "21:22",
+    "arrival_time_utc": "19:22",
     "duration_minutes": 102,
     "days_of_operation": [
       1,
@@ -1669,7 +1813,9 @@
     "flight_number": "FR 5776",
     "callsign": "RYR32FQ",
     "departure_time": "20:15",
+    "departure_time_utc": "18:15",
     "arrival_time": "23:28",
+    "arrival_time_utc": "21:28",
     "duration_minutes": 193,
     "days_of_operation": [
       1,
@@ -1692,7 +1838,9 @@
     "flight_number": "FR 1745",
     "callsign": "RYR869U",
     "departure_time": "20:25",
-    "arrival_time": "22:08",
+    "departure_time_utc": "18:25",
+    "arrival_time": "23:08",
+    "arrival_time_utc": "20:08",
     "duration_minutes": 103,
     "days_of_operation": [
       2,
@@ -1715,7 +1863,9 @@
     "flight_number": "FR 7109",
     "callsign": "RYR7109",
     "departure_time": "20:35",
+    "departure_time_utc": "18:35",
     "arrival_time": "22:49",
+    "arrival_time_utc": "20:49",
     "duration_minutes": 134,
     "days_of_operation": [
       2
@@ -1736,7 +1886,9 @@
     "flight_number": "FR 62",
     "callsign": "RYR45XF",
     "departure_time": "20:50",
-    "arrival_time": "22:55",
+    "departure_time_utc": "18:50",
+    "arrival_time": "21:55",
+    "arrival_time_utc": "20:55",
     "duration_minutes": 125,
     "days_of_operation": [
       3,
@@ -1760,7 +1912,9 @@
     "flight_number": "FR 6831",
     "callsign": "RYR6831",
     "departure_time": "21:20",
+    "departure_time_utc": "19:20",
     "arrival_time": "22:48",
+    "arrival_time_utc": "20:48",
     "duration_minutes": 88,
     "days_of_operation": [
       3,
@@ -1782,7 +1936,9 @@
     "flight_number": "FR 2315",
     "callsign": "RYR6EF",
     "departure_time": "21:50",
-    "arrival_time": "23:55",
+    "departure_time_utc": "19:50",
+    "arrival_time": "22:55",
+    "arrival_time_utc": "21:55",
     "duration_minutes": 125,
     "days_of_operation": [
       2,
@@ -1804,7 +1960,9 @@
     "flight_number": "FR 6824",
     "callsign": "RYR80RZ",
     "departure_time": "22:15",
+    "departure_time_utc": "20:15",
     "arrival_time": "23:20",
+    "arrival_time_utc": "21:20",
     "duration_minutes": 65,
     "days_of_operation": [
       1,
@@ -1828,7 +1986,9 @@
     "flight_number": "FR 2171",
     "callsign": "RYR2171",
     "departure_time": "22:20",
-    "arrival_time": "00:02",
+    "departure_time_utc": "20:20",
+    "arrival_time": "01:02",
+    "arrival_time_utc": "22:02",
     "duration_minutes": 102,
     "days_of_operation": [
       3,
@@ -1850,7 +2010,9 @@
     "flight_number": "FR 1529",
     "callsign": "RYR1SK",
     "departure_time": "22:35",
+    "departure_time_utc": "20:35",
     "arrival_time": "00:49",
+    "arrival_time_utc": "22:49",
     "duration_minutes": 134,
     "days_of_operation": [
       1,
@@ -1873,7 +2035,9 @@
     "flight_number": "FR 5719",
     "callsign": "RYR8AG",
     "departure_time": "22:45",
+    "departure_time_utc": "20:45",
     "arrival_time": "01:01",
+    "arrival_time_utc": "23:01",
     "duration_minutes": 136,
     "days_of_operation": [
       1,
@@ -1899,7 +2063,9 @@
     "flight_number": "FR 5803",
     "callsign": "RYR38DU",
     "departure_time": "22:55",
+    "departure_time_utc": "20:55",
     "arrival_time": "00:52",
+    "arrival_time_utc": "22:52",
     "duration_minutes": 117,
     "days_of_operation": [
       2,
@@ -1924,7 +2090,9 @@
     "flight_number": "FR 4223",
     "callsign": "RYR6L",
     "departure_time": "23:20",
-    "arrival_time": "02:00",
+    "departure_time_utc": "21:20",
+    "arrival_time": "01:00",
+    "arrival_time_utc": "00:00",
     "duration_minutes": 160,
     "days_of_operation": [
       2,
