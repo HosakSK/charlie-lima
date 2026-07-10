@@ -393,13 +393,19 @@ function render(flights) {
     });
   });
 
-  document.querySelectorAll('.flight-card').forEach((el, index) => {
-    el.addEventListener('click', (e) => {
+  const cards = document.querySelectorAll('.flight-card');
+  console.log("Binding click listeners to cards:", cards.length);
+  cards.forEach((el, index) => {
+    el.addEventListener('click', async (e) => {
       try {
+        console.log("Card clicked!", index);
         if (e.target.closest && (e.target.closest('.copy-click') || e.target.closest('a'))) return;
-        openFlightModal(flights[index]);
+        if (!modalDOM.overlay) {
+          throw new Error("Modal DOM element is missing. Please press Ctrl+F5 to hard-refresh the page.");
+        }
+        await openFlightModal(flights[index]);
       } catch (err) {
-        alert("Error opening modal: " + err.message + "\n" + err.stack);
+        alert("Error opening modal: " + err.message);
       }
     });
   });
@@ -409,6 +415,58 @@ init();
 
 
 // --- FLIGHT MODAL LOGIC ---
+if (!document.getElementById('flight-modal')) {
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="flight-modal" class="modal-overlay hidden">
+      <div class="modal-content glass">
+        <button id="modal-close" class="modal-close">&times;</button>
+        <div id="modal-loading" class="modal-loading">
+          <div class="spinner"></div>
+          <p>Fetching live aviation data...</p>
+        </div>
+        <div id="modal-body" class="modal-body hidden">
+          <div class="modal-header">
+            <div class="m-header-left">
+              <h2 id="m-flight-number">--</h2>
+              <div id="m-callsign" class="badge callsign">--</div>
+            </div>
+            <div class="m-route">
+              <span id="m-dep">--</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <span id="m-arr">--</span>
+            </div>
+          </div>
+          <div class="modal-grid">
+            <div class="modal-section weather-section">
+              <h3>Departure Weather <span id="m-dep-icao-lbl"></span></h3>
+              <div id="m-dep-metar-graphic" class="metar-graphic"></div>
+              <div class="raw-metar" id="m-dep-metar-raw">No METAR available</div>
+              <div class="raw-taf" id="m-dep-taf-raw">No TAF available</div>
+            </div>
+            <div class="modal-section weather-section">
+              <h3>Arrival Weather <span id="m-arr-icao-lbl"></span></h3>
+              <div id="m-arr-metar-graphic" class="metar-graphic"></div>
+              <div class="raw-metar" id="m-arr-metar-raw">No METAR available</div>
+              <div class="raw-taf" id="m-arr-taf-raw">No TAF available</div>
+            </div>
+            <div class="modal-section vatsim-section">
+              <h3>Live VATSIM ATC</h3>
+              <div id="m-vatsim-atc" class="vatsim-atc-list"></div>
+            </div>
+            <div class="modal-section route-section">
+              <h3>Dispatch & Routing</h3>
+              <p class="route-desc">Generate a complete flight plan including routing, weights, and performance.</p>
+              <div class="route-buttons">
+                <a id="m-simbrief-btn" href="#" target="_blank" class="btn-primary simbrief-btn">Generate Route on SimBrief</a>
+                <a id="m-skyvector-btn" href="#" target="_blank" class="btn-secondary">View on SkyVector</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `);
+}
 
 const modalDOM = {
   overlay: document.getElementById('flight-modal'),
