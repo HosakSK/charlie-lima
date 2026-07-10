@@ -277,7 +277,7 @@ function applyFilters() {
 
     // Sim Filters
     const sDay = parseInt(DOM.filterDay.value);
-    if (sDay && !f.days_of_operation.includes(sDay)) return false;
+    if (sDay && f.day_of_operation !== sDay) return false;
 
     const tFrom = parseTime(DOM.filterTimeFrom.value);
     const tTo = parseTime(DOM.filterTimeTo.value);
@@ -287,7 +287,7 @@ function applyFilters() {
     if (DOM.filterTimeTo.value && depTUtc > tTo) return false;
 
     // Live Filter
-    const wait = getNextDepartureMinutes(f.days_of_operation, f.departure_time);
+    const wait = getNextDepartureMinutes([f.day_of_operation], f.departure_time);
     if (hVal < 168) {
       const maxWaitMinutes = hVal * 60;
       if (wait > maxWaitMinutes) return false;
@@ -322,9 +322,14 @@ function render(flights) {
   const html = flights.map((f, index) => {
     let daysHtml = '';
     for (let i = 1; i <= 7; i++) {
-      const active = f.days_of_operation.includes(i) ? 'active' : '';
+      let activeClass = '';
+      if (f.day_of_operation === i) {
+        activeClass = 'active active-primary';
+      } else if (f.days_of_operation.includes(i)) {
+        activeClass = 'active active-secondary';
+      }
       const letter = ['M', 'T', 'W', 'T', 'F', 'S', 'S'][i-1];
-      daysHtml += `<div class="day-dot ${active}">${letter}</div>`;
+      daysHtml += `<div class="day-dot ${activeClass}">${letter}</div>`;
     }
 
     const depLocal = f.departure_time;

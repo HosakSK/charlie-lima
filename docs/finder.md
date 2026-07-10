@@ -1,63 +1,85 @@
 # Virtual Flight Finder (vATC & X-Plane)
 
-Toto je dedikovaná webová aplikácia navrhnutá pre virtuálnych pilotov (X-Plane, MSFS, VATSIM/IVAO), ktorá slúži na filtrovanie a vyhľadávanie reálnych letových plánov (aktuálne optimalizovaná pre sieť Ryanair a letisko LZIB).
+This is a dedicated web application designed for virtual pilots (X-Plane, MSFS, VATSIM/IVAO) to search and filter real flight plans (currently optimized for the Ryanair network and Bratislava LZIB airport).
 
-Aplikácia je postavená tak, aby bola extrémne rýchla (všetko sa filtruje na strane klienta) a dizajnovo čistá.
+The application is built to be extremely fast (all filtering is done on the client side) and has a clean, premium design.
 
-## 🚀 Funkcie
+## 🚀 Features
 
-- **Live & Sim Režimy**: Filter, ktorý umožňuje vyhľadať lety odlietajúce v najbližších hodinách vzhľadom na tvoj reálny čas, alebo plne manuálne filtrovanie podľa dňa a času v simulátore.
-- **Konverzia UTC**: Automatický prepočet lokálnych časov odletu/príletu do UTC.
-- **Jednoduché kopírovanie**: Kliknutím na ICAO kód, číslo letu alebo callsign sa údaj bez medzier okamžite skopíruje do schránky (ideálne pre vkladanie do FMC/MCDU).
-- **Google Maps Integrácia**: Mestá sú klikateľné odkazy, ktoré ťa priamo odkážu na mapu.
-- **Multifilter**: Možnosť zadávať viacero ICAO kódov do odletu/príletu naraz (oddelených čiarkou).
-- **Swap Button**: Šikovné tlačidlo na rýchle prehodenie odletu a príletu pre hľadanie spiatočného letu.
+- **Live & Sim Modes**: A filter that allows you to find flights departing in the next few hours relative to your real time (Live mode), or fully manual filtering by simulator day and time (Sim mode).
+- **UTC Conversion**: Automatic conversion of local departure/arrival times to UTC.
+- **Easy Copying**: Clicking on an ICAO code, flight number, or callsign immediately copies the value without spaces to your clipboard (ideal for pasting into FMC/MCDU).
+- **Google Maps Integration**: Cities are clickable links that open Google Maps directly.
+- **Multi-Filter**: Ability to enter multiple ICAO codes for departure/arrival at once (separated by commas).
+- **Swap Button**: A handy button to quickly swap origin and destination for return flight searches.
 
-## 🛠️ Technologický Stack
+## 🛠️ Technology Stack
 
-- **Frontend**: Vanilla HTML5, CSS3, JavaScript (ES6+). Nepoužívame žiadny ťažký framework typu React.
-- **Dev Server**: Aplikácia je integrovaná priamo v zložke `public/finder/` projektu a môže byť načítaná staticky alebo cez vývojový server Next.js.
-- **Dáta**: Statický `json` súbor umiestnený v priečinku `public/finder/ryanair_flights_lzib.json`.
+- **Frontend**: Vanilla HTML5, CSS3, JavaScript (ES6+). We do not use any heavy frameworks like React.
+- **Dev Server**: The application is integrated directly in the `public/finder/` folder of the project and can be loaded statically or via the Next.js development server.
+- **Data**: Static `json` file located at `public/finder/ryanair_flights_lzib.json`.
 
-## 🧠 Architektúra (Ako to funguje)
+## 🧠 Architecture (How it works)
 
-- `index.html`: Obsahuje celú štruktúru DOM a rozloženie bočného panelu s filtrami.
-- `style.css`: Vlastný custom design systém.
+- `index.html`: Contains the entire DOM structure and the layout of the sidebar filter panel.
+- `style.css`: Custom design system.
 - `main.js`: 
-  - Po načítaní stiahne súbor `ryanair_flights_lzib.json`.
-  - Počúva na eventy (`input`, `click`) zo všetkých filtrov.
-  - Funkcia `applyFilters()` prebehne celé pole letov a vyfiltruje ich podľa zadaných kritérií.
-  - Funkcia `render()` následne vygeneruje HTML kód pre kartičky letov a vloží ho do gridu.
+  - Downloads the `ryanair_flights_lzib.json` file upon loading.
+  - Listens to events (`input`, `click`) from all filters.
+  - The `applyFilters()` function iterates through the flights array and filters them based on the criteria.
+  - The `render()` function generates HTML for the flight cards and injects it into the grid.
 
 ---
 
-## 🔄 Ako aktualizovať dáta (Pre developerov)
+## 🔄 How to Update Data (For Developers)
 
-Dáta aplikácie pochádzajú z reálneho Ryanair API. Keďže sa letové plány menia, z času na čas je potrebné JSON súbor aktualizovať.
+The application's data comes from the real Ryanair API. Since flight schedules change periodically, the JSON file needs to be updated from time to time.
 
-### Krok 1: Stiahnutie nových letov z API
-V našom prostredí je vytvorený Agent skill (uložený ako `update_ryanair_flights`). Tento skill používa upravený skript `update_flights.py`.
+### Step 1: Downloading New Flights from the API
+An Agent skill (saved as `update_ryanair_flights`) handles this process, running the modified `update_flights.py` script.
 
-**Nová, robustná (Systematic) logika stiahnutia:**
-Pôvodné sťahovanie z Ryanair "Fare Finder" API narážalo na limit, kedy API vracalo len *jeden najlacnejší let za deň* a ignorovalo vypredané lety. Aby sme získali **kompletný letový poriadok**:
-1. Skript skenuje obdobie **28 dní** dopredu (namiesto 7), aby s istotou zachytil aj lety, ktoré sú v najbližších dňoch plne vypredané.
-2. Každý deň rozdeľuje na **4 časové okná** (00:00-06:00, 06:00-12:00, atď.). API sa tak dotazuje na každý segment dňa samostatne. Vďaka tomu zachytíme aj letiská, kam sa lieta dvakrát denne (napr. Stansted EGSS).
-3. Skript je plne **Timezone Aware**. Pre všetky letiská vytiahne ich IANA timezone (napr. `Europe/London`) a okrem lokálnych časov matematicky presne prepočíta a uloží aj UTC časy (`departure_time_utc`, `arrival_time_utc`), ktoré následne číta webová apka.
+**Robust (Systematic) Download Logic:**
+The original Ryanair "Fare Finder" API only returned *one cheapest flight per day*, ignoring sold-out flights. To get the **complete flight schedule**:
+1. The script scans a period of **28 days** ahead (instead of 7) to ensure it captures flights that are fully booked in the coming days.
+2. It divides each day into **4 time windows** (00:00-06:00, 06:00-12:00, etc.). The API queries each segment of the day separately, catching airports with multiple daily flights (e.g., London Stansted EGSS).
+3. The script is fully **Timezone Aware**. It fetches the IANA timezone (e.g., `Europe/London`) for all airports, mathematically calculates, and saves UTC times (`departure_time_utc`, `arrival_time_utc`), which the web app reads directly.
+4. **Day-Specific Flights**: Each flight for a specific weekday is saved and displayed as a separate card with its own real-world time. If flight FR5699 operates at different times on Mondays vs Fridays, the app renders two distinct cards. In the day indicators list, the primary day of that specific card shines prominently (with a subtle glow), while other operation days are dimmed.
 
-Pre aktualizáciu jednoducho požiadaj AI Agenta o aktualizáciu letov ("Update Ryanair flights pre LZIB").
+To update, simply ask the AI Agent to update the flights ("Update Ryanair flights pre LZIB").
 
-### Krok 2: Algoritmus na opravu domovskej základne (Homebase)
-**Toto je kritický krok pre celistvosť dát!**
-Ryanair API nám automaticky nehovorí, či letisko LZIB je pre dané lietadlo domovskou základňou, alebo ide len o "otočku" lietadla z inej základne (away-base). Správny údaj o "base" je pritom pre virtuálnych pilotov kľúčový.
+You can also run the update manually.
 
-Túto logiku už čiastočne prebral priamo hlavný skript `update_flights.py` počas sťahovania, ale pre istotu sa môže dodatočne spustiť aj samostatný algoritmus.
+#### Prerequisites
+Make sure the required Python packages are installed:
+```bash
+pip install ryanair-py airportsdata FlightRadarAPI
+```
 
-#### Ako funguje fix_homebase algoritmus?
-Algoritmus načíta JSON súbor a matematicky spáruje všetky odlety s príletmi na rovnakej trase:
-1. Nájde napríklad let **LZIB -> EPMO** a let **EPMO -> LZIB**.
-2. Porovná, ktorý let z dvojice odlieta v daný deň z domovského letiska ako prvý.
-3. Ak lietadlo letí prvé ráno z LZIB do EPMO, **znamená to, že lietadlo má základňu (Base) v LZIB** (svoj deň začalo v Bratislave a prenocovalo tam).
-4. Ak by odletelo prvé ráno z EPMO do LZIB, **jeho základňa je EPMO**.
+#### Step-by-Step Manual Execution:
+1. **Download and Aggregate Flights:**
+   Run the global update script (specifying the output JSON file location):
+   ```bash
+   python "C:\Users\jakub\.gemini\config\skills\update_ryanair_flights\scripts\update_flights.py" "public\finder\ryanair_flights_lzib.json"
+   ```
 
-- **Spustenie (z priečinka projektu)**: Skript sa automaticky spúšťa v rámci agent skillu po stiahnutí dát.
-*(Tento skript upraví a prepíše JSON súbor `public/finder/ryanair_flights_lzib.json` so správne vypočítanými Base a UTC údajmi).*
+2. **Systematic Homebase Correction:**
+   Run the turnaround solver script to fix homebases based on routing times:
+   ```bash
+   python "scripts\fix_homebase.py"
+   ```
+
+### Step 2: Homebase Correction Algorithm
+**This is a critical step for data integrity!**
+The Ryanair API does not state whether LZIB is the aircraft's homebase or just a turnaround from an away-base. Correct base information is crucial for virtual pilots.
+
+While the main `update_flights.py` script estimates base assignments during downloads, a standalone script performs a systematic correction.
+
+#### How the fix_homebase algorithm works:
+The algorithm loads the JSON file and mathematically pairs all departures and arrivals on the same route:
+1. It finds a flight pair like **LZIB -> EPMO** and **EPMO -> LZIB** operating on the **same day** (`day_of_operation`).
+2. It compares which flight of the pair departs from the home airport first in the morning.
+3. If the aircraft departs first from LZIB to EPMO in the morning, **it means the aircraft is based in LZIB** (it started its day in Bratislava and parked there overnight).
+4. If it departs first from EPMO to LZIB in the morning, **its homebase is EPMO**.
+
+- **Running the script**: The script runs automatically as part of the agent skill after data retrieval, or manually via step 2 above.
+*(This script modifies and rewrites the JSON file `public/finder/ryanair_flights_lzib.json` with corrected Base and UTC values).*

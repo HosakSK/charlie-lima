@@ -37,6 +37,9 @@ for dest, flist in by_dest.items():
         min_turnaround = 9999
         
         for in_f in inbound:
+            if in_f.get('day_of_operation') != out_f.get('day_of_operation'):
+                continue
+                
             t_in_dep = time_to_mins(in_f['departure_time'])
             t_in_arr = t_in_dep + in_f['duration_minutes']
             

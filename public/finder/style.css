@@ -618,6 +618,19 @@ input[type="range"]:focus {
   color: #fff;
 }
 
+.day-dot.active.active-primary {
+  background: var(--accent-blue);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 0 6px rgba(var(--color-accent-rgb), 0.5);
+}
+
+.day-dot.active.active-secondary {
+  background: rgba(var(--color-accent-rgb), 0.18);
+  color: var(--text-main);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.45);
+}
+
 .no-results {
   grid-column: 1 / -1;
   padding: 4rem;
