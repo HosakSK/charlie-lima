@@ -22,11 +22,13 @@ const DOM = {
   sortBy: document.getElementById('sort-by'),
   resetBtn: document.getElementById('reset-filters'),
   showUtc: document.getElementById('show-utc'),
-  toast: document.getElementById('toast')
+  toast: document.getElementById('toast'),
+  btnTheme: document.getElementById('theme-toggle')
 };
 
 
 async function init() {
+  initTheme();
   try {
     const res = await fetch('/finder/ryanair_flights_lzib.json');
     allFlights = await res.json();
@@ -45,6 +47,43 @@ function showToast(msg) {
   setTimeout(() => {
     DOM.toast.classList.remove('show');
   }, 2000);
+}
+
+function initTheme() {
+  const savedTheme = localStorage.getItem('finder-theme');
+  const isDark = savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  
+  if (isDark) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+  updateThemeIcon(isDark);
+}
+
+function updateThemeIcon(isDark) {
+  const iconMoon = document.getElementById('theme-icon-moon');
+  const iconSun = document.getElementById('theme-icon-sun');
+  if (!iconMoon || !iconSun) return;
+  
+  if (isDark) {
+    iconMoon.classList.add('hidden');
+    iconSun.classList.remove('hidden');
+  } else {
+    iconSun.classList.add('hidden');
+    iconMoon.classList.remove('hidden');
+  }
+}
+
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  if (isDark) {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('finder-theme', 'light');
+    updateThemeIcon(false);
+  } else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    localStorage.setItem('finder-theme', 'dark');
+    updateThemeIcon(true);
+  }
 }
 
 function setupListeners() {
@@ -68,6 +107,10 @@ function setupListeners() {
       DOM.filterDest.value = temp;
       applyFilters();
     });
+  }
+
+  if (DOM.btnTheme) {
+    DOM.btnTheme.addEventListener('click', toggleTheme);
   }
 
   DOM.filterHours.addEventListener('input', (e) => {

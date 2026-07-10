@@ -1,14 +1,31 @@
 :root {
-  --bg-color: #0b0f19;
-  --panel-bg: rgba(20, 27, 45, 0.6);
-  --panel-border: rgba(255, 255, 255, 0.08);
-  --text-main: #e2e8f0;
-  --text-muted: #94a3b8;
-  --accent-blue: #38bdf8;
-  --accent-purple: #818cf8;
+  --bg-color: #F5F7F7;
+  --panel-bg: rgba(255, 255, 255, 0.7);
+  --panel-border: rgba(0, 189, 177, 0.2);
+  --text-main: #242627;
+  --text-muted: #6b7280;
+  --accent-blue: #00BDB1;
+  --accent-purple: #00BDB1;
   --accent-yellow: #facc15;
-  --card-hover: rgba(30, 41, 59, 0.8);
+  --card-hover: rgba(0, 189, 177, 0.08);
   --danger: #f43f5e;
+  --bg-shape-1: #00BDB1;
+  --bg-shape-2: #a4eede;
+}
+
+[data-theme="dark"] {
+  --bg-color: #242627;
+  --panel-bg: rgba(79, 83, 84, 0.3);
+  --panel-border: rgba(255, 140, 0, 0.2);
+  --text-main: #dbe1e2;
+  --text-muted: #9ca3af;
+  --accent-blue: #FF8C00;
+  --accent-purple: #FF8C00;
+  --accent-yellow: #facc15;
+  --card-hover: rgba(79, 83, 84, 0.6);
+  --danger: #f43f5e;
+  --bg-shape-1: #FF8C00;
+  --bg-shape-2: #4F5354;
 }
 
 * {
@@ -45,24 +62,25 @@ body {
 .bg-shape {
   position: fixed;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(120px);
   z-index: -1;
   opacity: 0.4;
   animation: float 20s infinite alternate ease-in-out;
 }
 .shape-1 {
-  width: 400px;
-  height: 400px;
-  background: var(--accent-blue);
   top: -100px;
   left: -100px;
+  width: 400px;
+  height: 400px;
+  background: var(--bg-shape-1);
 }
+
 .shape-2 {
+  bottom: -150px;
+  right: -100px;
   width: 500px;
   height: 500px;
-  background: var(--accent-purple);
-  bottom: -200px;
-  right: -100px;
+  background: var(--bg-shape-2);
   animation-delay: -5s;
 }
 .shape-3 {
@@ -102,8 +120,9 @@ body {
 .app-header {
   padding: 1.5rem 2rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 .logo {
   display: flex;
@@ -125,6 +144,24 @@ h1 {
   color: var(--text-muted);
   font-size: 0.9rem;
   font-weight: 400;
+}
+
+.btn-theme {
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-theme:hover {
+  background: rgba(128, 128, 128, 0.2);
+  color: var(--accent-blue);
 }
 
 /* Main Layout */
