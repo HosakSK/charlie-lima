@@ -399,19 +399,26 @@ function render(flights) {
     el.style.borderLeft = "5px solid #FF00FF"; // MAGENTA BORDER VISUAL PROOF
     el.addEventListener('click', async (e) => {
       try {
-        if (e.target.closest && (e.target.closest('.copy-click') || e.target.closest('a'))) return;
+        // ZAKOMENTOVANE: Toto mozno robilo problem s falosnym abortom
+        // if (e.target.closest && (e.target.closest('.copy-click') || e.target.closest('a'))) return;
         
         if (!document.getElementById('flight-modal')) {
           alert("CRITICAL ERROR: Modal DOM element is still missing in document.body!");
           return;
         }
         
-        // Remove hidden classes directly
+        // Remove hidden classes directly and force styles
         const modal = document.getElementById('flight-modal');
         const loading = document.getElementById('modal-loading');
         const body = document.getElementById('modal-body');
         
-        if (modal) modal.classList.remove('hidden');
+        if (modal) {
+          modal.classList.remove('hidden');
+          modal.style.display = 'flex';
+          modal.style.opacity = '1';
+          modal.style.pointerEvents = 'auto';
+          modal.style.zIndex = '999999';
+        }
         if (loading) loading.classList.remove('hidden');
         if (body) body.classList.add('hidden');
         
