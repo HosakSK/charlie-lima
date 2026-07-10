@@ -162,9 +162,9 @@
               </a>
             </div>
             <div class="m-route">
-              <a id="m-dep" href="#" target="_blank" class="airport-liveatc-link" title="Search airport on LiveATC">--</a>
+              <span id="m-dep">--</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              <a id="m-arr" href="#" target="_blank" class="airport-liveatc-link" title="Search airport on LiveATC">--</a>
+              <span id="m-arr">--</span>
             </div>
           </div>
 
@@ -265,15 +265,21 @@
             </div>
 
             <!-- Departure VATSIM ATC -->
-            <div class="modal-section vatsim-section m-dep-atc">
-              <h3>Departure ATC</h3>
-              <div id="m-dep-vatsim-atc" class="vatsim-atc-list"></div>
+            <div class="modal-section vatsim-section m-dep-atc" style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="margin-bottom: 1rem;">
+                <h3>Departure ATC</h3>
+                <div id="m-dep-vatsim-atc" class="vatsim-atc-list"></div>
+              </div>
+              <a id="m-dep-liveatc-btn" href="#" target="_blank" class="btn-liveatc">Naladiť LiveATC</a>
             </div>
 
             <!-- Arrival VATSIM ATC -->
-            <div class="modal-section vatsim-section m-arr-atc">
-              <h3>Arrival ATC</h3>
-              <div id="m-arr-vatsim-atc" class="vatsim-atc-list"></div>
+            <div class="modal-section vatsim-section m-arr-atc" style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div style="margin-bottom: 1rem;">
+                <h3>Arrival ATC</h3>
+                <div id="m-arr-vatsim-atc" class="vatsim-atc-list"></div>
+              </div>
+              <a id="m-arr-liveatc-btn" href="#" target="_blank" class="btn-liveatc">Naladiť LiveATC</a>
             </div>
           </div>
         </div>

@@ -584,6 +584,9 @@ const modalDOM = {
   fstatDur: document.getElementById('m-fstat-dur'),
   fstatWpts: document.getElementById('m-fstat-wpts'),
   
+  depLiveatcBtn: document.getElementById('m-dep-liveatc-btn'),
+  arrLiveatcBtn: document.getElementById('m-arr-liveatc-btn'),
+  
   // Route source
   routeSource: document.getElementById('m-route-source'),
   routeSourceLink: document.getElementById('m-route-source-link'),
@@ -745,15 +748,16 @@ async function openFlightModal(flight) {
   modalDOM.flightradarSearchBtn.href = `https://www.flightradar24.com/data/flights/${fn.toLowerCase()}`;
   
   modalDOM.dep.textContent = flight.departure_icao;
-  modalDOM.dep.href = `https://www.liveatc.net/search/?icao=${flight.departure_icao.toLowerCase()}`;
   modalDOM.arr.textContent = flight.arrival_icao;
-  modalDOM.arr.href = `https://www.liveatc.net/search/?icao=${flight.arrival_icao.toLowerCase()}`;
+  
+  modalDOM.depLiveatcBtn.href = `https://www.liveatc.net/search/?icao=${flight.departure_icao.toLowerCase()}`;
+  modalDOM.arrLiveatcBtn.href = `https://www.liveatc.net/search/?icao=${flight.arrival_icao.toLowerCase()}`;
   
   modalDOM.depIcaoLbl.textContent = flight.departure_icao;
   modalDOM.arrIcaoLbl.textContent = flight.arrival_icao;
 
   // Populate Times
-  const slovakDays = ['', 'Pondelok', 'Utorok', 'Streda', 'Štvrtok', 'Piatok', 'Sobota', 'Nedeľa'];
+  const englishDays = ['', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const depLocalDay = flight.day_of_operation;
   const depUtcDay = getUtcDay(flight.day_of_operation, flight.departure_time, flight.departure_time_utc);
   
@@ -767,10 +771,10 @@ async function openFlightModal(flight) {
     arrUtcDay = (arrUtcDay % 7) + 1;
   }
   
-  modalDOM.depTimeLocal.innerHTML = `${flight.departure_time} <span class="time-day-badge">${slovakDays[depLocalDay]}</span>`;
-  modalDOM.depTimeUtc.innerHTML = `${flight.departure_time_utc} <span class="time-day-badge utc-badge">${slovakDays[depUtcDay]}</span>`;
-  modalDOM.arrTimeLocal.innerHTML = `${flight.arrival_time} <span class="time-day-badge">${slovakDays[arrLocalDay]}</span>`;
-  modalDOM.arrTimeUtc.innerHTML = `${flight.arrival_time_utc} <span class="time-day-badge utc-badge">${slovakDays[arrUtcDay]}</span>`;
+  modalDOM.depTimeLocal.innerHTML = `${flight.departure_time} <span class="time-day-badge">${englishDays[depLocalDay]}</span>`;
+  modalDOM.depTimeUtc.innerHTML = `${flight.departure_time_utc} <span class="time-day-badge utc-badge">${englishDays[depUtcDay]}</span>`;
+  modalDOM.arrTimeLocal.innerHTML = `${flight.arrival_time} <span class="time-day-badge">${englishDays[arrLocalDay]}</span>`;
+  modalDOM.arrTimeUtc.innerHTML = `${flight.arrival_time_utc} <span class="time-day-badge utc-badge">${englishDays[arrUtcDay]}</span>`;
 
   // Fetch Data concurrently
   try {
