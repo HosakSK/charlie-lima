@@ -753,6 +753,7 @@ async function openFlightModal(flight) {
   modalDOM.flightNumSub.textContent = `Let: ${fullFltNum}`;
   modalDOM.googleSearchBtn.href = `https://www.google.com/search?q=${encodeURIComponent(fullFltNum)}`;
   modalDOM.flightradarSearchBtn.href = `https://www.flightradar24.com/data/flights/${fn.toLowerCase()}`;
+  modalDOM.ediglaSearchBtn.href = `https://edi-gla.co.uk/flightplan/search?Flightplan%5Bcallsign%5D=&Flightplan%5Baircraft_icao%5D=&Flightplan%5Bdep%5D=${flight.departure_icao}&Flightplan%5Bdest%5D=${flight.arrival_icao}&Flightplan%5Bsearch_flight_time%5D=&Flightplan%5Bsearch_contributor_username%5D=&Flightplan%5Bremarks%5D=&Flightplan%5Bsearch_date_from%5D=&Flightplan%5Bsearch_date_to%5D=&Flightplan%5Bairac_cycle_validated%5D=&Flightplan%5Bsearch_sort_field%5D=fpl_id&Flightplan%5Bsearch_sort_order%5D=3`;
   
   modalDOM.dep.textContent = flight.departure_icao;
   modalDOM.arr.textContent = flight.arrival_icao;
