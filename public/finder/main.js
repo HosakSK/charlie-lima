@@ -1,4 +1,5 @@
 let allFlights = [];
+let lastRenderedFlights = [];
 
 const DOM = {
   grid: document.getElementById('flights-grid'),
@@ -328,7 +329,7 @@ function render(flights) {
     const fnClean = (f.flight_number || '').replace(/\s+/g, '');
 
     return `
-      <div class="flight-card">
+      <div class="flight-card" data-flight-index="${index}">
         <div class="fc-header">
           <div class="fc-airline">${f.airline || 'RYANAIR'} • ${f.homebase ? 'BASE: '+f.homebase : 'AWAY'}</div>
           <div class="fc-identifiers">
@@ -393,45 +394,29 @@ function render(flights) {
     });
   });
 
-  const cards = document.querySelectorAll('.flight-card');
-  console.log("Binding click listeners to cards:", cards.length);
-  cards.forEach((el, index) => {
-    el.style.borderLeft = "5px solid #FF00FF"; // MAGENTA BORDER VISUAL PROOF
-    el.addEventListener('click', async (e) => {
-      try {
-        // ZAKOMENTOVANE: Toto mozno robilo problem s falosnym abortom
-        // if (e.target.closest && (e.target.closest('.copy-click') || e.target.closest('a'))) return;
-        
-        if (!document.getElementById('flight-modal')) {
-          alert("CRITICAL ERROR: Modal DOM element is still missing in document.body!");
-          return;
-        }
-        
-        // Remove hidden classes directly and force styles
-        const modal = document.getElementById('flight-modal');
-        const loading = document.getElementById('modal-loading');
-        const body = document.getElementById('modal-body');
-        
-        if (modal) {
-          modal.classList.remove('hidden');
-          modal.style.display = 'flex';
-          modal.style.opacity = '1';
-          modal.style.pointerEvents = 'auto';
-          modal.style.zIndex = '999999';
-        }
-        if (loading) loading.classList.remove('hidden');
-        if (body) body.classList.add('hidden');
-        
-        await openFlightModal(flights[index]);
-      } catch (err) {
-        alert("Error opening modal: " + err.message);
-      }
-    });
-  });
+  // Store rendered flights globally for event delegation
+  lastRenderedFlights = flights;
 }
 
 init();
 
+// --- EVENT DELEGATION: Single click handler on the grid ---
+DOM.grid.addEventListener('click', async (e) => {
+  // Ignore clicks on copy badges and links
+  if (e.target.closest('.copy-click') || e.target.closest('a')) return;
+  
+  const card = e.target.closest('.flight-card');
+  if (!card) return;
+  
+  const index = parseInt(card.dataset.flightIndex, 10);
+  if (isNaN(index) || !lastRenderedFlights[index]) return;
+  
+  try {
+    await openFlightModal(lastRenderedFlights[index]);
+  } catch (err) {
+    console.error('Error opening modal:', err);
+  }
+});
 
 // --- FLIGHT MODAL LOGIC ---
 if (!document.getElementById('flight-modal')) {
