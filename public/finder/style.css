@@ -345,8 +345,8 @@ input[type="range"] {
 
 /* Results Count in Sidebar */
 .results-count-container {
-  margin-top: 1rem;
-  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0;
   text-align: center;
 }
 
