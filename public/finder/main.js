@@ -392,6 +392,207 @@ function render(flights) {
       }
     });
   });
+
+  document.querySelectorAll('.flight-card').forEach((el, index) => {
+    el.addEventListener('click', (e) => {
+      // Ignore click if it's on a badge, copy or link
+      if (e.target.closest('.copy-click') || e.target.closest('a')) return;
+      openFlightModal(flights[index]);
+    });
+  });
 }
 
 init();
+
+
+// --- FLIGHT MODAL LOGIC ---
+
+const modalDOM = {
+  overlay: document.getElementById('flight-modal'),
+  closeBtn: document.getElementById('modal-close'),
+  loading: document.getElementById('modal-loading'),
+  body: document.getElementById('modal-body'),
+  
+  flightNum: document.getElementById('m-flight-number'),
+  callsign: document.getElementById('m-callsign'),
+  dep: document.getElementById('m-dep'),
+  arr: document.getElementById('m-arr'),
+  
+  depIcaoLbl: document.getElementById('m-dep-icao-lbl'),
+  arrIcaoLbl: document.getElementById('m-arr-icao-lbl'),
+  
+  depMetarRaw: document.getElementById('m-dep-metar-raw'),
+  arrMetarRaw: document.getElementById('m-arr-metar-raw'),
+  depTafRaw: document.getElementById('m-dep-taf-raw'),
+  arrTafRaw: document.getElementById('m-arr-taf-raw'),
+  
+  depMetarGraphic: document.getElementById('m-dep-metar-graphic'),
+  arrMetarGraphic: document.getElementById('m-arr-metar-graphic'),
+  
+  vatsimAtc: document.getElementById('m-vatsim-atc'),
+  
+  simbriefBtn: document.getElementById('m-simbrief-btn'),
+  skyvectorBtn: document.getElementById('m-skyvector-btn')
+};
+
+modalDOM.closeBtn.addEventListener('click', closeFlightModal);
+modalDOM.overlay.addEventListener('click', (e) => {
+  if (e.target === modalDOM.overlay) closeFlightModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !modalDOM.overlay.classList.contains('hidden')) closeFlightModal();
+});
+
+function closeFlightModal() {
+  modalDOM.overlay.classList.add('hidden');
+}
+
+async function openFlightModal(flight) {
+  // Show modal, reset state
+  modalDOM.overlay.classList.remove('hidden');
+  modalDOM.loading.classList.remove('hidden');
+  modalDOM.body.classList.add('hidden');
+  
+  // Populate Header
+  const fn = (flight.flight_number || '').replace(/\s+/g, '');
+  modalDOM.flightNum.textContent = flight.airline ? `${flight.airline} ${fn}` : fn;
+  modalDOM.callsign.textContent = flight.callsign || fn;
+  modalDOM.dep.textContent = flight.departure_icao;
+  modalDOM.arr.textContent = flight.arrival_icao;
+  
+  modalDOM.depIcaoLbl.textContent = flight.departure_icao;
+  modalDOM.arrIcaoLbl.textContent = flight.arrival_icao;
+  
+  // Populate Route Links
+  modalDOM.simbriefBtn.href = `https://dispatch.simbrief.com/options/custom?orig=${flight.departure_icao}&dest=${flight.arrival_icao}&fltnum=${fn}`;
+  modalDOM.skyvectorBtn.href = `https://skyvector.com/?fpl=${flight.departure_icao}%20${flight.arrival_icao}`;
+
+  // Fetch Data concurrently
+  try {
+    const [depMetar, arrMetar, depTaf, arrTaf, vatsimData] = await Promise.allSettled([
+      fetchMetar(flight.departure_icao),
+      fetchMetar(flight.arrival_icao),
+      fetchTaf(flight.departure_icao),
+      fetchTaf(flight.arrival_icao),
+      fetchVatsimData()
+    ]);
+    
+    // Render Weather
+    renderWeather(depMetar.value, modalDOM.depMetarRaw, modalDOM.depMetarGraphic);
+    renderWeather(arrMetar.value, modalDOM.arrMetarRaw, modalDOM.arrMetarGraphic);
+    renderTaf(depTaf.value, modalDOM.depTafRaw);
+    renderTaf(arrTaf.value, modalDOM.arrTafRaw);
+    
+    // Render VATSIM
+    renderVatsimATC(vatsimData.value, flight.departure_icao, flight.arrival_icao);
+    
+  } catch (err) {
+    console.error('Error fetching live data:', err);
+  } finally {
+    // Hide loading, show content
+    modalDOM.loading.classList.add('hidden');
+    modalDOM.body.classList.remove('hidden');
+  }
+}
+
+// --- API FETCHERS ---
+
+async function fetchMetar(icao) {
+  const res = await fetch(`https://aviationweather.gov/api/data/metar?ids=${icao}&format=json`);
+  if (!res.ok) return null;
+  const data = await res.json();
+  return data && data.length > 0 ? data[0] : null;
+}
+
+async function fetchTaf(icao) {
+  const res = await fetch(`https://aviationweather.gov/api/data/taf?ids=${icao}&format=json`);
+  if (!res.ok) return null;
+  const data = await res.json();
+  return data && data.length > 0 ? data[0] : null;
+}
+
+async function fetchVatsimData() {
+  const res = await fetch('https://data.vatsim.net/v3/vatsim-data.json');
+  if (!res.ok) return null;
+  return res.json();
+}
+
+// --- RENDERERS ---
+
+function renderWeather(metar, rawEl, graphicEl) {
+  if (!metar) {
+    rawEl.textContent = 'No METAR available for this station.';
+    graphicEl.innerHTML = '';
+    return;
+  }
+  
+  rawEl.textContent = metar.rawOb || 'No raw data.';
+  
+  const cat = (metar.fltCat || 'UNK').toLowerCase();
+  const wdir = metar.wdir !== undefined ? metar.wdir : 0;
+  const wspd = metar.wspd !== undefined ? metar.wspd : 0;
+  
+  graphicEl.innerHTML = `
+    <div class="mg-category ${cat}" title="Flight Category: ${cat.toUpperCase()}">${cat.toUpperCase()}</div>
+    <div class="mg-wind" title="Wind ${wdir}° at ${wspd} kts">
+      <svg class="mg-wind-arrow" style="transform: rotate(${wdir}deg);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="m17 7-5-5-5 5"/></svg>
+      <span>${wspd}kt</span>
+    </div>
+    <div class="mg-temp" title="Temp / Dewpoint">
+      ${metar.temp !== undefined ? metar.temp : '--'}°C
+      <span>Dew ${metar.dewp !== undefined ? metar.dewp : '--'}°C</span>
+    </div>
+    <div class="mg-vis" title="Visibility">
+      ${metar.visib !== undefined ? metar.visib : '--'}
+      <span>Vis (SM)</span>
+    </div>
+  `;
+}
+
+function renderTaf(taf, rawEl) {
+  if (!taf || !taf.rawTAF) {
+    rawEl.textContent = 'No TAF available for this station.';
+    return;
+  }
+  // format TAF to be readable (replace ' FM' or ' BECMG' with newlines)
+  let t = taf.rawTAF;
+  t = t.replace(/ (FM|BECMG|TEMPO|PROB)/g, '\n$1');
+  rawEl.textContent = t;
+}
+
+function renderVatsimATC(vatsim, depIcao, arrIcao) {
+  modalDOM.vatsimAtc.innerHTML = '';
+  if (!vatsim || !vatsim.controllers) {
+    modalDOM.vatsimAtc.innerHTML = '<div class="no-atc">Failed to fetch VATSIM data.</div>';
+    return;
+  }
+  
+  const prefixes = [depIcao, arrIcao, depIcao.substring(0, 2), arrIcao.substring(0, 2)];
+  
+  const atc = vatsim.controllers.filter(c => {
+    // Ignore observers and ATIS if not needed, but ATIS is usually useful. We'll include it.
+    if (c.facility === 0) return false; // observer
+    
+    // Check if callsign starts with ICAOs
+    return prefixes.some(p => c.callsign.startsWith(p));
+  });
+  
+  if (atc.length === 0) {
+    modalDOM.vatsimAtc.innerHTML = '<div class="no-atc">No local ATC or Enroute Centers online. Unicom 122.800</div>';
+    return;
+  }
+  
+  // Sort: Centers first, then App, Twr, Gnd, Del, ATIS
+  const facilityOrder = [1, 6, 5, 4, 3, 2]; // 1:CTR, 6:APP, 5:TWR, 4:GND, 3:DEL, 2:DEL? ATIS is facility 4 sometimes or separate. 
+  // Let's just sort alphabetically for simplicity.
+  atc.sort((a, b) => a.callsign.localeCompare(b.callsign));
+  
+  atc.forEach(c => {
+    modalDOM.vatsimAtc.innerHTML += `
+      <div class="vatsim-controller">
+        <span class="cs">${c.callsign}</span>
+        <span class="freq">${c.frequency}</span>
+      </div>
+    `;
+  });
+}
