@@ -839,7 +839,7 @@ input[type="range"]:focus {
 .modal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1.2fr;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: 1.3fr 0.8fr 1.3fr;
   grid-template-areas:
     "dep-wx    arr-wx    route"
     "dep-times arr-times route"
@@ -1277,20 +1277,20 @@ input[type="range"]:focus {
 .btn-liveatc {
   display: block;
   text-align: center;
-  padding: 0.6rem;
-  background: rgba(var(--color-accent-rgb), 0.1);
-  color: var(--accent-blue);
+  padding: 0.4rem 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
   border: 1px solid var(--panel-border);
   border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 500;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .btn-liveatc:hover {
-  background: var(--accent-blue);
-  color: #fff;
+  background: rgba(var(--color-accent-rgb), 0.1);
+  color: var(--accent-blue);
   border-color: var(--accent-blue);
   transform: translateY(-1px);
 }
