@@ -6,21 +6,16 @@
     "arrival_icao": "LZIB",
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
-    "airline": "Ryanair",
     "flight_number": "FR 2854",
-    "callsign": "RYR10AD",
+    "callsign": "RYR2854",
     "departure_time": "21:55",
-    "arrival_time": "23:37",
     "duration_minutes": 102,
     "days_of_operation": [
       1,
-      3
+      3,
+      5
     ],
-    "homebase": "LZIB",
-    "departure_lat": 50.4592018127,
-    "departure_lon": 4.4538202286,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "EGCC",
@@ -30,6 +25,7 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 34",
+    "callsign": "RYR129U",
     "departure_time": "21:00",
     "duration_minutes": 141,
     "days_of_operation": [
@@ -37,13 +33,7 @@
       3,
       6
     ],
-    "homebase": "EGCC",
-    "callsign": "RYR129U",
-    "arrival_time": "23:21",
-    "departure_lat": 53.3536987305,
-    "departure_lon": -2.2749500275,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "EGCC"
   },
   {
     "departure_icao": "EGNM",
@@ -53,19 +43,14 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 5041",
+    "callsign": "RYR74RM",
     "departure_time": "07:55",
     "duration_minutes": 139,
     "days_of_operation": [
       1,
       4
     ],
-    "homebase": "EGNM",
-    "callsign": "RYR74RM",
-    "arrival_time": "10:14",
-    "departure_lat": 53.8658981323,
-    "departure_lon": -1.6605700254,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "EGNM"
   },
   {
     "departure_icao": "EGPH",
@@ -75,19 +60,15 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 6642",
+    "callsign": "RYR4TT",
     "departure_time": "19:15",
     "duration_minutes": 153,
     "days_of_operation": [
       1,
-      4
+      4,
+      6
     ],
-    "homebase": "EGPH",
-    "callsign": "RYR4TT",
-    "arrival_time": "21:48",
-    "departure_lat": 55.9500007629,
-    "departure_lon": -3.3724999428,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "EGPH"
   },
   {
     "departure_icao": "EGSS",
@@ -97,22 +78,18 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 63",
+    "callsign": "RYR10PA",
     "departure_time": "17:15",
     "duration_minutes": 125,
     "days_of_operation": [
+      2,
       3,
       4,
       5,
       6,
       7
     ],
-    "homebase": "EGSS",
-    "callsign": "RYR10PA",
-    "arrival_time": "19:20",
-    "departure_lat": 51.8849983215,
-    "departure_lon": 0.2349999994,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "EGSS"
   },
   {
     "departure_icao": "EGSS",
@@ -122,18 +99,13 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 2314",
+    "callsign": "RYR7QX",
     "departure_time": "19:45",
     "duration_minutes": 125,
     "days_of_operation": [
       2
     ],
-    "homebase": "EGSS",
-    "callsign": "RYR7QX",
-    "arrival_time": "21:50",
-    "departure_lat": 51.8849983215,
-    "departure_lon": 0.2349999994,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "EGSS"
   },
   {
     "departure_icao": "EHEH",
@@ -143,20 +115,16 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 1870",
+    "callsign": "RYR68QL",
     "departure_time": "16:50",
     "duration_minutes": 99,
     "days_of_operation": [
       1,
       3,
+      4,
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR68QL",
-    "arrival_time": "18:29",
-    "departure_lat": 51.4500999451,
-    "departure_lon": 5.3745298386,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "EIDW",
@@ -166,18 +134,13 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 4228",
+    "callsign": "RYR4228",
     "departure_time": "08:20",
     "duration_minutes": 160,
     "days_of_operation": [
       6
     ],
-    "homebase": "EIDW",
-    "callsign": "RYR4228",
-    "arrival_time": "11:00",
-    "departure_lat": 53.4212989807,
-    "departure_lon": -6.270070076,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "EIDW"
   },
   {
     "departure_icao": "EIDW",
@@ -187,6 +150,7 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 4224",
+    "callsign": "RYR9JV",
     "departure_time": "19:10",
     "duration_minutes": 160,
     "days_of_operation": [
@@ -195,13 +159,7 @@
       5,
       7
     ],
-    "homebase": "EIDW",
-    "callsign": "RYR9JV",
-    "arrival_time": "21:50",
-    "departure_lat": 53.4212989807,
-    "departure_lon": -6.270070076,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "EIDW"
   },
   {
     "departure_icao": "EPGD",
@@ -211,19 +169,14 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 6592",
+    "callsign": "RYR9SP",
     "departure_time": "11:30",
     "duration_minutes": 82,
     "days_of_operation": [
       3,
       6
     ],
-    "homebase": "EPGD",
-    "callsign": "RYR9SP",
-    "arrival_time": "12:52",
-    "departure_lat": 54.3776016235,
-    "departure_lon": 18.4661998749,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "EPGD"
   },
   {
     "departure_icao": "EPGD",
@@ -233,19 +186,14 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 6827",
+    "callsign": "RYR6827",
     "departure_time": "15:10",
     "duration_minutes": 82,
     "days_of_operation": [
       1,
       2
     ],
-    "homebase": "EPGD",
-    "callsign": "RYR6827",
-    "arrival_time": "16:32",
-    "departure_lat": 54.3776016235,
-    "departure_lon": 18.4661998749,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "EPGD"
   },
   {
     "departure_icao": "EPMO",
@@ -255,6 +203,7 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 3640",
+    "callsign": "RYR33KN",
     "departure_time": "17:00",
     "duration_minutes": 70,
     "days_of_operation": [
@@ -262,16 +211,27 @@
       2,
       3,
       4,
+      5,
       6,
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR33KN",
-    "arrival_time": "18:10",
-    "departure_lat": 52.4510993958,
-    "departure_lon": 20.6518001556,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
+  },
+  {
+    "departure_icao": "GCRR",
+    "departure_city": "Lanzarote",
+    "departure_country": "Spain",
+    "arrival_icao": "LZIB",
+    "arrival_city": "Bratislava",
+    "arrival_country": "Slovakia",
+    "flight_number": "FR 4220",
+    "callsign": "RYR4DJ",
+    "departure_time": "07:10",
+    "duration_minutes": 284,
+    "days_of_operation": [
+      5
+    ],
+    "homebase": "GCRR"
   },
   {
     "departure_icao": "LATI",
@@ -281,7 +241,8 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 3638",
-    "departure_time": "13:05",
+    "callsign": "RYR3638",
+    "departure_time": "10:20",
     "duration_minutes": 88,
     "days_of_operation": [
       1,
@@ -289,13 +250,7 @@
       5,
       7
     ],
-    "homebase": "LATI",
-    "callsign": "RYR3638",
-    "arrival_time": "14:33",
-    "departure_lat": 41.4146995544,
-    "departure_lon": 19.7206001282,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LATI"
   },
   {
     "departure_icao": "LBBG",
@@ -305,6 +260,7 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 3705",
+    "callsign": "RYR3BX",
     "departure_time": "14:30",
     "duration_minutes": 106,
     "days_of_operation": [
@@ -312,13 +268,7 @@
       4,
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR3BX",
-    "arrival_time": "16:16",
-    "departure_lat": 42.5695991516,
-    "departure_lon": 27.5151996613,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LCPH",
@@ -328,6 +278,7 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 3329",
+    "callsign": "RYR5UT",
     "departure_time": "06:10",
     "duration_minutes": 176,
     "days_of_operation": [
@@ -335,13 +286,7 @@
       4,
       6
     ],
-    "homebase": "LCPH",
-    "callsign": "RYR5UT",
-    "arrival_time": "09:06",
-    "departure_lat": 34.7179985046,
-    "departure_lon": 32.4856987,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LCPH"
   },
   {
     "departure_icao": "LDZD",
@@ -350,11 +295,9 @@
     "arrival_icao": "LZIB",
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
-    "airline": "Ryanair",
     "flight_number": "FR 6825",
     "callsign": "RYR6UL",
     "departure_time": "05:55",
-    "arrival_time": "07:00",
     "duration_minutes": 65,
     "days_of_operation": [
       1,
@@ -362,34 +305,7 @@
       4,
       6
     ],
-    "homebase": "LDZD",
-    "departure_lat": 44.1082992554,
-    "departure_lon": 15.3466997147,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
-  },
-  {
-    "departure_icao": "LDZD",
-    "departure_city": "Zadar",
-    "departure_country": "Croatia",
-    "arrival_icao": "LZIB",
-    "arrival_city": "Bratislava",
-    "arrival_country": "Slovakia",
-    "airline": "Ryanair",
-    "flight_number": "FR YYYY",
-    "callsign": "RYRYYYY",
-    "departure_time": "20:45",
-    "arrival_time": "21:50",
-    "duration_minutes": 65,
-    "days_of_operation": [
-      3,
-      4
-    ],
-    "homebase": "LDZD",
-    "departure_lat": 44.1082992554,
-    "departure_lon": 15.3466997147,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LDZD"
   },
   {
     "departure_icao": "LEAL",
@@ -399,6 +315,7 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 5698",
+    "callsign": "RYR18LB",
     "departure_time": "21:05",
     "duration_minutes": 165,
     "days_of_operation": [
@@ -407,13 +324,7 @@
       4,
       5
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR18LB",
-    "arrival_time": "23:50",
-    "departure_lat": 38.2821998596,
-    "departure_lon": -0.5581560135,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LEBL",
@@ -423,6 +334,7 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 5718",
+    "callsign": "RYR45ER",
     "departure_time": "19:30",
     "duration_minutes": 136,
     "days_of_operation": [
@@ -430,15 +342,10 @@
       2,
       3,
       4,
+      5,
       6
     ],
-    "homebase": "LEBL",
-    "callsign": "RYR45ER",
-    "arrival_time": "21:46",
-    "departure_lat": 41.2971000671,
-    "departure_lon": 2.0784599781,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LEBL"
   },
   {
     "departure_icao": "LEBL",
@@ -448,18 +355,13 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 6523",
+    "callsign": "RYR31NN",
     "departure_time": "22:05",
     "duration_minutes": 136,
     "days_of_operation": [
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR31NN",
-    "arrival_time": "00:21",
-    "departure_lat": 41.2971000671,
-    "departure_lon": 2.0784599781,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LEMG",
@@ -469,18 +371,13 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 6689",
+    "callsign": "RYR11WA",
     "departure_time": "10:35",
     "duration_minutes": 193,
     "days_of_operation": [
       2
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR11WA",
-    "arrival_time": "13:48",
-    "departure_lat": 36.6749000549,
-    "departure_lon": -4.4991102219,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LEMG",
@@ -490,19 +387,15 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 5775",
+    "callsign": "RYR40KU",
     "departure_time": "16:30",
     "duration_minutes": 193,
     "days_of_operation": [
       1,
-      4
+      4,
+      7
     ],
-    "homebase": "LEMG",
-    "callsign": "RYR40KU",
-    "arrival_time": "19:43",
-    "departure_lat": 36.6749000549,
-    "departure_lon": -4.4991102219,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LEMG"
   },
   {
     "departure_icao": "LEPA",
@@ -512,19 +405,15 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 9511",
+    "callsign": "RYR6UN",
     "departure_time": "12:30",
     "duration_minutes": 142,
     "days_of_operation": [
       2,
-      3
+      3,
+      6
     ],
-    "homebase": "LEPA",
-    "callsign": "RYR6UN",
-    "arrival_time": "14:52",
-    "departure_lat": 39.551700592,
-    "departure_lon": 2.7388100624,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LEPA"
   },
   {
     "departure_icao": "LGAV",
@@ -533,21 +422,16 @@
     "arrival_icao": "LZIB",
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
-    "airline": "Ryanair",
     "flight_number": "FR 5888",
-    "callsign": "RYR5888",
+    "callsign": "RYR11UT",
     "departure_time": "12:20",
-    "arrival_time": "13:24",
     "duration_minutes": 124,
     "days_of_operation": [
       2,
+      5,
       7
     ],
-    "homebase": "LGAV",
-    "departure_lat": 37.9364013672,
-    "departure_lon": 23.9444999695,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LGKR",
@@ -557,6 +441,7 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 1744",
+    "callsign": "RYR1744",
     "departure_time": "00:25",
     "duration_minutes": 103,
     "days_of_operation": [
@@ -564,13 +449,7 @@
       6,
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR1744",
-    "arrival_time": "02:08",
-    "departure_lat": 39.6018981934,
-    "departure_lon": 19.911699295,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LGKR"
   },
   {
     "departure_icao": "LGKR",
@@ -580,18 +459,13 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 1783",
+    "callsign": "RYR1783",
     "departure_time": "15:05",
     "duration_minutes": 103,
     "days_of_operation": [
       3
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR1783",
-    "arrival_time": "16:48",
-    "departure_lat": 39.6018981934,
-    "departure_lon": 19.911699295,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LGSK",
@@ -601,7 +475,8 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 6829",
-    "departure_time": "15:35",
+    "callsign": "RYR3HP",
+    "departure_time": "10:30",
     "duration_minutes": 113,
     "days_of_operation": [
       1,
@@ -609,13 +484,7 @@
       5,
       6
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR3HP",
-    "arrival_time": "17:28",
-    "departure_lat": 39.1771011353,
-    "departure_lon": 23.5037002563,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LGTS",
@@ -625,19 +494,14 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 2170",
+    "callsign": "RYR773T",
     "departure_time": "21:10",
     "duration_minutes": 102,
     "days_of_operation": [
       3,
       6
     ],
-    "homebase": "LGTS",
-    "callsign": "RYR773T",
-    "arrival_time": "22:52",
-    "departure_lat": 40.5196990967,
-    "departure_lon": 22.9708995819,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LGTS"
   },
   {
     "departure_icao": "LIBD",
@@ -647,18 +511,13 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 9628",
+    "callsign": "RYR9628",
     "departure_time": "18:10",
     "duration_minutes": 88,
     "days_of_operation": [
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR9628",
-    "arrival_time": "19:38",
-    "departure_lat": 41.1389007568,
-    "departure_lon": 16.7605991364,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LIBD",
@@ -668,19 +527,14 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 6830",
+    "callsign": "RYR71QD",
     "departure_time": "23:30",
     "duration_minutes": 88,
     "days_of_operation": [
       3,
       6
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR71QD",
-    "arrival_time": "00:58",
-    "departure_lat": 41.1389007568,
-    "departure_lon": 16.7605991364,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LICA",
@@ -690,6 +544,7 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 5760",
+    "callsign": "RYR8HK",
     "departure_time": "08:40",
     "duration_minutes": 107,
     "days_of_operation": [
@@ -697,13 +552,7 @@
       4,
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR8HK",
-    "arrival_time": "10:27",
-    "departure_lat": 38.9053993225,
-    "departure_lon": 16.2423000336,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LICJ",
@@ -713,6 +562,7 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 5802",
+    "callsign": "RYR646J",
     "departure_time": "20:15",
     "duration_minutes": 117,
     "days_of_operation": [
@@ -722,13 +572,7 @@
       6,
       7
     ],
-    "homebase": "LICJ",
-    "callsign": "RYR646J",
-    "arrival_time": "22:12",
-    "departure_lat": 38.1759986877,
-    "departure_lon": 13.0909996033,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LICJ"
   },
   {
     "departure_icao": "LICT",
@@ -738,19 +582,14 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 7155",
+    "callsign": "RYR88WF",
     "departure_time": "15:35",
     "duration_minutes": 120,
     "days_of_operation": [
       2,
       7
     ],
-    "homebase": "LICT",
-    "callsign": "RYR88WF",
-    "arrival_time": "17:35",
-    "departure_lat": 37.9113998413,
-    "departure_lon": 12.4879999161,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LICT"
   },
   {
     "departure_icao": "LIEA",
@@ -760,6 +599,7 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 6398",
+    "callsign": "RYR53VV",
     "departure_time": "15:25",
     "duration_minutes": 112,
     "days_of_operation": [
@@ -769,13 +609,7 @@
       6,
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR53VV",
-    "arrival_time": "17:17",
-    "departure_lat": 40.6320991516,
-    "departure_lon": 8.290769577,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LIEA",
@@ -785,19 +619,14 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 8226",
+    "callsign": "RYR285J",
     "departure_time": "18:45",
     "duration_minutes": 112,
     "days_of_operation": [
       2,
       5
     ],
-    "homebase": "LIEA",
-    "callsign": "RYR285J",
-    "arrival_time": "20:37",
-    "departure_lat": 40.6320991516,
-    "departure_lon": 8.290769577,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LIMC",
@@ -807,7 +636,8 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 5734",
-    "departure_time": "15:05",
+    "callsign": "RYR84SX",
+    "departure_time": "14:10",
     "duration_minutes": 82,
     "days_of_operation": [
       1,
@@ -818,13 +648,7 @@
       6,
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR84SX",
-    "arrival_time": "16:27",
-    "departure_lat": 45.6305999756,
-    "departure_lon": 8.7281103134,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LIRA",
@@ -834,7 +658,8 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 4226",
-    "departure_time": "12:40",
+    "callsign": "RYR2ZA",
+    "departure_time": "11:25",
     "duration_minutes": 89,
     "days_of_operation": [
       1,
@@ -845,13 +670,7 @@
       6,
       7
     ],
-    "homebase": "LIRA",
-    "callsign": "RYR2ZA",
-    "arrival_time": "14:09",
-    "departure_lat": 41.7994003296,
-    "departure_lon": 12.5949001312,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LIRA"
   },
   {
     "departure_icao": "LIRN",
@@ -861,7 +680,8 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 5758",
-    "departure_time": "14:15",
+    "callsign": "RYR84JW",
+    "departure_time": "19:05",
     "duration_minutes": 93,
     "days_of_operation": [
       2,
@@ -869,13 +689,7 @@
       5,
       6
     ],
-    "homebase": "LIRN",
-    "callsign": "RYR84JW",
-    "arrival_time": "15:48",
-    "departure_lat": 40.8860015869,
-    "departure_lon": 14.2908000946,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LIRP",
@@ -885,19 +699,14 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 9851",
+    "callsign": "RYR37UN",
     "departure_time": "06:00",
     "duration_minutes": 84,
     "days_of_operation": [
       1,
       4
     ],
-    "homebase": "LIRP",
-    "callsign": "RYR37UN",
-    "arrival_time": "07:24",
-    "departure_lat": 43.6838989258,
-    "departure_lon": 10.3927001953,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LIRP"
   },
   {
     "departure_icao": "LMML",
@@ -907,18 +716,13 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 7110",
+    "callsign": "RYR8BH",
     "departure_time": "17:55",
     "duration_minutes": 134,
     "days_of_operation": [
       2
     ],
-    "homebase": "LMML",
-    "callsign": "RYR8BH",
-    "arrival_time": "20:09",
-    "departure_lat": 35.857498,
-    "departure_lon": 14.4775,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LMML"
   },
   {
     "departure_icao": "LMML",
@@ -928,19 +732,15 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 1528",
+    "callsign": "RYR6ZR",
     "departure_time": "19:55",
     "duration_minutes": 134,
     "days_of_operation": [
       1,
-      4
+      4,
+      7
     ],
-    "homebase": "LMML",
-    "callsign": "RYR6ZR",
-    "arrival_time": "22:09",
-    "departure_lat": 35.857498,
-    "departure_lon": 14.4775,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LMML"
   },
   {
     "departure_icao": "LTBS",
@@ -950,19 +750,14 @@
     "arrival_city": "Bratislava",
     "arrival_country": "Slovakia",
     "flight_number": "FR 7144",
+    "callsign": "RYR87FG",
     "departure_time": "22:05",
     "duration_minutes": 148,
     "days_of_operation": [
       1,
       5
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR87FG",
-    "arrival_time": "00:33",
-    "departure_lat": 36.7131004333,
-    "departure_lon": 28.7924995422,
-    "arrival_lat": 48.1702003479,
-    "arrival_lon": 17.2126998901
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -972,18 +767,13 @@
     "arrival_city": "Dublin",
     "arrival_country": "Ireland",
     "flight_number": "FR 4227",
+    "callsign": "RYR4227",
     "departure_time": "05:50",
     "duration_minutes": 160,
     "days_of_operation": [
       6
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR4227",
-    "arrival_time": "08:30",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 53.4212989807,
-    "arrival_lon": -6.270070076
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -993,19 +783,14 @@
     "arrival_city": "Leeds Bradford",
     "arrival_country": "United Kingdom",
     "flight_number": "FR 5042",
+    "callsign": "RYR56NF",
     "departure_time": "06:05",
     "duration_minutes": 139,
     "days_of_operation": [
       1,
       4
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR56NF",
-    "arrival_time": "08:24",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 53.8658981323,
-    "arrival_lon": -1.6605700254
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1015,6 +800,7 @@
     "arrival_city": "Lamezia",
     "arrival_country": "Italy",
     "flight_number": "FR 5761",
+    "callsign": "RYR7EV",
     "departure_time": "06:10",
     "duration_minutes": 107,
     "days_of_operation": [
@@ -1022,13 +808,7 @@
       4,
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR7EV",
-    "arrival_time": "07:57",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 38.9053993225,
-    "arrival_lon": 16.2423000336
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1038,155 +818,13 @@
     "arrival_city": "Malaga",
     "arrival_country": "Spain",
     "flight_number": "FR 6690",
+    "callsign": "RYR75BJ",
     "departure_time": "06:25",
     "duration_minutes": 193,
     "days_of_operation": [
       2
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR75BJ",
-    "arrival_time": "09:38",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 36.6749000549,
-    "arrival_lon": -4.4991102219
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "LDZD",
-    "arrival_city": "Zadar",
-    "arrival_country": "Croatia",
-    "airline": "Ryanair",
-    "flight_number": "FR XXXX",
-    "callsign": "RYRXXXX",
-    "departure_time": "07:25",
-    "arrival_time": "08:30",
-    "duration_minutes": 65,
-    "days_of_operation": [
-      1,
-      3,
-      4,
-      6
-    ],
-    "homebase": "LDZD",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 44.1082992554,
-    "arrival_lon": 15.3466997147
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "LIRP",
-    "arrival_city": "Pisa",
-    "arrival_country": "Italy",
-    "flight_number": "FR 9850",
-    "departure_time": "08:05",
-    "duration_minutes": 84,
-    "days_of_operation": [
-      1,
-      4
-    ],
-    "homebase": "LIRP",
-    "callsign": "RYR98",
-    "arrival_time": "09:29",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 43.6838989258,
-    "arrival_lon": 10.3927001953
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "LCPH",
-    "arrival_city": "Paphos",
-    "arrival_country": "Cyprus",
-    "flight_number": "FR 3328",
-    "departure_time": "08:40",
-    "duration_minutes": 176,
-    "days_of_operation": [
-      1,
-      4,
-      6
-    ],
-    "homebase": "LZIB",
-    "callsign": "RYR7LN",
-    "arrival_time": "11:36",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 34.7179985046,
-    "arrival_lon": 32.4856987
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "EGPH",
-    "arrival_city": "Edinburgh",
-    "arrival_country": "United Kingdom",
-    "flight_number": "FR 6643",
-    "departure_time": "09:45",
-    "duration_minutes": 153,
-    "days_of_operation": [
-      1,
-      4,
-      6
-    ],
-    "homebase": "LZIB",
-    "callsign": "RYR79RN",
-    "arrival_time": "12:18",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 55.9500007629,
-    "arrival_lon": -3.3724999428
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "LBBG",
-    "arrival_city": "Burgas",
-    "arrival_country": "Bulgaria",
-    "flight_number": "FR 3706",
-    "departure_time": "11:20",
-    "duration_minutes": 106,
-    "days_of_operation": [
-      2,
-      4,
-      7
-    ],
-    "homebase": "LZIB",
-    "callsign": "RYR3706",
-    "arrival_time": "13:06",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 42.5695991516,
-    "arrival_lon": 27.5151996613
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "LGKR",
-    "arrival_city": "Corfu",
-    "arrival_country": "Greece",
-    "flight_number": "FR 1782",
-    "departure_time": "11:35",
-    "duration_minutes": 103,
-    "days_of_operation": [
-      3
-    ],
-    "homebase": "LZIB",
-    "callsign": "RYR1782",
-    "arrival_time": "13:18",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 39.6018981934,
-    "arrival_lon": 19.911699295
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1196,7 +834,8 @@
     "arrival_city": "Skiathos",
     "arrival_country": "Greece",
     "flight_number": "FR 6828",
-    "departure_time": "12:15",
+    "callsign": "RYR4YP",
+    "departure_time": "07:10",
     "duration_minutes": 113,
     "days_of_operation": [
       1,
@@ -1204,61 +843,112 @@
       5,
       6
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR4YP",
-    "arrival_time": "14:08",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 39.1771011353,
-    "arrival_lon": 23.5037002563
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
     "departure_city": "Bratislava",
     "departure_country": "Slovakia",
-    "arrival_icao": "LATI",
-    "arrival_city": "Tirana",
-    "arrival_country": "Albania",
-    "flight_number": "FR 3637",
-    "departure_time": "12:25",
-    "duration_minutes": 88,
-    "days_of_operation": [
-      1,
-      3,
-      7
-    ],
-    "homebase": "LZIB",
-    "callsign": "RYR252D",
-    "arrival_time": "13:53",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 41.4146995544,
-    "arrival_lon": 19.7206001282
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "LIEA",
-    "arrival_city": "Alghero",
+    "arrival_icao": "LIRP",
+    "arrival_city": "Pisa",
     "arrival_country": "Italy",
-    "flight_number": "FR 6399",
-    "departure_time": "13:00",
-    "duration_minutes": 112,
+    "flight_number": "FR 9850",
+    "callsign": "RYR98",
+    "departure_time": "08:05",
+    "duration_minutes": 84,
     "days_of_operation": [
       1,
-      3,
-      4,
-      6,
+      4
+    ],
+    "homebase": "LIRP"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "LGAV",
+    "arrival_city": "Athens",
+    "arrival_country": "Greece",
+    "flight_number": "FR 5889",
+    "callsign": "",
+    "departure_time": "08:35",
+    "duration_minutes": 124,
+    "days_of_operation": [
+      2,
+      5,
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR68KK",
-    "arrival_time": "14:52",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 40.6320991516,
-    "arrival_lon": 8.290769577
+    "homebase": "LZIB"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "LCPH",
+    "arrival_city": "Paphos",
+    "arrival_country": "Cyprus",
+    "flight_number": "FR 3328",
+    "callsign": "RYR7LN",
+    "departure_time": "08:40",
+    "duration_minutes": 176,
+    "days_of_operation": [
+      1,
+      4,
+      6
+    ],
+    "homebase": "LZIB"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "EGPH",
+    "arrival_city": "Edinburgh",
+    "arrival_country": "United Kingdom",
+    "flight_number": "FR 6643",
+    "callsign": "RYR79RN",
+    "departure_time": "09:45",
+    "duration_minutes": 153,
+    "days_of_operation": [
+      1,
+      4,
+      6
+    ],
+    "homebase": "LZIB"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "LBBG",
+    "arrival_city": "Burgas",
+    "arrival_country": "Bulgaria",
+    "flight_number": "FR 3706",
+    "callsign": "RYR3706",
+    "departure_time": "11:20",
+    "duration_minutes": 106,
+    "days_of_operation": [
+      2,
+      4,
+      7
+    ],
+    "homebase": "LZIB"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "LGKR",
+    "arrival_city": "Corfu",
+    "arrival_country": "Greece",
+    "flight_number": "FR 1782",
+    "callsign": "RYR1782",
+    "departure_time": "11:35",
+    "duration_minutes": 103,
+    "days_of_operation": [
+      3
+    ],
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1268,7 +958,8 @@
     "arrival_city": "Milan Malpensa",
     "arrival_country": "Italy",
     "flight_number": "FR 5733",
-    "departure_time": "13:05",
+    "callsign": "RYR38MM",
+    "departure_time": "12:00",
     "duration_minutes": 82,
     "days_of_operation": [
       1,
@@ -1279,13 +970,46 @@
       6,
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR38MM",
-    "arrival_time": "14:27",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 45.6305999756,
-    "arrival_lon": 8.7281103134
+    "homebase": "LZIB"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "LATI",
+    "arrival_city": "Tirana",
+    "arrival_country": "Albania",
+    "flight_number": "FR 3637",
+    "callsign": "RYR252D",
+    "departure_time": "12:25",
+    "duration_minutes": 88,
+    "days_of_operation": [
+      1,
+      3,
+      5,
+      7
+    ],
+    "homebase": "LATI"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "LIEA",
+    "arrival_city": "Alghero",
+    "arrival_country": "Italy",
+    "flight_number": "FR 6399",
+    "callsign": "RYR68KK",
+    "departure_time": "13:00",
+    "duration_minutes": 112,
+    "days_of_operation": [
+      1,
+      3,
+      4,
+      6,
+      7
+    ],
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1295,18 +1019,13 @@
     "arrival_city": "Lanzarote",
     "arrival_country": "Spain",
     "flight_number": "FR 4219",
+    "callsign": "RYR4MR",
     "departure_time": "13:15",
     "duration_minutes": 284,
     "days_of_operation": [
       5
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR4MR",
-    "arrival_time": "17:59",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 28.9454994202,
-    "arrival_lon": -13.6051998138
+    "homebase": "GCRR"
   },
   {
     "departure_icao": "LZIB",
@@ -1316,112 +1035,14 @@
     "arrival_city": "Gdansk",
     "arrival_country": "Poland",
     "flight_number": "FR 6593",
+    "callsign": "RYR3LX",
     "departure_time": "13:20",
     "duration_minutes": 82,
     "days_of_operation": [
       3,
       6
     ],
-    "homebase": "EPGD",
-    "callsign": "RYR3LX",
-    "arrival_time": "14:42",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 54.3776016235,
-    "arrival_lon": 18.4661998749
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "LMML",
-    "arrival_city": "Malta",
-    "arrival_country": "Malta",
-    "flight_number": "FR 1529",
-    "departure_time": "13:40",
-    "duration_minutes": 134,
-    "days_of_operation": [
-      1,
-      4,
-      7
-    ],
-    "homebase": "LZIB",
-    "callsign": "RYR1SK",
-    "arrival_time": "15:54",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 35.857498,
-    "arrival_lon": 14.4775
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "LEPA",
-    "arrival_city": "Palma de Mallorca",
-    "arrival_country": "Spain",
-    "flight_number": "FR 9512",
-    "departure_time": "14:00",
-    "duration_minutes": 142,
-    "days_of_operation": [
-      3,
-      6
-    ],
-    "homebase": "LZIB",
-    "callsign": "RYR49RT",
-    "arrival_time": "16:22",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 39.551700592,
-    "arrival_lon": 2.7388100624
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "LGAV",
-    "arrival_city": "Athens",
-    "arrival_country": "Greece",
-    "airline": "Ryanair",
-    "flight_number": "FR 5889",
-    "callsign": "RYR11UT",
-    "departure_time": "14:00",
-    "arrival_time": "17:04",
-    "duration_minutes": 124,
-    "days_of_operation": [
-      2,
-      5,
-      7
-    ],
-    "homebase": "LZIB",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 37.9364013672,
-    "arrival_lon": 23.9444999695
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "EHEH",
-    "arrival_city": "Eindhoven",
-    "arrival_country": "Netherlands",
-    "flight_number": "FR 1871",
-    "departure_time": "14:35",
-    "duration_minutes": 99,
-    "days_of_operation": [
-      1,
-      3,
-      4,
-      7
-    ],
-    "homebase": "LZIB",
-    "callsign": "RYR56TE",
-    "arrival_time": "16:14",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 51.4500999451,
-    "arrival_lon": 5.3745298386
+    "homebase": "EPGD"
   },
   {
     "departure_icao": "LZIB",
@@ -1431,7 +1052,8 @@
     "arrival_city": "Rome Ciampino",
     "arrival_country": "Italy",
     "flight_number": "FR 4225",
-    "departure_time": "14:40",
+    "callsign": "RYR1AE",
+    "departure_time": "13:25",
     "duration_minutes": 89,
     "days_of_operation": [
       1,
@@ -1442,13 +1064,44 @@
       6,
       7
     ],
-    "homebase": "LIRA",
-    "callsign": "RYR1AE",
-    "arrival_time": "16:09",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 41.7994003296,
-    "arrival_lon": 12.5949001312
+    "homebase": "LIRA"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "LEPA",
+    "arrival_city": "Palma de Mallorca",
+    "arrival_country": "Spain",
+    "flight_number": "FR 9512",
+    "callsign": "RYR49RT",
+    "departure_time": "14:00",
+    "duration_minutes": 142,
+    "days_of_operation": [
+      2,
+      3,
+      6
+    ],
+    "homebase": "LZIB"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "EHEH",
+    "arrival_city": "Eindhoven",
+    "arrival_country": "Netherlands",
+    "flight_number": "FR 1871",
+    "callsign": "RYR56TE",
+    "departure_time": "14:35",
+    "duration_minutes": 99,
+    "days_of_operation": [
+      1,
+      3,
+      4,
+      7
+    ],
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1458,6 +1111,7 @@
     "arrival_city": "Warsaw Modlin",
     "arrival_country": "Poland",
     "flight_number": "FR 3639",
+    "callsign": "RYR9HZ",
     "departure_time": "15:10",
     "duration_minutes": 70,
     "days_of_operation": [
@@ -1465,16 +1119,11 @@
       2,
       3,
       4,
+      5,
       6,
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR9HZ",
-    "arrival_time": "16:20",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 52.4510993958,
-    "arrival_lon": 20.6518001556
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1484,18 +1133,30 @@
     "arrival_city": "Bari",
     "arrival_country": "Italy",
     "flight_number": "FR 9627",
+    "callsign": "RYR21AW",
     "departure_time": "16:10",
     "duration_minutes": 88,
     "days_of_operation": [
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR21AW",
-    "arrival_time": "17:38",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 41.1389007568,
-    "arrival_lon": 16.7605991364
+    "homebase": "LZIB"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "LIEA",
+    "arrival_city": "Alghero",
+    "arrival_country": "Italy",
+    "flight_number": "FR 8227",
+    "callsign": "RYR8227",
+    "departure_time": "16:10",
+    "duration_minutes": 112,
+    "days_of_operation": [
+      2,
+      5
+    ],
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1505,6 +1166,7 @@
     "arrival_city": "Naples",
     "arrival_country": "Italy",
     "flight_number": "FR 5759",
+    "callsign": "RYR48AP",
     "departure_time": "16:30",
     "duration_minutes": 93,
     "days_of_operation": [
@@ -1513,13 +1175,7 @@
       5,
       6
     ],
-    "homebase": "LIRN",
-    "callsign": "RYR48AP",
-    "arrival_time": "18:03",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 40.8860015869,
-    "arrival_lon": 14.2908000946
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1529,19 +1185,14 @@
     "arrival_city": "Gdansk",
     "arrival_country": "Poland",
     "flight_number": "FR 6826",
+    "callsign": "RYR6826",
     "departure_time": "17:00",
     "duration_minutes": 82,
     "days_of_operation": [
       1,
       2
     ],
-    "homebase": "EPGD",
-    "callsign": "RYR6826",
-    "arrival_time": "18:22",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 54.3776016235,
-    "arrival_lon": 18.4661998749
+    "homebase": "EPGD"
   },
   {
     "departure_icao": "LZIB",
@@ -1551,6 +1202,7 @@
     "arrival_city": "Alicante",
     "arrival_country": "Spain",
     "flight_number": "FR 5699",
+    "callsign": "RYR19SV",
     "departure_time": "17:25",
     "duration_minutes": 165,
     "days_of_operation": [
@@ -1559,13 +1211,7 @@
       4,
       5
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR19SV",
-    "arrival_time": "20:10",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 38.2821998596,
-    "arrival_lon": -0.5581560135
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1575,19 +1221,14 @@
     "arrival_city": "Dalaman",
     "arrival_country": "Turkey",
     "flight_number": "FR 7143",
+    "callsign": "RYR7143",
     "departure_time": "18:00",
     "duration_minutes": 148,
     "days_of_operation": [
       1,
       5
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR7143",
-    "arrival_time": "20:28",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 36.7131004333,
-    "arrival_lon": 28.7924995422
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1597,19 +1238,14 @@
     "arrival_city": "Trapani-Marsala",
     "arrival_country": "Italy",
     "flight_number": "FR 7154",
+    "callsign": "RYR66WD",
     "departure_time": "18:00",
     "duration_minutes": 120,
     "days_of_operation": [
       2,
       7
     ],
-    "homebase": "LICT",
-    "callsign": "RYR66WD",
-    "arrival_time": "20:00",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 37.9113998413,
-    "arrival_lon": 12.4879999161
+    "homebase": "LICT"
   },
   {
     "departure_icao": "LZIB",
@@ -1619,18 +1255,13 @@
     "arrival_city": "Barcelona",
     "arrival_country": "Spain",
     "flight_number": "FR 6524",
+    "callsign": "RYR60VY",
     "departure_time": "18:55",
     "duration_minutes": 136,
     "days_of_operation": [
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR60VY",
-    "arrival_time": "21:11",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 41.2971000671,
-    "arrival_lon": 2.0784599781
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1640,6 +1271,7 @@
     "arrival_city": "Manchester",
     "arrival_country": "United Kingdom",
     "flight_number": "FR 35",
+    "callsign": "RYR81KJ",
     "departure_time": "19:00",
     "duration_minutes": 141,
     "days_of_operation": [
@@ -1647,13 +1279,7 @@
       3,
       6
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR81KJ",
-    "arrival_time": "21:21",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 53.3536987305,
-    "arrival_lon": -2.2749500275
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1662,21 +1288,16 @@
     "arrival_icao": "EBCI",
     "arrival_city": "Brussels Charleroi",
     "arrival_country": "Belgium",
-    "airline": "Ryanair",
     "flight_number": "FR 2853",
-    "callsign": "RYR2853",
+    "callsign": "RYR10AD",
     "departure_time": "19:40",
-    "arrival_time": "21:22",
     "duration_minutes": 102,
     "days_of_operation": [
       1,
-      3
+      3,
+      5
     ],
-    "homebase": "LZIB",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 50.4592018127,
-    "arrival_lon": 4.4538202286
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1686,63 +1307,15 @@
     "arrival_city": "Malaga",
     "arrival_country": "Spain",
     "flight_number": "FR 5776",
+    "callsign": "RYR32FQ",
     "departure_time": "20:15",
     "duration_minutes": 193,
     "days_of_operation": [
       1,
-      4
-    ],
-    "homebase": "LEMG",
-    "callsign": "RYR32FQ",
-    "arrival_time": "23:28",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 36.6749000549,
-    "arrival_lon": -4.4991102219
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "LMML",
-    "arrival_city": "Malta",
-    "arrival_country": "Malta",
-    "flight_number": "FR 7109",
-    "departure_time": "20:35",
-    "duration_minutes": 134,
-    "days_of_operation": [
-      2
-    ],
-    "homebase": "LMML",
-    "callsign": "RYR7109",
-    "arrival_time": "22:49",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 35.857498,
-    "arrival_lon": 14.4775
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "EGSS",
-    "arrival_city": "London Stansted",
-    "arrival_country": "United Kingdom",
-    "flight_number": "FR 62",
-    "departure_time": "20:50",
-    "duration_minutes": 125,
-    "days_of_operation": [
-      3,
       4,
-      5
+      7
     ],
-    "homebase": "EGSS",
-    "callsign": "RYR45XF",
-    "arrival_time": "22:55",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 51.8849983215,
-    "arrival_lon": 0.2349999994
+    "homebase": "LEMG"
   },
   {
     "departure_icao": "LZIB",
@@ -1752,20 +1325,50 @@
     "arrival_city": "Corfu",
     "arrival_country": "Greece",
     "flight_number": "FR 1745",
-    "departure_time": "21:10",
+    "callsign": "RYR869U",
+    "departure_time": "20:25",
     "duration_minutes": 103,
     "days_of_operation": [
       2,
       5,
       7
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR869U",
-    "arrival_time": "22:53",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 39.6018981934,
-    "arrival_lon": 19.911699295
+    "homebase": "LZIB"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "LMML",
+    "arrival_city": "Malta",
+    "arrival_country": "Malta",
+    "flight_number": "FR 7109",
+    "callsign": "RYR7109",
+    "departure_time": "20:35",
+    "duration_minutes": 134,
+    "days_of_operation": [
+      2
+    ],
+    "homebase": "LMML"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "EGSS",
+    "arrival_city": "London Stansted",
+    "arrival_country": "United Kingdom",
+    "flight_number": "FR 62",
+    "callsign": "RYR45XF",
+    "departure_time": "20:50",
+    "duration_minutes": 125,
+    "days_of_operation": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "homebase": "EGSS"
   },
   {
     "departure_icao": "LZIB",
@@ -1775,19 +1378,14 @@
     "arrival_city": "Bari",
     "arrival_country": "Italy",
     "flight_number": "FR 6831",
+    "callsign": "RYR6831",
     "departure_time": "21:20",
     "duration_minutes": 88,
     "days_of_operation": [
       3,
       6
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR6831",
-    "arrival_time": "22:48",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 41.1389007568,
-    "arrival_lon": 16.7605991364
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1797,19 +1395,14 @@
     "arrival_city": "London Stansted",
     "arrival_country": "United Kingdom",
     "flight_number": "FR 2315",
+    "callsign": "RYR6EF",
     "departure_time": "21:50",
     "duration_minutes": 125,
     "days_of_operation": [
       2,
       7
     ],
-    "homebase": "EGSS",
-    "callsign": "RYR6EF",
-    "arrival_time": "23:55",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 51.8849983215,
-    "arrival_lon": 0.2349999994
+    "homebase": "EGSS"
   },
   {
     "departure_icao": "LZIB",
@@ -1818,21 +1411,17 @@
     "arrival_icao": "LDZD",
     "arrival_city": "Zadar",
     "arrival_country": "Croatia",
-    "airline": "Ryanair",
     "flight_number": "FR 6824",
     "callsign": "RYR80RZ",
     "departure_time": "22:15",
-    "arrival_time": "23:20",
     "duration_minutes": 65,
     "days_of_operation": [
+      1,
       3,
-      4
+      4,
+      6
     ],
-    "homebase": "LDZD",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 44.1082992554,
-    "arrival_lon": 15.3466997147
+    "homebase": "LZIB"
   },
   {
     "departure_icao": "LZIB",
@@ -1842,19 +1431,32 @@
     "arrival_city": "Thessaloniki",
     "arrival_country": "Greece",
     "flight_number": "FR 2171",
+    "callsign": "RYR2171",
     "departure_time": "22:20",
     "duration_minutes": 102,
     "days_of_operation": [
       3,
       6
     ],
-    "homebase": "LZIB",
-    "callsign": "RYR2171",
-    "arrival_time": "00:02",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 40.5196990967,
-    "arrival_lon": 22.9708995819
+    "homebase": "LZIB"
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "LMML",
+    "arrival_city": "Malta",
+    "arrival_country": "Malta",
+    "flight_number": "FR 1529",
+    "callsign": "RYR1SK",
+    "departure_time": "22:35",
+    "duration_minutes": 134,
+    "days_of_operation": [
+      1,
+      4,
+      7
+    ],
+    "homebase": "LMML"
   },
   {
     "departure_icao": "LZIB",
@@ -1864,6 +1466,7 @@
     "arrival_city": "Barcelona",
     "arrival_country": "Spain",
     "flight_number": "FR 5719",
+    "callsign": "RYR8AG",
     "departure_time": "22:45",
     "duration_minutes": 136,
     "days_of_operation": [
@@ -1871,15 +1474,10 @@
       2,
       3,
       4,
+      5,
       6
     ],
-    "homebase": "LEBL",
-    "callsign": "RYR8AG",
-    "arrival_time": "01:01",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 41.2971000671,
-    "arrival_lon": 2.0784599781
+    "homebase": "LEBL"
   },
   {
     "departure_icao": "LZIB",
@@ -1889,6 +1487,7 @@
     "arrival_city": "Palermo",
     "arrival_country": "Italy",
     "flight_number": "FR 5803",
+    "callsign": "RYR38DU",
     "departure_time": "22:55",
     "duration_minutes": 117,
     "days_of_operation": [
@@ -1898,13 +1497,7 @@
       6,
       7
     ],
-    "homebase": "LICJ",
-    "callsign": "RYR38DU",
-    "arrival_time": "00:52",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 38.1759986877,
-    "arrival_lon": 13.0909996033
+    "homebase": "LICJ"
   },
   {
     "departure_icao": "LZIB",
@@ -1914,6 +1507,7 @@
     "arrival_city": "Dublin",
     "arrival_country": "Ireland",
     "flight_number": "FR 4223",
+    "callsign": "RYR6L",
     "departure_time": "23:20",
     "duration_minutes": 160,
     "days_of_operation": [
@@ -1922,12 +1516,6 @@
       5,
       7
     ],
-    "homebase": "EIDW",
-    "callsign": "RYR6L",
-    "arrival_time": "02:00",
-    "departure_lat": 48.1702003479,
-    "departure_lon": 17.2126998901,
-    "arrival_lat": 53.4212989807,
-    "arrival_lon": -6.270070076
+    "homebase": "EIDW"
   }
 ]
