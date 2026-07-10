@@ -15,6 +15,8 @@ const DOM = {
   hoursLabel: document.getElementById('hours-label'),
   filterDuration: document.getElementById('filter-duration'),
   durationLabel: document.getElementById('duration-label'),
+  filterDurationMin: document.getElementById('filter-duration-min'),
+  durationMinLabel: document.getElementById('duration-min-label'),
   filterHomebase: document.getElementById('filter-homebase'),
   filterCallsign: document.getElementById('filter-callsign'),
   sortBy: document.getElementById('sort-by'),
@@ -73,7 +75,7 @@ function setupListeners() {
   const inputs = [
     DOM.filterOrigin, DOM.filterDest,
     DOM.filterDay, DOM.filterTimeFrom, DOM.filterTimeTo,
-    DOM.filterHours, DOM.filterDuration, DOM.filterHomebase,
+    DOM.filterHours, DOM.filterDuration, DOM.filterDurationMin, DOM.filterHomebase,
     DOM.filterCallsign, DOM.sortBy, DOM.showUtc
   ];
 
@@ -108,18 +110,31 @@ function setupListeners() {
     }
   });
 
+  DOM.filterDurationMin.addEventListener('input', (e) => {
+    const v = parseInt(e.target.value);
+    if (v === 0) {
+      DOM.durationMinLabel.textContent = 'Min Duration: 0m';
+    } else {
+      const h = Math.floor(v / 60);
+      const m = v % 60;
+      DOM.durationMinLabel.textContent = `Min Duration: ${h}h ${m === 0 ? '00' : m}m`;
+    }
+  });
+
   DOM.resetBtn.addEventListener('click', () => {
     inputs.forEach(el => {
       if (el.tagName === 'SELECT') el.selectedIndex = 0;
       else if (el.type === 'range') {
         if (el.id === 'filter-hours') el.value = 168;
         if (el.id === 'filter-duration') el.value = 360;
+        if (el.id === 'filter-duration-min') el.value = 0;
       }
       else if (el.type === 'checkbox') el.checked = true;
       else el.value = '';
     });
     DOM.hoursLabel.textContent = 'Departing: Any time';
     DOM.durationLabel.textContent = 'Max Duration: Any';
+    DOM.durationMinLabel.textContent = 'Min Duration: 0m';
     applyFilters();
   });
 }
@@ -166,6 +181,7 @@ function applyFilters() {
   const dests = destStr ? destStr.split(',').map(s => s.trim()).filter(Boolean) : [];
   
   const durationMax = parseInt(DOM.filterDuration.value);
+  const durationMin = parseInt(DOM.filterDurationMin.value);
   const homebase = DOM.filterHomebase.value.toLowerCase();
   const callsign = DOM.filterCallsign.value.toLowerCase();
   const hVal = parseInt(DOM.filterHours.value);
@@ -190,6 +206,7 @@ function applyFilters() {
     }
 
     if (durationMax < 360 && f.duration_minutes > durationMax) return false;
+    if (durationMin > 0 && f.duration_minutes < durationMin) return false;
 
     if (homebase && !(f.homebase && f.homebase.toLowerCase().includes(homebase))) return false;
 

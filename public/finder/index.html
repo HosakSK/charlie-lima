@@ -73,7 +73,7 @@
           </div>
 
           <!-- Live Mode Filters -->
-          <div id="live-filters" class="filter-subgroup">
+          <div id="live-filters">
             <div class="filter-group">
               <label for="filter-hours" id="hours-label">Departing: Any time</label>
               <input type="range" id="filter-hours" min="1" max="168" value="168">
@@ -85,6 +85,11 @@
               <input type="checkbox" id="show-utc" checked>
               <span>Show times in UTC</span>
             </label>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-duration-min" id="duration-min-label">Min Duration: 0m</label>
+            <input type="range" id="filter-duration-min" min="0" max="360" step="30" value="0">
           </div>
 
           <div class="filter-group">
