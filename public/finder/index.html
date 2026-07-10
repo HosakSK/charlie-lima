@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/finder/style.css?v=10">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="/finder/style.css?v=11">
   </head>
   <body>
     <div class="app-container">
@@ -182,7 +184,11 @@
             <!-- Routing -->
             <div class="modal-section route-section">
               <h3>Dispatch & Routing</h3>
-              <p class="route-desc">Generate a complete flight plan including routing, weights, and performance.</p>
+              <div class="route-info-box" style="margin-bottom: 1rem; background: var(--badge-bg); padding: 0.8rem; border-radius: 6px; border: 1px solid var(--panel-border);">
+                <span class="route-label" style="font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Route / Waypoints:</span>
+                <div id="m-route-string" style="font-family: monospace; font-size: 0.9rem; color: var(--accent-blue); word-break: break-all; white-space: pre-wrap;">DCT</div>
+              </div>
+              <div id="m-route-map" style="height: 200px; border-radius: 8px; margin: 1rem 0; background: var(--input-bg); border: 1px solid var(--input-border); position: relative; overflow: hidden; z-index: 1;"></div>
               <div class="route-buttons">
                 <a id="m-simbrief-btn" href="#" target="_blank" class="btn-primary simbrief-btn">Generate Route on SimBrief</a>
                 <a id="m-skyvector-btn" href="#" target="_blank" class="btn-secondary">View on SkyVector</a>
@@ -196,6 +202,6 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast hidden">Copied to clipboard!</div>
 
-    <script type="module" src="/finder/main.js?v=10"></script>
+    <script type="module" src="/finder/main.js?v=11"></script>
   </body>
 </html>

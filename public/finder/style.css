@@ -725,6 +725,7 @@ input[type="range"] {
   align-items: center;
   border-bottom: 1px solid var(--panel-border);
   padding-bottom: 1rem;
+  padding-right: 4rem; /* Leave space for the close button */
   margin-bottom: 1.5rem;
 }
 
@@ -952,6 +953,14 @@ input[type="range"] {
   filter: brightness(1.1);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(var(--color-accent-rgb), 0.4);
+}
+
+.route-buttons .btn-secondary {
+  display: block;
+  text-align: center;
+  text-decoration: none !important;
+  padding: 1.2rem;
+  margin-top: 0;
 }
 
 @media (max-width: 768px) {

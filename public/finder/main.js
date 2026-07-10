@@ -459,7 +459,11 @@ if (!document.getElementById('flight-modal')) {
             </div>
             <div class="modal-section route-section">
               <h3>Dispatch & Routing</h3>
-              <p class="route-desc">Generate a complete flight plan including routing, weights, and performance.</p>
+              <div class="route-info-box" style="margin-bottom: 1rem; background: var(--badge-bg); padding: 0.8rem; border-radius: 6px; border: 1px solid var(--panel-border);">
+                <span class="route-label" style="font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Route / Waypoints:</span>
+                <div id="m-route-string" style="font-family: monospace; font-size: 0.9rem; color: var(--accent-blue); word-break: break-all; white-space: pre-wrap;">DCT</div>
+              </div>
+              <div id="m-route-map" style="height: 200px; border-radius: 8px; margin: 1rem 0; background: var(--input-bg); border: 1px solid var(--input-border); position: relative; overflow: hidden; z-index: 1;"></div>
               <div class="route-buttons">
                 <a id="m-simbrief-btn" href="#" target="_blank" class="btn-primary simbrief-btn">Generate Route on SimBrief</a>
                 <a id="m-skyvector-btn" href="#" target="_blank" class="btn-secondary">View on SkyVector</a>
@@ -512,6 +516,25 @@ document.addEventListener('keydown', (e) => {
 
 function closeFlightModal() {
   modalDOM.overlay.classList.add('hidden');
+  if (window.routeMapInstance) {
+    try {
+      window.routeMapInstance.remove();
+    } catch (e) {
+      console.error(e);
+    }
+    window.routeMapInstance = null;
+  }
+}
+
+async function fetchRouteData(from, to) {
+  try {
+    const res = await fetch(`/api/flight-route?from=${from}&to=${to}`);
+    if (!res.ok) return { route: 'DCT', distance: null, waypoints: [] };
+    return await res.json();
+  } catch (e) {
+    console.error('Error fetching route:', e);
+    return { route: 'DCT', distance: null, waypoints: [] };
+  }
 }
 
 async function openFlightModal(flight) {
@@ -519,6 +542,15 @@ async function openFlightModal(flight) {
   modalDOM.overlay.classList.remove('hidden');
   modalDOM.loading.classList.remove('hidden');
   modalDOM.body.classList.add('hidden');
+  
+  if (window.routeMapInstance) {
+    try {
+      window.routeMapInstance.remove();
+    } catch (e) {
+      console.error(e);
+    }
+    window.routeMapInstance = null;
+  }
   
   // Populate Header
   const fn = (flight.flight_number || '').replace(/\s+/g, '');
@@ -529,19 +561,16 @@ async function openFlightModal(flight) {
   
   modalDOM.depIcaoLbl.textContent = flight.departure_icao;
   modalDOM.arrIcaoLbl.textContent = flight.arrival_icao;
-  
-  // Populate Route Links
-  modalDOM.simbriefBtn.href = `https://dispatch.simbrief.com/options/custom?orig=${flight.departure_icao}&dest=${flight.arrival_icao}&fltnum=${fn}`;
-  modalDOM.skyvectorBtn.href = `https://skyvector.com/?fpl=${flight.departure_icao}%20${flight.arrival_icao}`;
 
   // Fetch Data concurrently
   try {
-    const [depMetar, arrMetar, depTaf, arrTaf, vatsimData] = await Promise.allSettled([
+    const [depMetar, arrMetar, depTaf, arrTaf, vatsimData, routeData] = await Promise.allSettled([
       fetchMetar(flight.departure_icao),
       fetchMetar(flight.arrival_icao),
       fetchTaf(flight.departure_icao),
       fetchTaf(flight.arrival_icao),
-      fetchVatsimData()
+      fetchVatsimData(),
+      fetchRouteData(flight.departure_icao, flight.arrival_icao)
     ]);
     
     // Render Weather
@@ -552,6 +581,91 @@ async function openFlightModal(flight) {
     
     // Render VATSIM
     renderVatsimATC(vatsimData.value, flight.departure_icao, flight.arrival_icao);
+    
+    // Handle Route String and Route Map
+    const routeObj = routeData.status === 'fulfilled' ? routeData.value : { route: 'DCT', distance: null, waypoints: [] };
+    const routeString = routeObj.route || 'DCT';
+    
+    const routeStrEl = document.getElementById('m-route-string');
+    if (routeStrEl) {
+      routeStrEl.textContent = routeString;
+    }
+
+    // Populate Route Links
+    const callsignVal = flight.callsign || `RYR${fn}`;
+    let simbriefUrl = `https://dispatch.simbrief.com/options/custom?orig=${flight.departure_icao}&dest=${flight.arrival_icao}&airline=RYR&fltnum=${fn}&calsign=${callsignVal}&type=B738`;
+    if (routeString && routeString !== 'DCT') {
+      simbriefUrl += `&route=${encodeURIComponent(routeString)}`;
+    }
+    modalDOM.simbriefBtn.href = simbriefUrl;
+
+    let fpl = `${flight.departure_icao}%20${flight.arrival_icao}`;
+    if (routeString && routeString !== 'DCT') {
+      fpl = `${flight.departure_icao}%20${encodeURIComponent(routeString)}%20${flight.arrival_icao}`;
+    }
+    modalDOM.skyvectorBtn.href = `https://skyvector.com/?fpl=${fpl}`;
+
+    // Draw Leaflet Map
+    const mapEl = document.getElementById('m-route-map');
+    if (mapEl && typeof L !== 'undefined') {
+      const depLat = flight.departure_lat;
+      const depLon = flight.departure_lon;
+      const arrLat = flight.arrival_lat;
+      const arrLon = flight.arrival_lon;
+
+      if (depLat && depLon && arrLat && arrLon) {
+        const map = L.map('m-route-map', {
+          zoomControl: false,
+          attributionControl: false
+        });
+        window.routeMapInstance = map;
+
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const tileUrl = isDark 
+          ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+          : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+
+        L.tileLayer(tileUrl, {
+          maxZoom: 19
+        }).addTo(map);
+
+        // Custom styled icons
+        const depMarker = L.marker([depLat, depLon]).addTo(map);
+        depMarker.bindTooltip(flight.departure_icao, { permanent: true, direction: 'top' });
+
+        const arrMarker = L.marker([arrLat, arrLon]).addTo(map);
+        arrMarker.bindTooltip(flight.arrival_icao, { permanent: true, direction: 'top' });
+
+        const latlngs = [[depLat, depLon]];
+        const wps = routeObj.waypoints || [];
+        wps.forEach(wp => {
+          if (wp.lat && wp.lon && wp.ident !== flight.departure_icao && wp.ident !== flight.arrival_icao) {
+            latlngs.push([wp.lat, wp.lon]);
+            L.circleMarker([wp.lat, wp.lon], {
+              radius: 4,
+              color: '#FF8C00',
+              fillColor: '#FF8C00',
+              fillOpacity: 1,
+              weight: 1
+            }).addTo(map).bindTooltip(wp.ident);
+          }
+        });
+        latlngs.push([arrLat, arrLon]);
+
+        const polyline = L.polyline(latlngs, {
+          color: '#00BDB1',
+          weight: 3,
+          opacity: 0.8
+        }).addTo(map);
+
+        map.fitBounds(polyline.getBounds(), { padding: [30, 30] });
+
+        // Invalidate size once modal layout is fully settled
+        setTimeout(() => {
+          map.invalidateSize();
+        }, 200);
+      }
+    }
     
   } catch (err) {
     console.error('Error fetching live data:', err);
@@ -565,14 +679,14 @@ async function openFlightModal(flight) {
 // --- API FETCHERS ---
 
 async function fetchMetar(icao) {
-  const res = await fetch(`https://aviationweather.gov/api/data/metar?ids=${icao}&format=json`);
+  const res = await fetch(`/api/metar?ids=${icao}`);
   if (!res.ok) return null;
   const data = await res.json();
   return data && data.length > 0 ? data[0] : null;
 }
 
 async function fetchTaf(icao) {
-  const res = await fetch(`https://aviationweather.gov/api/data/taf?ids=${icao}&format=json`);
+  const res = await fetch(`/api/taf?ids=${icao}`);
   if (!res.ok) return null;
   const data = await res.json();
   return data && data.length > 0 ? data[0] : null;
