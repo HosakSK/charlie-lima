@@ -144,9 +144,29 @@ function getNextDepartureMinutes(flightDayOps, departureTimeStr) {
 }
 
 function parseTime(timeStr) {
-  if (!timeStr) return 0;
+  if (!timeStr || timeStr === '--:--') return 0;
   const [h, m] = timeStr.split(':').map(Number);
   return h * 60 + m;
+}
+
+function getOffsetString(localTime, utcTime) {
+  if (!localTime || !utcTime || localTime === '--:--' || utcTime === '--:--') return '';
+  const [lh, lm] = localTime.split(':').map(Number);
+  const [uh, um] = utcTime.split(':').map(Number);
+  
+  let lMins = lh * 60 + lm;
+  let uMins = uh * 60 + um;
+  
+  let diff = lMins - uMins;
+  if (diff > 12 * 60) diff -= 24 * 60;
+  if (diff < -12 * 60) diff += 24 * 60;
+  
+  const sign = diff >= 0 ? '+' : '-';
+  const absDiff = Math.abs(diff);
+  const h = Math.floor(absDiff / 60);
+  const m = absDiff % 60;
+  
+  return `UTC${sign}${h}${m === 0 ? '' : ':' + m.toString().padStart(2, '0')}`;
 }
 
 function applyFilters() {
@@ -198,10 +218,10 @@ function applyFilters() {
 
     const tFrom = parseTime(DOM.filterTimeFrom.value);
     const tTo = parseTime(DOM.filterTimeTo.value);
-    const depT = parseTime(f.departure_time);
+    const depTUtc = parseTime(f.departure_time_utc);
 
-    if (DOM.filterTimeFrom.value && depT < tFrom) return false;
-    if (DOM.filterTimeTo.value && depT > tTo) return false;
+    if (DOM.filterTimeFrom.value && depTUtc < tFrom) return false;
+    if (DOM.filterTimeTo.value && depTUtc > tTo) return false;
 
     // Live Filter
     const wait = getNextDepartureMinutes(f.days_of_operation, f.departure_time);
@@ -248,12 +268,19 @@ function render(flights) {
     const depUtc = f.departure_time_utc || '--:--';
     const arrLocal = f.arrival_time;
     const arrUtc = f.arrival_time_utc || '--:--';
+    
+    const depOffset = getOffsetString(depLocal, depUtc);
+    const arrOffset = getOffsetString(arrLocal, arrUtc);
 
     const mainDep = showUtc ? depUtc : depLocal;
-    const subDep = showUtc ? `Local: ${depLocal}` : `UTC: ${depUtc}`;
+    const subDep = showUtc 
+      ? `Local: ${depLocal} <span style="opacity: 0.6">(${depOffset})</span>` 
+      : `UTC: ${depUtc} <span style="opacity: 0.6">(${depOffset})</span>`;
 
     const mainArr = showUtc ? arrUtc : arrLocal;
-    const subArr = showUtc ? `Local: ${arrLocal}` : `UTC: ${arrUtc}`;
+    const subArr = showUtc 
+      ? `Local: ${arrLocal} <span style="opacity: 0.6">(${arrOffset})</span>` 
+      : `UTC: ${arrUtc} <span style="opacity: 0.6">(${arrOffset})</span>`;
     
     const fnClean = (f.flight_number || '').replace(/\s+/g, '');
 
