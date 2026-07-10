@@ -12,6 +12,10 @@
   --input-bg: #FFFFFF;
   --input-border: #E5E7EB;
   --color-accent-rgb: 0, 189, 177;
+  --badge-bg: rgba(0, 0, 0, 0.06);
+  --callsign-bg: rgba(0, 189, 177, 0.15);
+  --callsign-color: #008B82;
+  --callsign-border: rgba(0, 189, 177, 0.3);
 }
 
 [data-theme="dark"] {
@@ -28,6 +32,10 @@
   --input-bg: #4F5354;
   --input-border: #4F5354;
   --color-accent-rgb: 255, 140, 0;
+  --badge-bg: rgba(255, 255, 255, 0.1);
+  --callsign-bg: rgba(255, 140, 0, 0.15);
+  --callsign-color: #FF8C00;
+  --callsign-border: rgba(255, 140, 0, 0.3);
 }
 
 * {
@@ -405,7 +413,7 @@ input[type="range"] {
 }
 
 .badge {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--badge-bg);
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
   font-size: 0.75rem;
@@ -414,9 +422,9 @@ input[type="range"] {
 }
 
 .badge.callsign {
-  background: rgba(250, 204, 21, 0.15);
-  color: var(--accent-yellow);
-  border: 1px solid rgba(250, 204, 21, 0.3);
+  background: var(--callsign-bg);
+  color: var(--callsign-color);
+  border: 1px solid var(--callsign-border);
 }
 
 .fc-route {
