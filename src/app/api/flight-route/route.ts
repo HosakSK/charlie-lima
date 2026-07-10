@@ -23,7 +23,12 @@ export async function GET(request: Request) {
 
     const plans = await searchRes.json();
     if (!Array.isArray(plans) || plans.length === 0) {
-      return NextResponse.json({ route: 'DCT', distance: null, waypoints: [] });
+      return NextResponse.json({ 
+        route: 'DCT', 
+        distance: null, 
+        waypoints: [],
+        debug_plans: plans 
+      });
     }
 
     // 2. Fetch the first plan details
