@@ -178,12 +178,35 @@ function setupListeners() {
   });
 }
 
+function getUtcDay(localDay, localTime, utcTime) {
+  if (!localTime || !utcTime || localTime === '--:--' || utcTime === '--:--') return localDay;
+  const [lh, lm] = localTime.split(':').map(Number);
+  const [uh, um] = utcTime.split(':').map(Number);
+  
+  let lMins = lh * 60 + lm;
+  let uMins = uh * 60 + um;
+  
+  let diff = lMins - uMins;
+  if (diff > 12 * 60) diff -= 24 * 60;
+  if (diff < -12 * 60) diff += 24 * 60;
+  
+  let utcDay = localDay;
+  if (diff > 0 && lMins < diff) {
+    utcDay = localDay - 1;
+    if (utcDay < 1) utcDay = 7;
+  } else if (diff < 0 && (24 * 60 - lMins) < Math.abs(diff)) {
+    utcDay = localDay + 1;
+    if (utcDay > 7) utcDay = 1;
+  }
+  return utcDay;
+}
+
 function getNextDepartureMinutes(flightDayOps, departureTimeStr) {
   const now = new Date();
-  let currentDay = now.getDay();
+  let currentDay = now.getUTCDay();
   if (currentDay === 0) currentDay = 7;
   
-  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+  const currentMinutes = now.getUTCHours() * 60 + now.getUTCMinutes();
   const [depH, depM] = departureTimeStr.split(':').map(Number);
   const depMinutes = depH * 60 + depM;
 
@@ -277,7 +300,8 @@ function applyFilters() {
 
     // Sim Filters
     const sDay = parseInt(DOM.filterDay.value);
-    if (sDay && f.day_of_operation !== sDay) return false;
+    const fUtcDay = getUtcDay(f.day_of_operation, f.departure_time, f.departure_time_utc);
+    if (sDay && fUtcDay !== sDay) return false;
 
     const tFrom = parseTime(DOM.filterTimeFrom.value);
     const tTo = parseTime(DOM.filterTimeTo.value);
@@ -287,7 +311,7 @@ function applyFilters() {
     if (DOM.filterTimeTo.value && depTUtc > tTo) return false;
 
     // Live Filter
-    const wait = getNextDepartureMinutes([f.day_of_operation], f.departure_time);
+    const wait = getNextDepartureMinutes([fUtcDay], f.departure_time_utc);
     if (hVal < 168) {
       const maxWaitMinutes = hVal * 60;
       if (wait > maxWaitMinutes) return false;
@@ -321,11 +345,13 @@ function render(flights) {
 
   const html = flights.map((f, index) => {
     let daysHtml = '';
+    const fUtcDay = getUtcDay(f.day_of_operation, f.departure_time, f.departure_time_utc);
+    const fUtcDaysOfOp = (f.days_of_operation || []).map(d => getUtcDay(d, f.departure_time, f.departure_time_utc));
     for (let i = 1; i <= 7; i++) {
       let activeClass = '';
-      if (f.day_of_operation === i) {
+      if (fUtcDay === i) {
         activeClass = 'active active-primary';
-      } else if (f.days_of_operation.includes(i)) {
+      } else if (fUtcDaysOfOp.includes(i)) {
         activeClass = 'active active-secondary';
       }
       const letter = ['M', 'T', 'W', 'T', 'F', 'S', 'S'][i-1];
@@ -551,8 +577,6 @@ const modalDOM = {
   fstatFl: document.getElementById('m-fstat-fl'),
   fstatDur: document.getElementById('m-fstat-dur'),
   fstatWpts: document.getElementById('m-fstat-wpts'),
-  airwaysBox: document.getElementById('m-airways-box'),
-  airwaysList: document.getElementById('m-airways-list'),
   
   // Route source
   routeSource: document.getElementById('m-route-source'),
@@ -769,11 +793,7 @@ async function openFlightModal(flight) {
       modalDOM.fstatWpts.textContent = routeObj.waypointCount;
     }
 
-    // --- Airways ---
-    if (modalDOM.airwaysBox && modalDOM.airwaysList && routeObj.airways && routeObj.airways.length > 0) {
-      modalDOM.airwaysList.innerHTML = routeObj.airways.map(a => `<span class="airway-badge">${a}</span>`).join('');
-      modalDOM.airwaysBox.classList.remove('hidden');
-    }
+
 
     // --- Route Source ---
     if (modalDOM.routeSource && routeObj.source) {
