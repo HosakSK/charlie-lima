@@ -36,23 +36,28 @@ Aplikácia je postavená tak, aby bola extrémne rýchla (všetko sa filtruje na
 Dáta aplikácie pochádzajú z reálneho Ryanair API. Keďže sa letové plány menia, z času na čas je potrebné JSON súbor aktualizovať.
 
 ### Krok 1: Stiahnutie nových letov z API
-V našom prostredí je vytvorený Agent skill (uložený ako `update_ryanair_flights`). Tento skill dokáže stiahnuť lety z Ryanair API na nasledujúcich 7 dní.
+V našom prostredí je vytvorený Agent skill (uložený ako `update_ryanair_flights`). Tento skill používa upravený skript `update_flights.py`.
+
+**Nová, robustná (Systematic) logika stiahnutia:**
+Pôvodné sťahovanie z Ryanair "Fare Finder" API narážalo na limit, kedy API vracalo len *jeden najlacnejší let za deň* a ignorovalo vypredané lety. Aby sme získali **kompletný letový poriadok**:
+1. Skript skenuje obdobie **28 dní** dopredu (namiesto 7), aby s istotou zachytil aj lety, ktoré sú v najbližších dňoch plne vypredané.
+2. Každý deň rozdeľuje na **4 časové okná** (00:00-06:00, 06:00-12:00, atď.). API sa tak dotazuje na každý segment dňa samostatne. Vďaka tomu zachytíme aj letiská, kam sa lieta dvakrát denne (napr. Stansted EGSS).
+3. Skript je plne **Timezone Aware**. Pre všetky letiská vytiahne ich IANA timezone (napr. `Europe/London`) a okrem lokálnych časov matematicky presne prepočíta a uloží aj UTC časy (`departure_time_utc`, `arrival_time_utc`), ktoré následne číta webová apka.
+
 Pre aktualizáciu jednoducho požiadaj AI Agenta o aktualizáciu letov ("Update Ryanair flights pre LZIB").
 
 ### Krok 2: Algoritmus na opravu domovskej základne (Homebase)
 **Toto je kritický krok pre celistvosť dát!**
 Ryanair API nám automaticky nehovorí, či letisko LZIB je pre dané lietadlo domovskou základňou, alebo ide len o "otočku" lietadla z inej základne (away-base). Správny údaj o "base" je pritom pre virtuálnych pilotov kľúčový.
 
-Preto po vygenerovaní letov **musí** nasledovať spustenie skriptu `scripts/fix_homebase.py`.
+Túto logiku už čiastočne prebral priamo hlavný skript `update_flights.py` počas sťahovania, ale pre istotu sa môže dodatočne spustiť aj samostatný algoritmus.
 
 #### Ako funguje fix_homebase algoritmus?
 Algoritmus načíta JSON súbor a matematicky spáruje všetky odlety s príletmi na rovnakej trase:
 1. Nájde napríklad let **LZIB -> EPMO** a let **EPMO -> LZIB**.
-2. Vypočíta takzvaný *turnaround time* (čas otočky).
-3. Ak lietadlo odletí z LZIB, priletí do EPMO a po napr. 45 minútach letí späť z EPMO do LZIB, **znamená to, že lietadlo má základňu (Base) v LZIB** (svoj deň začalo v Bratislave).
-4. Ak by odletelo ráno z EPMO do LZIB, počkalo v LZIB 30 minút a letelo späť, **jeho základňa je EPMO**.
+2. Porovná, ktorý let z dvojice odlieta v daný deň z domovského letiska ako prvý.
+3. Ak lietadlo letí prvé ráno z LZIB do EPMO, **znamená to, že lietadlo má základňu (Base) v LZIB** (svoj deň začalo v Bratislave a prenocovalo tam).
+4. Ak by odletelo prvé ráno z EPMO do LZIB, **jeho základňa je EPMO**.
 
-Tento algoritmus iteruje cez všetkých 80+ letov a na základe časových rozdielov (do 120 minút pre turnaround) s absolútnou presnosťou určí domovskú základňu pre každý let.
-
-- **Spustenie (z priečinka projektu)**: `python scripts/fix_homebase.py`
-*(Tento skript automaticky upraví a prepíše JSON súbor `public/finder/ryanair_flights_lzib.json` so správne vypočítanými Base údajmi).*
+- **Spustenie (z priečinka projektu)**: Skript sa automaticky spúšťa v rámci agent skillu po stiahnutí dát.
+*(Tento skript upraví a prepíše JSON súbor `public/finder/ryanair_flights_lzib.json` so správne vypočítanými Base a UTC údajmi).*
