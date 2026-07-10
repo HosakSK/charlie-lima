@@ -396,13 +396,25 @@ function render(flights) {
   const cards = document.querySelectorAll('.flight-card');
   console.log("Binding click listeners to cards:", cards.length);
   cards.forEach((el, index) => {
+    el.style.borderLeft = "5px solid #FF00FF"; // MAGENTA BORDER VISUAL PROOF
     el.addEventListener('click', async (e) => {
       try {
-        console.log("Card clicked!", index);
         if (e.target.closest && (e.target.closest('.copy-click') || e.target.closest('a'))) return;
-        if (!modalDOM.overlay) {
-          throw new Error("Modal DOM element is missing. Please press Ctrl+F5 to hard-refresh the page.");
+        
+        if (!document.getElementById('flight-modal')) {
+          alert("CRITICAL ERROR: Modal DOM element is still missing in document.body!");
+          return;
         }
+        
+        // Remove hidden classes directly
+        const modal = document.getElementById('flight-modal');
+        const loading = document.getElementById('modal-loading');
+        const body = document.getElementById('modal-body');
+        
+        if (modal) modal.classList.remove('hidden');
+        if (loading) loading.classList.remove('hidden');
+        if (body) body.classList.add('hidden');
+        
         await openFlightModal(flights[index]);
       } catch (err) {
         alert("Error opening modal: " + err.message);
