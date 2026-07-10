@@ -395,9 +395,12 @@ function render(flights) {
 
   document.querySelectorAll('.flight-card').forEach((el, index) => {
     el.addEventListener('click', (e) => {
-      // Ignore click if it's on a badge, copy or link
-      if (e.target.closest('.copy-click') || e.target.closest('a')) return;
-      openFlightModal(flights[index]);
+      try {
+        if (e.target.closest && (e.target.closest('.copy-click') || e.target.closest('a'))) return;
+        openFlightModal(flights[index]);
+      } catch (err) {
+        alert("Error opening modal: " + err.message + "\n" + err.stack);
+      }
     });
   });
 }
