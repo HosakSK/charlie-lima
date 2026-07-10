@@ -135,13 +135,14 @@
     "arrival_country": "Slovakia",
     "flight_number": "FR 2314",
     "callsign": "RYR7QX",
-    "departure_time": "19:45",
-    "departure_time_utc": "18:45",
-    "arrival_time": "22:50",
-    "arrival_time_utc": "20:50",
+    "departure_time": "18:15",
+    "departure_time_utc": "17:15",
+    "arrival_time": "21:20",
+    "arrival_time_utc": "19:20",
     "duration_minutes": 125,
     "days_of_operation": [
-      2
+      2,
+      7
     ],
     "homebase": "EGSS",
     "departure_lat": 51.885,
@@ -446,7 +447,7 @@
       4,
       5
     ],
-    "homebase": "LZIB",
+    "homebase": "LEAL",
     "departure_lat": 38.2822,
     "departure_lon": -0.55816,
     "arrival_lat": 48.1702,
@@ -1206,7 +1207,7 @@
     "arrival_city": "Athens",
     "arrival_country": "Greece",
     "flight_number": "FR 5889",
-    "callsign": "",
+    "callsign": "RYR5889",
     "departure_time": "08:35",
     "departure_time_utc": "06:35",
     "arrival_time": "11:39",
@@ -1615,10 +1616,10 @@
     "arrival_country": "Italy",
     "flight_number": "FR 5759",
     "callsign": "RYR48AP",
-    "departure_time": "16:30",
-    "departure_time_utc": "14:30",
-    "arrival_time": "18:03",
-    "arrival_time_utc": "16:03",
+    "departure_time": "16:45",
+    "departure_time_utc": "14:45",
+    "arrival_time": "18:18",
+    "arrival_time_utc": "16:18",
     "duration_minutes": 93,
     "days_of_operation": [
       2,
@@ -1655,32 +1656,6 @@
     "departure_lon": 17.2127,
     "arrival_lat": 54.3776,
     "arrival_lon": 18.4662
-  },
-  {
-    "departure_icao": "LZIB",
-    "departure_city": "Bratislava",
-    "departure_country": "Slovakia",
-    "arrival_icao": "LEAL",
-    "arrival_city": "Alicante",
-    "arrival_country": "Spain",
-    "flight_number": "FR 5699",
-    "callsign": "RYR19SV",
-    "departure_time": "17:25",
-    "departure_time_utc": "15:25",
-    "arrival_time": "20:10",
-    "arrival_time_utc": "18:10",
-    "duration_minutes": 165,
-    "days_of_operation": [
-      1,
-      3,
-      4,
-      5
-    ],
-    "homebase": "LZIB",
-    "departure_lat": 48.1702,
-    "departure_lon": 17.2127,
-    "arrival_lat": 38.2822,
-    "arrival_lon": -0.55816
   },
   {
     "departure_icao": "LZIB",
@@ -1891,10 +1866,12 @@
     "arrival_time_utc": "20:55",
     "duration_minutes": 125,
     "days_of_operation": [
+      2,
       3,
       4,
       5,
-      6
+      6,
+      7
     ],
     "homebase": "EGSS",
     "departure_lat": 48.1702,
@@ -1949,6 +1926,32 @@
     "departure_lon": 17.2127,
     "arrival_lat": 51.885,
     "arrival_lon": 0.235
+  },
+  {
+    "departure_icao": "LZIB",
+    "departure_city": "Bratislava",
+    "departure_country": "Slovakia",
+    "arrival_icao": "LEAL",
+    "arrival_city": "Alicante",
+    "arrival_country": "Spain",
+    "flight_number": "FR 5699",
+    "callsign": "RYR19SV",
+    "departure_time": "22:10",
+    "departure_time_utc": "20:10",
+    "arrival_time": "00:55",
+    "arrival_time_utc": "22:55",
+    "duration_minutes": 165,
+    "days_of_operation": [
+      1,
+      3,
+      4,
+      5
+    ],
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 38.2822,
+    "arrival_lon": -0.55816
   },
   {
     "departure_icao": "LZIB",
