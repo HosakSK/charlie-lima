@@ -9,8 +9,9 @@
   --accent-yellow: #facc15;
   --card-hover: rgba(0, 189, 177, 0.08);
   --danger: #f43f5e;
-  --bg-shape-1: #00BDB1;
-  --bg-shape-2: #a4eede;
+  --input-bg: #FFFFFF;
+  --input-border: #E5E7EB;
+  --color-accent-rgb: 0, 189, 177;
 }
 
 [data-theme="dark"] {
@@ -24,8 +25,9 @@
   --accent-yellow: #facc15;
   --card-hover: rgba(79, 83, 84, 0.6);
   --danger: #f43f5e;
-  --bg-shape-1: #FF8C00;
-  --bg-shape-2: #4F5354;
+  --input-bg: #4F5354;
+  --input-border: #4F5354;
+  --color-accent-rgb: 255, 140, 0;
 }
 
 * {
@@ -56,6 +58,44 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #334155;
+}
+
+/* Background effects matching main app */
+body::before {
+  content: ""; 
+  position: fixed; 
+  top: -10%; 
+  left: -10%; 
+  right: -10%; 
+  bottom: -10%;
+  background: url('/icons/lines_05-2.svg') no-repeat center center;
+  background-size: cover; 
+  z-index: -1;
+}
+
+[data-theme="dark"] body::before { 
+  filter: invert(1) brightness(0.25) opacity(0.7); 
+}
+
+body::after {
+  content: ''; 
+  position: fixed; 
+  top: 50%; 
+  left: 50%; 
+  width: 70vw; 
+  height: 70vw; 
+  max-width: 800px; 
+  max-height: 800px;
+  background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.12) 0%, transparent 65%);
+  transform: translate(-50%, -50%); 
+  z-index: -1; 
+  pointer-events: none;
+  animation: pulseGlow 10s infinite alternate ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
 }
 
 /* Animated Background Shapes */
@@ -216,8 +256,8 @@ label {
 input[type="text"], input[type="time"], select {
   width: 100%;
   padding: 0.7rem 1rem;
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid var(--panel-border);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   color: var(--text-main);
   font-family: inherit;
@@ -227,8 +267,9 @@ input[type="text"], input[type="time"], select {
 }
 
 input[type="text"]:focus, input[type="time"]:focus, select:focus {
+  outline: none;
   border-color: var(--accent-blue);
-  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+  box-shadow: 0 0 0 2px rgba(var(--color-accent-rgb), 0.2);
 }
 
 input[type="range"] {
@@ -398,7 +439,7 @@ input[type="range"] {
   font-size: 1.8rem;
   font-weight: 700;
   font-family: monospace;
-  color: #fff;
+  color: var(--text-main);
 }
 
 .fc-time-sub {
