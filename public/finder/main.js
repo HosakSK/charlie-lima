@@ -431,8 +431,14 @@ if (!document.getElementById('flight-modal')) {
         <div id="modal-body" class="modal-body hidden">
           <div class="modal-header">
             <div class="m-header-left">
-              <h2 id="m-flight-number">--</h2>
-              <div id="m-callsign" class="badge callsign">--</div>
+              <div>
+                <h2 id="m-callsign-header">--</h2>
+                <div id="m-flight-number-sub" class="flight-number-sub">--</div>
+              </div>
+              <a id="m-google-search-btn" href="#" target="_blank" class="btn-google-search" title="Search flight on Google">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <span>Hľadať na Google</span>
+              </a>
             </div>
             <div class="m-route">
               <span id="m-dep">--</span>
@@ -441,32 +447,53 @@ if (!document.getElementById('flight-modal')) {
             </div>
           </div>
           <div class="modal-grid">
-            <div class="modal-section weather-section">
-              <h3>Departure Weather <span id="m-dep-icao-lbl"></span></h3>
-              <div id="m-dep-metar-graphic" class="metar-graphic"></div>
-              <div class="raw-metar" id="m-dep-metar-raw">No METAR available</div>
-              <div class="raw-taf" id="m-dep-taf-raw">No TAF available</div>
-            </div>
-            <div class="modal-section weather-section">
-              <h3>Arrival Weather <span id="m-arr-icao-lbl"></span></h3>
-              <div id="m-arr-metar-graphic" class="metar-graphic"></div>
-              <div class="raw-metar" id="m-arr-metar-raw">No METAR available</div>
-              <div class="raw-taf" id="m-arr-taf-raw">No TAF available</div>
-            </div>
-            <div class="modal-section vatsim-section">
-              <h3>Live VATSIM ATC</h3>
-              <div id="m-vatsim-atc" class="vatsim-atc-list"></div>
-            </div>
-            <div class="modal-section route-section">
-              <h3>Dispatch & Routing</h3>
-              <div class="route-info-box" style="margin-bottom: 1rem; background: var(--badge-bg); padding: 0.8rem; border-radius: 6px; border: 1px solid var(--panel-border);">
-                <span class="route-label" style="font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Route / Waypoints:</span>
-                <div id="m-route-string" style="font-family: monospace; font-size: 0.9rem; color: var(--accent-blue); word-break: break-all; white-space: pre-wrap;">DCT</div>
+            <!-- Column 1: Departure -->
+            <div class="modal-column">
+              <!-- Departure Weather -->
+              <div class="modal-section weather-section" style="margin-bottom: 1.5rem;">
+                <h3>Departure Weather <span id="m-dep-icao-lbl"></span></h3>
+                <div id="m-dep-metar-graphic" class="metar-graphic"></div>
+                <div class="raw-metar" id="m-dep-metar-raw">No METAR available</div>
+                <div class="raw-taf" id="m-dep-taf-raw">No TAF available</div>
               </div>
-              <div id="m-route-map" style="height: 200px; border-radius: 8px; margin: 1rem 0; background: var(--input-bg); border: 1px solid var(--input-border); position: relative; overflow: hidden; z-index: 1;"></div>
-              <div class="route-buttons">
-                <a id="m-simbrief-btn" href="#" target="_blank" class="btn-primary simbrief-btn">Generate Route on SimBrief</a>
-                <a id="m-skyvector-btn" href="#" target="_blank" class="btn-secondary">View on SkyVector</a>
+              
+              <!-- Departure VATSIM ATC -->
+              <div class="modal-section vatsim-section">
+                <h3>Departure ATC</h3>
+                <div id="m-dep-vatsim-atc" class="vatsim-atc-list"></div>
+              </div>
+            </div>
+            
+            <!-- Column 2: Arrival -->
+            <div class="modal-column">
+              <!-- Arrival Weather -->
+              <div class="modal-section weather-section" style="margin-bottom: 1.5rem;">
+                <h3>Arrival Weather <span id="m-arr-icao-lbl"></span></h3>
+                <div id="m-arr-metar-graphic" class="metar-graphic"></div>
+                <div class="raw-metar" id="m-arr-metar-raw">No METAR available</div>
+                <div class="raw-taf" id="m-arr-taf-raw">No TAF available</div>
+              </div>
+              
+              <!-- Arrival VATSIM ATC -->
+              <div class="modal-section vatsim-section">
+                <h3>Arrival ATC</h3>
+                <div id="m-arr-vatsim-atc" class="vatsim-atc-list"></div>
+              </div>
+            </div>
+
+            <!-- Column 3: Dispatch & Routing -->
+            <div class="modal-column">
+              <div class="modal-section route-section">
+                <h3>Dispatch & Routing</h3>
+                <div class="route-info-box" style="margin-bottom: 1rem; background: var(--badge-bg); padding: 0.8rem; border-radius: 6px; border: 1px solid var(--panel-border);">
+                  <span class="route-label" style="font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Route / Waypoints:</span>
+                  <div id="m-route-string" style="font-family: monospace; font-size: 0.9rem; color: var(--accent-blue); word-break: break-all; white-space: pre-wrap;">DCT</div>
+                </div>
+                <div id="m-route-map" style="height: 220px; border-radius: 8px; margin: 1rem 0; background: var(--input-bg); border: 1px solid var(--input-border); position: relative; overflow: hidden; z-index: 1;"></div>
+                <div class="route-buttons" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                  <a id="m-simbrief-btn" href="#" target="_blank" class="btn-primary simbrief-btn">Generate Route on SimBrief</a>
+                  <a id="m-skyvector-btn" href="#" target="_blank" class="btn-secondary">View on SkyVector</a>
+                </div>
               </div>
             </div>
           </div>
@@ -482,8 +509,10 @@ const modalDOM = {
   loading: document.getElementById('modal-loading'),
   body: document.getElementById('modal-body'),
   
-  flightNum: document.getElementById('m-flight-number'),
-  callsign: document.getElementById('m-callsign'),
+  callsignHeader: document.getElementById('m-callsign-header'),
+  flightNumSub: document.getElementById('m-flight-number-sub'),
+  googleSearchBtn: document.getElementById('m-google-search-btn'),
+  
   dep: document.getElementById('m-dep'),
   arr: document.getElementById('m-arr'),
   
@@ -498,7 +527,8 @@ const modalDOM = {
   depMetarGraphic: document.getElementById('m-dep-metar-graphic'),
   arrMetarGraphic: document.getElementById('m-arr-metar-graphic'),
   
-  vatsimAtc: document.getElementById('m-vatsim-atc'),
+  depVatsimAtc: document.getElementById('m-dep-vatsim-atc'),
+  arrVatsimAtc: document.getElementById('m-arr-vatsim-atc'),
   
   simbriefBtn: document.getElementById('m-simbrief-btn'),
   skyvectorBtn: document.getElementById('m-skyvector-btn')
@@ -554,8 +584,11 @@ async function openFlightModal(flight) {
   
   // Populate Header
   const fn = (flight.flight_number || '').replace(/\s+/g, '');
-  modalDOM.flightNum.textContent = flight.airline ? `${flight.airline} ${fn}` : fn;
-  modalDOM.callsign.textContent = flight.callsign || fn;
+  const fullFltNum = flight.airline ? `${flight.airline} ${fn}` : fn;
+  modalDOM.callsignHeader.textContent = flight.callsign || fn;
+  modalDOM.flightNumSub.textContent = `Let: ${fullFltNum}`;
+  modalDOM.googleSearchBtn.href = `https://www.google.com/search?q=${encodeURIComponent(fullFltNum)}`;
+  
   modalDOM.dep.textContent = flight.departure_icao;
   modalDOM.arr.textContent = flight.arrival_icao;
   
@@ -580,7 +613,8 @@ async function openFlightModal(flight) {
     renderTaf(arrTaf.value, modalDOM.arrTafRaw);
     
     // Render VATSIM
-    renderVatsimATC(vatsimData.value, flight.departure_icao, flight.arrival_icao);
+    renderVatsimATC(vatsimData.value, flight.departure_icao, 'dep');
+    renderVatsimATC(vatsimData.value, flight.arrival_icao, 'arr');
     
     // Handle Route String and Route Map
     const routeObj = routeData.status === 'fulfilled' ? routeData.value : { route: 'DCT', distance: null, waypoints: [] };
@@ -593,7 +627,7 @@ async function openFlightModal(flight) {
 
     // Populate Route Links
     const callsignVal = flight.callsign || `RYR${fn}`;
-    let simbriefUrl = `https://dispatch.simbrief.com/options/custom?orig=${flight.departure_icao}&dest=${flight.arrival_icao}&airline=RYR&fltnum=${fn}&calsign=${callsignVal}&type=B738`;
+    let simbriefUrl = `https://dispatch.simbrief.com/options/custom?orig=${flight.departure_icao}&dest=${flight.arrival_icao}&airline=RYR&fltnum=${fn}&callsign=${callsignVal}&type=B738`;
     if (routeString && routeString !== 'DCT') {
       simbriefUrl += `&route=${encodeURIComponent(routeString)}`;
     }
@@ -658,12 +692,11 @@ async function openFlightModal(flight) {
           opacity: 0.8
         }).addTo(map);
 
-        map.fitBounds(polyline.getBounds(), { padding: [30, 30] });
-
-        // Invalidate size once modal layout is fully settled
+        // Invalidate size once modal layout is fully settled and fit bounds
         setTimeout(() => {
           map.invalidateSize();
-        }, 200);
+          map.fitBounds(polyline.getBounds(), { padding: [40, 40] });
+        }, 250);
       }
     }
     
@@ -741,35 +774,34 @@ function renderTaf(taf, rawEl) {
   rawEl.textContent = t;
 }
 
-function renderVatsimATC(vatsim, depIcao, arrIcao) {
-  modalDOM.vatsimAtc.innerHTML = '';
+function renderVatsimATC(vatsim, icao, type) {
+  const container = type === 'dep' ? modalDOM.depVatsimAtc : modalDOM.arrVatsimAtc;
+  if (!container) return;
+  
+  container.innerHTML = '';
   if (!vatsim || !vatsim.controllers) {
-    modalDOM.vatsimAtc.innerHTML = '<div class="no-atc">Failed to fetch VATSIM data.</div>';
+    container.innerHTML = '<div class="no-atc">Failed to fetch VATSIM data.</div>';
     return;
   }
   
-  const prefixes = [depIcao, arrIcao, depIcao.substring(0, 2), arrIcao.substring(0, 2)];
+  const prefixes = [icao, icao.substring(0, 2)];
   
   const atc = vatsim.controllers.filter(c => {
-    // Ignore observers and ATIS if not needed, but ATIS is usually useful. We'll include it.
     if (c.facility === 0) return false; // observer
     
-    // Check if callsign starts with ICAOs
+    // Check if callsign starts with ICAO or regional prefix
     return prefixes.some(p => c.callsign.startsWith(p));
   });
   
   if (atc.length === 0) {
-    modalDOM.vatsimAtc.innerHTML = '<div class="no-atc">No local ATC or Enroute Centers online. Unicom 122.800</div>';
+    container.innerHTML = '<div class="no-atc">No local ATC online.</div>';
     return;
   }
   
-  // Sort: Centers first, then App, Twr, Gnd, Del, ATIS
-  const facilityOrder = [1, 6, 5, 4, 3, 2]; // 1:CTR, 6:APP, 5:TWR, 4:GND, 3:DEL, 2:DEL? ATIS is facility 4 sometimes or separate. 
-  // Let's just sort alphabetically for simplicity.
   atc.sort((a, b) => a.callsign.localeCompare(b.callsign));
   
   atc.forEach(c => {
-    modalDOM.vatsimAtc.innerHTML += `
+    container.innerHTML += `
       <div class="vatsim-controller">
         <span class="cs">${c.callsign}</span>
         <span class="freq">${c.frequency}</span>

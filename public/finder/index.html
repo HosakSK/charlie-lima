@@ -148,8 +148,14 @@
         <div id="modal-body" class="modal-body hidden">
           <div class="modal-header">
             <div class="m-header-left">
-              <h2 id="m-flight-number">--</h2>
-              <div id="m-callsign" class="badge callsign">--</div>
+              <div>
+                <h2 id="m-callsign-header">--</h2>
+                <div id="m-flight-number-sub" class="flight-number-sub">--</div>
+              </div>
+              <a id="m-google-search-btn" href="#" target="_blank" class="btn-google-search" title="Search flight on Google">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <span>Hľadať na Google</span>
+              </a>
             </div>
             <div class="m-route">
               <span id="m-dep">--</span>
@@ -159,39 +165,53 @@
           </div>
 
           <div class="modal-grid">
-            <!-- Departure Weather -->
-            <div class="modal-section weather-section">
-              <h3>Departure Weather <span id="m-dep-icao-lbl"></span></h3>
-              <div id="m-dep-metar-graphic" class="metar-graphic"></div>
-              <div class="raw-metar" id="m-dep-metar-raw">No METAR available</div>
-              <div class="raw-taf" id="m-dep-taf-raw">No TAF available</div>
+            <!-- Column 1: Departure -->
+            <div class="modal-column">
+              <!-- Departure Weather -->
+              <div class="modal-section weather-section" style="margin-bottom: 1.5rem;">
+                <h3>Departure Weather <span id="m-dep-icao-lbl"></span></h3>
+                <div id="m-dep-metar-graphic" class="metar-graphic"></div>
+                <div class="raw-metar" id="m-dep-metar-raw">No METAR available</div>
+                <div class="raw-taf" id="m-dep-taf-raw">No TAF available</div>
+              </div>
+              
+              <!-- Departure VATSIM ATC -->
+              <div class="modal-section vatsim-section">
+                <h3>Departure ATC</h3>
+                <div id="m-dep-vatsim-atc" class="vatsim-atc-list"></div>
+              </div>
             </div>
             
-            <!-- Arrival Weather -->
-            <div class="modal-section weather-section">
-              <h3>Arrival Weather <span id="m-arr-icao-lbl"></span></h3>
-              <div id="m-arr-metar-graphic" class="metar-graphic"></div>
-              <div class="raw-metar" id="m-arr-metar-raw">No METAR available</div>
-              <div class="raw-taf" id="m-arr-taf-raw">No TAF available</div>
-            </div>
-
-            <!-- VATSIM ATC -->
-            <div class="modal-section vatsim-section">
-              <h3>Live VATSIM ATC</h3>
-              <div id="m-vatsim-atc" class="vatsim-atc-list"></div>
-            </div>
-
-            <!-- Routing -->
-            <div class="modal-section route-section">
-              <h3>Dispatch & Routing</h3>
-              <div class="route-info-box" style="margin-bottom: 1rem; background: var(--badge-bg); padding: 0.8rem; border-radius: 6px; border: 1px solid var(--panel-border);">
-                <span class="route-label" style="font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Route / Waypoints:</span>
-                <div id="m-route-string" style="font-family: monospace; font-size: 0.9rem; color: var(--accent-blue); word-break: break-all; white-space: pre-wrap;">DCT</div>
+            <!-- Column 2: Arrival -->
+            <div class="modal-column">
+              <!-- Arrival Weather -->
+              <div class="modal-section weather-section" style="margin-bottom: 1.5rem;">
+                <h3>Arrival Weather <span id="m-arr-icao-lbl"></span></h3>
+                <div id="m-arr-metar-graphic" class="metar-graphic"></div>
+                <div class="raw-metar" id="m-arr-metar-raw">No METAR available</div>
+                <div class="raw-taf" id="m-arr-taf-raw">No TAF available</div>
               </div>
-              <div id="m-route-map" style="height: 200px; border-radius: 8px; margin: 1rem 0; background: var(--input-bg); border: 1px solid var(--input-border); position: relative; overflow: hidden; z-index: 1;"></div>
-              <div class="route-buttons">
-                <a id="m-simbrief-btn" href="#" target="_blank" class="btn-primary simbrief-btn">Generate Route on SimBrief</a>
-                <a id="m-skyvector-btn" href="#" target="_blank" class="btn-secondary">View on SkyVector</a>
+              
+              <!-- Arrival VATSIM ATC -->
+              <div class="modal-section vatsim-section">
+                <h3>Arrival ATC</h3>
+                <div id="m-arr-vatsim-atc" class="vatsim-atc-list"></div>
+              </div>
+            </div>
+
+            <!-- Column 3: Dispatch & Routing -->
+            <div class="modal-column">
+              <div class="modal-section route-section">
+                <h3>Dispatch & Routing</h3>
+                <div class="route-info-box" style="margin-bottom: 1rem; background: var(--badge-bg); padding: 0.8rem; border-radius: 6px; border: 1px solid var(--panel-border);">
+                  <span class="route-label" style="font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Route / Waypoints:</span>
+                  <div id="m-route-string" style="font-family: monospace; font-size: 0.9rem; color: var(--accent-blue); word-break: break-all; white-space: pre-wrap;">DCT</div>
+                </div>
+                <div id="m-route-map" style="height: 220px; border-radius: 8px; margin: 1rem 0; background: var(--input-bg); border: 1px solid var(--input-border); position: relative; overflow: hidden; z-index: 1;"></div>
+                <div class="route-buttons" style="display: flex; flex-direction: column; gap: 0.8rem;">
+                  <a id="m-simbrief-btn" href="#" target="_blank" class="btn-primary simbrief-btn">Generate Route on SimBrief</a>
+                  <a id="m-skyvector-btn" href="#" target="_blank" class="btn-secondary">View on SkyVector</a>
+                </div>
               </div>
             </div>
           </div>
