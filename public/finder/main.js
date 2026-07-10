@@ -438,12 +438,14 @@ const modalDOM = {
   skyvectorBtn: document.getElementById('m-skyvector-btn')
 };
 
-modalDOM.closeBtn.addEventListener('click', closeFlightModal);
-modalDOM.overlay.addEventListener('click', (e) => {
-  if (e.target === modalDOM.overlay) closeFlightModal();
-});
+if (modalDOM.closeBtn) modalDOM.closeBtn.addEventListener('click', closeFlightModal);
+if (modalDOM.overlay) {
+  modalDOM.overlay.addEventListener('click', (e) => {
+    if (e.target === modalDOM.overlay) closeFlightModal();
+  });
+}
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && !modalDOM.overlay.classList.contains('hidden')) closeFlightModal();
+  if (e.key === 'Escape' && modalDOM.overlay && !modalDOM.overlay.classList.contains('hidden')) closeFlightModal();
 });
 
 function closeFlightModal() {
