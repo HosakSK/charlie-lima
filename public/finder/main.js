@@ -487,7 +487,15 @@ if (!document.getElementById('flight-modal')) {
               </div>
               <a id="m-google-search-btn" href="#" target="_blank" class="btn-google-search" title="Search flight on Google">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <span>Hľadať na Google</span>
+                <span>Search on Google</span>
+              </a>
+              <a id="m-flightradar-search-btn" href="#" target="_blank" class="btn-flightradar" title="Search flight on Flightradar24">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2v20"/><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-8.4 8.4"/></svg>
+                <span>Search on FR24</span>
+              </a>
+              <a id="m-edigla-search-btn" href="https://edi-gla.co.uk/" target="_blank" class="btn-edigla" title="Search flight on EDI-GLA">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg>
+                <span>Search on EDI-GLA</span>
               </a>
             </div>
             <div class="m-route">
@@ -555,6 +563,7 @@ const modalDOM = {
   flightNumSub: document.getElementById('m-flight-number-sub'),
   googleSearchBtn: document.getElementById('m-google-search-btn'),
   flightradarSearchBtn: document.getElementById('m-flightradar-search-btn'),
+  ediglaSearchBtn: document.getElementById('m-edigla-search-btn'),
   
   depTimeLocal: document.getElementById('m-dep-time-local'),
   depTimeUtc: document.getElementById('m-dep-time-utc'),
