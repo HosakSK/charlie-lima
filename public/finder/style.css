@@ -485,20 +485,17 @@ input[type="range"] {
 
 .fc-point.right .fc-city {
   margin-left: auto;
+  text-align: right;
 }
 
-.fc-city:hover {
-  text-overflow: clip;
+.fc-city marquee {
+  width: 100%;
 }
 
-.fc-city:hover .city-link {
-  display: inline-block;
-  animation: marquee-scroll 3s linear infinite alternate;
-}
-
-@keyframes marquee-scroll {
-  0%, 10% { transform: translateX(0); }
-  90%, 100% { transform: translateX(calc(120px - 100%)); }
+.city-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .fc-divider {

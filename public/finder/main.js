@@ -342,7 +342,12 @@ function render(flights) {
             <div class="fc-time">${mainDep}</div>
             <div class="fc-time-sub">${subDep}</div>
             <div class="fc-icao copy-click" data-copy="${f.departure_icao}" title="Click to copy">${f.departure_icao}</div>
-            <div class="fc-city"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.departure_city + ', ' + f.departure_country)}" target="_blank" class="city-link">${f.departure_city}, ${f.departure_country}</a></div>
+            <div class="fc-city">
+              ${f.departure_city.length + f.departure_country.length > 15 
+                ? `<marquee behavior="scroll" direction="left" scrollamount="3" scrolldelay="30"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.departure_city + ', ' + f.departure_country)}" target="_blank" class="city-link">${f.departure_city}, ${f.departure_country}</a></marquee>`
+                : `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.departure_city + ', ' + f.departure_country)}" target="_blank" class="city-link">${f.departure_city}, ${f.departure_country}</a>`
+              }
+            </div>
           </div>
           
           <div class="fc-divider">
@@ -353,7 +358,12 @@ function render(flights) {
             <div class="fc-time">${mainArr}</div>
             <div class="fc-time-sub">${subArr}</div>
             <div class="fc-icao copy-click" data-copy="${f.arrival_icao}" title="Click to copy">${f.arrival_icao}</div>
-            <div class="fc-city"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.arrival_city + ', ' + f.arrival_country)}" target="_blank" class="city-link">${f.arrival_city}, ${f.arrival_country}</a></div>
+            <div class="fc-city">
+              ${f.arrival_city.length + f.arrival_country.length > 15
+                ? `<marquee behavior="scroll" direction="left" scrollamount="3" scrolldelay="30"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.arrival_city + ', ' + f.arrival_country)}" target="_blank" class="city-link">${f.arrival_city}, ${f.arrival_country}</a></marquee>`
+                : `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(f.arrival_city + ', ' + f.arrival_country)}" target="_blank" class="city-link">${f.arrival_city}, ${f.arrival_country}</a>`
+              }
+            </div>
           </div>
         </div>
         
