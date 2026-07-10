@@ -24,13 +24,20 @@ export function middleware(req: NextRequest) {
       
       // EXCLUDE static folders from rewrite
       const path = url.pathname;
-      if (path.startsWith('/icons/') || path.startsWith('/data/') || path.startsWith('/audio/') || path.endsWith('.js') || path.endsWith('.css')) {
+      if (path.startsWith('/icons/') || path.startsWith('/data/') || path.startsWith('/audio/') || path.startsWith('/finder/') || path.endsWith('.js') || path.endsWith('.css')) {
         return NextResponse.next();
       }
       
       if (subdomain === 'creator') {
         url.pathname = '/creator.html';
         return NextResponse.rewrite(url);
+      }
+      
+      if (subdomain === 'finder') {
+        if (url.pathname === '/') {
+          url.pathname = '/finder/index.html';
+          return NextResponse.rewrite(url);
+        }
       }
       
       // Rewrite "a320.charlie-lima.eu/" to "/a320"

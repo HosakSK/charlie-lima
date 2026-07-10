@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Flight Finder | vATC & X-Plane</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/finder/style.css">
+  </head>
+  <body>
+    <!-- Animated background elements -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <div class="app-container">
+      <header class="app-header glass">
+        <div class="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="plane-icon"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.5l-1.3 2.5c-.2.5.1 1 .6 1.1l8.5 2.2-2.5 2.5-3.5-.5c-.5-.1-.9.2-1.1.5L3 16.5c-.2.5.1 1 .6 1.1l4.6.8 2.5 2.5c.1.5.6.8 1.1.6l1.5-1.4c.3-.2.6-.6.5-1.1l-.5-3.5 2.5-2.5 2.2 8.5c.1.5.6.8 1.1.6l2.5-1.3c.3-.2.6-.6.5-1.1z"/></svg>
+          <h1>Virtual Flight Finder</h1>
+        </div>
+        <p class="subtitle">Ultimate Flight Schedule for Flight Simulators</p>
+      </header>
+
+      <main class="main-content">
+        <!-- Sidebar Filters -->
+        <aside class="filters-panel glass">
+          <h2>Filters</h2>
+          
+          <div class="filter-group">
+            <label for="filter-origin">ORIGIN (CITY / ICAO)</label>
+            <input type="text" id="filter-origin" placeholder="e.g. LZIB, Bratislava">
+          </div>
+          
+          <div class="filter-group">
+            <label for="filter-dest">DESTINATION (CITY / ICAO)</label>
+            <div class="input-with-button">
+              <input type="text" id="filter-dest" placeholder="e.g. Dublin, EIDW">
+              <button id="btn-swap-route" class="btn-swap" title="Swap Origin and Destination">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Sim Mode Filters -->
+          <div id="sim-filters" class="filter-subgroup">
+            <div class="filter-group">
+              <label for="filter-day">Day of Week</label>
+              <select id="filter-day">
+                <option value="">Any Day</option>
+                <option value="1">Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3">Wednesday</option>
+                <option value="4">Thursday</option>
+                <option value="5">Friday</option>
+                <option value="6">Saturday</option>
+                <option value="7">Sunday</option>
+              </select>
+            </div>
+            <div class="time-range">
+              <div class="filter-group">
+                <label for="filter-time-from">Time From</label>
+                <input type="time" id="filter-time-from">
+              </div>
+              <div class="filter-group">
+                <label for="filter-time-to">Time To</label>
+                <input type="time" id="filter-time-to">
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Mode Filters -->
+          <div id="live-filters" class="filter-subgroup">
+            <div class="filter-group">
+              <label for="filter-hours" id="hours-label">Departing: Any time</label>
+              <input type="range" id="filter-hours" min="1" max="168" value="168">
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label class="checkbox-label" style="margin-top: 0.5rem;">
+              <input type="checkbox" id="show-utc" checked>
+              <span>Show times in UTC</span>
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-duration" id="duration-label">Max Duration: Any</label>
+            <input type="range" id="filter-duration" min="30" max="360" step="30" value="360">
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-homebase">Homebase</label>
+            <input type="text" id="filter-homebase" placeholder="e.g. LZIB">
+          </div>
+
+          <div class="filter-group">
+            <label for="filter-callsign">Flight / Callsign</label>
+            <input type="text" id="filter-callsign" placeholder="e.g. FR3639 or RYR9HZ">
+          </div>
+
+          <div class="filter-group">
+            <label for="sort-by">Sort By</label>
+            <select id="sort-by">
+              <option value="time">Earliest Departure Time</option>
+              <option value="duration-asc">Duration (Shortest First)</option>
+              <option value="duration-desc">Duration (Longest First)</option>
+            </select>
+          </div>
+          
+          <button id="reset-filters" class="btn-secondary">Reset Filters</button>
+        </aside>
+
+        <!-- Results Area -->
+        <section class="results-area">
+          <div class="results-header">
+            <h2 id="results-count">Loading flights...</h2>
+          </div>
+          <div id="flights-grid" class="flights-grid">
+            <!-- Flight cards will be injected here via JS -->
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">Copied to clipboard!</div>
+
+    <script type="module" src="/finder/main.js"></script>
+  </body>
+</html>
