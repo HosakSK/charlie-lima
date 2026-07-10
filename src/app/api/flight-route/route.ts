@@ -65,7 +65,12 @@ export async function GET(request: Request) {
     });
   } catch (error: any) {
     console.error('Flight Route API Error:', error);
-    // Safe fallback to DCT
-    return NextResponse.json({ route: 'DCT', distance: null, waypoints: [] });
+    // Safe fallback to DCT, but with error details for debugging
+    return NextResponse.json({ 
+      route: 'DCT', 
+      distance: null, 
+      waypoints: [],
+      error: error.message || String(error)
+    });
   }
 }
