@@ -300,7 +300,7 @@ function render(flights) {
 
   const showUtc = DOM.showUtc.checked;
 
-  const html = flights.map(f => {
+  const html = flights.map((f, index) => {
     let daysHtml = '';
     for (let i = 1; i <= 7; i++) {
       const active = f.days_of_operation.includes(i) ? 'active' : '';
