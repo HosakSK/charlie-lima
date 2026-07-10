@@ -569,8 +569,6 @@ const modalDOM = {
   
   depMetarRaw: document.getElementById('m-dep-metar-raw'),
   arrMetarRaw: document.getElementById('m-arr-metar-raw'),
-  depTafRaw: document.getElementById('m-dep-taf-raw'),
-  arrTafRaw: document.getElementById('m-arr-taf-raw'),
   
   depMetarGraphic: document.getElementById('m-dep-metar-graphic'),
   arrMetarGraphic: document.getElementById('m-arr-metar-graphic'),
@@ -778,11 +776,9 @@ async function openFlightModal(flight) {
 
   // Fetch Data concurrently
   try {
-    const [depMetar, arrMetar, depTaf, arrTaf, vatsimData, routeData] = await Promise.allSettled([
+    const [depMetar, arrMetar, vatsimData, routeData] = await Promise.allSettled([
       fetchMetar(flight.departure_icao),
       fetchMetar(flight.arrival_icao),
-      fetchTaf(flight.departure_icao),
-      fetchTaf(flight.arrival_icao),
       fetchVatsimData(),
       fetchRouteData(flight.departure_icao, flight.arrival_icao)
     ]);
@@ -790,8 +786,6 @@ async function openFlightModal(flight) {
     // Render Weather
     renderWeather(depMetar.value, modalDOM.depMetarRaw, modalDOM.depMetarGraphic);
     renderWeather(arrMetar.value, modalDOM.arrMetarRaw, modalDOM.arrMetarGraphic);
-    renderTaf(depTaf.value, modalDOM.depTafRaw);
-    renderTaf(arrTaf.value, modalDOM.arrTafRaw);
     
     // Render VATSIM
     renderVatsimATC(vatsimData.value, flight.departure_icao, 'dep');
