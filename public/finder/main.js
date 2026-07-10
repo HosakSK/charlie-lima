@@ -101,6 +101,22 @@ function setupListeners() {
     }
   });
 
+  // Update --range-fill CSS variable for gradient track highlight
+  function updateRangeFill(el) {
+    const min = parseFloat(el.min) || 0;
+    const max = parseFloat(el.max) || 100;
+    const val = parseFloat(el.value) || 0;
+    const pct = ((val - min) / (max - min)) * 100;
+    el.style.setProperty('--range-fill', `${pct}%`);
+  }
+
+  [DOM.filterHours, DOM.filterDuration, DOM.filterDurationMin].forEach(el => {
+    if (el) {
+      updateRangeFill(el);
+      el.addEventListener('input', () => updateRangeFill(el));
+    }
+  });
+
   if (DOM.btnSwap) {
     DOM.btnSwap.addEventListener('click', () => {
       const temp = DOM.filterOrigin.value;
@@ -151,6 +167,9 @@ function setupListeners() {
       }
       else if (el.type === 'checkbox') el.checked = true;
       else el.value = '';
+    });
+    [DOM.filterHours, DOM.filterDuration, DOM.filterDurationMin].forEach(el => {
+      if (el) updateRangeFill(el);
     });
     DOM.hoursLabel.textContent = 'Departing: Any time';
     DOM.durationLabel.textContent = 'Max Duration: Any';
