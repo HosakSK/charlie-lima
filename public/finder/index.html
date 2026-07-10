@@ -156,11 +156,15 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 <span>Hľadať na Google</span>
               </a>
+              <a id="m-flightradar-search-btn" href="#" target="_blank" class="btn-flightradar" title="Search flight on Flightradar24">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2v20"/><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-8.4 8.4"/></svg>
+                <span>Hľadať na FR24</span>
+              </a>
             </div>
             <div class="m-route">
-              <span id="m-dep">--</span>
+              <a id="m-dep" href="#" target="_blank" class="airport-liveatc-link" title="Search airport on LiveATC">--</a>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-              <span id="m-arr">--</span>
+              <a id="m-arr" href="#" target="_blank" class="airport-liveatc-link" title="Search airport on LiveATC">--</a>
             </div>
           </div>
 
@@ -179,6 +183,32 @@
               <div id="m-arr-metar-graphic" class="metar-graphic"></div>
               <div class="raw-metar" id="m-arr-metar-raw">No METAR available</div>
               <div class="raw-taf" id="m-arr-taf-raw">No TAF available</div>
+            </div>
+
+            <!-- Departure Times -->
+            <div class="modal-section times-section m-dep-times">
+              <h3>Departure Times</h3>
+              <div class="modal-time-row">
+                <span class="time-label">Local Time:</span>
+                <span id="m-dep-time-local" class="time-value">--:--</span>
+              </div>
+              <div class="modal-time-row">
+                <span class="time-label">UTC Time:</span>
+                <span id="m-dep-time-utc" class="time-value">--:--</span>
+              </div>
+            </div>
+
+            <!-- Arrival Times -->
+            <div class="modal-section times-section m-arr-times">
+              <h3>Arrival Times</h3>
+              <div class="modal-time-row">
+                <span class="time-label">Local Time:</span>
+                <span id="m-arr-time-local" class="time-value">--:--</span>
+              </div>
+              <div class="modal-time-row">
+                <span class="time-label">UTC Time:</span>
+                <span id="m-arr-time-utc" class="time-value">--:--</span>
+              </div>
             </div>
 
             <!-- Dispatch & Routing (Spans 2 rows) -->
