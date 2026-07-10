@@ -9,13 +9,18 @@
     "flight_number": "FR 2854",
     "callsign": "RYR2854",
     "departure_time": "21:55",
+    "arrival_time": "23:37",
     "duration_minutes": 102,
     "days_of_operation": [
       1,
       3,
       5
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 50.2736,
+    "departure_lon": 4.271,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "EGCC",
@@ -27,13 +32,18 @@
     "flight_number": "FR 34",
     "callsign": "RYR129U",
     "departure_time": "21:00",
+    "arrival_time": "23:21",
     "duration_minutes": 141,
     "days_of_operation": [
       1,
       3,
       6
     ],
-    "homebase": "EGCC"
+    "homebase": "EGCC",
+    "departure_lat": 53.3537,
+    "departure_lon": -2.27495,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "EGNM",
@@ -45,12 +55,17 @@
     "flight_number": "FR 5041",
     "callsign": "RYR74RM",
     "departure_time": "07:55",
+    "arrival_time": "10:14",
     "duration_minutes": 139,
     "days_of_operation": [
       1,
       4
     ],
-    "homebase": "EGNM"
+    "homebase": "EGNM",
+    "departure_lat": 53.8659,
+    "departure_lon": -1.66057,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "EGPH",
@@ -62,13 +77,18 @@
     "flight_number": "FR 6642",
     "callsign": "RYR4TT",
     "departure_time": "19:15",
+    "arrival_time": "21:48",
     "duration_minutes": 153,
     "days_of_operation": [
       1,
       4,
       6
     ],
-    "homebase": "EGPH"
+    "homebase": "EGPH",
+    "departure_lat": 55.95,
+    "departure_lon": -3.3725,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "EGSS",
@@ -80,6 +100,7 @@
     "flight_number": "FR 63",
     "callsign": "RYR10PA",
     "departure_time": "17:15",
+    "arrival_time": "19:20",
     "duration_minutes": 125,
     "days_of_operation": [
       2,
@@ -89,7 +110,11 @@
       6,
       7
     ],
-    "homebase": "EGSS"
+    "homebase": "EGSS",
+    "departure_lat": 51.885,
+    "departure_lon": 0.235,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "EGSS",
@@ -101,11 +126,16 @@
     "flight_number": "FR 2314",
     "callsign": "RYR7QX",
     "departure_time": "19:45",
+    "arrival_time": "21:50",
     "duration_minutes": 125,
     "days_of_operation": [
       2
     ],
-    "homebase": "EGSS"
+    "homebase": "EGSS",
+    "departure_lat": 51.885,
+    "departure_lon": 0.235,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "EHEH",
@@ -117,6 +147,7 @@
     "flight_number": "FR 1870",
     "callsign": "RYR68QL",
     "departure_time": "16:50",
+    "arrival_time": "18:29",
     "duration_minutes": 99,
     "days_of_operation": [
       1,
@@ -124,7 +155,11 @@
       4,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 51.4501,
+    "departure_lon": 5.37453,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "EIDW",
@@ -136,11 +171,16 @@
     "flight_number": "FR 4228",
     "callsign": "RYR4228",
     "departure_time": "08:20",
+    "arrival_time": "11:00",
     "duration_minutes": 160,
     "days_of_operation": [
       6
     ],
-    "homebase": "EIDW"
+    "homebase": "EIDW",
+    "departure_lat": 53.4213,
+    "departure_lon": -6.27007,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "EIDW",
@@ -152,6 +192,7 @@
     "flight_number": "FR 4224",
     "callsign": "RYR9JV",
     "departure_time": "19:10",
+    "arrival_time": "21:50",
     "duration_minutes": 160,
     "days_of_operation": [
       2,
@@ -159,7 +200,11 @@
       5,
       7
     ],
-    "homebase": "EIDW"
+    "homebase": "EIDW",
+    "departure_lat": 53.4213,
+    "departure_lon": -6.27007,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "EPGD",
@@ -171,12 +216,17 @@
     "flight_number": "FR 6592",
     "callsign": "RYR9SP",
     "departure_time": "11:30",
+    "arrival_time": "12:52",
     "duration_minutes": 82,
     "days_of_operation": [
       3,
       6
     ],
-    "homebase": "EPGD"
+    "homebase": "EPGD",
+    "departure_lat": 54.3776,
+    "departure_lon": 18.4662,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "EPGD",
@@ -188,12 +238,17 @@
     "flight_number": "FR 6827",
     "callsign": "RYR6827",
     "departure_time": "15:10",
+    "arrival_time": "16:32",
     "duration_minutes": 82,
     "days_of_operation": [
       1,
       2
     ],
-    "homebase": "EPGD"
+    "homebase": "EPGD",
+    "departure_lat": 54.3776,
+    "departure_lon": 18.4662,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "EPMO",
@@ -205,6 +260,7 @@
     "flight_number": "FR 3640",
     "callsign": "RYR33KN",
     "departure_time": "17:00",
+    "arrival_time": "18:10",
     "duration_minutes": 70,
     "days_of_operation": [
       1,
@@ -215,7 +271,11 @@
       6,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 52.4511,
+    "departure_lon": 20.6518,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "GCRR",
@@ -227,11 +287,16 @@
     "flight_number": "FR 4220",
     "callsign": "RYR4DJ",
     "departure_time": "07:10",
+    "arrival_time": "11:54",
     "duration_minutes": 284,
     "days_of_operation": [
       5
     ],
-    "homebase": "GCRR"
+    "homebase": "GCRR",
+    "departure_lat": 28.9455,
+    "departure_lon": -13.6052,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LATI",
@@ -243,6 +308,7 @@
     "flight_number": "FR 3638",
     "callsign": "RYR3638",
     "departure_time": "10:20",
+    "arrival_time": "11:48",
     "duration_minutes": 88,
     "days_of_operation": [
       1,
@@ -250,7 +316,11 @@
       5,
       7
     ],
-    "homebase": "LATI"
+    "homebase": "LATI",
+    "departure_lat": 41.4147,
+    "departure_lon": 19.7206,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LBBG",
@@ -262,13 +332,18 @@
     "flight_number": "FR 3705",
     "callsign": "RYR3BX",
     "departure_time": "14:30",
+    "arrival_time": "16:16",
     "duration_minutes": 106,
     "days_of_operation": [
       2,
       4,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 42.5696,
+    "departure_lon": 27.5152,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LCPH",
@@ -280,13 +355,18 @@
     "flight_number": "FR 3329",
     "callsign": "RYR5UT",
     "departure_time": "06:10",
+    "arrival_time": "09:06",
     "duration_minutes": 176,
     "days_of_operation": [
       1,
       4,
       6
     ],
-    "homebase": "LCPH"
+    "homebase": "LCPH",
+    "departure_lat": 34.718,
+    "departure_lon": 32.4857,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LDZD",
@@ -298,6 +378,7 @@
     "flight_number": "FR 6825",
     "callsign": "RYR6UL",
     "departure_time": "05:55",
+    "arrival_time": "07:00",
     "duration_minutes": 65,
     "days_of_operation": [
       1,
@@ -305,7 +386,11 @@
       4,
       6
     ],
-    "homebase": "LDZD"
+    "homebase": "LDZD",
+    "departure_lat": 44.1083,
+    "departure_lon": 15.3467,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LEAL",
@@ -317,6 +402,7 @@
     "flight_number": "FR 5698",
     "callsign": "RYR18LB",
     "departure_time": "21:05",
+    "arrival_time": "23:50",
     "duration_minutes": 165,
     "days_of_operation": [
       1,
@@ -324,7 +410,11 @@
       4,
       5
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 38.2822,
+    "departure_lon": -0.55816,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LEBL",
@@ -336,6 +426,7 @@
     "flight_number": "FR 5718",
     "callsign": "RYR45ER",
     "departure_time": "19:30",
+    "arrival_time": "21:46",
     "duration_minutes": 136,
     "days_of_operation": [
       1,
@@ -345,7 +436,11 @@
       5,
       6
     ],
-    "homebase": "LEBL"
+    "homebase": "LEBL",
+    "departure_lat": 41.2971,
+    "departure_lon": 2.07846,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LEBL",
@@ -357,11 +452,16 @@
     "flight_number": "FR 6523",
     "callsign": "RYR31NN",
     "departure_time": "22:05",
+    "arrival_time": "00:21",
     "duration_minutes": 136,
     "days_of_operation": [
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 41.2971,
+    "departure_lon": 2.07846,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LEMG",
@@ -373,11 +473,16 @@
     "flight_number": "FR 6689",
     "callsign": "RYR11WA",
     "departure_time": "10:35",
+    "arrival_time": "13:48",
     "duration_minutes": 193,
     "days_of_operation": [
       2
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 36.6749,
+    "departure_lon": -4.49911,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LEMG",
@@ -389,13 +494,18 @@
     "flight_number": "FR 5775",
     "callsign": "RYR40KU",
     "departure_time": "16:30",
+    "arrival_time": "19:43",
     "duration_minutes": 193,
     "days_of_operation": [
       1,
       4,
       7
     ],
-    "homebase": "LEMG"
+    "homebase": "LEMG",
+    "departure_lat": 36.6749,
+    "departure_lon": -4.49911,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LEPA",
@@ -407,13 +517,18 @@
     "flight_number": "FR 9511",
     "callsign": "RYR6UN",
     "departure_time": "12:30",
+    "arrival_time": "14:52",
     "duration_minutes": 142,
     "days_of_operation": [
       2,
       3,
       6
     ],
-    "homebase": "LEPA"
+    "homebase": "LEPA",
+    "departure_lat": 39.5517,
+    "departure_lon": 2.73881,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LGAV",
@@ -425,13 +540,18 @@
     "flight_number": "FR 5888",
     "callsign": "RYR11UT",
     "departure_time": "12:20",
+    "arrival_time": "14:24",
     "duration_minutes": 124,
     "days_of_operation": [
       2,
       5,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 37.9364,
+    "departure_lon": 23.9445,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LGKR",
@@ -443,13 +563,18 @@
     "flight_number": "FR 1744",
     "callsign": "RYR1744",
     "departure_time": "00:25",
+    "arrival_time": "02:08",
     "duration_minutes": 103,
     "days_of_operation": [
       2,
       6,
       7
     ],
-    "homebase": "LGKR"
+    "homebase": "LGKR",
+    "departure_lat": 39.6019,
+    "departure_lon": 19.9117,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LGKR",
@@ -461,11 +586,16 @@
     "flight_number": "FR 1783",
     "callsign": "RYR1783",
     "departure_time": "15:05",
+    "arrival_time": "16:48",
     "duration_minutes": 103,
     "days_of_operation": [
       3
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 39.6019,
+    "departure_lon": 19.9117,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LGSK",
@@ -477,6 +607,7 @@
     "flight_number": "FR 6829",
     "callsign": "RYR3HP",
     "departure_time": "10:30",
+    "arrival_time": "12:23",
     "duration_minutes": 113,
     "days_of_operation": [
       1,
@@ -484,7 +615,11 @@
       5,
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 39.1771,
+    "departure_lon": 23.5037,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LGTS",
@@ -496,12 +631,17 @@
     "flight_number": "FR 2170",
     "callsign": "RYR773T",
     "departure_time": "21:10",
+    "arrival_time": "22:52",
     "duration_minutes": 102,
     "days_of_operation": [
       3,
       6
     ],
-    "homebase": "LGTS"
+    "homebase": "LGTS",
+    "departure_lat": 40.5197,
+    "departure_lon": 22.9709,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LIBD",
@@ -513,11 +653,16 @@
     "flight_number": "FR 9628",
     "callsign": "RYR9628",
     "departure_time": "18:10",
+    "arrival_time": "19:38",
     "duration_minutes": 88,
     "days_of_operation": [
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 41.1389,
+    "departure_lon": 16.7606,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LIBD",
@@ -529,12 +674,17 @@
     "flight_number": "FR 6830",
     "callsign": "RYR71QD",
     "departure_time": "23:30",
+    "arrival_time": "00:58",
     "duration_minutes": 88,
     "days_of_operation": [
       3,
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 41.1389,
+    "departure_lon": 16.7606,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LICA",
@@ -546,13 +696,18 @@
     "flight_number": "FR 5760",
     "callsign": "RYR8HK",
     "departure_time": "08:40",
+    "arrival_time": "10:27",
     "duration_minutes": 107,
     "days_of_operation": [
       3,
       4,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 38.9054,
+    "departure_lon": 16.2423,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LICJ",
@@ -564,6 +719,7 @@
     "flight_number": "FR 5802",
     "callsign": "RYR646J",
     "departure_time": "20:15",
+    "arrival_time": "22:12",
     "duration_minutes": 117,
     "days_of_operation": [
       2,
@@ -572,7 +728,11 @@
       6,
       7
     ],
-    "homebase": "LICJ"
+    "homebase": "LICJ",
+    "departure_lat": 38.176,
+    "departure_lon": 13.091,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LICT",
@@ -584,12 +744,17 @@
     "flight_number": "FR 7155",
     "callsign": "RYR88WF",
     "departure_time": "15:35",
+    "arrival_time": "17:35",
     "duration_minutes": 120,
     "days_of_operation": [
       2,
       7
     ],
-    "homebase": "LICT"
+    "homebase": "LICT",
+    "departure_lat": 37.9114,
+    "departure_lon": 12.488,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LIEA",
@@ -601,6 +766,7 @@
     "flight_number": "FR 6398",
     "callsign": "RYR53VV",
     "departure_time": "15:25",
+    "arrival_time": "17:17",
     "duration_minutes": 112,
     "days_of_operation": [
       1,
@@ -609,7 +775,11 @@
       6,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 40.6321,
+    "departure_lon": 8.29077,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LIEA",
@@ -621,12 +791,17 @@
     "flight_number": "FR 8226",
     "callsign": "RYR285J",
     "departure_time": "18:45",
+    "arrival_time": "20:37",
     "duration_minutes": 112,
     "days_of_operation": [
       2,
       5
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 40.6321,
+    "departure_lon": 8.29077,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LIMC",
@@ -638,6 +813,7 @@
     "flight_number": "FR 5734",
     "callsign": "RYR84SX",
     "departure_time": "14:10",
+    "arrival_time": "15:32",
     "duration_minutes": 82,
     "days_of_operation": [
       1,
@@ -648,7 +824,11 @@
       6,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 45.6306,
+    "departure_lon": 8.72811,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LIRA",
@@ -660,6 +840,7 @@
     "flight_number": "FR 4226",
     "callsign": "RYR2ZA",
     "departure_time": "11:25",
+    "arrival_time": "12:54",
     "duration_minutes": 89,
     "days_of_operation": [
       1,
@@ -670,7 +851,11 @@
       6,
       7
     ],
-    "homebase": "LIRA"
+    "homebase": "LIRA",
+    "departure_lat": 41.7994,
+    "departure_lon": 12.5949,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LIRN",
@@ -682,6 +867,7 @@
     "flight_number": "FR 5758",
     "callsign": "RYR84JW",
     "departure_time": "19:05",
+    "arrival_time": "20:38",
     "duration_minutes": 93,
     "days_of_operation": [
       2,
@@ -689,7 +875,11 @@
       5,
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 40.886,
+    "departure_lon": 14.2908,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LIRP",
@@ -701,12 +891,17 @@
     "flight_number": "FR 9851",
     "callsign": "RYR37UN",
     "departure_time": "06:00",
+    "arrival_time": "07:24",
     "duration_minutes": 84,
     "days_of_operation": [
       1,
       4
     ],
-    "homebase": "LIRP"
+    "homebase": "LIRP",
+    "departure_lat": 43.6839,
+    "departure_lon": 10.3927,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LMML",
@@ -718,11 +913,16 @@
     "flight_number": "FR 7110",
     "callsign": "RYR8BH",
     "departure_time": "17:55",
+    "arrival_time": "20:09",
     "duration_minutes": 134,
     "days_of_operation": [
       2
     ],
-    "homebase": "LMML"
+    "homebase": "LMML",
+    "departure_lat": 35.8575,
+    "departure_lon": 14.4775,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LMML",
@@ -734,13 +934,18 @@
     "flight_number": "FR 1528",
     "callsign": "RYR6ZR",
     "departure_time": "19:55",
+    "arrival_time": "22:09",
     "duration_minutes": 134,
     "days_of_operation": [
       1,
       4,
       7
     ],
-    "homebase": "LMML"
+    "homebase": "LMML",
+    "departure_lat": 35.8575,
+    "departure_lon": 14.4775,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LTBS",
@@ -752,12 +957,17 @@
     "flight_number": "FR 7144",
     "callsign": "RYR87FG",
     "departure_time": "22:05",
+    "arrival_time": "00:33",
     "duration_minutes": 148,
     "days_of_operation": [
       1,
       5
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 36.7131,
+    "departure_lon": 28.7925,
+    "arrival_lat": 48.1702,
+    "arrival_lon": 17.2127
   },
   {
     "departure_icao": "LZIB",
@@ -769,11 +979,16 @@
     "flight_number": "FR 4227",
     "callsign": "RYR4227",
     "departure_time": "05:50",
+    "arrival_time": "08:30",
     "duration_minutes": 160,
     "days_of_operation": [
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 53.4213,
+    "arrival_lon": -6.27007
   },
   {
     "departure_icao": "LZIB",
@@ -785,12 +1000,17 @@
     "flight_number": "FR 5042",
     "callsign": "RYR56NF",
     "departure_time": "06:05",
+    "arrival_time": "08:24",
     "duration_minutes": 139,
     "days_of_operation": [
       1,
       4
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 53.8659,
+    "arrival_lon": -1.66057
   },
   {
     "departure_icao": "LZIB",
@@ -802,13 +1022,18 @@
     "flight_number": "FR 5761",
     "callsign": "RYR7EV",
     "departure_time": "06:10",
+    "arrival_time": "07:57",
     "duration_minutes": 107,
     "days_of_operation": [
       3,
       4,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 38.9054,
+    "arrival_lon": 16.2423
   },
   {
     "departure_icao": "LZIB",
@@ -820,11 +1045,16 @@
     "flight_number": "FR 6690",
     "callsign": "RYR75BJ",
     "departure_time": "06:25",
+    "arrival_time": "09:38",
     "duration_minutes": 193,
     "days_of_operation": [
       2
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 36.6749,
+    "arrival_lon": -4.49911
   },
   {
     "departure_icao": "LZIB",
@@ -836,6 +1066,7 @@
     "flight_number": "FR 6828",
     "callsign": "RYR4YP",
     "departure_time": "07:10",
+    "arrival_time": "09:03",
     "duration_minutes": 113,
     "days_of_operation": [
       1,
@@ -843,7 +1074,11 @@
       5,
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 39.1771,
+    "arrival_lon": 23.5037
   },
   {
     "departure_icao": "LZIB",
@@ -855,12 +1090,17 @@
     "flight_number": "FR 9850",
     "callsign": "RYR98",
     "departure_time": "08:05",
+    "arrival_time": "09:29",
     "duration_minutes": 84,
     "days_of_operation": [
       1,
       4
     ],
-    "homebase": "LIRP"
+    "homebase": "LIRP",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 43.6839,
+    "arrival_lon": 10.3927
   },
   {
     "departure_icao": "LZIB",
@@ -872,13 +1112,18 @@
     "flight_number": "FR 5889",
     "callsign": "",
     "departure_time": "08:35",
+    "arrival_time": "10:39",
     "duration_minutes": 124,
     "days_of_operation": [
       2,
       5,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 37.9364,
+    "arrival_lon": 23.9445
   },
   {
     "departure_icao": "LZIB",
@@ -890,13 +1135,18 @@
     "flight_number": "FR 3328",
     "callsign": "RYR7LN",
     "departure_time": "08:40",
+    "arrival_time": "11:36",
     "duration_minutes": 176,
     "days_of_operation": [
       1,
       4,
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 34.718,
+    "arrival_lon": 32.4857
   },
   {
     "departure_icao": "LZIB",
@@ -908,13 +1158,18 @@
     "flight_number": "FR 6643",
     "callsign": "RYR79RN",
     "departure_time": "09:45",
+    "arrival_time": "12:18",
     "duration_minutes": 153,
     "days_of_operation": [
       1,
       4,
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 55.95,
+    "arrival_lon": -3.3725
   },
   {
     "departure_icao": "LZIB",
@@ -926,13 +1181,18 @@
     "flight_number": "FR 3706",
     "callsign": "RYR3706",
     "departure_time": "11:20",
+    "arrival_time": "13:06",
     "duration_minutes": 106,
     "days_of_operation": [
       2,
       4,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 42.5696,
+    "arrival_lon": 27.5152
   },
   {
     "departure_icao": "LZIB",
@@ -944,11 +1204,16 @@
     "flight_number": "FR 1782",
     "callsign": "RYR1782",
     "departure_time": "11:35",
+    "arrival_time": "13:18",
     "duration_minutes": 103,
     "days_of_operation": [
       3
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 39.6019,
+    "arrival_lon": 19.9117
   },
   {
     "departure_icao": "LZIB",
@@ -960,6 +1225,7 @@
     "flight_number": "FR 5733",
     "callsign": "RYR38MM",
     "departure_time": "12:00",
+    "arrival_time": "13:22",
     "duration_minutes": 82,
     "days_of_operation": [
       1,
@@ -970,7 +1236,11 @@
       6,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 45.6306,
+    "arrival_lon": 8.72811
   },
   {
     "departure_icao": "LZIB",
@@ -982,6 +1252,7 @@
     "flight_number": "FR 3637",
     "callsign": "RYR252D",
     "departure_time": "12:25",
+    "arrival_time": "13:53",
     "duration_minutes": 88,
     "days_of_operation": [
       1,
@@ -989,7 +1260,11 @@
       5,
       7
     ],
-    "homebase": "LATI"
+    "homebase": "LATI",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 41.4147,
+    "arrival_lon": 19.7206
   },
   {
     "departure_icao": "LZIB",
@@ -1001,6 +1276,7 @@
     "flight_number": "FR 6399",
     "callsign": "RYR68KK",
     "departure_time": "13:00",
+    "arrival_time": "14:52",
     "duration_minutes": 112,
     "days_of_operation": [
       1,
@@ -1009,7 +1285,11 @@
       6,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 40.6321,
+    "arrival_lon": 8.29077
   },
   {
     "departure_icao": "LZIB",
@@ -1021,11 +1301,16 @@
     "flight_number": "FR 4219",
     "callsign": "RYR4MR",
     "departure_time": "13:15",
+    "arrival_time": "17:59",
     "duration_minutes": 284,
     "days_of_operation": [
       5
     ],
-    "homebase": "GCRR"
+    "homebase": "GCRR",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 28.9455,
+    "arrival_lon": -13.6052
   },
   {
     "departure_icao": "LZIB",
@@ -1037,12 +1322,17 @@
     "flight_number": "FR 6593",
     "callsign": "RYR3LX",
     "departure_time": "13:20",
+    "arrival_time": "14:42",
     "duration_minutes": 82,
     "days_of_operation": [
       3,
       6
     ],
-    "homebase": "EPGD"
+    "homebase": "EPGD",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 54.3776,
+    "arrival_lon": 18.4662
   },
   {
     "departure_icao": "LZIB",
@@ -1054,6 +1344,7 @@
     "flight_number": "FR 4225",
     "callsign": "RYR1AE",
     "departure_time": "13:25",
+    "arrival_time": "14:54",
     "duration_minutes": 89,
     "days_of_operation": [
       1,
@@ -1064,7 +1355,11 @@
       6,
       7
     ],
-    "homebase": "LIRA"
+    "homebase": "LIRA",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 41.7994,
+    "arrival_lon": 12.5949
   },
   {
     "departure_icao": "LZIB",
@@ -1076,13 +1371,18 @@
     "flight_number": "FR 9512",
     "callsign": "RYR49RT",
     "departure_time": "14:00",
+    "arrival_time": "16:22",
     "duration_minutes": 142,
     "days_of_operation": [
       2,
       3,
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 39.5517,
+    "arrival_lon": 2.73881
   },
   {
     "departure_icao": "LZIB",
@@ -1094,6 +1394,7 @@
     "flight_number": "FR 1871",
     "callsign": "RYR56TE",
     "departure_time": "14:35",
+    "arrival_time": "16:14",
     "duration_minutes": 99,
     "days_of_operation": [
       1,
@@ -1101,7 +1402,11 @@
       4,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 51.4501,
+    "arrival_lon": 5.37453
   },
   {
     "departure_icao": "LZIB",
@@ -1113,6 +1418,7 @@
     "flight_number": "FR 3639",
     "callsign": "RYR9HZ",
     "departure_time": "15:10",
+    "arrival_time": "16:20",
     "duration_minutes": 70,
     "days_of_operation": [
       1,
@@ -1123,7 +1429,11 @@
       6,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 52.4511,
+    "arrival_lon": 20.6518
   },
   {
     "departure_icao": "LZIB",
@@ -1135,11 +1445,16 @@
     "flight_number": "FR 9627",
     "callsign": "RYR21AW",
     "departure_time": "16:10",
+    "arrival_time": "17:38",
     "duration_minutes": 88,
     "days_of_operation": [
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 41.1389,
+    "arrival_lon": 16.7606
   },
   {
     "departure_icao": "LZIB",
@@ -1151,12 +1466,17 @@
     "flight_number": "FR 8227",
     "callsign": "RYR8227",
     "departure_time": "16:10",
+    "arrival_time": "18:02",
     "duration_minutes": 112,
     "days_of_operation": [
       2,
       5
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 40.6321,
+    "arrival_lon": 8.29077
   },
   {
     "departure_icao": "LZIB",
@@ -1168,6 +1488,7 @@
     "flight_number": "FR 5759",
     "callsign": "RYR48AP",
     "departure_time": "16:30",
+    "arrival_time": "18:03",
     "duration_minutes": 93,
     "days_of_operation": [
       2,
@@ -1175,7 +1496,11 @@
       5,
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 40.886,
+    "arrival_lon": 14.2908
   },
   {
     "departure_icao": "LZIB",
@@ -1187,12 +1512,17 @@
     "flight_number": "FR 6826",
     "callsign": "RYR6826",
     "departure_time": "17:00",
+    "arrival_time": "18:22",
     "duration_minutes": 82,
     "days_of_operation": [
       1,
       2
     ],
-    "homebase": "EPGD"
+    "homebase": "EPGD",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 54.3776,
+    "arrival_lon": 18.4662
   },
   {
     "departure_icao": "LZIB",
@@ -1204,6 +1534,7 @@
     "flight_number": "FR 5699",
     "callsign": "RYR19SV",
     "departure_time": "17:25",
+    "arrival_time": "20:10",
     "duration_minutes": 165,
     "days_of_operation": [
       1,
@@ -1211,7 +1542,11 @@
       4,
       5
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 38.2822,
+    "arrival_lon": -0.55816
   },
   {
     "departure_icao": "LZIB",
@@ -1223,12 +1558,17 @@
     "flight_number": "FR 7143",
     "callsign": "RYR7143",
     "departure_time": "18:00",
+    "arrival_time": "20:28",
     "duration_minutes": 148,
     "days_of_operation": [
       1,
       5
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 36.7131,
+    "arrival_lon": 28.7925
   },
   {
     "departure_icao": "LZIB",
@@ -1240,12 +1580,17 @@
     "flight_number": "FR 7154",
     "callsign": "RYR66WD",
     "departure_time": "18:00",
+    "arrival_time": "20:00",
     "duration_minutes": 120,
     "days_of_operation": [
       2,
       7
     ],
-    "homebase": "LICT"
+    "homebase": "LICT",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 37.9114,
+    "arrival_lon": 12.488
   },
   {
     "departure_icao": "LZIB",
@@ -1257,11 +1602,16 @@
     "flight_number": "FR 6524",
     "callsign": "RYR60VY",
     "departure_time": "18:55",
+    "arrival_time": "21:11",
     "duration_minutes": 136,
     "days_of_operation": [
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 41.2971,
+    "arrival_lon": 2.07846
   },
   {
     "departure_icao": "LZIB",
@@ -1273,13 +1623,18 @@
     "flight_number": "FR 35",
     "callsign": "RYR81KJ",
     "departure_time": "19:00",
+    "arrival_time": "21:21",
     "duration_minutes": 141,
     "days_of_operation": [
       1,
       3,
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 53.3537,
+    "arrival_lon": -2.27495
   },
   {
     "departure_icao": "LZIB",
@@ -1291,13 +1646,18 @@
     "flight_number": "FR 2853",
     "callsign": "RYR10AD",
     "departure_time": "19:40",
+    "arrival_time": "21:22",
     "duration_minutes": 102,
     "days_of_operation": [
       1,
       3,
       5
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 50.2736,
+    "arrival_lon": 4.271
   },
   {
     "departure_icao": "LZIB",
@@ -1309,13 +1669,18 @@
     "flight_number": "FR 5776",
     "callsign": "RYR32FQ",
     "departure_time": "20:15",
+    "arrival_time": "23:28",
     "duration_minutes": 193,
     "days_of_operation": [
       1,
       4,
       7
     ],
-    "homebase": "LEMG"
+    "homebase": "LEMG",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 36.6749,
+    "arrival_lon": -4.49911
   },
   {
     "departure_icao": "LZIB",
@@ -1327,13 +1692,18 @@
     "flight_number": "FR 1745",
     "callsign": "RYR869U",
     "departure_time": "20:25",
+    "arrival_time": "22:08",
     "duration_minutes": 103,
     "days_of_operation": [
       2,
       5,
       7
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 39.6019,
+    "arrival_lon": 19.9117
   },
   {
     "departure_icao": "LZIB",
@@ -1345,11 +1715,16 @@
     "flight_number": "FR 7109",
     "callsign": "RYR7109",
     "departure_time": "20:35",
+    "arrival_time": "22:49",
     "duration_minutes": 134,
     "days_of_operation": [
       2
     ],
-    "homebase": "LMML"
+    "homebase": "LMML",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 35.8575,
+    "arrival_lon": 14.4775
   },
   {
     "departure_icao": "LZIB",
@@ -1361,6 +1736,7 @@
     "flight_number": "FR 62",
     "callsign": "RYR45XF",
     "departure_time": "20:50",
+    "arrival_time": "22:55",
     "duration_minutes": 125,
     "days_of_operation": [
       3,
@@ -1368,7 +1744,11 @@
       5,
       6
     ],
-    "homebase": "EGSS"
+    "homebase": "EGSS",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 51.885,
+    "arrival_lon": 0.235
   },
   {
     "departure_icao": "LZIB",
@@ -1380,12 +1760,17 @@
     "flight_number": "FR 6831",
     "callsign": "RYR6831",
     "departure_time": "21:20",
+    "arrival_time": "22:48",
     "duration_minutes": 88,
     "days_of_operation": [
       3,
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 41.1389,
+    "arrival_lon": 16.7606
   },
   {
     "departure_icao": "LZIB",
@@ -1397,12 +1782,17 @@
     "flight_number": "FR 2315",
     "callsign": "RYR6EF",
     "departure_time": "21:50",
+    "arrival_time": "23:55",
     "duration_minutes": 125,
     "days_of_operation": [
       2,
       7
     ],
-    "homebase": "EGSS"
+    "homebase": "EGSS",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 51.885,
+    "arrival_lon": 0.235
   },
   {
     "departure_icao": "LZIB",
@@ -1414,6 +1804,7 @@
     "flight_number": "FR 6824",
     "callsign": "RYR80RZ",
     "departure_time": "22:15",
+    "arrival_time": "23:20",
     "duration_minutes": 65,
     "days_of_operation": [
       1,
@@ -1421,7 +1812,11 @@
       4,
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 44.1083,
+    "arrival_lon": 15.3467
   },
   {
     "departure_icao": "LZIB",
@@ -1433,12 +1828,17 @@
     "flight_number": "FR 2171",
     "callsign": "RYR2171",
     "departure_time": "22:20",
+    "arrival_time": "00:02",
     "duration_minutes": 102,
     "days_of_operation": [
       3,
       6
     ],
-    "homebase": "LZIB"
+    "homebase": "LZIB",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 40.5197,
+    "arrival_lon": 22.9709
   },
   {
     "departure_icao": "LZIB",
@@ -1450,13 +1850,18 @@
     "flight_number": "FR 1529",
     "callsign": "RYR1SK",
     "departure_time": "22:35",
+    "arrival_time": "00:49",
     "duration_minutes": 134,
     "days_of_operation": [
       1,
       4,
       7
     ],
-    "homebase": "LMML"
+    "homebase": "LMML",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 35.8575,
+    "arrival_lon": 14.4775
   },
   {
     "departure_icao": "LZIB",
@@ -1468,6 +1873,7 @@
     "flight_number": "FR 5719",
     "callsign": "RYR8AG",
     "departure_time": "22:45",
+    "arrival_time": "01:01",
     "duration_minutes": 136,
     "days_of_operation": [
       1,
@@ -1477,7 +1883,11 @@
       5,
       6
     ],
-    "homebase": "LEBL"
+    "homebase": "LEBL",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 41.2971,
+    "arrival_lon": 2.07846
   },
   {
     "departure_icao": "LZIB",
@@ -1489,6 +1899,7 @@
     "flight_number": "FR 5803",
     "callsign": "RYR38DU",
     "departure_time": "22:55",
+    "arrival_time": "00:52",
     "duration_minutes": 117,
     "days_of_operation": [
       2,
@@ -1497,7 +1908,11 @@
       6,
       7
     ],
-    "homebase": "LICJ"
+    "homebase": "LICJ",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 38.176,
+    "arrival_lon": 13.091
   },
   {
     "departure_icao": "LZIB",
@@ -1509,6 +1924,7 @@
     "flight_number": "FR 4223",
     "callsign": "RYR6L",
     "departure_time": "23:20",
+    "arrival_time": "02:00",
     "duration_minutes": 160,
     "days_of_operation": [
       2,
@@ -1516,6 +1932,10 @@
       5,
       7
     ],
-    "homebase": "EIDW"
+    "homebase": "EIDW",
+    "departure_lat": 48.1702,
+    "departure_lon": 17.2127,
+    "arrival_lat": 53.4213,
+    "arrival_lon": -6.27007
   }
 ]
