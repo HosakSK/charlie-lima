@@ -679,9 +679,9 @@ input[type="range"] {
   background: var(--bg-color);
   border: 1px solid var(--panel-border);
   border-radius: 16px;
-  width: 90%;
-  max-width: 900px;
-  max-height: 90vh;
+  width: 98%;
+  max-width: 1400px;
+  max-height: 92vh;
   overflow-y: auto;
   position: relative;
   padding: 2rem;
@@ -758,10 +758,32 @@ input[type="range"] {
 .modal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1.2fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "dep-wx  arr-wx  route"
+    "dep-atc arr-atc route";
   gap: 1.5rem;
+  align-items: stretch;
+}
+
+.m-dep-wx  { grid-area: dep-wx; }
+.m-arr-wx  { grid-area: arr-wx; }
+.m-dep-atc { grid-area: dep-atc; }
+.m-arr-atc { grid-area: arr-atc; }
+.m-route-box {
+  grid-area: route;
+  display: flex;
+  flex-direction: column;
+}
+
+.m-route-box #m-route-map {
+  flex: 1;
+  min-height: 200px;
+  height: auto !important;
 }
 
 .modal-section {
+  align-self: stretch;
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);
   border-radius: 12px;
@@ -813,6 +835,9 @@ input[type="range"] {
 .mg-category {
   width: 45px;
   height: 45px;
+  min-width: 45px;
+  min-height: 45px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -821,6 +846,7 @@ input[type="range"] {
   font-size: 0.85rem;
   color: #fff;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  flex-shrink: 0;
 }
 
 .mg-category.vfr { background: #22c55e; }
@@ -997,10 +1023,30 @@ input[type="range"] {
   stroke: currentColor;
 }
 
-@media (max-width: 992px) {
-  .modal-grid { grid-template-columns: 1fr; }
+@media (max-width: 1100px) {
+  .modal-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "dep-wx  arr-wx"
+      "dep-atc arr-atc"
+      "route   route";
+  }
+}
+
+@media (max-width: 700px) {
+  .modal-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "dep-wx"
+      "arr-wx"
+      "dep-atc"
+      "arr-atc"
+      "route";
+  }
   .modal-content {
-    width: 95%;
-    padding: 1.5rem;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0;
   }
 }
