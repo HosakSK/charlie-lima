@@ -39,9 +39,6 @@ export async function GET(request: Request) {
     }
 
     const planData = await planRes.json();
-    const routeString = planData.routeString || '';
-    
-    // We want the waypoints list with coordinates for map drawing!
     const nodes = planData.route?.nodes || [];
     const waypoints = nodes.map((node: any) => ({
       ident: node.ident,
@@ -49,6 +46,11 @@ export async function GET(request: Request) {
       lat: node.lat,
       lon: node.lon
     }));
+
+    let routeString = planData.routeString || '';
+    if (!routeString && nodes.length > 0) {
+      routeString = nodes.map((node: any) => node.ident).join(' ');
+    }
 
     // Clean up routeString to remove departure and arrival if they are at the ends
     const words = routeString.split(' ');
