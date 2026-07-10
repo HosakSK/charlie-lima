@@ -25,30 +25,6 @@ const DOM = {
   toast: document.getElementById('toast')
 };
 
-// Summer Time UTC Offsets (Europe)
-const UTC_OFFSETS = {
-  'United Kingdom': 1,
-  'Ireland': 1,
-  'Portugal': 1,
-  'Greece': 3,
-  'Bulgaria': 3,
-  'Cyprus': 3,
-  'Turkey': 3,
-  // Default to +2 (CEST) for Slovakia, Spain, Italy, Poland, Belgium, Malta, Croatia, etc.
-};
-
-function getUtcOffset(country) {
-  return UTC_OFFSETS[country] || 2;
-}
-
-function convertLocalToUtc(localTimeStr, offset) {
-  if (!localTimeStr) return '--:--';
-  const [h, m] = localTimeStr.split(':').map(Number);
-  let utcH = h - offset;
-  if (utcH < 0) utcH += 24;
-  if (utcH >= 24) utcH -= 24;
-  return `${utcH.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
-}
 
 async function init() {
   try {
@@ -268,13 +244,10 @@ function render(flights) {
       daysHtml += `<div class="day-dot ${active}">${letter}</div>`;
     }
 
-    const depOffset = getUtcOffset(f.departure_country);
-    const arrOffset = getUtcOffset(f.arrival_country);
-
     const depLocal = f.departure_time;
-    const depUtc = convertLocalToUtc(depLocal, depOffset);
+    const depUtc = f.departure_time_utc || '--:--';
     const arrLocal = f.arrival_time;
-    const arrUtc = convertLocalToUtc(arrLocal, arrOffset);
+    const arrUtc = f.arrival_time_utc || '--:--';
 
     const mainDep = showUtc ? depUtc : depLocal;
     const subDep = showUtc ? `Local: ${depLocal}` : `UTC: ${depUtc}`;
