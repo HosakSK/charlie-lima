@@ -522,6 +522,19 @@ const modalDOM = {
   depVatsimAtc: document.getElementById('m-dep-vatsim-atc'),
   arrVatsimAtc: document.getElementById('m-arr-vatsim-atc'),
   
+  // Flight stats
+  fstatDist: document.getElementById('m-fstat-dist'),
+  fstatFl: document.getElementById('m-fstat-fl'),
+  fstatDur: document.getElementById('m-fstat-dur'),
+  fstatWpts: document.getElementById('m-fstat-wpts'),
+  airwaysBox: document.getElementById('m-airways-box'),
+  airwaysList: document.getElementById('m-airways-list'),
+  
+  // Route source
+  routeSource: document.getElementById('m-route-source'),
+  routeSourceLink: document.getElementById('m-route-source-link'),
+  routeSourceCycle: document.getElementById('m-route-source-cycle'),
+  
   simbriefBtn: document.getElementById('m-simbrief-btn'),
   skyvectorBtn: document.getElementById('m-skyvector-btn')
 };
@@ -574,6 +587,14 @@ async function openFlightModal(flight) {
     window.routeMapInstance = null;
   }
   
+  // Reset stats
+  if (modalDOM.fstatDist) modalDOM.fstatDist.textContent = '—';
+  if (modalDOM.fstatFl) modalDOM.fstatFl.textContent = '—';
+  if (modalDOM.fstatDur) modalDOM.fstatDur.textContent = '—';
+  if (modalDOM.fstatWpts) modalDOM.fstatWpts.textContent = '—';
+  if (modalDOM.airwaysBox) modalDOM.airwaysBox.classList.add('hidden');
+  if (modalDOM.routeSource) modalDOM.routeSource.classList.add('hidden');
+  
   // Populate Header
   const fn = (flight.flight_number || '').replace(/\s+/g, '');
   const fullFltNum = flight.airline ? `${flight.airline} ${fn}` : fn;
@@ -608,13 +629,47 @@ async function openFlightModal(flight) {
     renderVatsimATC(vatsimData.value, flight.departure_icao, 'dep');
     renderVatsimATC(vatsimData.value, flight.arrival_icao, 'arr');
     
-    // Handle Route String and Route Map
+    // Handle Route
     const routeObj = routeData.status === 'fulfilled' ? routeData.value : { route: 'DCT', distance: null, waypoints: [] };
     const routeString = routeObj.route || 'DCT';
     
     const routeStrEl = document.getElementById('m-route-string');
-    if (routeStrEl) {
-      routeStrEl.textContent = routeString;
+    if (routeStrEl) routeStrEl.textContent = routeString;
+
+    // --- Flight Stats ---
+    if (modalDOM.fstatDist && routeObj.distance) {
+      modalDOM.fstatDist.textContent = routeObj.distance;
+    } else if (modalDOM.fstatDist && flight.duration_minutes) {
+      // Estimate from duration: ~450kt cruise → NM ≈ duration_min * 7.5
+      modalDOM.fstatDist.textContent = Math.round(flight.duration_minutes * 7.5);
+    }
+
+    if (modalDOM.fstatFl && routeObj.cruiseAltitude) {
+      modalDOM.fstatFl.textContent = `FL${Math.round(routeObj.cruiseAltitude / 100)}`;
+    }
+
+    if (modalDOM.fstatDur && flight.duration_minutes) {
+      const h = Math.floor(flight.duration_minutes / 60);
+      const m = flight.duration_minutes % 60;
+      modalDOM.fstatDur.textContent = `${h}h ${m.toString().padStart(2,'0')}m`;
+    }
+
+    if (modalDOM.fstatWpts && routeObj.waypointCount) {
+      modalDOM.fstatWpts.textContent = routeObj.waypointCount;
+    }
+
+    // --- Airways ---
+    if (modalDOM.airwaysBox && modalDOM.airwaysList && routeObj.airways && routeObj.airways.length > 0) {
+      modalDOM.airwaysList.innerHTML = routeObj.airways.map(a => `<span class="airway-badge">${a}</span>`).join('');
+      modalDOM.airwaysBox.classList.remove('hidden');
+    }
+
+    // --- Route Source ---
+    if (modalDOM.routeSource && routeObj.source) {
+      modalDOM.routeSourceLink.textContent = routeObj.source.name;
+      modalDOM.routeSourceLink.href = routeObj.source.url || '#';
+      modalDOM.routeSourceCycle.textContent = routeObj.source.cycle ? `• AIRAC ${routeObj.source.cycle}` : '';
+      modalDOM.routeSource.classList.remove('hidden');
     }
 
     // Populate Route Links
@@ -651,11 +706,8 @@ async function openFlightModal(flight) {
           ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
           : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
 
-        L.tileLayer(tileUrl, {
-          maxZoom: 19
-        }).addTo(map);
+        L.tileLayer(tileUrl, { maxZoom: 19 }).addTo(map);
 
-        // Custom styled icons
         const depMarker = L.marker([depLat, depLon]).addTo(map);
         depMarker.bindTooltip(flight.departure_icao, { permanent: true, direction: 'top' });
 
@@ -665,15 +717,26 @@ async function openFlightModal(flight) {
         const latlngs = [[depLat, depLon]];
         const wps = routeObj.waypoints || [];
         wps.forEach(wp => {
-          if (wp.lat && wp.lon && wp.ident !== flight.departure_icao && wp.ident !== flight.arrival_icao) {
+          if (wp.lat && wp.lon && wp.type !== 'APT') {
             latlngs.push([wp.lat, wp.lon]);
-            L.circleMarker([wp.lat, wp.lon], {
-              radius: 4,
-              color: '#FF8C00',
-              fillColor: '#FF8C00',
-              fillOpacity: 1,
-              weight: 1
-            }).addTo(map).bindTooltip(wp.ident);
+            // Only show named waypoints, not all
+            if (wp.type === 'VOR' || wp.type === 'NDB') {
+              L.circleMarker([wp.lat, wp.lon], {
+                radius: 5,
+                color: '#FF8C00',
+                fillColor: '#FF8C00',
+                fillOpacity: 1,
+                weight: 1
+              }).addTo(map).bindTooltip(`${wp.ident} ${wp.via ? '(' + wp.via + ')' : ''}`.trim());
+            } else {
+              L.circleMarker([wp.lat, wp.lon], {
+                radius: 3,
+                color: 'rgba(var(--color-accent-rgb), 0.7)',
+                fillColor: '#aaa',
+                fillOpacity: 0.7,
+                weight: 1
+              }).addTo(map);
+            }
           }
         });
         latlngs.push([arrLat, arrLon]);
@@ -681,10 +744,9 @@ async function openFlightModal(flight) {
         const polyline = L.polyline(latlngs, {
           color: '#00BDB1',
           weight: 3,
-          opacity: 0.8
+          opacity: 0.85
         }).addTo(map);
 
-        // Invalidate size once modal layout is fully settled and fit bounds
         setTimeout(() => {
           map.invalidateSize();
           map.fitBounds(polyline.getBounds(), { padding: [40, 40] });
@@ -695,7 +757,6 @@ async function openFlightModal(flight) {
   } catch (err) {
     console.error('Error fetching live data:', err);
   } finally {
-    // Hide loading, show content
     modalDOM.loading.classList.add('hidden');
     modalDOM.body.classList.remove('hidden');
   }

@@ -947,12 +947,132 @@ input[type="range"] {
   100% { transform: rotate(360deg); }
 }
 
-/* Routing Buttons */
-.route-desc {
-  font-size: 0.95rem;
+/* Routing Section */
+.route-info-box {
+  background: var(--badge-bg);
+  padding: 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--panel-border);
+  margin-bottom: 0.8rem;
+}
+
+.route-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
   color: var(--text-muted);
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
+  display: block;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.05em;
+}
+
+.route-string-content {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--accent-blue);
+  word-break: break-all;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  max-height: 4.5rem;
+  overflow-y: auto;
+}
+
+#m-route-map {
+  border-radius: 8px;
+  margin: 0.8rem 0;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  flex: 1;
+  min-height: 220px;
+}
+
+/* Flight Stats Row */
+.flight-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.fstat {
+  background: var(--badge-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 0.6rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.fstat svg {
+  color: var(--accent-blue);
+  flex-shrink: 0;
+}
+
+.fstat span {
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: monospace;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+.fstat label {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Airways badges */
+.airways-box {
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.airways-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.airway-badge {
+  background: rgba(var(--color-accent-rgb), 0.12);
+  color: var(--accent-blue);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.25);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+/* Route source attribution */
+.route-source {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.route-source a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+.route-source a:hover {
+  text-decoration: underline;
 }
 
 .route-buttons {

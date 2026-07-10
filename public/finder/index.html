@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <link rel="stylesheet" href="/finder/style.css?v=12">
+    <link rel="stylesheet" href="/finder/style.css?v=13">
   </head>
   <body>
     <div class="app-container">
@@ -183,13 +183,56 @@
 
             <!-- Dispatch & Routing (Spans 2 rows) -->
             <div class="modal-section route-section m-route-box">
-              <h3>Dispatch & Routing</h3>
-              <div class="route-info-box" style="margin-bottom: 1rem; background: var(--badge-bg); padding: 0.8rem; border-radius: 6px; border: 1px solid var(--panel-border);">
-                <span class="route-label" style="font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">Route / Waypoints:</span>
-                <div id="m-route-string" style="font-family: monospace; font-size: 0.9rem; color: var(--accent-blue); word-break: break-all; white-space: pre-wrap;">DCT</div>
+              <h3>Dispatch &amp; Routing</h3>
+
+              <!-- Flight Stats Row -->
+              <div id="m-flight-stats" class="flight-stats-row">
+                <div class="fstat">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18M3 12l4-4 4 4 4-8 4 4"/></svg>
+                  <span id="m-fstat-dist">—</span>
+                  <label>NM</label>
+                </div>
+                <div class="fstat">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.5l-1.3 2.5c-.2.5.1 1 .6 1.1l8.5 2.2-2.5 2.5-3.5-.5c-.5-.1-.9.2-1.1.5L3 16.5c-.2.5.1 1 .6 1.1l4.6.8 2.5 2.5c.1.5.6.8 1.1.6l1.5-1.4c.3-.2.6-.6.5-1.1l-.5-3.5 2.5-2.5 2.2 8.5c.1.5.6.8 1.1.6l2.5-1.3c.3-.2.6-.6.5-1.1z"/></svg>
+                  <span id="m-fstat-fl">—</span>
+                  <label>FL cruise</label>
+                </div>
+                <div class="fstat">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span id="m-fstat-dur">—</span>
+                  <label>Estimated</label>
+                </div>
+                <div class="fstat">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  <span id="m-fstat-wpts">—</span>
+                  <label>Waypoints</label>
+                </div>
               </div>
-              <div id="m-route-map" style="height: 100%; min-height: 250px; flex-grow: 1; border-radius: 8px; margin: 1rem 0; background: var(--input-bg); border: 1px solid var(--input-border); position: relative; overflow: hidden; z-index: 1;"></div>
-              <div class="route-buttons" style="display: flex; flex-direction: column; gap: 0.8rem;">
+
+              <!-- Airways used -->
+              <div id="m-airways-box" class="airways-box hidden">
+                <span class="route-label">Airways:</span>
+                <div id="m-airways-list" class="airways-list"></div>
+              </div>
+
+              <!-- Route String -->
+              <div class="route-info-box">
+                <span class="route-label">Route / Waypoints:</span>
+                <div id="m-route-string" class="route-string-content">DCT</div>
+              </div>
+
+              <!-- Route Map -->
+              <div id="m-route-map"></div>
+
+              <!-- Source Attribution -->
+              <div id="m-route-source" class="route-source hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                Trasa z <a id="m-route-source-link" href="#" target="_blank">—</a>
+                <span id="m-route-source-cycle"></span>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="route-buttons">
                 <a id="m-simbrief-btn" href="#" target="_blank" class="btn-primary simbrief-btn">Generate Route on SimBrief</a>
                 <a id="m-skyvector-btn" href="#" target="_blank" class="btn-secondary">View on SkyVector</a>
               </div>
@@ -214,6 +257,6 @@
     <!-- Toast Notification -->
     <div id="toast" class="toast hidden">Copied to clipboard!</div>
 
-    <script type="module" src="/finder/main.js?v=12"></script>
+    <script type="module" src="/finder/main.js?v=13"></script>
   </body>
 </html>
