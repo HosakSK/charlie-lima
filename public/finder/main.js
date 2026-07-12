@@ -843,7 +843,11 @@ async function openFlightModal(flight) {
     // Populate Route Links
     const callsignVal = flight.callsign || `RYR${fn}`;
     // Route is displayed informatively only – not pushed into SimBrief URL so the pilot can edit it freely
-    const simbriefUrl = `https://dispatch.simbrief.com/options/custom?orig=${flight.departure_icao}&dest=${flight.arrival_icao}&airline=RYR&fltnum=${fn}&callsign=${callsignVal}&type=B738`;
+    let simbriefUrl = `https://dispatch.simbrief.com/options/custom?orig=${flight.departure_icao}&dest=${flight.arrival_icao}&airline=RYR&fltnum=${fn}&callsign=${callsignVal}&type=B738`;
+    if (flight.departure_time_utc && flight.departure_time_utc !== '--:--') {
+      const [deph, depm] = flight.departure_time_utc.split(':');
+      simbriefUrl += `&deph=${deph}&depm=${depm}`;
+    }
     modalDOM.simbriefBtn.href = simbriefUrl;
 
     let fpl = `${flight.departure_icao}%20${flight.arrival_icao}`;
