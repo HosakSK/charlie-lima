@@ -477,6 +477,7 @@ input[type="range"]:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  column-gap: 15px;
 }
 
 .fc-airline {
@@ -1509,6 +1510,7 @@ input[type="range"]:focus {
   
   .fc-identifiers {
     flex-wrap: wrap;
+    justify-content: flex-end;
   }
   
   .flight-stats-row {
