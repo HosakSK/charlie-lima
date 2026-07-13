@@ -196,21 +196,28 @@ h1 {
 }
 
 .btn-theme {
-  background: transparent;
-  border: none;
+  background: var(--panel-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--panel-border);
   color: var(--text-main);
   cursor: pointer;
-  padding: 0.5rem;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .btn-theme:hover {
-  background: rgba(128, 128, 128, 0.2);
+  background: var(--card-hover);
   color: var(--accent-blue);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-color: rgba(var(--color-accent-rgb), 0.4);
 }
 
 /* Main Layout */
@@ -1451,23 +1458,53 @@ input[type="range"]:focus {
     gap: 1rem;
   }
   
-  /* Fix header globally for mobile so button doesn't overlap title */
+  /* Modern sleek app bar for mobile */
   .app-header {
-    padding: 1.2rem;
-    flex-direction: column;
+    padding: 1rem;
+    flex-direction: row;
     align-items: center;
-    gap: 1.2rem;
-    text-align: center;
+    justify-content: space-between;
+    text-align: left;
+    gap: 0.5rem;
   }
   
   .logo {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
+    min-width: 0;
+  }
+  
+  .logo > div {
+    min-width: 0; /* allows text truncation */
+  }
+  
+  .logo svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+  
+  .logo h1 {
+    font-size: 1.15rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .logo .subtitle {
+    font-size: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .btn-theme {
     position: static;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
   }
   
   .fc-identifiers {
