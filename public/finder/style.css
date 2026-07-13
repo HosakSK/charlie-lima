@@ -1379,7 +1379,14 @@ input[type="range"]:focus {
    RESPONSIVE DESIGN (TABLET & MOBILE)
    ========================================= */
 
-@media (max-width: 1100px) {
+@media (max-width: 1280px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+  .filters-panel {
+    position: static;
+  }
+  
   .modal-grid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
@@ -1389,16 +1396,7 @@ input[type="range"]:focus {
       "dep-atc   arr-atc"
       "route     route";
   }
-}
 
-@media (max-width: 900px) {
-  .main-content {
-    grid-template-columns: 1fr;
-  }
-  .filters-panel {
-    position: static;
-  }
-  
   /* Modal header restructuring */
   .modal-header {
     flex-direction: column;
@@ -1419,12 +1417,13 @@ input[type="range"]:focus {
     margin-bottom: 0.5rem;
   }
   
+  /* Buttons like on mobile (full width stacking) */
   .btn-google-search,
   .btn-flightradar,
   .btn-edigla,
   .btn-adsb {
     margin-left: 0 !important;
-    flex: 1 1 calc(50% - 0.8rem);
+    flex: 1 1 100%;
     justify-content: center;
   }
   
@@ -1517,13 +1516,6 @@ input[type="range"]:focus {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1rem;
-  }
-  
-  .btn-google-search,
-  .btn-flightradar,
-  .btn-edigla,
-  .btn-adsb {
-    flex: 1 1 100%; /* Stack all buttons */
   }
   
   .flight-stats-row {
