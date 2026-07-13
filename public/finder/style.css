@@ -642,15 +642,7 @@ input[type="range"]:focus {
   font-size: 1.1rem;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .main-content {
-    grid-template-columns: 1fr;
-  }
-  .filters-panel {
-    position: static;
-  }
-}
+/* Responsive media queries are consolidated at the end of the file */
 
 /* Swap Route Button */
 .input-with-button {
@@ -1383,6 +1375,10 @@ input[type="range"]:focus {
   border: 1px solid rgba(var(--color-accent-rgb), 0.3);
 }
 
+/* =========================================
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   ========================================= */
+
 @media (max-width: 1100px) {
   .modal-grid {
     grid-template-columns: 1fr 1fr;
@@ -1392,6 +1388,99 @@ input[type="range"]:focus {
       "dep-times arr-times"
       "dep-atc   arr-atc"
       "route     route";
+  }
+}
+
+@media (max-width: 900px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+  .filters-panel {
+    position: static;
+  }
+  
+  /* Modal header restructuring */
+  .modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 0;
+    gap: 1.5rem;
+    border-bottom: none;
+  }
+  
+  .m-header-left {
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 0.8rem;
+  }
+  
+  .m-header-left > div:first-child {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .btn-google-search,
+  .btn-flightradar,
+  .btn-edigla,
+  .btn-adsb {
+    margin-left: 0 !important;
+    flex: 1 1 calc(50% - 0.8rem);
+    justify-content: center;
+  }
+  
+  .m-route {
+    width: 100%;
+    justify-content: center;
+    padding: 1.2rem;
+    background: var(--badge-bg);
+    border-radius: 12px;
+    border: 1px solid var(--panel-border);
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .app-header {
+    padding: 1.2rem;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  .logo {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .btn-theme {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+  }
+  
+  .flights-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .fc-identifiers {
+    flex-wrap: wrap;
+  }
+  
+  .flight-stats-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .fc-time {
+    font-size: 1.6rem;
+  }
+  
+  .fc-icao {
+    font-size: 1.1rem;
   }
 }
 
@@ -1407,9 +1496,37 @@ input[type="range"]:focus {
       "arr-atc"
       "route";
   }
+  
   .modal-content {
     width: 100%;
-    padding: 1rem;
+    min-height: 100vh;
+    padding: 1.2rem;
+    padding-top: 4rem; /* Leave space for close button */
     border-radius: 0;
+  }
+  
+  .modal-close {
+    top: 0.8rem;
+    right: 0.8rem;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    backdrop-filter: blur(8px);
+  }
+  
+  .metar-graphic {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .btn-google-search,
+  .btn-flightradar,
+  .btn-edigla,
+  .btn-adsb {
+    flex: 1 1 100%; /* Stack all buttons */
+  }
+  
+  .flight-stats-row {
+    gap: 0.5rem;
   }
 }
