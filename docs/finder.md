@@ -83,3 +83,14 @@ The algorithm loads the JSON file and mathematically pairs all departures and ar
 
 - **Running the script**: The script runs automatically as part of the agent skill after data retrieval, or manually via step 2 above.
 *(This script modifies and rewrites the JSON file `public/finder/ryanair_flights_lzib.json` with corrected Base and UTC values).*
+
+### Step 3: Callsign Synchronization
+Airlines dynamically change ATC callsigns (e.g. from `RYR21AW` back to the commercial flight number `RYR9627`) due to operational requirements or seasonal ATC scheduling. This can cause discrepancies between the static JSON data and real-world flights.
+
+If you notice that a flight's callsign doesn't match the real world anymore, you can run a quick standalone synchronization script that connects to FlightRadar24 and updates only the callsigns without downloading the entire schedule.
+
+**Running the synchronization script:**
+```bash
+python scripts\update_callsigns.py
+```
+*(This script modifies the JSON file and updates the `callsign` property for all flights to match the latest FlightRadar24 data).*
