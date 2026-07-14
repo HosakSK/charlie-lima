@@ -232,6 +232,8 @@ h1 {
 .filters-panel {
   padding: 1.5rem;
   height: fit-content;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
   position: sticky;
   top: 2rem;
   display: flex;
