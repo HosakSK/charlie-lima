@@ -802,23 +802,65 @@ input[type="range"]:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--panel-border);
-  padding-bottom: 1rem;
   padding-right: 4rem; /* Leave space for the close button */
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
-.m-header-left {
+.m-header-title {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-.m-header-left h2 {
-  font-size: 1.8rem;
+.m-header-title h2 {
+  font-size: 2rem;
   color: var(--accent-blue);
   margin: 0;
+}
+
+.modal-search-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.search-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.search-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--panel-border);
+  transition: all 0.2s ease;
+}
+
+.search-link:hover {
+  background: rgba(var(--color-accent-rgb), 0.1);
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  transform: translateY(-1px);
+}
+
+.search-link svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
 }
 
 .m-route {
@@ -1212,90 +1254,6 @@ input[type="range"]:focus {
   margin-top: 0.2rem;
 }
 
-.btn-google-search {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-  background: rgba(var(--color-accent-rgb), 0.1);
-  color: var(--accent-blue);
-  border: 1px solid var(--panel-border);
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.btn-google-search:hover {
-  background: var(--accent-blue);
-  color: #fff;
-  border-color: var(--accent-blue);
-  transform: translateY(-1px);
-}
-
-.btn-google-search svg {
-  stroke: currentColor;
-}
-
-/* Flightradar button */
-.btn-flightradar {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-  background: rgba(var(--color-accent-rgb), 0.1);
-  color: var(--accent-blue);
-  border: 1px solid var(--panel-border);
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.btn-flightradar:hover {
-  background: var(--accent-blue);
-  color: #fff;
-  border-color: var(--accent-blue);
-  transform: translateY(-1px);
-}
-
-.btn-flightradar svg {
-  stroke: currentColor;
-}
-
-/* EDI-GLA, ADSB.fi, FlightAware search buttons */
-.btn-edigla, .btn-adsb, .btn-flightaware {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
-  background: rgba(var(--color-accent-rgb), 0.1);
-  color: var(--accent-blue);
-  border: 1px solid var(--panel-border);
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.btn-edigla:hover, .btn-adsb:hover, .btn-flightaware:hover {
-  background: var(--accent-blue);
-  color: #fff;
-  border-color: var(--accent-blue);
-  transform: translateY(-1px);
-}
-
-.btn-edigla svg, .btn-adsb svg, .btn-flightaware svg {
-  stroke: currentColor;
-  fill: none;
-}
-
 /* LiveATC button */
 .btn-liveatc {
   display: block;
@@ -1422,14 +1380,19 @@ input[type="range"]:focus {
   }
   
   /* Buttons like on mobile (full width stacking) */
-  .btn-google-search,
-  .btn-flightradar,
-  .btn-flightaware,
-  .btn-edigla,
-  .btn-adsb {
-    margin-left: 0 !important;
-    flex: 1 1 100%;
+  .modal-search-bar {
+    gap: 0.6rem;
+  }
+  
+  .search-link {
+    flex: 1 1 calc(50% - 0.4rem);
     justify-content: center;
+    background: rgba(var(--color-accent-rgb), 0.05);
+  }
+  
+  .search-label {
+    width: 100%;
+    margin-bottom: -0.2rem;
   }
   
   .m-route {
