@@ -1046,3 +1046,33 @@ function renderVatsimATC(vatsim, icao, type) {
     `;
   });
 }
+
+// --- SMART STICKY SIDEBAR LOGIC ---
+function updateStickySidebar() {
+  const sidebar = document.querySelector('.filters-panel');
+  if (!sidebar) return;
+  
+  const viewportHeight = window.innerHeight;
+  const sidebarHeight = sidebar.offsetHeight;
+  
+  // If sidebar is taller than viewport (with some margin), stick to bottom
+  if (sidebarHeight + 64 > viewportHeight) {
+    sidebar.style.top = `calc(100vh - ${sidebarHeight}px - 2rem)`;
+  } else {
+    // If it's shorter, stick to top
+    sidebar.style.top = '2rem';
+  }
+}
+
+window.addEventListener('resize', updateStickySidebar);
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(updateStickySidebar, 100);
+});
+
+const fp = document.querySelector('.filters-panel');
+if (fp) {
+  const resizeObserver = new ResizeObserver(() => {
+    updateStickySidebar();
+  });
+  resizeObserver.observe(fp);
+}

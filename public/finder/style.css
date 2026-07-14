@@ -232,6 +232,8 @@ h1 {
 .filters-panel {
   padding: 1.5rem;
   height: fit-content;
+  position: sticky;
+  top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
