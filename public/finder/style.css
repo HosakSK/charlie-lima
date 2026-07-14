@@ -1407,6 +1407,17 @@ input[type="range"]:focus {
     gap: 1rem;
   }
   
+  /* Tablet search bar styling */
+  .search-label {
+    display: none;
+  }
+  
+  .search-link {
+    flex: 1 1 auto;
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+  
   /* Modern sleek app bar for mobile */
   .app-header {
     padding: 1rem;
@@ -1523,10 +1534,5 @@ input[type="range"]:focus {
     flex: 1 1 100%;
     justify-content: center;
     background: rgba(var(--color-accent-rgb), 0.05);
-  }
-  
-  .search-label {
-    width: 100%;
-    margin-bottom: -0.2rem;
   }
 }
