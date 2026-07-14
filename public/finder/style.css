@@ -1345,14 +1345,6 @@ input[type="range"]:focus {
 
 @media (max-width: 1280px) {
   /* Layout changes for Tablet / Smaller screens */
-  .main-content {
-    grid-template-columns: 1fr;
-  }
-  
-  .filters-panel {
-    position: static;
-  }
-
   .flights-grid {
     grid-template-columns: 1fr;
   }
@@ -1410,6 +1402,14 @@ input[type="range"]:focus {
 
 @media (max-width: 768px) {
   /* Layout changes for Mobile screens */
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .filters-panel {
+    position: static;
+  }
+
   .app-container {
     padding: 1rem;
     gap: 1rem;
