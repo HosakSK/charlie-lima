@@ -1379,21 +1379,7 @@ input[type="range"]:focus {
     margin-bottom: 0.5rem;
   }
   
-  /* Buttons like on mobile (full width stacking) */
-  .modal-search-bar {
-    gap: 0.6rem;
-  }
-  
-  .search-link {
-    flex: 1 1 100%;
-    justify-content: center;
-    background: rgba(var(--color-accent-rgb), 0.05);
-  }
-  
-  .search-label {
-    width: 100%;
-    margin-bottom: -0.2rem;
-  }
+
   
   .m-route {
     width: 100%;
@@ -1525,5 +1511,22 @@ input[type="range"]:focus {
   
   .flight-stats-row {
     gap: 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal-search-bar {
+    gap: 0.6rem;
+  }
+  
+  .search-link {
+    flex: 1 1 100%;
+    justify-content: center;
+    background: rgba(var(--color-accent-rgb), 0.05);
+  }
+  
+  .search-label {
+    width: 100%;
+    margin-bottom: -0.2rem;
   }
 }

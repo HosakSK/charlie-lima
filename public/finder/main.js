@@ -755,7 +755,7 @@ async function openFlightModal(flight) {
   const fullFltNum = flight.airline ? `${flight.airline} ${fn}` : fn;
   
   if (primaryCallsign !== fallbackCallsign && flight.callsign) {
-    modalDOM.callsignHeader.innerHTML = `${primaryCallsign} <span style="display: block; font-size: 0.5em; color: var(--text-muted); font-weight: 300; margin-top: 0.2rem;">(Fallback: ${fallbackCallsign})</span>`;
+    modalDOM.callsignHeader.innerHTML = `${primaryCallsign} <span style="display: block; font-size: 0.5em; color: var(--text-muted); font-weight: 100; margin-top: 0.2rem;">(Fallback: ${fallbackCallsign})</span>`;
   } else {
     modalDOM.callsignHeader.textContent = primaryCallsign;
   }
