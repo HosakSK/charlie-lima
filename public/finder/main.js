@@ -1047,23 +1047,41 @@ function renderVatsimATC(vatsim, icao, type) {
   });
 }
 
-// --- SMART STICKY SIDEBAR LOGIC ---
+// --- SMART BIDIRECTIONAL STICKY SIDEBAR LOGIC ---
+let lastScrollY = window.scrollY;
+let stickyTop = 32; // 2rem (32px) base offset
+
 function updateStickySidebar() {
   const sidebar = document.querySelector('.filters-panel');
   if (!sidebar) return;
   
   const viewportHeight = window.innerHeight;
   const sidebarHeight = sidebar.offsetHeight;
+  const currentScrollY = window.scrollY;
+  const scrollDelta = currentScrollY - lastScrollY;
   
-  // If sidebar is taller than viewport (with some margin), stick to bottom
   if (sidebarHeight + 64 > viewportHeight) {
-    sidebar.style.top = `calc(100vh - ${sidebarHeight}px - 2rem)`;
+    // Sidebar is taller than viewport
+    const minTop = viewportHeight - sidebarHeight - 32; // Bottom margin 32px
+    const maxTop = 32; // Top margin 32px
+    
+    stickyTop -= scrollDelta;
+    
+    // Clamp
+    if (stickyTop > maxTop) stickyTop = maxTop;
+    if (stickyTop < minTop) stickyTop = minTop;
+    
+    sidebar.style.top = `${stickyTop}px`;
   } else {
-    // If it's shorter, stick to top
+    // Sidebar fits completely
     sidebar.style.top = '2rem';
+    stickyTop = 32;
   }
+  
+  lastScrollY = currentScrollY;
 }
 
+window.addEventListener('scroll', updateStickySidebar, { passive: true });
 window.addEventListener('resize', updateStickySidebar);
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(updateStickySidebar, 100);
