@@ -1344,7 +1344,15 @@ input[type="range"]:focus {
    ========================================= */
 
 @media (max-width: 1280px) {
-  /* Tablet: Keep sidebar, but force 1 column for flights */
+  /* Layout changes for Tablet / Smaller screens */
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .filters-panel {
+    position: static;
+  }
+
   .flights-grid {
     grid-template-columns: 1fr;
   }
@@ -1379,8 +1387,6 @@ input[type="range"]:focus {
     margin-bottom: 0.5rem;
   }
   
-
-  
   .m-route {
     width: 100%;
     justify-content: center;
@@ -1389,24 +1395,7 @@ input[type="range"]:focus {
     border-radius: 12px;
     border: 1px solid var(--panel-border);
   }
-}
 
-@media (max-width: 900px) {
-  /* Mobile: Move sidebar to top */
-  .main-content {
-    grid-template-columns: 1fr;
-  }
-  .filters-panel {
-    position: static;
-  }
-}
-
-@media (max-width: 768px) {
-  .app-container {
-    padding: 1rem;
-    gap: 1rem;
-  }
-  
   /* Tablet search bar styling */
   .search-label {
     display: none;
@@ -1416,6 +1405,14 @@ input[type="range"]:focus {
     flex: 1 1 auto;
     font-size: 0.75rem;
     padding: 0.4rem 0.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Layout changes for Mobile screens */
+  .app-container {
+    padding: 1rem;
+    gap: 1rem;
   }
   
   /* Modern sleek app bar for mobile */
@@ -1474,6 +1471,7 @@ input[type="range"]:focus {
   
   .flight-stats-row {
     grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
   }
   
   .fc-time {
@@ -1483,9 +1481,8 @@ input[type="range"]:focus {
   .fc-icao {
     font-size: 1.1rem;
   }
-}
 
-@media (max-width: 700px) {
+  /* Mobile Modal Layout */
   .modal-grid {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -1520,12 +1517,7 @@ input[type="range"]:focus {
     gap: 1rem;
   }
   
-  .flight-stats-row {
-    gap: 0.5rem;
-  }
-}
-
-@media (max-width: 600px) {
+  /* Mobile Search Bar */
   .modal-search-bar {
     gap: 0.6rem;
   }
