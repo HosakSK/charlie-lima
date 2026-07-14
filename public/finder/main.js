@@ -569,8 +569,13 @@ const modalDOM = {
   
   depTimeLocal: document.getElementById('m-dep-time-local'),
   depTimeUtc: document.getElementById('m-dep-time-utc'),
+  depTimeYourLocal: document.getElementById('m-dep-time-your-local'),
+  depCountdown: document.getElementById('m-dep-countdown'),
+  
   arrTimeLocal: document.getElementById('m-arr-time-local'),
   arrTimeUtc: document.getElementById('m-arr-time-utc'),
+  arrTimeYourLocal: document.getElementById('m-arr-time-your-local'),
+  arrCountdown: document.getElementById('m-arr-countdown'),
   
   dep: document.getElementById('m-dep'),
   arr: document.getElementById('m-arr'),
@@ -725,6 +730,34 @@ async function fetchRouteData(from, to) {
   }
 }
 
+function getNextOccurrenceUtc(dayOfWeek, timeUtcStr) {
+  const now = new Date();
+  const [hours, minutes] = timeUtcStr.split(':').map(Number);
+  let date = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), hours, minutes, 0));
+  
+  const targetDay = dayOfWeek === 7 ? 0 : dayOfWeek;
+  
+  while (date.getUTCDay() !== targetDay) {
+    date.setUTCDate(date.getUTCDate() + 1);
+  }
+  
+  if (date.getTime() < now.getTime()) {
+    date.setUTCDate(date.getUTCDate() + 7);
+  }
+  return date;
+}
+
+function formatCountdown(ms) {
+  const totalMins = Math.floor(ms / 60000);
+  const d = Math.floor(totalMins / 1440);
+  const h = Math.floor((totalMins % 1440) / 60);
+  const m = totalMins % 60;
+  
+  if (d > 0) return `in ${d}d ${h}h`;
+  if (h > 0) return `in ${h}h ${m}m`;
+  return `in ${m}m`;
+}
+
 async function openFlightModal(flight) {
   // Show modal, reset state
   modalDOM.overlay.classList.remove('hidden');
@@ -797,6 +830,19 @@ async function openFlightModal(flight) {
   modalDOM.depTimeUtc.innerHTML = `${flight.departure_time_utc} <span class="time-day-badge utc-badge">${englishDays[depUtcDay]}</span>`;
   modalDOM.arrTimeLocal.innerHTML = `${flight.arrival_time} <span class="time-day-badge">${englishDays[arrLocalDay]}</span>`;
   modalDOM.arrTimeUtc.innerHTML = `${flight.arrival_time_utc} <span class="time-day-badge utc-badge">${englishDays[arrUtcDay]}</span>`;
+
+  if (modalDOM.depTimeYourLocal) {
+    const nextDep = getNextOccurrenceUtc(depUtcDay, flight.departure_time_utc);
+    modalDOM.depTimeYourLocal.innerHTML = `${nextDep.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} <span class="time-day-badge" style="background: rgba(var(--color-accent-rgb), 0.1); color: var(--text-main); border: 1px solid rgba(var(--color-accent-rgb), 0.2);">${nextDep.toLocaleDateString([], {weekday: 'long'})}</span>`;
+    modalDOM.depCountdown.textContent = formatCountdown(nextDep.getTime() - Date.now());
+    
+    const nextArr = getNextOccurrenceUtc(arrUtcDay, flight.arrival_time_utc);
+    if (nextArr.getTime() < nextDep.getTime()) {
+      nextArr.setUTCDate(nextArr.getUTCDate() + 7);
+    }
+    modalDOM.arrTimeYourLocal.innerHTML = `${nextArr.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} <span class="time-day-badge" style="background: rgba(var(--color-accent-rgb), 0.1); color: var(--text-main); border: 1px solid rgba(var(--color-accent-rgb), 0.2);">${nextArr.toLocaleDateString([], {weekday: 'long'})}</span>`;
+    modalDOM.arrCountdown.textContent = formatCountdown(nextArr.getTime() - Date.now());
+  }
 
   // Fetch Data concurrently
   try {

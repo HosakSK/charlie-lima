@@ -208,6 +208,14 @@
                 <span class="time-label">UTC Time:</span>
                 <span id="m-dep-time-utc" class="time-value">--:--</span>
               </div>
+              <div class="modal-time-row" style="background: rgba(var(--color-accent-rgb), 0.05);">
+                <span class="time-label">Your Local:</span>
+                <span id="m-dep-time-your-local" class="time-value">--:--</span>
+              </div>
+              <div class="modal-time-row" style="border-color: var(--accent-blue);">
+                <span class="time-label">Countdown:</span>
+                <span id="m-dep-countdown" class="time-value">--:--</span>
+              </div>
             </div>
 
             <!-- Arrival Times -->
@@ -220,6 +228,14 @@
               <div class="modal-time-row">
                 <span class="time-label">UTC Time:</span>
                 <span id="m-arr-time-utc" class="time-value">--:--</span>
+              </div>
+              <div class="modal-time-row" style="background: rgba(var(--color-accent-rgb), 0.05);">
+                <span class="time-label">Your Local:</span>
+                <span id="m-arr-time-your-local" class="time-value">--:--</span>
+              </div>
+              <div class="modal-time-row" style="border-color: var(--accent-blue);">
+                <span class="time-label">Countdown:</span>
+                <span id="m-arr-countdown" class="time-value">--:--</span>
               </div>
             </div>
 
@@ -278,18 +294,20 @@
 
             <!-- Departure VATSIM ATC -->
             <div class="m-dep-atc-container">
-              <div class="modal-section vatsim-section" style="flex: 1;">
+              <div class="modal-section vatsim-section" style="flex: 1; display: flex; flex-direction: column;">
                 <h3>Departure ATC</h3>
-                <div id="m-dep-vatsim-atc" class="vatsim-atc-list"></div>
+                <div id="m-dep-vatsim-atc" class="vatsim-atc-list" style="flex: 1;"></div>
+                <div style="font-size: 0.65rem; color: var(--text-muted); text-align: right; margin-top: 0.5rem; opacity: 0.7;">Data provided by VATSIM</div>
               </div>
               <a id="m-dep-liveatc-btn" href="#" target="_blank" class="btn-liveatc">Tune LiveATC</a>
             </div>
 
             <!-- Arrival VATSIM ATC -->
             <div class="m-arr-atc-container">
-              <div class="modal-section vatsim-section" style="flex: 1;">
+              <div class="modal-section vatsim-section" style="flex: 1; display: flex; flex-direction: column;">
                 <h3>Arrival ATC</h3>
-                <div id="m-arr-vatsim-atc" class="vatsim-atc-list"></div>
+                <div id="m-arr-vatsim-atc" class="vatsim-atc-list" style="flex: 1;"></div>
+                <div style="font-size: 0.65rem; color: var(--text-muted); text-align: right; margin-top: 0.5rem; opacity: 0.7;">Data provided by VATSIM</div>
               </div>
               <a id="m-arr-liveatc-btn" href="#" target="_blank" class="btn-liveatc">Tune LiveATC</a>
             </div>
