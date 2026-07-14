@@ -833,14 +833,14 @@ async function openFlightModal(flight) {
 
   if (modalDOM.depTimeYourLocal) {
     const nextDep = getNextOccurrenceUtc(depUtcDay, flight.departure_time_utc);
-    modalDOM.depTimeYourLocal.innerHTML = `${nextDep.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} <span class="time-day-badge" style="background: rgba(var(--color-accent-rgb), 0.1); color: var(--text-main); border: 1px solid rgba(var(--color-accent-rgb), 0.2);">${nextDep.toLocaleDateString([], {weekday: 'long'})}</span>`;
+    modalDOM.depTimeYourLocal.innerHTML = `${nextDep.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} <span class="time-day-badge" style="background: rgba(var(--color-accent-rgb), 0.1); color: var(--text-main); border: 1px solid rgba(var(--color-accent-rgb), 0.2);">${nextDep.toLocaleDateString('en-US', {weekday: 'long'})}</span>`;
     modalDOM.depCountdown.textContent = formatCountdown(nextDep.getTime() - Date.now());
     
     const nextArr = getNextOccurrenceUtc(arrUtcDay, flight.arrival_time_utc);
     if (nextArr.getTime() < nextDep.getTime()) {
       nextArr.setUTCDate(nextArr.getUTCDate() + 7);
     }
-    modalDOM.arrTimeYourLocal.innerHTML = `${nextArr.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} <span class="time-day-badge" style="background: rgba(var(--color-accent-rgb), 0.1); color: var(--text-main); border: 1px solid rgba(var(--color-accent-rgb), 0.2);">${nextArr.toLocaleDateString([], {weekday: 'long'})}</span>`;
+    modalDOM.arrTimeYourLocal.innerHTML = `${nextArr.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} <span class="time-day-badge" style="background: rgba(var(--color-accent-rgb), 0.1); color: var(--text-main); border: 1px solid rgba(var(--color-accent-rgb), 0.2);">${nextArr.toLocaleDateString('en-US', {weekday: 'long'})}</span>`;
     modalDOM.arrCountdown.textContent = formatCountdown(nextArr.getTime() - Date.now());
   }
 
