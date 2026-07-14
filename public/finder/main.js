@@ -562,6 +562,7 @@ const modalDOM = {
   callsignHeader: document.getElementById('m-callsign-header'),
   flightNumSub: document.getElementById('m-flight-number-sub'),
   googleSearchBtn: document.getElementById('m-google-search-btn'),
+  flightawareSearchBtn: document.getElementById('m-flightaware-search-btn'),
   flightradarSearchBtn: document.getElementById('m-flightradar-search-btn'),
   ediglaSearchBtn: document.getElementById('m-edigla-search-btn'),
   adsbSearchBtn: document.getElementById('m-adsb-search-btn'),
@@ -749,15 +750,24 @@ async function openFlightModal(flight) {
   
   // Populate Header
   const fn = (flight.flight_number || '').replace(/\s+/g, '');
+  const fallbackCallsign = 'RYR' + fn.replace(/^[A-Za-z]+/, '');
+  const primaryCallsign = flight.callsign || fallbackCallsign;
   const fullFltNum = flight.airline ? `${flight.airline} ${fn}` : fn;
-  modalDOM.callsignHeader.textContent = flight.callsign || fn;
+  
+  if (primaryCallsign !== fallbackCallsign && flight.callsign) {
+    modalDOM.callsignHeader.innerHTML = `${primaryCallsign} <span style="font-size: 0.6em; color: var(--text-muted); font-weight: normal;">(Fallback: ${fallbackCallsign})</span>`;
+  } else {
+    modalDOM.callsignHeader.textContent = primaryCallsign;
+  }
+  
   modalDOM.flightNumSub.textContent = `Let: ${fullFltNum}`;
   modalDOM.googleSearchBtn.href = `https://www.google.com/search?q=${encodeURIComponent(fullFltNum)}`;
+  modalDOM.flightawareSearchBtn.href = `https://flightaware.com/live/flight/${fallbackCallsign}`;
   modalDOM.flightradarSearchBtn.href = `https://www.flightradar24.com/data/flights/${fn.toLowerCase()}`;
   modalDOM.ediglaSearchBtn.href = `https://edi-gla.co.uk/flightplan/search?Flightplan%5Bcallsign%5D=&Flightplan%5Baircraft_icao%5D=&Flightplan%5Bdep%5D=${flight.departure_icao}&Flightplan%5Bdest%5D=${flight.arrival_icao}&Flightplan%5Bsearch_flight_time%5D=&Flightplan%5Bsearch_contributor_username%5D=&Flightplan%5Bremarks%5D=&Flightplan%5Bsearch_date_from%5D=&Flightplan%5Bsearch_date_to%5D=&Flightplan%5Bairac_cycle_validated%5D=&Flightplan%5Bsearch_sort_field%5D=fpl_id&Flightplan%5Bsearch_sort_order%5D=3`;
   
-  const adsbCallsign = flight.callsign || fn;
-  modalDOM.adsbSearchBtn.href = `https://globe.adsb.fi/?lat=50.0&lon=15.0&zoom=4.5&filterCallSign=${adsbCallsign}`;
+  const adsbCallsigns = primaryCallsign !== fallbackCallsign ? `${primaryCallsign},${fallbackCallsign}` : primaryCallsign;
+  modalDOM.adsbSearchBtn.href = `https://globe.adsb.fi/?lat=50.0&lon=15.0&zoom=4.5&filterCallSign=${adsbCallsigns}`;
   
   modalDOM.dep.textContent = flight.departure_icao;
   modalDOM.arr.textContent = flight.arrival_icao;
